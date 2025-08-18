@@ -1,0 +1,72 @@
+# Central index for every Avro schema that is (or is planned to be) available
+# to the data-lake.  Tools such as the pipeline generator, catalog synchronizer,
+# and schema-diff CI job read this file instead of scanning the file-system.
+#------------------------------------------------------------------------
+# !! NOTE !!
+# The "*.avsc" files are **still physically located** in
+# services/galaxy_generator/schemas/**.  They will be moved here
+# incrementally in subsequent pull requests.  Paths below therefore use
+# the current absolute location until the move is complete.
+#------------------------------------------------------------------------
+version: 1
+schemas:
+  physics:
+    - name: MagneticField
+      file: services/galaxy_generator/schemas/physics/MagneticFieldSchema.avsc
+      namespace: CosmosGenesis.physics
+      description: Magnetic field in space
+      compatibility: BACKWARD
+      version: 1.0.0
+    - name: Magnetosphere
+      file: services/galaxy_generator/schemas/physics/MagnetosphereSchema.avsc
+      namespace: CosmosGenesis.physics
+      description: Planetary or stellar magnetosphere
+      compatibility: BACKWARD
+      version: 1.0.0
+    - name: PlasmaPhenomena
+      file: services/galaxy_generator/schemas/physics/PlasmaPhenomenaSchema.avsc
+      namespace: CosmosGenesis.physics
+      description: Various plasma events and parameters
+      compatibility: BACKWARD
+      version: 1.0.0
+  biological:
+    - name: CivilizationMarkers
+      file: services/galaxy_generator/schemas/biological/CivilizationMarkersSchema.avsc
+      namespace: CosmosGenesis.biological
+      description: Technological or biological signatures of civilizations
+      compatibility: BACKWARD
+      version: 1.0.0
+  environmental:
+    - name: ThermalMap
+      file: services/galaxy_generator/schemas/environmental/ThermalMapSchema.avsc
+      namespace: CosmosGenesis.environmental
+      description: Temperature distribution across a surface or region
+      compatibility: BACKWARD
+      version: 1.0.0
+  cosmic_phenomena:
+    - name: DarkMatterDistribution
+      file: services/galaxy_generator/schemas/cosmic_phenomena/DarkMatterDistributionSchema.avsc
+      namespace: CosmosGenesis.cosmic_phenomena
+      description: Dark-matter densities and shapes
+      compatibility: BACKWARD
+      version: 1.0.0
+  properties:
+    - name: AsteroidProperties
+      file: services/galaxy_generator/schemas/properties/AsteroidPropertiesSchema.avsc
+      namespace: CosmosGenesis.properties
+      description: Physical properties for individual asteroids
+      compatibility: BACKWARD
+      version: 1.0.0
+  celestial_objects:
+    - name: Asteroid
+      file: services/galaxy_generator/schemas/celestial_objects/AsteroidSchema.avsc
+      namespace: CosmosGenesis.celestial_objects
+      description: Single asteroid entity
+      compatibility: BACKWARD
+      version: 1.0.0
+    - name: AsteroidBelt
+      file: services/galaxy_generator/schemas/celestial_objects/AsteroidBeltSchema.avsc
+      namespace: CosmosGenesis.celestial_objects
+      description: Collection of asteroid properties and orbital parameters
+      compatibility: BACKWARD
+      version: 1.0.0
