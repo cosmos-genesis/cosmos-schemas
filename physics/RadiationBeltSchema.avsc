@@ -1,0 +1,26 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "RadiationBelt",
+  "doc": "Represents a radiation belt in a planetary or stellar magnetosphere.",
+  "fields": [
+    {
+      "name": "designation",
+      "type": "string",
+      "doc": "Designation or name of the radiation belt"
+    },
+    {
+      "name": "peak_intensity",
+      "type": "double",
+      "doc": "Peak intensity of the radiation belt"
+    },
+    {
+      "name": "altitude_range_km",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "Altitude range of the radiation belt in kilometers [min, max]"
+    }
+  ]
+}

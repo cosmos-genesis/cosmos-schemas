@@ -1,0 +1,80 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "SpectralSignature",
+  "doc": "Spectral analysis and identification data",
+  "fields": [
+    {
+      "name": "signature_id",
+      "type": "string"
+    },
+    {
+      "name": "object_id",
+      "type": "string"
+    },
+    {
+      "name": "spectrum_data",
+      "type": {
+        "type": "record",
+        "name": "SpectrumData",
+        "fields": [
+          {
+            "name": "wavelengths",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "intensities",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "absorption_lines",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "emission_lines",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "temperature_k",
+      "type": "double"
+    },
+    {
+      "name": "redshift",
+      "type": "double"
+    },
+    {
+      "name": "signal_to_noise_ratio",
+      "type": "double"
+    },
+    {
+      "name": "classification",
+      "type": "string"
+    },
+    {
+      "name": "notable_features",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

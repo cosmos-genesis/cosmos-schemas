@@ -1,0 +1,54 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "OrbitalDebris",
+  "doc": "Tracks artificial and natural debris in orbital space.",
+  "fields": [
+    {
+      "name": "debris_id",
+      "type": "string"
+    },
+    {
+      "name": "debris_type",
+      "type": {
+        "type": "enum",
+        "name": "DebrisType",
+        "symbols": [
+          "SPACECRAFT_FRAGMENT",
+          "ROCKET_BODY",
+          "MICROMETEROID",
+          "DUST_CLOUD",
+          "ICE_PARTICLE",
+          "ASTEROID_FRAGMENT"
+        ]
+      }
+    },
+    {
+      "name": "size_m",
+      "type": "double"
+    },
+    {
+      "name": "mass_kg",
+      "type": "double"
+    },
+    {
+      "name": "orbital_elements",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "collision_risk",
+      "type": "double"
+    },
+    {
+      "name": "tracking_confidence",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

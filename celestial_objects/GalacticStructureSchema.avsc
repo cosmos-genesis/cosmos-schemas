@@ -1,0 +1,67 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "GalacticStructure",
+  "doc": "Represents large-scale structures within galaxies.",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this structure belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system this structure is associated with, if applicable"
+    },
+    {
+      "name": "structure_id",
+      "type": "string",
+      "doc": "Stable identifier for this structure within the data lake"
+    },
+    {
+      "name": "structure_designation",
+      "type": "string"
+    },
+    {
+      "name": "structure_type",
+      "type": {
+        "type": "enum",
+        "name": "StructureType",
+        "symbols": [
+          "SPIRAL_ARM",
+          "BAR",
+          "BULGE",
+          "DISK",
+          "HALO",
+          "GLOBULAR_CLUSTER",
+          "STELLAR_STREAM"
+        ]
+      }
+    },
+    {
+      "name": "size_ly",
+      "type": "double"
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double"
+    },
+    {
+      "name": "stellar_density",
+      "type": "double"
+    },
+    {
+      "name": "metallicity",
+      "type": "double"
+    },
+    {
+      "name": "age_gyr",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

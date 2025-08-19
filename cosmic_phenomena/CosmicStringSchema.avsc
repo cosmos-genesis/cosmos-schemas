@@ -1,0 +1,84 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "CosmicString",
+  "doc": "Represents cosmic strings and their network properties.",
+  "fields": [
+    {
+      "name": "string_network_designation",
+      "type": "string"
+    },
+    {
+      "name": "string_tension_gev2",
+      "type": "double"
+    },
+    {
+      "name": "network_density",
+      "type": "double"
+    },
+    {
+      "name": "string_segments",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StringSegment",
+          "fields": [
+            {
+              "name": "length_mpc",
+              "type": "double"
+            },
+            {
+              "name": "velocity_c",
+              "type": "double"
+            },
+            {
+              "name": "curvature_radius_mpc",
+              "type": "double"
+            },
+            {
+              "name": "reconnection_probability",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "string_loops",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StringLoop",
+          "fields": [
+            {
+              "name": "size_pc",
+              "type": "double"
+            },
+            {
+              "name": "oscillation_frequency_hz",
+              "type": "double"
+            },
+            {
+              "name": "gravitational_power_w",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "intercommutation_rate",
+      "type": "double"
+    },
+    {
+      "name": "scaling_solution_parameter",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

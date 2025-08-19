@@ -1,0 +1,70 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "DustParticle",
+  "doc": "Properties of dust particles in debris disks and clouds",
+  "fields": [
+    {
+      "name": "particle_id",
+      "type": "string"
+    },
+    {
+      "name": "small_body_id",
+      "type": "string"
+    },
+    {
+      "name": "particle_properties",
+      "type": {
+        "type": "record",
+        "name": "ParticleProperties",
+        "fields": [
+          {
+            "name": "size_microns",
+            "type": "double"
+          },
+          {
+            "name": "composition_type",
+            "type": "string"
+          },
+          {
+            "name": "charge_state",
+            "type": "double"
+          },
+          {
+            "name": "beta_parameter",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "radiation_properties",
+      "type": {
+        "type": "record",
+        "name": "RadiationProperties",
+        "fields": [
+          {
+            "name": "absorption_coefficient",
+            "type": "double"
+          },
+          {
+            "name": "scattering_coefficient",
+            "type": "double"
+          },
+          {
+            "name": "polarization_factor",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "lifetime_years",
+      "type": "double"
+    },
+    {
+      "name": "poynting_robertson_drift",
+      "type": "double"
+    }
+  ]
+}

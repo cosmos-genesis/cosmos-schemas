@@ -1,0 +1,71 @@
+{
+  "type": "record",
+  "name": "PlanetaryRings",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this ring system belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains the parent planet"
+    },
+    {
+      "name": "star_id",
+      "type": "string",
+      "doc": "Identifier of the parent star of the parent planet"
+    },
+    {
+      "name": "planet_id",
+      "type": "string",
+      "doc": "Identifier of the parent planet this ring system surrounds"
+    },
+    {
+      "name": "ring_id",
+      "type": "string",
+      "doc": "Stable identifier for this ring system within the data lake"
+    },
+    {
+      "name": "ring_designation",
+      "type": "string",
+      "doc": "Unique identifier for the ring system (e.g., '1', '2')"
+    },
+    {
+      "name": "has_rings",
+      "type": "boolean",
+      "default": true,
+      "doc": "Whether the planet has this ring system"
+    },
+    {
+      "name": "inner_radius_er",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Inner radius of the ring system in Earth radii"
+    },
+    {
+      "name": "outer_radius_er",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Outer radius of the ring system in Earth radii"
+    },
+    {
+      "name": "ring_composition",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.RingComposition"
+      ],
+      "default": null,
+      "doc": "Primary composition of the ring system"
+    }
+  ]
+}

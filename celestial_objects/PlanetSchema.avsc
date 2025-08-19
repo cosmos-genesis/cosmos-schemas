@@ -1,0 +1,173 @@
+{
+  "type": "record",
+  "name": "Planet",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "doc": "Comprehensive representation of a planet with detailed physical, orbital, surface, and internal properties",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Identifier of the galaxy this planet belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Identifier of the star system that contains this planet"
+    },
+    {
+      "name": "star_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Identifier of the parent star this planet orbits"
+    },
+    {
+      "name": "planet_id",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Stable identifier for this planet within the data lake"
+    },
+    {
+      "name": "planet_designation",
+      "type": "string",
+      "doc": "Unique identifier for the planet (e.g., 'Kepler-452b', 'Earth')"
+    },
+    {
+      "name": "planet_type",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.PlanetType",
+        "string"
+      ],
+      "default": null,
+      "doc": "Classification of the planet based on composition and characteristics"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Current 3D position of the planet relative to its parent star"
+    },
+    {
+      "name": "physical_properties",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.PlanetaryPhysicalProperties"
+      ],
+      "default": null,
+      "doc": "Physical properties of the planet including mass, radius, density, gravity, and escape velocity"
+    },
+    {
+      "name": "orbital_properties",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.OrbitalProperties"
+      ],
+      "default": null,
+      "doc": "Orbital properties of the planet including distance, period, and orbital elements"
+    },
+    {
+      "name": "surface_properties",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.SurfaceProperties"
+      ],
+      "default": null,
+      "doc": "Surface properties of the planet including oceans, atmosphere, temperature, and ring systems"
+    },
+    {
+      "name": "internal_structure",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.InternalStructureProperties"
+      ],
+      "default": null,
+      "doc": "Internal structure properties of the planet including core type, layer composition, and tectonic activity"
+    },
+    {
+      "name": "moons",
+      "type": {
+        "type": "array",
+        "items": "CosmosGenesis.celestial_objects.Moon"
+      },
+      "default": [],
+      "doc": "Array of moons orbiting this planet"
+    },
+    {
+      "name": "orbital_distance_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Semi-major axis of the planet's orbit in astronomical units (AU) - Legacy field, use orbital_properties.semi_major_axis_au instead"
+    },
+    {
+      "name": "orbital_period_days",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Time for planet to complete one orbit around its star in Earth days - Legacy field, use orbital_properties.orbital_period_days instead"
+    },
+    {
+      "name": "mass_em",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mass of the planet in Earth masses - Legacy field, use physical_properties.mass_earth_masses instead"
+    },
+    {
+      "name": "radius_er",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Radius of the planet in Earth radii - Legacy field, use physical_properties.radius_km instead (with conversion)"
+    },
+    {
+      "name": "potentially_habitable",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Whether the planet is in the habitable zone and could potentially support life - Legacy field, use surface_properties.potentially_habitable instead"
+    },
+    {
+      "name": "atmosphere_type",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.AtmosphereType"
+      ],
+      "default": null,
+      "doc": "Type of atmosphere present on the planet - Legacy field, use surface_properties.atmosphere_type instead"
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Average surface temperature in Kelvin - Legacy field, use surface_properties.surface_temperature_k instead"
+    },
+    {
+      "name": "rings",
+      "type": [
+        "null",
+        {
+          "type": "array",
+          "items": "CosmosGenesis.celestial_objects.PlanetaryRings"
+        }
+      ],
+      "default": null,
+      "doc": "Array of ring systems orbiting this planet - Legacy field, use surface_properties.ring_properties instead"
+    }
+  ]
+}

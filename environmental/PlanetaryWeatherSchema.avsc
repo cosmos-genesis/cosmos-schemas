@@ -1,0 +1,87 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "PlanetaryWeather",
+  "doc": "Defines planetary weather patterns and conditions.",
+  "fields": [
+    {
+      "name": "weather_system_id",
+      "type": "string"
+    },
+    {
+      "name": "current_conditions",
+      "type": {
+        "type": "record",
+        "name": "WeatherConditions",
+        "fields": [
+          {
+            "name": "temperature_k",
+            "type": "double"
+          },
+          {
+            "name": "pressure_pa",
+            "type": "double"
+          },
+          {
+            "name": "wind_speed_ms",
+            "type": "double"
+          },
+          {
+            "name": "precipitation_type",
+            "type": "string"
+          },
+          {
+            "name": "cloud_coverage",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "storm_systems",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StormSystem",
+          "fields": [
+            {
+              "name": "type",
+              "type": "string"
+            },
+            {
+              "name": "intensity",
+              "type": "double"
+            },
+            {
+              "name": "diameter_km",
+              "type": "double"
+            },
+            {
+              "name": "movement_vector",
+              "type": {
+                "type": "array",
+                "items": "double"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "seasonal_factor",
+      "type": "double"
+    },
+    {
+      "name": "active_weather_patterns",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

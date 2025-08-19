@@ -1,0 +1,71 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "Magnetosphere",
+  "doc": "Represents a planetary or stellar magnetosphere.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "parent_body_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "field_strength_tesla",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "dipole_tilt_degrees",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "magnetopause_radius_km",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "bow_shock_radius_km",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "radiation_belts",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "RadiationBelt",
+          "fields": [
+            {
+              "name": "designation",
+              "type": "string"
+            },
+            {
+              "name": "peak_intensity",
+              "type": "double"
+            },
+            {
+              "name": "altitude_range_km",
+              "type": {
+                "type": "array",
+                "items": "double"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "aurora_present",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": ["null", "CosmosGenesis.properties.Coordinates"],
+      "default": null
+    }
+  ]
+}

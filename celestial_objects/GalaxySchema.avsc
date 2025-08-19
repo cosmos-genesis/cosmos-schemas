@@ -1,0 +1,146 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "Galaxy",
+  "doc": "Represents a galaxy containing multiple star systems.",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Unique identifier for the galaxy"
+    },
+    {
+      "name": "galaxy_type",
+      "type": {
+        "type": "enum",
+        "name": "GalaxyType",
+        "symbols": [
+          "SPIRAL",
+          "ELLIPTICAL",
+          "IRREGULAR",
+          "LENTICULAR"
+        ]
+      },
+      "doc": "The morphological classification of the galaxy"
+    },
+    {
+      "name": "properties",
+      "type": {
+        "type": "record",
+        "name": "GalaxyProperties",
+        "fields": [
+          {
+            "name": "radius_ly",
+            "type": "double",
+            "doc": "Radius of the galaxy in light years"
+          },
+          {
+            "name": "thickness_ly",
+            "type": "double",
+            "doc": "Thickness of the galaxy in light years"
+          },
+          {
+            "name": "num_stars",
+            "type": "long",
+            "doc": "Total number of star systems in the galaxy"
+          },
+          {
+            "name": "spiral_properties",
+            "type": [
+              "null",
+              {
+                "type": "record",
+                "name": "SpiralProperties",
+                "fields": [
+                  {
+                    "name": "num_arms",
+                    "type": "int",
+                    "doc": "Number of spiral arms"
+                  },
+                  {
+                    "name": "arm_rotation",
+                    "type": "double",
+                    "doc": "Rotation factor for spiral arms"
+                  },
+                  {
+                    "name": "arm_fuzziness",
+                    "type": "double",
+                    "doc": "Fuzziness factor for spiral arms"
+                  }
+                ]
+              }
+            ],
+            "default": null,
+            "doc": "Properties specific to spiral galaxies, null for other types"
+          }
+        ]
+      }
+    },
+    {
+      "name": "metadata",
+      "type": {
+        "type": "record",
+        "name": "GalaxyMetadata",
+        "fields": [
+          {
+            "name": "generation_date",
+            "type": "string",
+            "doc": "ISO-8601 formatted date-time when the galaxy was generated"
+          },
+          {
+            "name": "generator_version",
+            "type": "string",
+            "doc": "Version of the generator software used"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "doc": "Human-readable description of the galaxy"
+          }
+        ]
+      }
+    },
+    {
+      "name": "systems",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StarSystem",
+          "fields": [
+            {
+              "name": "system_id",
+              "type": "string"
+            },
+            {
+              "name": "coordinates",
+              "type": {
+                "type": "record",
+                "name": "Coordinates",
+                "fields": [
+                  {
+                    "name": "x",
+                    "type": "double"
+                  },
+                  {
+                    "name": "y",
+                    "type": "double"
+                  },
+                  {
+                    "name": "z",
+                    "type": "double"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "doc": "Array of star systems within the galaxy"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

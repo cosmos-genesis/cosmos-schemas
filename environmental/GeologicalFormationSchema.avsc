@@ -1,0 +1,78 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "GeologicalFormation",
+  "doc": "Represents geological features and formations on planetary bodies.",
+  "fields": [
+    {
+      "name": "formation_designation",
+      "type": "string"
+    },
+    {
+      "name": "formation_type",
+      "type": {
+        "type": "enum",
+        "name": "FormationType",
+        "symbols": [
+          "MOUNTAIN_RANGE",
+          "CANYON",
+          "CRATER",
+          "VOLCANO",
+          "PLAIN",
+          "RIDGE",
+          "VALLEY",
+          "PLATEAU",
+          "BASIN",
+          "FAULT_LINE"
+        ]
+      }
+    },
+    {
+      "name": "age_my",
+      "type": "double"
+    },
+    {
+      "name": "dimensions_km",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "MineralComponent",
+          "fields": [
+            {
+              "name": "mineral_name",
+              "type": "string"
+            },
+            {
+              "name": "percentage",
+              "type": "double"
+            },
+            {
+              "name": "crystal_structure",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "erosion_rate_mm_year",
+      "type": "double"
+    },
+    {
+      "name": "stability_index",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

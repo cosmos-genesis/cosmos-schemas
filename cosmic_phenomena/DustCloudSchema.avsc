@@ -1,0 +1,73 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "DustCloud",
+  "doc": "Represents interstellar or circumstellar dust clouds.",
+  "fields": [
+    {
+      "name": "cloud_designation",
+      "type": "string"
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double"
+    },
+    {
+      "name": "volume_cubic_ly",
+      "type": "double"
+    },
+    {
+      "name": "temperature_k",
+      "type": "double"
+    },
+    {
+      "name": "grain_properties",
+      "type": {
+        "type": "record",
+        "name": "DustGrains",
+        "fields": [
+          {
+            "name": "mean_size_microns",
+            "type": "double"
+          },
+          {
+            "name": "size_distribution",
+            "type": "string"
+          },
+          {
+            "name": "composition",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "GrainComponent",
+                "fields": [
+                  {
+                    "name": "material",
+                    "type": "string"
+                  },
+                  {
+                    "name": "mass_fraction",
+                    "type": "double"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "extinction_coefficient",
+      "type": "double"
+    },
+    {
+      "name": "polarization_percentage",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

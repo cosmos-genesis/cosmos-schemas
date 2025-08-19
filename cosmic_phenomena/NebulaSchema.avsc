@@ -1,0 +1,72 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "Nebula",
+  "doc": "Represents various types of nebulae.",
+  "fields": [
+    {
+      "name": "nebula_designation",
+      "type": "string"
+    },
+    {
+      "name": "nebula_type",
+      "type": {
+        "type": "enum",
+        "name": "NebulaType",
+        "symbols": [
+          "EMISSION",
+          "REFLECTION",
+          "PLANETARY",
+          "SUPERNOVA_REMNANT",
+          "DARK",
+          "PROTO_PLANETARY"
+        ]
+      }
+    },
+    {
+      "name": "size_ly",
+      "type": "double",
+      "doc": "Size in light years"
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double"
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ElementAbundance",
+          "fields": [
+            {
+              "name": "element",
+              "type": "string"
+            },
+            {
+              "name": "percentage",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "temperature_k",
+      "type": "double"
+    },
+    {
+      "name": "ionization_level",
+      "type": "double"
+    },
+    {
+      "name": "visible_light_emission",
+      "type": "boolean"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

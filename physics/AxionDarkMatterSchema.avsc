@@ -1,0 +1,69 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "AxionDarkMatter",
+  "doc": "Represents axion particles as dark matter candidates.",
+  "fields": [
+    {
+      "name": "axion_designation",
+      "type": "string"
+    },
+    {
+      "name": "mass_ev",
+      "type": "double"
+    },
+    {
+      "name": "decay_constant_gev",
+      "type": "double"
+    },
+    {
+      "name": "production_mechanism",
+      "type": {
+        "type": "enum",
+        "name": "AxionProduction",
+        "symbols": [
+          "MISALIGNMENT",
+          "STRING_DECAY",
+          "WALL_DECAY",
+          "THERMAL"
+        ]
+      }
+    },
+    {
+      "name": "oscillation_properties",
+      "type": {
+        "type": "record",
+        "name": "AxionOscillation",
+        "fields": [
+          {
+            "name": "frequency_hz",
+            "type": "double"
+          },
+          {
+            "name": "quality_factor",
+            "type": "double"
+          },
+          {
+            "name": "coherence_time_s",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "coupling_strength",
+      "type": "double"
+    },
+    {
+      "name": "density_distribution",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

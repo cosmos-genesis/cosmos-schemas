@@ -1,0 +1,11 @@
+{
+  "type": "enum",
+  "namespace": "CosmosGenesis.properties",
+  "name": "CompositionType",
+  "doc": "The primary material composition of celestial objects.",
+  "symbols": [
+    "ROCKY",
+    "ICEY",
+    "METALLIC"
+  ]
+}

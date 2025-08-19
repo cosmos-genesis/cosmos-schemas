@@ -1,0 +1,92 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "SpaceEnvironment",
+  "doc": "Comprehensive space environment including weather, radiation, and magnetic fields.",
+  "fields": [
+    {
+      "name": "environment_id",
+      "type": "string"
+    },
+    {
+      "name": "radiation_field",
+      "type": {
+        "type": "record",
+        "name": "RadiationField",
+        "fields": [
+          {
+            "name": "intensity",
+            "type": "double"
+          },
+          {
+            "name": "spectrum",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "hazard_level",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "magnetic_field",
+      "type": {
+        "type": "record",
+        "name": "MagneticField",
+        "fields": [
+          {
+            "name": "strength_tesla",
+            "type": "double"
+          },
+          {
+            "name": "polarity",
+            "type": "string"
+          },
+          {
+            "name": "field_lines",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": "double"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "space_weather",
+      "type": {
+        "type": "record",
+        "name": "SpaceWeather",
+        "fields": [
+          {
+            "name": "solar_wind_speed",
+            "type": "double"
+          },
+          {
+            "name": "particle_density",
+            "type": "double"
+          },
+          {
+            "name": "event_type",
+            "type": "string"
+          },
+          {
+            "name": "intensity",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

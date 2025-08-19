@@ -1,0 +1,86 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "SmallBody",
+  "doc": "Base schema for small celestial bodies like asteroids, comets, and planetesimals",
+  "fields": [
+    {
+      "name": "body_id",
+      "type": "string"
+    },
+    {
+      "name": "parent_population_id",
+      "type": "string"
+    },
+    {
+      "name": "classification",
+      "type": {
+        "type": "enum",
+        "name": "SmallBodyType",
+        "symbols": [
+          "ASTEROID",
+          "COMET",
+          "PLANETESIMAL",
+          "CENTAUR",
+          "KBO",
+          "INTERSTELLAR_OBJECT",
+          "DUST_PARTICLE",
+          "TROJAN",
+          "VULCANOID"
+        ]
+      }
+    },
+    {
+      "name": "physical_properties",
+      "type": {
+        "type": "record",
+        "name": "PhysicalProperties",
+        "fields": [
+          {
+            "name": "mean_diameter_km",
+            "type": "double"
+          },
+          {
+            "name": "mass_kg",
+            "type": "double"
+          },
+          {
+            "name": "albedo",
+            "type": "double"
+          },
+          {
+            "name": "rotation_period_hours",
+            "type": "double"
+          },
+          {
+            "name": "bulk_density_kg_m3",
+            "type": "double"
+          },
+          {
+            "name": "shape_parameters",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "orbit_id",
+      "type": "string"
+    },
+    {
+      "name": "composition_id",
+      "type": "string"
+    },
+    {
+      "name": "spectral_signature_id",
+      "type": "string"
+    },
+    {
+      "name": "discovery_probability",
+      "type": "double"
+    }
+  ]
+}

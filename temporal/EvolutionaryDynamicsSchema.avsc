@@ -1,0 +1,115 @@
+{
+  "type": "record",
+  "name": "EvolutionaryDynamicsSchema",
+  "namespace": "CosmosGenesis.temporal",
+  "doc": "Schema for modeling evolutionary changes in celestial objects and systems over time",
+  "fields": [
+    {
+      "name": "object_id",
+      "type": "string",
+      "doc": "Unique identifier for the evolutionary dynamics object"
+    },
+    {
+      "name": "target_object_id",
+      "type": "string",
+      "doc": "ID of the celestial object this evolutionary model applies to"
+    },
+    {
+      "name": "time_scale",
+      "type": {
+        "type": "enum",
+        "name": "TimeScale",
+        "symbols": [
+          "GEOLOGICAL",
+          "BIOLOGICAL",
+          "STELLAR",
+          "COSMIC"
+        ]
+      },
+      "doc": "The time scale of evolutionary changes"
+    },
+    {
+      "name": "change_rate",
+      "type": "double",
+      "doc": "Rate of change in standard units per million years"
+    },
+    {
+      "name": "evolutionary_stages",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EvolutionaryStage",
+          "fields": [
+            {
+              "name": "stage_name",
+              "type": "string"
+            },
+            {
+              "name": "start_time",
+              "type": "double",
+              "doc": "Start time in millions of years from reference point"
+            },
+            {
+              "name": "end_time",
+              "type": [
+                "double",
+                "null"
+              ],
+              "doc": "End time in millions of years from reference point, null if ongoing"
+            },
+            {
+              "name": "key_properties",
+              "type": {
+                "type": "map",
+                "values": [
+                  "string",
+                  "double",
+                  "boolean"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "transition_triggers",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "TransitionTrigger",
+          "fields": [
+            {
+              "name": "trigger_type",
+              "type": {
+                "type": "enum",
+                "name": "TriggerType",
+                "symbols": [
+                  "THRESHOLD",
+                  "EVENT",
+                  "EXTERNAL",
+                  "RANDOM"
+                ]
+              }
+            },
+            {
+              "name": "trigger_condition",
+              "type": "string",
+              "doc": "Description of the condition that triggers transition"
+            },
+            {
+              "name": "from_stage",
+              "type": "string"
+            },
+            {
+              "name": "to_stage",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

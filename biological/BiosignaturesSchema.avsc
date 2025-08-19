@@ -1,0 +1,82 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.biological",
+  "name": "Biosignatures",
+  "doc": "Represents potential signs of life on exoplanets.",
+  "fields": [
+    {
+      "name": "planet_designation",
+      "type": "string"
+    },
+    {
+      "name": "atmospheric_signatures",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AtmosphericBiosignature",
+          "fields": [
+            {
+              "name": "molecule",
+              "type": "string"
+            },
+            {
+              "name": "concentration_ppm",
+              "type": "double"
+            },
+            {
+              "name": "confidence_biological",
+              "type": "double"
+            },
+            {
+              "name": "possible_abiotic_sources",
+              "type": {
+                "type": "array",
+                "items": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "surface_signatures",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "SurfaceBiosignature",
+          "fields": [
+            {
+              "name": "signature_type",
+              "type": "string"
+            },
+            {
+              "name": "coverage_percentage",
+              "type": "double"
+            },
+            {
+              "name": "spectral_features",
+              "type": {
+                "type": "array",
+                "items": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "seasonal_variations",
+      "type": "boolean"
+    },
+    {
+      "name": "chemical_disequilibrium_index",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

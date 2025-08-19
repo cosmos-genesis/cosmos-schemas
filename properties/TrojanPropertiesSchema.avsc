@@ -1,0 +1,46 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "TrojanProperties",
+  "doc": "Properties specific to Trojan objects in Lagrange points",
+  "fields": [
+    {
+      "name": "trojan_id",
+      "type": "string"
+    },
+    {
+      "name": "small_body_id",
+      "type": "string"
+    },
+    {
+      "name": "host_planet_id",
+      "type": "string"
+    },
+    {
+      "name": "lagrange_point",
+      "type": {
+        "type": "enum",
+        "name": "LagrangePoint",
+        "symbols": [
+          "L4",
+          "L5"
+        ]
+      }
+    },
+    {
+      "name": "libration_amplitude_deg",
+      "type": "double"
+    },
+    {
+      "name": "stability_lifetime_years",
+      "type": "double"
+    },
+    {
+      "name": "tadpole_orbit_parameters",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    }
+  ]
+}

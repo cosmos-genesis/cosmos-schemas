@@ -1,0 +1,51 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "ResourceDeposit",
+  "doc": "Represents important mineral, energy, or exotic resource deposits.",
+  "fields": [
+    {
+      "name": "deposit_designation",
+      "type": "string"
+    },
+    {
+      "name": "resource_type",
+      "type": {
+        "type": "enum",
+        "name": "ResourceType",
+        "symbols": [
+          "PRECIOUS_METALS",
+          "RARE_EARTH_ELEMENTS",
+          "RADIOACTIVE_MATERIALS",
+          "FUSION_FUEL",
+          "EXOTIC_MATTER",
+          "INDUSTRIAL_MINERALS",
+          "ENERGY_SOURCE"
+        ]
+      }
+    },
+    {
+      "name": "quantity",
+      "type": "double"
+    },
+    {
+      "name": "quality",
+      "type": "double"
+    },
+    {
+      "name": "accessibility",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "extraction_difficulty",
+      "type": "double"
+    }
+  ]
+}

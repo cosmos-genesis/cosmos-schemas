@@ -1,0 +1,75 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "PrimordialBlackHole",
+  "doc": "Represents properties of primordial black holes.",
+  "fields": [
+    {
+      "name": "pbh_designation",
+      "type": "string"
+    },
+    {
+      "name": "formation_time_s",
+      "type": "double"
+    },
+    {
+      "name": "initial_mass_g",
+      "type": "double"
+    },
+    {
+      "name": "current_mass_g",
+      "type": "double"
+    },
+    {
+      "name": "hawking_temperature_k",
+      "type": "double"
+    },
+    {
+      "name": "evaporation_rate_g_s",
+      "type": "double"
+    },
+    {
+      "name": "remaining_lifetime_s",
+      "type": "double"
+    },
+    {
+      "name": "emission_spectrum",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "RadiationComponent",
+          "fields": [
+            {
+              "name": "particle_type",
+              "type": "string"
+            },
+            {
+              "name": "energy_spectrum",
+              "type": {
+                "type": "array",
+                "items": "double"
+              }
+            },
+            {
+              "name": "emission_rate",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "clustering_parameter",
+      "type": "double"
+    },
+    {
+      "name": "density_fraction",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

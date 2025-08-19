@@ -1,0 +1,99 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "GalacticChemistry",
+  "doc": "Represents chemical evolution and distribution in galaxies.",
+  "fields": [
+    {
+      "name": "galaxy_designation",
+      "type": "string"
+    },
+    {
+      "name": "abundance_patterns",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ElementAbundance",
+          "fields": [
+            {
+              "name": "element",
+              "type": "string"
+            },
+            {
+              "name": "abundance_fe_h",
+              "type": "double"
+            },
+            {
+              "name": "radial_gradient",
+              "type": "double"
+            },
+            {
+              "name": "vertical_gradient",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "chemical_regions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ChemicalRegion",
+          "fields": [
+            {
+              "name": "region_name",
+              "type": "string"
+            },
+            {
+              "name": "metallicity",
+              "type": "double"
+            },
+            {
+              "name": "alpha_enhancement",
+              "type": "double"
+            },
+            {
+              "name": "star_formation_rate",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "enrichment_sources",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EnrichmentSource",
+          "fields": [
+            {
+              "name": "source_type",
+              "type": "string"
+            },
+            {
+              "name": "rate",
+              "type": "double"
+            },
+            {
+              "name": "yield_patterns",
+              "type": {
+                "type": "array",
+                "items": "double"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

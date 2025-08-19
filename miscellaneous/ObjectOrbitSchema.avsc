@@ -1,0 +1,76 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "ObjectOrbit",
+  "doc": "Detailed orbital parameters for any celestial object",
+  "fields": [
+    {
+      "name": "orbit_id",
+      "type": "string"
+    },
+    {
+      "name": "parent_body_id",
+      "type": "string"
+    },
+    {
+      "name": "keplerian_elements",
+      "type": {
+        "type": "record",
+        "name": "KeplerianElements",
+        "fields": [
+          {
+            "name": "semi_major_axis_au",
+            "type": "double"
+          },
+          {
+            "name": "eccentricity",
+            "type": "double"
+          },
+          {
+            "name": "inclination_deg",
+            "type": "double"
+          },
+          {
+            "name": "longitude_of_ascending_node_deg",
+            "type": "double"
+          },
+          {
+            "name": "argument_of_periapsis_deg",
+            "type": "double"
+          },
+          {
+            "name": "mean_anomaly_deg",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "orbital_period_days",
+      "type": "double"
+    },
+    {
+      "name": "epoch",
+      "type": "string"
+    },
+    {
+      "name": "perturbations",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "is_stable",
+      "type": "boolean"
+    },
+    {
+      "name": "collision_risk",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

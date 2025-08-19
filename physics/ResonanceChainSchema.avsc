@@ -1,0 +1,80 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "ResonanceChain",
+  "doc": "Represents orbital resonances between multiple bodies.",
+  "fields": [
+    {
+      "name": "chain_designation",
+      "type": "string"
+    },
+    {
+      "name": "resonant_bodies",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ResonantBody",
+          "fields": [
+            {
+              "name": "body_designation",
+              "type": "string"
+            },
+            {
+              "name": "orbital_period_days",
+              "type": "double"
+            },
+            {
+              "name": "resonance_ratio",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "chain_stability_index",
+      "type": "double"
+    },
+    {
+      "name": "libration_amplitude_degrees",
+      "type": "double"
+    },
+    {
+      "name": "resonance_strength",
+      "type": "double"
+    },
+    {
+      "name": "chaos_indicator",
+      "type": "double"
+    },
+    {
+      "name": "secular_effects",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "SecularEffect",
+          "fields": [
+            {
+              "name": "effect_type",
+              "type": "string"
+            },
+            {
+              "name": "timescale_years",
+              "type": "double"
+            },
+            {
+              "name": "amplitude",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

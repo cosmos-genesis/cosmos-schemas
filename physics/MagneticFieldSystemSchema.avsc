@@ -1,0 +1,66 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "MagneticFieldSystem",
+  "doc": "Represents a planetary or stellar magnetosphere.",
+  "fields": [
+    {
+      "name": "field_id",
+      "type": "string",
+      "doc": "Unique identifier for the magnetic field system"
+    },
+    {
+      "name": "parent_body_designation",
+      "type": "string",
+      "doc": "The celestial body this magnetic field belongs to"
+    },
+    {
+      "name": "field_strength_tesla",
+      "type": "double",
+      "doc": "Strength of the magnetic field in Tesla"
+    },
+    {
+      "name": "dipole_tilt_degrees",
+      "type": "double",
+      "doc": "Tilt of the magnetic dipole in degrees"
+    },
+    {
+      "name": "magnetopause_radius_km",
+      "type": "double",
+      "doc": "Radius of the magnetopause in kilometers"
+    },
+    {
+      "name": "bow_shock_radius_km",
+      "type": "double",
+      "doc": "Radius of the bow shock in kilometers"
+    },
+    {
+      "name": "radiation_belts",
+      "type": {
+        "type": "array",
+        "items": "CosmosGenesis.physics.RadiationBelt"
+      },
+      "doc": "List of radiation belts in the magnetosphere"
+    },
+    {
+      "name": "aurora_present",
+      "type": "boolean",
+      "doc": "Whether aurora effects are present"
+    },
+    {
+      "name": "polarity",
+      "type": "string",
+      "doc": "Polarity of the magnetic field (normal, reversed, or multipolar)"
+    },
+    {
+      "name": "reversal_frequency_years",
+      "type": "double",
+      "doc": "Frequency of magnetic field reversals in years"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "3D coordinates of the magnetic field system"
+    }
+  ]
+}

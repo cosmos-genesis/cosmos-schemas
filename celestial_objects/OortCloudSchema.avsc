@@ -1,0 +1,59 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "OortCloud",
+  "doc": "Represents the theoretical spherical Oort cloud at the edge of a star system.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this Oort cloud belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this Oort cloud"
+    },
+    {
+      "name": "oort_cloud_id",
+      "type": "string",
+      "doc": "Stable identifier for this Oort cloud within the data lake"
+    },
+    {
+      "name": "inner_boundary_au",
+      "type": "double",
+      "doc": "The estimated inner boundary of the cloud in AU."
+    },
+    {
+      "name": "outer_boundary_au",
+      "type": "double",
+      "doc": "The estimated outer boundary of the cloud in AU."
+    },
+    {
+      "name": "estimated_object_count",
+      "type": "string",
+      "doc": "A human-readable estimate, e.g., 'Trillions'."
+    },
+    {
+      "name": "cloud_trait",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "OortCloudTrait",
+          "symbols": [
+            "STABLE",
+            "PERTURBED"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "The current dynamic state of the cloud."
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

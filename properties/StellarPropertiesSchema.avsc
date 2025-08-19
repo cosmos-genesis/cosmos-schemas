@@ -1,0 +1,120 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "StellarProperties",
+  "doc": "Comprehensive stellar properties including evolution, activity, and environment.",
+  "fields": [
+    {
+      "name": "star_id",
+      "type": "string"
+    },
+    {
+      "name": "evolution",
+      "type": {
+        "type": "record",
+        "name": "EvolutionState",
+        "fields": [
+          {
+            "name": "age_years",
+            "type": "double"
+          },
+          {
+            "name": "stage",
+            "type": "string"
+          },
+          {
+            "name": "mass_solar",
+            "type": "double"
+          },
+          {
+            "name": "metallicity",
+            "type": "double"
+          },
+          {
+            "name": "temperature_k",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "activity",
+      "type": {
+        "type": "record",
+        "name": "StellarActivity",
+        "fields": [
+          {
+            "name": "spot_coverage",
+            "type": "double"
+          },
+          {
+            "name": "flare_frequency",
+            "type": "double"
+          },
+          {
+            "name": "magnetic_activity_index",
+            "type": "double"
+          },
+          {
+            "name": "rotation_period_days",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "seismology",
+      "type": {
+        "type": "record",
+        "name": "SeismicProperties",
+        "fields": [
+          {
+            "name": "oscillation_modes",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "core_rotation_rate",
+            "type": "double"
+          },
+          {
+            "name": "acoustic_frequencies",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "formation_environment",
+      "type": {
+        "type": "record",
+        "name": "FormationContext",
+        "fields": [
+          {
+            "name": "cluster_id",
+            "type": "string"
+          },
+          {
+            "name": "initial_conditions",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "nearby_influences",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

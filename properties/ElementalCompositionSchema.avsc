@@ -1,0 +1,62 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "ElementalComposition",
+  "doc": "Chemical composition breakdown for celestial objects",
+  "fields": [
+    {
+      "name": "composition_id",
+      "type": "string"
+    },
+    {
+      "name": "elements",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "Element",
+          "fields": [
+            {
+              "name": "atomic_number",
+              "type": "int"
+            },
+            {
+              "name": "symbol",
+              "type": "string"
+            },
+            {
+              "name": "percentage",
+              "type": "double"
+            },
+            {
+              "name": "distribution_pattern",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "bulk_density",
+      "type": "double"
+    },
+    {
+      "name": "phase_state",
+      "type": "string"
+    },
+    {
+      "name": "isotope_ratios",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "enrichment_factors",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    }
+  ]
+}

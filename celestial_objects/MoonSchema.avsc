@@ -1,0 +1,75 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "Moon",
+  "doc": "Represents a single natural satellite orbiting a planet.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this moon belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains the parent planet"
+    },
+    {
+      "name": "star_id",
+      "type": "string",
+      "doc": "Identifier of the parent star of the parent planet"
+    },
+    {
+      "name": "planet_id",
+      "type": "string",
+      "doc": "Identifier of the parent planet this moon orbits"
+    },
+    {
+      "name": "moon_id",
+      "type": "string",
+      "doc": "Stable identifier for this moon within the data lake"
+    },
+    {
+      "name": "moon_designation",
+      "type": "string"
+    },
+    {
+      "name": "parent_planet_designation",
+      "type": "string"
+    },
+    {
+      "name": "moon_type",
+      "type": "CosmosGenesis.properties.MoonType"
+    },
+    {
+      "name": "mass_lm",
+      "type": "double",
+      "doc": "Mass in Lunar Masses (Earth's Moon = 1.0)."
+    },
+    {
+      "name": "radius_lr",
+      "type": "double",
+      "doc": "Radius in Lunar Radii (Earth's Moon = 1.0)."
+    },
+    {
+      "name": "is_tidally_locked",
+      "type": "boolean",
+      "default": true
+    },
+    {
+      "name": "orbital_distance_km",
+      "type": "double",
+      "doc": "Average orbital distance from the parent planet in kilometers."
+    },
+    {
+      "name": "orbital_period_days",
+      "type": "double",
+      "doc": "The number of Earth days it takes to orbit the parent planet."
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

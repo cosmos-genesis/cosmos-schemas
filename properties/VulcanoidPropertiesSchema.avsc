@@ -1,0 +1,36 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "VulcanoidProperties",
+  "doc": "Properties specific to hypothetical objects orbiting inside Mercury's orbit",
+  "fields": [
+    {
+      "name": "vulcanoid_id",
+      "type": "string"
+    },
+    {
+      "name": "small_body_id",
+      "type": "string"
+    },
+    {
+      "name": "thermal_stress_factor",
+      "type": "double"
+    },
+    {
+      "name": "sublimation_rate",
+      "type": "double"
+    },
+    {
+      "name": "solar_wind_exposure",
+      "type": "double"
+    },
+    {
+      "name": "detection_difficulty",
+      "type": "double"
+    },
+    {
+      "name": "stability_against_perturbations",
+      "type": "double"
+    }
+  ]
+}

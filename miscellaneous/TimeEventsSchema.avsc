@@ -1,0 +1,70 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "TimeEvents",
+  "doc": "Scheduled and periodic astronomical events",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": [
+          "ECLIPSE",
+          "CONJUNCTION",
+          "OPPOSITION",
+          "METEOR_SHOWER",
+          "STORM",
+          "FLARE",
+          "TRANSIT",
+          "RESONANCE"
+        ]
+      }
+    },
+    {
+      "name": "start_time",
+      "type": "string"
+    },
+    {
+      "name": "duration_seconds",
+      "type": "double"
+    },
+    {
+      "name": "periodicity_seconds",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "affected_objects",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "magnitude",
+      "type": "double"
+    },
+    {
+      "name": "visibility_regions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": "double"
+        }
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

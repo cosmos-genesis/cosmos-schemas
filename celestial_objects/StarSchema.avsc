@@ -1,0 +1,72 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "Star",
+  "doc": "Represents a star in a star system.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this star belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this star"
+    },
+    {
+      "name": "star_id",
+      "type": "string",
+      "doc": "Stable identifier for this star within the data lake"
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "doc": "The unique identifier for the star."
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "The star's 3D position in space."
+    },
+    {
+      "name": "star_type",
+      "type": "CosmosGenesis.properties.StarType",
+      "doc": "The spectral classification of the star."
+    },
+    {
+      "name": "star_mass_sm",
+      "type": "double",
+      "doc": "The mass of the star in Solar Masses."
+    },
+    {
+      "name": "star_age_myr",
+      "type": "long",
+      "doc": "The age of the star in millions of years."
+    },
+    {
+      "name": "star_luminosity",
+      "type": "double",
+      "doc": "The luminosity of the star relative to the Sun."
+    },
+    {
+      "name": "system_trait",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "A unique gameplay or lore hook for the star system."
+    },
+    {
+      "name": "stellar_properties",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.StellarProperties"
+      ],
+      "default": null,
+      "doc": "Detailed properties of the star including evolution, activity, and environment."
+    }
+  ]
+}

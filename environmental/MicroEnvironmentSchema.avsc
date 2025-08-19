@@ -1,0 +1,77 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "MicroEnvironment",
+  "doc": "Represents small-scale environmental conditions suitable for potential life.",
+  "fields": [
+    {
+      "name": "environment_designation",
+      "type": "string"
+    },
+    {
+      "name": "environment_type",
+      "type": {
+        "type": "enum",
+        "name": "MicroEnvironmentType",
+        "symbols": [
+          "HYDROTHERMAL_VENT",
+          "SUBSURFACE_CAVITY",
+          "MINERAL_INTERFACE",
+          "LIQUID_POCKET",
+          "ICE_CAVITY",
+          "ATMOSPHERIC_DROPLET"
+        ]
+      }
+    },
+    {
+      "name": "chemical_conditions",
+      "type": {
+        "type": "record",
+        "name": "ChemicalConditions",
+        "fields": [
+          {
+            "name": "ph_value",
+            "type": "double"
+          },
+          {
+            "name": "redox_potential_mv",
+            "type": "double"
+          },
+          {
+            "name": "available_energy_sources",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "temperature_range_k",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "pressure_range_pa",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "water_activity",
+      "type": "double"
+    },
+    {
+      "name": "radiation_protection_factor",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

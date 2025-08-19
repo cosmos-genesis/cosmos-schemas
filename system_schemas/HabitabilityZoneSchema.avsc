@@ -1,0 +1,51 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "HabitabilityZone",
+  "doc": "Represents conditions relevant for habitability assessment.",
+  "fields": [
+    {
+      "name": "zone_designation",
+      "type": "string"
+    },
+    {
+      "name": "temperature_range_k",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "radiation_level",
+      "type": "double"
+    },
+    {
+      "name": "gravity_g",
+      "type": "double"
+    },
+    {
+      "name": "atmospheric_pressure_atm",
+      "type": "double"
+    },
+    {
+      "name": "water_availability",
+      "type": "double"
+    },
+    {
+      "name": "toxic_compounds_level",
+      "type": "double"
+    },
+    {
+      "name": "magnetic_field_protection",
+      "type": "double"
+    },
+    {
+      "name": "habitability_score",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

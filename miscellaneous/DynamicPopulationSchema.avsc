@@ -1,0 +1,217 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "DynamicPopulation",
+  "doc": "Manages dynamic spawning and properties of large object collections like Oort clouds and asteroid belts",
+  "fields": [
+    {
+      "name": "population_id",
+      "type": "string"
+    },
+    {
+      "name": "parent_object_id",
+      "type": "string"
+    },
+    {
+      "name": "population_type",
+      "type": {
+        "type": "enum",
+        "name": "PopulationType",
+        "symbols": [
+          "OORT_CLOUD",
+          "ASTEROID_BELT",
+          "DEBRIS_FIELD",
+          "DUST_CLOUD",
+          "METEOROID_STREAM"
+        ]
+      }
+    },
+    {
+      "name": "spatial_distribution",
+      "type": {
+        "type": "record",
+        "name": "Distribution",
+        "fields": [
+          {
+            "name": "inner_boundary_au",
+            "type": "double"
+          },
+          {
+            "name": "outer_boundary_au",
+            "type": "double"
+          },
+          {
+            "name": "vertical_thickness_au",
+            "type": "double"
+          },
+          {
+            "name": "density_distribution",
+            "type": "string"
+          },
+          {
+            "name": "void_regions",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": "double"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "population_properties",
+      "type": {
+        "type": "record",
+        "name": "PopulationProperties",
+        "fields": [
+          {
+            "name": "total_mass_kg",
+            "type": "double"
+          },
+          {
+            "name": "estimated_object_count",
+            "type": "string"
+          },
+          {
+            "name": "size_distribution",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "composition_distribution",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          },
+          {
+            "name": "albedo_range",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "dynamics",
+      "type": {
+        "type": "record",
+        "name": "DynamicProperties",
+        "fields": [
+          {
+            "name": "orbital_inclination_range_deg",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "eccentricity_range",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "velocity_dispersion_kms",
+            "type": "double"
+          },
+          {
+            "name": "perturbation_state",
+            "type": "string"
+          },
+          {
+            "name": "resonances",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "spawn_rules",
+      "type": {
+        "type": "record",
+        "name": "SpawnRules",
+        "fields": [
+          {
+            "name": "min_spawn_distance_au",
+            "type": "double"
+          },
+          {
+            "name": "max_objects_per_sector",
+            "type": "int"
+          },
+          {
+            "name": "size_threshold_km",
+            "type": "double"
+          },
+          {
+            "name": "importance_sampling",
+            "type": "boolean"
+          },
+          {
+            "name": "spawn_seed",
+            "type": "long"
+          }
+        ]
+      }
+    },
+    {
+      "name": "notable_members",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "NotableMember",
+          "fields": [
+            {
+              "name": "object_id",
+              "type": "string"
+            },
+            {
+              "name": "size_km",
+              "type": "double"
+            },
+            {
+              "name": "orbit_elements",
+              "type": {
+                "type": "array",
+                "items": "double"
+              }
+            },
+            {
+              "name": "discovery_probability",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "last_perturbation_date",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "stability_rating",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

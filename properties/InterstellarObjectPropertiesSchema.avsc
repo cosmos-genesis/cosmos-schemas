@@ -1,0 +1,53 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "InterstellarObjectProperties",
+  "doc": "Properties specific to objects originating from outside the star system",
+  "fields": [
+    {
+      "name": "iso_id",
+      "type": "string"
+    },
+    {
+      "name": "small_body_id",
+      "type": "string"
+    },
+    {
+      "name": "origin_vector",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "hyperbolic_excess_velocity_kms",
+      "type": "double"
+    },
+    {
+      "name": "original_system_estimate",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "residency_time_years",
+      "type": "double"
+    },
+    {
+      "name": "galactic_velocity_vector",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "interstellar_medium_effects",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "AtmosphericSystem",
+  "doc": "Comprehensive atmospheric system including composition, weather, and visual properties.",
+  "fields": [
+    {
+      "name": "atmosphere_id",
+      "type": "string"
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AtmosphericComponent",
+          "fields": [
+            {
+              "name": "molecule",
+              "type": "string"
+            },
+            {
+              "name": "percentage",
+              "type": "double"
+            },
+            {
+              "name": "phase",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "optical_properties",
+      "type": {
+        "type": "record",
+        "name": "OpticalProperties",
+        "fields": [
+          {
+            "name": "sky_color_rgb",
+            "type": {
+              "type": "array",
+              "items": "int"
+            }
+          },
+          {
+            "name": "rayleigh_scattering",
+            "type": "double"
+          },
+          {
+            "name": "opacity",
+            "type": "double"
+          },
+          {
+            "name": "albedo",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "weather",
+      "type": {
+        "type": "record",
+        "name": "WeatherSystem",
+        "fields": [
+          {
+            "name": "temperature_k",
+            "type": "double"
+          },
+          {
+            "name": "pressure_pa",
+            "type": "double"
+          },
+          {
+            "name": "humidity",
+            "type": "double"
+          },
+          {
+            "name": "wind_speed_ms",
+            "type": "double"
+          },
+          {
+            "name": "precipitation_type",
+            "type": "string"
+          },
+          {
+            "name": "storm_activity",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "atmospheric_height_km",
+      "type": "double"
+    },
+    {
+      "name": "greenhouse_effect_factor",
+      "type": "double"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

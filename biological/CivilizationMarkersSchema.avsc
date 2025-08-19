@@ -1,0 +1,63 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.biological",
+  "name": "CivilizationMarkers",
+  "doc": "Indicators and properties of intelligent life and civilizations",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "marker_id",
+      "type": "string"
+    },
+    {
+      "name": "location_id",
+      "type": "string"
+    },
+    {
+      "name": "marker_type",
+      "type": {
+        "type": "enum",
+        "name": "MarkerType",
+        "symbols": [
+          "ARTIFICIAL_STRUCTURE",
+          "ENERGY_SIGNATURE",
+          "SIGNAL_SOURCE",
+          "MODIFIED_ENVIRONMENT",
+          "RESOURCE_EXTRACTION",
+          "WASTE_SIGNATURE"
+        ]
+      }
+    },
+    {
+      "name": "detection_confidence",
+      "type": "double"
+    },
+    {
+      "name": "technological_level",
+      "type": "int"
+    },
+    {
+      "name": "signal_strength",
+      "type": "double"
+    },
+    {
+      "name": "temporal_pattern",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "artifact_age_years",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

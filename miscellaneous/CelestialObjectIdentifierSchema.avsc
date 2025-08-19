@@ -1,0 +1,73 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "CelestialObjectIdentifier",
+  "doc": "Universal identification system for all celestial objects",
+  "fields": [
+    {
+      "name": "object_id",
+      "type": "string"
+    },
+    {
+      "name": "object_type",
+      "type": {
+        "type": "enum",
+        "name": "CelestialType",
+        "symbols": [
+          "GALAXY",
+          "STAR_SYSTEM",
+          "STAR",
+          "PLANET",
+          "MOON",
+          "ASTEROID",
+          "COMET",
+          "NEBULA",
+          "BLACK_HOLE",
+          "SPACE_STATION",
+          "ARTIFICIAL_OBJECT"
+        ]
+      }
+    },
+    {
+      "name": "catalog_designation",
+      "type": "string"
+    },
+    {
+      "name": "parent_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "discovery_date",
+      "type": "string"
+    },
+    {
+      "name": "alternate_names",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "hierarchical_path",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

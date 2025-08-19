@@ -1,0 +1,93 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "NeutronStarInterior",
+  "doc": "Represents the internal structure and composition of neutron stars.",
+  "fields": [
+    {
+      "name": "star_designation",
+      "type": "string"
+    },
+    {
+      "name": "layers",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "NSLayer",
+          "fields": [
+            {
+              "name": "layer_type",
+              "type": {
+                "type": "enum",
+                "name": "NSLayerType",
+                "symbols": [
+                  "OUTER_CRUST",
+                  "INNER_CRUST",
+                  "OUTER_CORE",
+                  "INNER_CORE",
+                  "QUARK_MATTER"
+                ]
+              }
+            },
+            {
+              "name": "density_g_cm3",
+              "type": "double"
+            },
+            {
+              "name": "pressure_dyne_cm2",
+              "type": "double"
+            },
+            {
+              "name": "temperature_k",
+              "type": "double"
+            },
+            {
+              "name": "composition",
+              "type": {
+                "type": "array",
+                "items": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "central_density_g_cm3",
+      "type": "double"
+    },
+    {
+      "name": "superfluidity_temperature_k",
+      "type": "double"
+    },
+    {
+      "name": "oscillation_modes",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "NSMode",
+          "fields": [
+            {
+              "name": "mode_type",
+              "type": "string"
+            },
+            {
+              "name": "frequency_hz",
+              "type": "double"
+            },
+            {
+              "name": "damping_time_s",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

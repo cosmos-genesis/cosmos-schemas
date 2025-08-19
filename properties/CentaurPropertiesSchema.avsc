@@ -1,0 +1,53 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "CentaurProperties",
+  "doc": "Properties specific to Centaur objects that orbit between Jupiter and Neptune",
+  "fields": [
+    {
+      "name": "centaur_id",
+      "type": "string"
+    },
+    {
+      "name": "small_body_id",
+      "type": "string"
+    },
+    {
+      "name": "transition_state",
+      "type": {
+        "type": "enum",
+        "name": "CentaurState",
+        "symbols": [
+          "ASTEROID_LIKE",
+          "COMET_LIKE",
+          "TRANSITIONING"
+        ]
+      }
+    },
+    {
+      "name": "chaotic_orbit_parameters",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "estimated_dynamical_lifetime_years",
+      "type": "double"
+    },
+    {
+      "name": "giant_planet_interactions",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "activity_history",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    }
+  ]
+}

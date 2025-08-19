@@ -1,0 +1,60 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "ProtoplanetaryDisk",
+  "doc": "Represents a disk of gas and dust surrounding a young star, from which planets form.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this disk belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this disk"
+    },
+    {
+      "name": "disk_id",
+      "type": "string",
+      "doc": "Stable identifier for this disk within the data lake"
+    },
+    {
+      "name": "disk_type",
+      "type": {
+        "type": "enum",
+        "name": "DiskType",
+        "symbols": [
+          "PROTOPLANETARY_DISK",
+          "DEBRIS_DISK"
+        ]
+      }
+    },
+    {
+      "name": "inner_radius_au",
+      "type": "double"
+    },
+    {
+      "name": "outer_radius_au",
+      "type": "double"
+    },
+    {
+      "name": "total_mass_em",
+      "type": "double",
+      "doc": "Total mass of the disk in Earth Masses."
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": "A list of primary material keys."
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

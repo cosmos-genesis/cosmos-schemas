@@ -1,0 +1,98 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "CosmicWeb",
+  "doc": "Represents large-scale cosmic web structure.",
+  "fields": [
+    {
+      "name": "region_designation",
+      "type": "string"
+    },
+    {
+      "name": "volume_mpc3",
+      "type": "double"
+    },
+    {
+      "name": "structures",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "CosmicStructure",
+          "fields": [
+            {
+              "name": "structure_type",
+              "type": {
+                "type": "enum",
+                "name": "WebComponentType",
+                "symbols": [
+                  "NODE",
+                  "FILAMENT",
+                  "SHEET",
+                  "VOID"
+                ]
+              }
+            },
+            {
+              "name": "density_contrast",
+              "type": "double"
+            },
+            {
+              "name": "size_mpc",
+              "type": "double"
+            },
+            {
+              "name": "velocity_field_km_s",
+              "type": {
+                "type": "array",
+                "items": "double"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "connectivity",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "WebConnection",
+          "fields": [
+            {
+              "name": "node1",
+              "type": "string"
+            },
+            {
+              "name": "node2",
+              "type": "string"
+            },
+            {
+              "name": "connection_strength",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "matter_distribution",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "temperature_map_k",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

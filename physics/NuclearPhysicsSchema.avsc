@@ -1,0 +1,293 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "NuclearPhysics",
+  "doc": "Represents nuclear physics processes and properties relevant to stellar evolution, nucleosynthesis, and other astrophysical phenomena.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "doc": "Designation of the nuclear system being modeled"
+    },
+    {
+      "name": "nuclear_composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "IsotopeAbundance",
+          "fields": [
+            {
+              "name": "element_symbol",
+              "type": "string",
+              "doc": "Chemical symbol of the element"
+            },
+            {
+              "name": "atomic_number",
+              "type": "int",
+              "doc": "Number of protons (Z)"
+            },
+            {
+              "name": "mass_number",
+              "type": "int",
+              "doc": "Sum of protons and neutrons (A)"
+            },
+            {
+              "name": "abundance_fraction",
+              "type": "double",
+              "doc": "Fractional abundance by mass (0.0 to 1.0)"
+            },
+            {
+              "name": "half_life_s",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null,
+              "doc": "Half-life in seconds for unstable isotopes, null for stable ones"
+            }
+          ]
+        }
+      },
+      "doc": "Isotopic composition of the system"
+    },
+    {
+      "name": "nuclear_reactions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "NuclearReaction",
+          "fields": [
+            {
+              "name": "reaction_type",
+              "type": {
+                "type": "enum",
+                "name": "ReactionType",
+                "symbols": [
+                  "FUSION",
+                  "FISSION",
+                  "DECAY",
+                  "CAPTURE",
+                  "SPALLATION",
+                  "PHOTODISINTEGRATION"
+                ]
+              },
+              "doc": "Type of nuclear reaction"
+            },
+            {
+              "name": "reaction_equation",
+              "type": "string",
+              "doc": "Symbolic representation of the reaction (e.g., '1H + 1H -> 2H + e+ + ve')"
+            },
+            {
+              "name": "energy_release_mev",
+              "type": "double",
+              "doc": "Energy released or absorbed per reaction in MeV"
+            },
+            {
+              "name": "reaction_rate_cm3_per_s",
+              "type": "double",
+              "doc": "Reaction rate coefficient in cm³/s"
+            },
+            {
+              "name": "temperature_threshold_k",
+              "type": "double",
+              "doc": "Minimum temperature in Kelvin required for the reaction"
+            },
+            {
+              "name": "cross_section_barn",
+              "type": "double",
+              "doc": "Reaction cross-section in barns (10⁻²⁴ cm²)"
+            }
+          ]
+        }
+      },
+      "doc": "Nuclear reactions occurring in the system"
+    },
+    {
+      "name": "reaction_networks",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ReactionNetwork",
+          "fields": [
+            {
+              "name": "network_name",
+              "type": "string",
+              "doc": "Name of the reaction network (e.g., 'pp-chain', 'CNO cycle')"
+            },
+            {
+              "name": "network_reactions",
+              "type": {
+                "type": "array",
+                "items": "string"
+              },
+              "doc": "List of reactions in this network, referencing reaction_equation values"
+            },
+            {
+              "name": "net_energy_production_w_per_kg",
+              "type": "double",
+              "doc": "Net energy production rate in Watts per kilogram"
+            },
+            {
+              "name": "dominant_at_temperature_k",
+              "type": "double",
+              "doc": "Temperature at which this network becomes dominant in Kelvin"
+            }
+          ]
+        }
+      },
+      "doc": "Networks of related nuclear reactions"
+    },
+    {
+      "name": "decay_chains",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "DecayChain",
+          "fields": [
+            {
+              "name": "parent_isotope",
+              "type": "string",
+              "doc": "Starting isotope of the decay chain (e.g., 'U-238')"
+            },
+            {
+              "name": "end_isotope",
+              "type": "string",
+              "doc": "Final stable isotope of the decay chain (e.g., 'Pb-206')"
+            },
+            {
+              "name": "intermediate_steps",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "DecayStep",
+                  "fields": [
+                    {
+                      "name": "isotope",
+                      "type": "string",
+                      "doc": "Intermediate isotope in the decay chain"
+                    },
+                    {
+                      "name": "decay_mode",
+                      "type": "string",
+                      "doc": "Mode of decay (e.g., 'alpha', 'beta-', 'beta+', 'gamma')"
+                    },
+                    {
+                      "name": "half_life_s",
+                      "type": "double",
+                      "doc": "Half-life of this isotope in seconds"
+                    }
+                  ]
+                }
+              },
+              "doc": "Intermediate decay steps in the chain"
+            },
+            {
+              "name": "total_energy_release_mev",
+              "type": "double",
+              "doc": "Total energy released through the complete decay chain in MeV"
+            }
+          ]
+        }
+      },
+      "doc": "Radioactive decay chains present in the system"
+    },
+    {
+      "name": "nucleosynthesis_processes",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "NucleosynthesisProcess",
+          "fields": [
+            {
+              "name": "process_type",
+              "type": {
+                "type": "enum",
+                "name": "NucleosynthesisType",
+                "symbols": [
+                  "BIG_BANG",
+                  "STELLAR",
+                  "EXPLOSIVE",
+                  "S_PROCESS",
+                  "R_PROCESS",
+                  "P_PROCESS",
+                  "COSMIC_RAY_SPALLATION"
+                ]
+              },
+              "doc": "Type of nucleosynthesis process"
+            },
+            {
+              "name": "elements_produced",
+              "type": {
+                "type": "array",
+                "items": "string"
+              },
+              "doc": "Elements primarily produced by this process"
+            },
+            {
+              "name": "temperature_range_k",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Temperature range in Kelvin [min, max]"
+            },
+            {
+              "name": "density_range_kg_per_m3",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Density range in kg/m³ [min, max]"
+            },
+            {
+              "name": "timescale_s",
+              "type": "double",
+              "doc": "Characteristic timescale of the process in seconds"
+            }
+          ]
+        }
+      },
+      "doc": "Nucleosynthesis processes occurring in the system"
+    },
+    {
+      "name": "neutron_density_per_cm3",
+      "type": "double",
+      "doc": "Neutron density in neutrons per cubic centimeter"
+    },
+    {
+      "name": "binding_energy_curve",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "BindingEnergyPoint",
+          "fields": [
+            {
+              "name": "mass_number",
+              "type": "int",
+              "doc": "Mass number (A)"
+            },
+            {
+              "name": "binding_energy_per_nucleon_mev",
+              "type": "double",
+              "doc": "Binding energy per nucleon in MeV"
+            }
+          ]
+        }
+      },
+      "doc": "Binding energy per nucleon as a function of mass number"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Spatial coordinates of the nuclear system"
+    }
+  ]
+}

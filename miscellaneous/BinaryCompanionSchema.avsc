@@ -1,0 +1,52 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "BinaryCompanion",
+  "doc": "Represents a companion star in a binary or multiple star system.",
+  "fields": [
+    {
+      "name": "companion_designation",
+      "type": "string"
+    },
+    {
+      "name": "primary_star_designation",
+      "type": "string"
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double"
+    },
+    {
+      "name": "spectral_type",
+      "type": "string"
+    },
+    {
+      "name": "orbital_period_years",
+      "type": "double"
+    },
+    {
+      "name": "semi_major_axis_au",
+      "type": "double"
+    },
+    {
+      "name": "eccentricity",
+      "type": "double"
+    },
+    {
+      "name": "inclination_degrees",
+      "type": "double"
+    },
+    {
+      "name": "age_myr",
+      "type": "double"
+    },
+    {
+      "name": "habitable_zone_impacted",
+      "type": "boolean"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

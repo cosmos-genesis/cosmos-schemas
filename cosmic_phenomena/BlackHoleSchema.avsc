@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "BlackHole",
+  "doc": "Represents a black hole, from stellar-mass to supermassive.",
+  "fields": [
+    {
+      "name": "black_hole_designation",
+      "type": "string"
+    },
+    {
+      "name": "black_hole_type",
+      "type": {
+        "type": "enum",
+        "name": "BlackHoleType",
+        "symbols": [
+          "STELLAR",
+          "INTERMEDIATE",
+          "SUPERMASSIVE"
+        ]
+      }
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double"
+    },
+    {
+      "name": "schwarzschild_radius_km",
+      "type": "double"
+    },
+    {
+      "name": "accretion_disk_present",
+      "type": "boolean"
+    },
+    {
+      "name": "spin_parameter",
+      "type": "double",
+      "doc": "Kerr parameter, between 0 and 1"
+    },
+    {
+      "name": "jet_present",
+      "type": "boolean"
+    },
+    {
+      "name": "merger_history",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

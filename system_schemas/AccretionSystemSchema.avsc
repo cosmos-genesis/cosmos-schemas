@@ -1,0 +1,94 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "AccretionSystem",
+  "doc": "Represents accretion phenomena around compact objects.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string"
+    },
+    {
+      "name": "accretor_type",
+      "type": "string"
+    },
+    {
+      "name": "accretion_rate_solar_masses_per_year",
+      "type": "double"
+    },
+    {
+      "name": "disk_structure",
+      "type": {
+        "type": "record",
+        "name": "AccretionDisk",
+        "fields": [
+          {
+            "name": "inner_radius_km",
+            "type": "double"
+          },
+          {
+            "name": "outer_radius_km",
+            "type": "double"
+          },
+          {
+            "name": "temperature_profile",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "density_profile",
+            "type": {
+              "type": "array",
+              "items": "double"
+            }
+          },
+          {
+            "name": "alpha_viscosity",
+            "type": "double"
+          }
+        ]
+      }
+    },
+    {
+      "name": "spectral_features",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "SpectralFeature",
+          "fields": [
+            {
+              "name": "feature_type",
+              "type": "string"
+            },
+            {
+              "name": "wavelength_nm",
+              "type": "double"
+            },
+            {
+              "name": "strength",
+              "type": "double"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "quasi_periodic_oscillations",
+      "type": {
+        "type": "array",
+        "items": "double"
+      }
+    },
+    {
+      "name": "outflow_presence",
+      "type": "boolean"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}
