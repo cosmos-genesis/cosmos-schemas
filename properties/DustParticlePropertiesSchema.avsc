@@ -66,5 +66,6 @@
       "name": "poynting_robertson_drift",
       "type": "double"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

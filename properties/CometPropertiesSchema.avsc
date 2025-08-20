@@ -87,5 +87,6 @@
       "name": "estimated_lifetime_orbits",
       "type": "int"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

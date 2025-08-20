@@ -562,5 +562,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "Spatial coordinates of the optical system"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

@@ -15,5 +15,6 @@
     "DESERT_WORLD",
     "ICE_WORLD",
     "ROGUE_PLANET"
-  ]
+  ],
+  "version": "1.0.0"
 }

@@ -82,5 +82,6 @@
       "name": "discovery_probability",
       "type": "double"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

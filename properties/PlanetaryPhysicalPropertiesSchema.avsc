@@ -16,21 +16,31 @@
     },
     {
       "name": "density_kg_m3",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Density of the planet in kg/m³"
     },
     {
       "name": "gravity_ms2",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Surface gravity of the planet in m/s²"
     },
     {
       "name": "escape_velocity_ms",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Escape velocity of the planet in m/s"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

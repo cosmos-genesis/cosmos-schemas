@@ -161,5 +161,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "Spatial coordinates of the thermodynamic system"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

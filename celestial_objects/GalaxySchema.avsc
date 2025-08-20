@@ -105,49 +105,73 @@
               "fields": [
                 {
                   "name": "num_systems",
-                  "type": ["null", "long"],
+                  "type": [
+                    "null",
+                    "long"
+                  ],
                   "default": null,
                   "doc": "Total number of star systems included in this galaxy record"
                 },
                 {
                   "name": "generation_duration_ms",
-                  "type": ["null", "double"],
+                  "type": [
+                    "null",
+                    "double"
+                  ],
                   "default": null,
                   "doc": "Elapsed time in milliseconds to generate the galaxy"
                 },
                 {
                   "name": "cpu_time_ms",
-                  "type": ["null", "double"],
+                  "type": [
+                    "null",
+                    "double"
+                  ],
                   "default": null,
                   "doc": "CPU time consumed during generation in milliseconds"
                 },
                 {
                   "name": "memory_usage_mb",
-                  "type": ["null", "double"],
+                  "type": [
+                    "null",
+                    "double"
+                  ],
                   "default": null,
                   "doc": "Peak memory usage during generation in megabytes"
                 },
                 {
                   "name": "avg_system_generation_ms",
-                  "type": ["null", "double"],
+                  "type": [
+                    "null",
+                    "double"
+                  ],
                   "default": null,
                   "doc": "Average wall time per system in milliseconds"
                 },
                 {
                   "name": "systems_per_second",
-                  "type": ["null", "double"],
+                  "type": [
+                    "null",
+                    "double"
+                  ],
                   "default": null,
                   "doc": "Throughput computed as num_systems divided by total wall time (converted to seconds)"
                 },
                 {
                   "name": "generated_bytes",
-                  "type": ["null", "long"],
+                  "type": [
+                    "null",
+                    "long"
+                  ],
                   "default": null,
                   "doc": "Total bytes generated for all artifacts (data + images + metadata)"
                 },
                 {
                   "name": "generated_gb",
-                  "type": ["null", "double"],
+                  "type": [
+                    "null",
+                    "double"
+                  ],
                   "default": null,
                   "doc": "Convenience field: generated_bytes converted to gigabytes (10^9 bytes)"
                 }
@@ -200,5 +224,6 @@
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

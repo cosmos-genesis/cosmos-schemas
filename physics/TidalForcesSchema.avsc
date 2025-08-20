@@ -271,5 +271,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "Spatial coordinates of the tidal system"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

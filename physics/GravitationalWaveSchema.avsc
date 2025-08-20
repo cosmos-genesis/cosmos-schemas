@@ -413,5 +413,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "Sky coordinates of the gravitational wave source"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

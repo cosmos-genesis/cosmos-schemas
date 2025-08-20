@@ -8,5 +8,6 @@
     "ROCK",
     "DUST",
     "MIXED"
-  ]
+  ],
+  "version": "1.0.0"
 }

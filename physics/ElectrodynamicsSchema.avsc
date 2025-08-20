@@ -351,5 +351,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "Spatial coordinates of the electromagnetic system"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

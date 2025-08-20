@@ -19,5 +19,6 @@
       "type": "double",
       "doc": "Z coordinate"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

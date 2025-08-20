@@ -32,5 +32,6 @@
       "name": "stability_against_perturbations",
       "type": "double"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

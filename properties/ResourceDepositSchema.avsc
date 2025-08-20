@@ -47,5 +47,6 @@
       "name": "extraction_difficulty",
       "type": "double"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

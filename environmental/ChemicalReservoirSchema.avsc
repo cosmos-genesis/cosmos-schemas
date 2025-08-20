@@ -70,5 +70,6 @@
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

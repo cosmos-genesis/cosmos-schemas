@@ -18,30 +18,45 @@
     },
     {
       "name": "eccentricity",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null
     },
     {
       "name": "inclination_deg",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Inclination of the orbit in degrees"
     },
     {
       "name": "longitude_of_ascending_node_deg",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Longitude of the ascending node in degrees"
     },
     {
       "name": "argument_of_periapsis_deg",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Argument of periapsis in degrees"
     },
     {
       "name": "mean_anomaly_deg",
-      "type": ["null", "double"],
+      "type": [
+        "null",
+        "double"
+      ],
       "default": null,
       "doc": "Mean anomaly in degrees"
     },
@@ -63,5 +78,6 @@
       "default": [],
       "doc": "Orbital resonances with other objects (e.g., '2:1', '3:2')"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

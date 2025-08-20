@@ -7,5 +7,6 @@
     "MAIN_BELT",
     "DEBRIS_DISK",
     "KUIPER_BELT"
-  ]
+  ],
+  "version": "1.0.0"
 }

@@ -22,5 +22,6 @@
       },
       "doc": "Altitude range of the radiation belt in kilometers [min, max]"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

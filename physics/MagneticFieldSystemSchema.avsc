@@ -62,5 +62,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "3D coordinates of the magnetic field system"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

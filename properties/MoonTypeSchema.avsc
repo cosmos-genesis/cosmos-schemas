@@ -10,5 +10,6 @@
     "TRITON_CRYCVOLCANIC",
     "LUNA_ROCKY",
     "CAPTURED_ASTEROID"
-  ]
+  ],
+  "version": "1.0.0"
 }

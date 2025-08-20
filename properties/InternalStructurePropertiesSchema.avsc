@@ -58,5 +58,6 @@
       "default": null,
       "doc": "Heat flux from the planet's interior in W/m²"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

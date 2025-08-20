@@ -49,5 +49,6 @@
       "name": "volatile_retention_factor",
       "type": "double"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }

@@ -289,5 +289,6 @@
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "Spatial coordinates of the nuclear system"
     }
-  ]
+  ],
+  "version": "1.0.0"
 }
