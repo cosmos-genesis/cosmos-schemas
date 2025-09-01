@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "reservoir_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "reservoir_type",
@@ -21,7 +22,8 @@
           "LIQUID_POOL",
           "CRYSTALLINE_FORMATION"
         ]
-      }
+      },
+      "default": "MINERAL_DEPOSIT"
     },
     {
       "name": "chemical_composition",
@@ -33,38 +35,46 @@
           "fields": [
             {
               "name": "compound_formula",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "concentration",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "phase_state",
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "volume_km3",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "pressure_pa",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "stability_conditions",
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

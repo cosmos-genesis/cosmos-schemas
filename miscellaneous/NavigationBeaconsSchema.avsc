@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "beacon_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "beacon_type",
@@ -21,37 +22,44 @@
           "TRAFFIC_CONTROL",
           "WAYPOINT"
         ]
-      }
+      },
+      "default": "NATURAL_LANDMARK"
     },
     {
       "name": "coordinates",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "signal_strength",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "broadcast_frequency",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coverage_radius_au",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "status",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "access_restrictions",
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "formation_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "formation_type",
@@ -25,18 +26,21 @@
           "BASIN",
           "FAULT_LINE"
         ]
-      }
+      },
+      "default": "MOUNTAIN_RANGE"
     },
     {
       "name": "age_my",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "dimensions_km",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "composition",
@@ -48,27 +52,33 @@
           "fields": [
             {
               "name": "mineral_name",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "percentage",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "crystal_structure",
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "erosion_rate_mm_year",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "stability_index",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

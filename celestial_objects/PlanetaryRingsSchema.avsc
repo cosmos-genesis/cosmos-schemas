@@ -7,32 +7,38 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this ring system belongs to"
+      "doc": "Identifier of the galaxy this ring system belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
       "type": "string",
-      "doc": "Identifier of the star system that contains the parent planet"
+      "doc": "Identifier of the star system that contains the parent planet",
+      "default": ""
     },
     {
       "name": "star_id",
       "type": "string",
-      "doc": "Identifier of the parent star of the parent planet"
+      "doc": "Identifier of the parent star of the parent planet",
+      "default": ""
     },
     {
       "name": "planet_id",
       "type": "string",
-      "doc": "Identifier of the parent planet this ring system surrounds"
+      "doc": "Identifier of the parent planet this ring system surrounds",
+      "default": ""
     },
     {
       "name": "ring_id",
       "type": "string",
-      "doc": "Stable identifier for this ring system within the data lake"
+      "doc": "Stable identifier for this ring system within the data lake",
+      "default": ""
     },
     {
       "name": "ring_designation",
       "type": "string",
-      "doc": "Unique identifier for the ring system (e.g., '1', '2')"
+      "doc": "Unique identifier for the ring system (e.g., '1', '2')",
+      "default": ""
     },
     {
       "name": "has_rings",

@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "environment_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "environment_type",
@@ -21,7 +22,8 @@
           "ICE_CAVITY",
           "ATMOSPHERIC_DROPLET"
         ]
-      }
+      },
+      "default": "HYDROTHERMAL_VENT"
     },
     {
       "name": "chemical_conditions",
@@ -31,43 +33,51 @@
         "fields": [
           {
             "name": "ph_value",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "redox_potential_mv",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "available_energy_sources",
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "temperature_range_k",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "pressure_range_pa",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "water_activity",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "radiation_protection_factor",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

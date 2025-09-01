@@ -8,35 +8,42 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this moon belongs to"
+      "doc": "Identifier of the galaxy this moon belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
       "type": "string",
-      "doc": "Identifier of the star system that contains the parent planet"
+      "doc": "Identifier of the star system that contains the parent planet",
+      "default": ""
     },
     {
       "name": "star_id",
       "type": "string",
-      "doc": "Identifier of the parent star of the parent planet"
+      "doc": "Identifier of the parent star of the parent planet",
+      "default": ""
     },
     {
       "name": "planet_id",
       "type": "string",
-      "doc": "Identifier of the parent planet this moon orbits"
+      "doc": "Identifier of the parent planet this moon orbits",
+      "default": ""
     },
     {
       "name": "moon_id",
       "type": "string",
-      "doc": "Stable identifier for this moon within the data lake"
+      "doc": "Stable identifier for this moon within the data lake",
+      "default": ""
     },
     {
       "name": "moon_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "parent_planet_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "moon_type",
@@ -45,12 +52,14 @@
     {
       "name": "mass_lm",
       "type": "double",
-      "doc": "Mass in Lunar Masses (Earth's Moon = 1.0)."
+      "doc": "Mass in Lunar Masses (Earth's Moon = 1.0).",
+      "default": 0.0
     },
     {
       "name": "radius_lr",
       "type": "double",
-      "doc": "Radius in Lunar Radii (Earth's Moon = 1.0)."
+      "doc": "Radius in Lunar Radii (Earth's Moon = 1.0).",
+      "default": 0.0
     },
     {
       "name": "is_tidally_locked",
@@ -60,12 +69,14 @@
     {
       "name": "orbital_distance_km",
       "type": "double",
-      "doc": "Average orbital distance from the parent planet in kilometers."
+      "doc": "Average orbital distance from the parent planet in kilometers.",
+      "default": 0.0
     },
     {
       "name": "orbital_period_days",
       "type": "double",
-      "doc": "The number of Earth days it takes to orbit the parent planet."
+      "doc": "The number of Earth days it takes to orbit the parent planet.",
+      "default": 0.0
     },
     {
       "name": "coordinates",

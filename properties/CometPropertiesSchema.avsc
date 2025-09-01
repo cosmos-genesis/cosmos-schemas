@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "comet_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "activity",
@@ -20,23 +22,28 @@
         "fields": [
           {
             "name": "perihelion_distance_au",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "coma_size_km",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "tail_length_km",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "gas_production_rate",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "dust_production_rate",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "active_regions",
@@ -46,10 +53,12 @@
                 "type": "array",
                 "items": "double"
               }
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "volatile_inventory",
@@ -59,33 +68,40 @@
         "fields": [
           {
             "name": "water_ice_fraction",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "co2_fraction",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "co_fraction",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "other_volatiles",
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "activity_onset_distance_au",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "estimated_lifetime_orbits",
-      "type": "int"
+      "type": "int",
+      "default": 0
     }
   ],
   "version": "1.0.0"

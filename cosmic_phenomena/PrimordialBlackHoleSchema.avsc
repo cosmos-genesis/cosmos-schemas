@@ -6,31 +6,38 @@
   "fields": [
     {
       "name": "pbh_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "formation_time_s",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "initial_mass_g",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "current_mass_g",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "hawking_temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "evaporation_rate_g_s",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "remaining_lifetime_s",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "emission_spectrum",
@@ -42,30 +49,36 @@
           "fields": [
             {
               "name": "particle_type",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "energy_spectrum",
               "type": {
                 "type": "array",
                 "items": "double"
-              }
+              },
+              "default": []
             },
             {
               "name": "emission_rate",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "clustering_parameter",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "density_fraction",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

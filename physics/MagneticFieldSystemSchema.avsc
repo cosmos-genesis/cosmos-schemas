@@ -7,32 +7,38 @@
     {
       "name": "field_id",
       "type": "string",
-      "doc": "Unique identifier for the magnetic field system"
+      "doc": "Unique identifier for the magnetic field system",
+      "default": ""
     },
     {
       "name": "parent_body_designation",
       "type": "string",
-      "doc": "The celestial body this magnetic field belongs to"
+      "doc": "The celestial body this magnetic field belongs to",
+      "default": ""
     },
     {
       "name": "field_strength_tesla",
       "type": "double",
-      "doc": "Strength of the magnetic field in Tesla"
+      "doc": "Strength of the magnetic field in Tesla",
+      "default": 0.0
     },
     {
       "name": "dipole_tilt_degrees",
       "type": "double",
-      "doc": "Tilt of the magnetic dipole in degrees"
+      "doc": "Tilt of the magnetic dipole in degrees",
+      "default": 0.0
     },
     {
       "name": "magnetopause_radius_km",
       "type": "double",
-      "doc": "Radius of the magnetopause in kilometers"
+      "doc": "Radius of the magnetopause in kilometers",
+      "default": 0.0
     },
     {
       "name": "bow_shock_radius_km",
       "type": "double",
-      "doc": "Radius of the bow shock in kilometers"
+      "doc": "Radius of the bow shock in kilometers",
+      "default": 0.0
     },
     {
       "name": "radiation_belts",
@@ -40,22 +46,26 @@
         "type": "array",
         "items": "CosmosGenesis.physics.RadiationBelt"
       },
-      "doc": "List of radiation belts in the magnetosphere"
+      "doc": "List of radiation belts in the magnetosphere",
+      "default": []
     },
     {
       "name": "aurora_present",
       "type": "boolean",
-      "doc": "Whether aurora effects are present"
+      "doc": "Whether aurora effects are present",
+      "default": false
     },
     {
       "name": "polarity",
       "type": "string",
-      "doc": "Polarity of the magnetic field (normal, reversed, or multipolar)"
+      "doc": "Polarity of the magnetic field (normal, reversed, or multipolar)",
+      "default": ""
     },
     {
       "name": "reversal_frequency_years",
       "type": "double",
-      "doc": "Frequency of magnetic field reversals in years"
+      "doc": "Frequency of magnetic field reversals in years",
+      "default": 0.0
     },
     {
       "name": "coordinates",

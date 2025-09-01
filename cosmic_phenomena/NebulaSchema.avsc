@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "nebula_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "nebula_type",
@@ -21,16 +22,19 @@
           "DARK",
           "PROTO_PLANETARY"
         ]
-      }
+      },
+      "default": "EMISSION"
     },
     {
       "name": "size_ly",
       "type": "double",
-      "doc": "Size in light years"
+      "doc": "Size in light years",
+      "default": 0.0
     },
     {
       "name": "mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "composition",
@@ -42,27 +46,33 @@
           "fields": [
             {
               "name": "element",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "percentage",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "ionization_level",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "visible_light_emission",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "coordinates",

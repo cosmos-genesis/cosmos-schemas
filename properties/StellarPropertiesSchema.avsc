@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "star_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "evolution",
@@ -16,26 +17,32 @@
         "fields": [
           {
             "name": "age_years",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "stage",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "mass_solar",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "metallicity",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "temperature_k",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "activity",
@@ -45,22 +52,27 @@
         "fields": [
           {
             "name": "spot_coverage",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "flare_frequency",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "magnetic_activity_index",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "rotation_period_days",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "seismology",
@@ -73,21 +85,25 @@
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "core_rotation_rate",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "acoustic_frequencies",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "formation_environment",
@@ -97,24 +113,28 @@
         "fields": [
           {
             "name": "cluster_id",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "initial_conditions",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "nearby_influences",
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     }
   ],
   "version": "1.0.0"

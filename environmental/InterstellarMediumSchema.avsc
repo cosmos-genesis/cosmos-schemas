@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "region_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "medium_type",
@@ -21,23 +22,28 @@
           "HOT_IONIZED",
           "CORONAL_GAS"
         ]
-      }
+      },
+      "default": "MOLECULAR_CLOUD"
     },
     {
       "name": "density_particles_cm3",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "magnetic_field_strength_gauss",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "turbulence_level",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "chemical_composition",
@@ -49,15 +55,18 @@
           "fields": [
             {
               "name": "species",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "abundance",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

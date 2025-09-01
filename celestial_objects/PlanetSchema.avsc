@@ -7,32 +7,45 @@
   "fields": [
     {
       "name": "galaxy_id",
-      "type": ["null", "string"],
+      "type": [
+        "null",
+        "string"
+      ],
       "default": null,
       "doc": "Identifier of the galaxy this planet belongs to"
     },
     {
       "name": "system_id",
-      "type": ["null", "string"],
+      "type": [
+        "null",
+        "string"
+      ],
       "default": null,
       "doc": "Identifier of the star system that contains this planet"
     },
     {
       "name": "star_id",
-      "type": ["null", "string"],
+      "type": [
+        "null",
+        "string"
+      ],
       "default": null,
       "doc": "Identifier of the parent star this planet orbits"
     },
     {
       "name": "planet_id",
-      "type": ["null", "string"],
+      "type": [
+        "null",
+        "string"
+      ],
       "default": null,
       "doc": "Stable identifier for this planet within the data lake"
     },
     {
       "name": "planet_designation",
       "type": "string",
-      "doc": "Unique identifier for the planet (e.g., 'Kepler-452b', 'Earth')"
+      "doc": "Unique identifier for the planet (e.g., 'Kepler-452b', 'Earth')",
+      "default": ""
     },
     {
       "name": "planet_type",

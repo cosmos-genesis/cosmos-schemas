@@ -7,17 +7,20 @@
     {
       "name": "x",
       "type": "double",
-      "doc": "X coordinate"
+      "doc": "X coordinate",
+      "default": 0.0
     },
     {
       "name": "y",
       "type": "double",
-      "doc": "Y coordinate"
+      "doc": "Y coordinate",
+      "default": 0.0
     },
     {
       "name": "z",
       "type": "double",
-      "doc": "Z coordinate"
+      "doc": "Z coordinate",
+      "default": 0.0
     }
   ],
   "version": "1.0.0"

@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "environment_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "radiation_field",
@@ -16,21 +17,25 @@
         "fields": [
           {
             "name": "intensity",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "spectrum",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "hazard_level",
-            "type": "int"
+            "type": "int",
+            "default": 0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "magnetic_field",
@@ -40,11 +45,13 @@
         "fields": [
           {
             "name": "strength_tesla",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "polarity",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "field_lines",
@@ -54,10 +61,12 @@
                 "type": "array",
                 "items": "double"
               }
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "space_weather",
@@ -67,22 +76,27 @@
         "fields": [
           {
             "name": "solar_wind_speed",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "particle_density",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "event_type",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "intensity",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "coordinates",

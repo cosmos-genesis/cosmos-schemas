@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "planet_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "atmospheric_signatures",
@@ -18,26 +19,31 @@
           "fields": [
             {
               "name": "molecule",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "concentration_ppm",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "confidence_biological",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "possible_abiotic_sources",
               "type": {
                 "type": "array",
                 "items": "string"
-              }
+              },
+              "default": []
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "surface_signatures",
@@ -49,30 +55,36 @@
           "fields": [
             {
               "name": "signature_type",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "coverage_percentage",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "spectral_features",
               "type": {
                 "type": "array",
                 "items": "string"
-              }
+              },
+              "default": []
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "seasonal_variations",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "chemical_disequilibrium_index",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

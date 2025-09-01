@@ -7,7 +7,8 @@
     {
       "name": "system_designation",
       "type": "string",
-      "doc": "Designation of the nuclear system being modeled"
+      "doc": "Designation of the nuclear system being modeled",
+      "default": ""
     },
     {
       "name": "nuclear_composition",
@@ -20,22 +21,26 @@
             {
               "name": "element_symbol",
               "type": "string",
-              "doc": "Chemical symbol of the element"
+              "doc": "Chemical symbol of the element",
+              "default": ""
             },
             {
               "name": "atomic_number",
               "type": "int",
-              "doc": "Number of protons (Z)"
+              "doc": "Number of protons (Z)",
+              "default": 0
             },
             {
               "name": "mass_number",
               "type": "int",
-              "doc": "Sum of protons and neutrons (A)"
+              "doc": "Sum of protons and neutrons (A)",
+              "default": 0
             },
             {
               "name": "abundance_fraction",
               "type": "double",
-              "doc": "Fractional abundance by mass (0.0 to 1.0)"
+              "doc": "Fractional abundance by mass (0.0 to 1.0)",
+              "default": 0.0
             },
             {
               "name": "half_life_s",
@@ -49,7 +54,8 @@
           ]
         }
       },
-      "doc": "Isotopic composition of the system"
+      "doc": "Isotopic composition of the system",
+      "default": []
     },
     {
       "name": "nuclear_reactions",
@@ -73,37 +79,44 @@
                   "PHOTODISINTEGRATION"
                 ]
               },
-              "doc": "Type of nuclear reaction"
+              "doc": "Type of nuclear reaction",
+              "default": "FUSION"
             },
             {
               "name": "reaction_equation",
               "type": "string",
-              "doc": "Symbolic representation of the reaction (e.g., '1H + 1H -> 2H + e+ + ve')"
+              "doc": "Symbolic representation of the reaction (e.g., '1H + 1H -> 2H + e+ + ve')",
+              "default": ""
             },
             {
               "name": "energy_release_mev",
               "type": "double",
-              "doc": "Energy released or absorbed per reaction in MeV"
+              "doc": "Energy released or absorbed per reaction in MeV",
+              "default": 0.0
             },
             {
               "name": "reaction_rate_cm3_per_s",
               "type": "double",
-              "doc": "Reaction rate coefficient in cm³/s"
+              "doc": "Reaction rate coefficient in cm\u00b3/s",
+              "default": 0.0
             },
             {
               "name": "temperature_threshold_k",
               "type": "double",
-              "doc": "Minimum temperature in Kelvin required for the reaction"
+              "doc": "Minimum temperature in Kelvin required for the reaction",
+              "default": 0.0
             },
             {
               "name": "cross_section_barn",
               "type": "double",
-              "doc": "Reaction cross-section in barns (10⁻²⁴ cm²)"
+              "doc": "Reaction cross-section in barns (10\u207b\u00b2\u2074 cm\u00b2)",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Nuclear reactions occurring in the system"
+      "doc": "Nuclear reactions occurring in the system",
+      "default": []
     },
     {
       "name": "reaction_networks",
@@ -116,7 +129,8 @@
             {
               "name": "network_name",
               "type": "string",
-              "doc": "Name of the reaction network (e.g., 'pp-chain', 'CNO cycle')"
+              "doc": "Name of the reaction network (e.g., 'pp-chain', 'CNO cycle')",
+              "default": ""
             },
             {
               "name": "network_reactions",
@@ -124,22 +138,26 @@
                 "type": "array",
                 "items": "string"
               },
-              "doc": "List of reactions in this network, referencing reaction_equation values"
+              "doc": "List of reactions in this network, referencing reaction_equation values",
+              "default": []
             },
             {
               "name": "net_energy_production_w_per_kg",
               "type": "double",
-              "doc": "Net energy production rate in Watts per kilogram"
+              "doc": "Net energy production rate in Watts per kilogram",
+              "default": 0.0
             },
             {
               "name": "dominant_at_temperature_k",
               "type": "double",
-              "doc": "Temperature at which this network becomes dominant in Kelvin"
+              "doc": "Temperature at which this network becomes dominant in Kelvin",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Networks of related nuclear reactions"
+      "doc": "Networks of related nuclear reactions",
+      "default": []
     },
     {
       "name": "decay_chains",
@@ -152,12 +170,14 @@
             {
               "name": "parent_isotope",
               "type": "string",
-              "doc": "Starting isotope of the decay chain (e.g., 'U-238')"
+              "doc": "Starting isotope of the decay chain (e.g., 'U-238')",
+              "default": ""
             },
             {
               "name": "end_isotope",
               "type": "string",
-              "doc": "Final stable isotope of the decay chain (e.g., 'Pb-206')"
+              "doc": "Final stable isotope of the decay chain (e.g., 'Pb-206')",
+              "default": ""
             },
             {
               "name": "intermediate_steps",
@@ -170,32 +190,38 @@
                     {
                       "name": "isotope",
                       "type": "string",
-                      "doc": "Intermediate isotope in the decay chain"
+                      "doc": "Intermediate isotope in the decay chain",
+                      "default": ""
                     },
                     {
                       "name": "decay_mode",
                       "type": "string",
-                      "doc": "Mode of decay (e.g., 'alpha', 'beta-', 'beta+', 'gamma')"
+                      "doc": "Mode of decay (e.g., 'alpha', 'beta-', 'beta+', 'gamma')",
+                      "default": ""
                     },
                     {
                       "name": "half_life_s",
                       "type": "double",
-                      "doc": "Half-life of this isotope in seconds"
+                      "doc": "Half-life of this isotope in seconds",
+                      "default": 0.0
                     }
                   ]
                 }
               },
-              "doc": "Intermediate decay steps in the chain"
+              "doc": "Intermediate decay steps in the chain",
+              "default": []
             },
             {
               "name": "total_energy_release_mev",
               "type": "double",
-              "doc": "Total energy released through the complete decay chain in MeV"
+              "doc": "Total energy released through the complete decay chain in MeV",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Radioactive decay chains present in the system"
+      "doc": "Radioactive decay chains present in the system",
+      "default": []
     },
     {
       "name": "nucleosynthesis_processes",
@@ -220,7 +246,8 @@
                   "COSMIC_RAY_SPALLATION"
                 ]
               },
-              "doc": "Type of nucleosynthesis process"
+              "doc": "Type of nucleosynthesis process",
+              "default": "BIG_BANG"
             },
             {
               "name": "elements_produced",
@@ -228,7 +255,8 @@
                 "type": "array",
                 "items": "string"
               },
-              "doc": "Elements primarily produced by this process"
+              "doc": "Elements primarily produced by this process",
+              "default": []
             },
             {
               "name": "temperature_range_k",
@@ -236,7 +264,8 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Temperature range in Kelvin [min, max]"
+              "doc": "Temperature range in Kelvin [min, max]",
+              "default": []
             },
             {
               "name": "density_range_kg_per_m3",
@@ -244,22 +273,26 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Density range in kg/m³ [min, max]"
+              "doc": "Density range in kg/m\u00b3 [min, max]",
+              "default": []
             },
             {
               "name": "timescale_s",
               "type": "double",
-              "doc": "Characteristic timescale of the process in seconds"
+              "doc": "Characteristic timescale of the process in seconds",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Nucleosynthesis processes occurring in the system"
+      "doc": "Nucleosynthesis processes occurring in the system",
+      "default": []
     },
     {
       "name": "neutron_density_per_cm3",
       "type": "double",
-      "doc": "Neutron density in neutrons per cubic centimeter"
+      "doc": "Neutron density in neutrons per cubic centimeter",
+      "default": 0.0
     },
     {
       "name": "binding_energy_curve",
@@ -272,17 +305,20 @@
             {
               "name": "mass_number",
               "type": "int",
-              "doc": "Mass number (A)"
+              "doc": "Mass number (A)",
+              "default": 0
             },
             {
               "name": "binding_energy_per_nucleon_mev",
               "type": "double",
-              "doc": "Binding energy per nucleon in MeV"
+              "doc": "Binding energy per nucleon in MeV",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Binding energy per nucleon as a function of mass number"
+      "doc": "Binding energy per nucleon as a function of mass number",
+      "default": []
     },
     {
       "name": "coordinates",

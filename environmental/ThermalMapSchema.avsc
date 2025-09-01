@@ -7,11 +7,13 @@
   "fields": [
     {
       "name": "map_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "resolution_deg",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "temperature_grid",
@@ -24,35 +26,41 @@
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "subsurface_temps_k",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "heat_flow_w_m2",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "diurnal_variation",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "seasonal_extremes",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

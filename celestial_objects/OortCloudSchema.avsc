@@ -8,32 +8,38 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this Oort cloud belongs to"
+      "doc": "Identifier of the galaxy this Oort cloud belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
       "type": "string",
-      "doc": "Identifier of the star system that contains this Oort cloud"
+      "doc": "Identifier of the star system that contains this Oort cloud",
+      "default": ""
     },
     {
       "name": "oort_cloud_id",
       "type": "string",
-      "doc": "Stable identifier for this Oort cloud within the data lake"
+      "doc": "Stable identifier for this Oort cloud within the data lake",
+      "default": ""
     },
     {
       "name": "inner_boundary_au",
       "type": "double",
-      "doc": "The estimated inner boundary of the cloud in AU."
+      "doc": "The estimated inner boundary of the cloud in AU.",
+      "default": 0.0
     },
     {
       "name": "outer_boundary_au",
       "type": "double",
-      "doc": "The estimated outer boundary of the cloud in AU."
+      "doc": "The estimated outer boundary of the cloud in AU.",
+      "default": 0.0
     },
     {
       "name": "estimated_object_count",
       "type": "string",
-      "doc": "A human-readable estimate, e.g., 'Trillions'."
+      "doc": "A human-readable estimate, e.g., 'Trillions'.",
+      "default": ""
     },
     {
       "name": "cloud_trait",

@@ -7,7 +7,8 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Unique identifier for the galaxy"
+      "doc": "Unique identifier for the galaxy",
+      "default": ""
     },
     {
       "name": "galaxy_type",
@@ -21,7 +22,8 @@
           "LENTICULAR"
         ]
       },
-      "doc": "The morphological classification of the galaxy"
+      "doc": "The morphological classification of the galaxy",
+      "default": "SPIRAL"
     },
     {
       "name": "properties",
@@ -32,17 +34,20 @@
           {
             "name": "radius_ly",
             "type": "double",
-            "doc": "Radius of the galaxy in light years"
+            "doc": "Radius of the galaxy in light years",
+            "default": 0.0
           },
           {
             "name": "thickness_ly",
             "type": "double",
-            "doc": "Thickness of the galaxy in light years"
+            "doc": "Thickness of the galaxy in light years",
+            "default": 0.0
           },
           {
             "name": "num_stars",
             "type": "long",
-            "doc": "Total number of star systems in the galaxy"
+            "doc": "Total number of star systems in the galaxy",
+            "default": 0
           },
           {
             "name": "spiral_properties",
@@ -55,17 +60,20 @@
                   {
                     "name": "num_arms",
                     "type": "int",
-                    "doc": "Number of spiral arms"
+                    "doc": "Number of spiral arms",
+                    "default": 0
                   },
                   {
                     "name": "arm_rotation",
                     "type": "double",
-                    "doc": "Rotation factor for spiral arms"
+                    "doc": "Rotation factor for spiral arms",
+                    "default": 0.0
                   },
                   {
                     "name": "arm_fuzziness",
                     "type": "double",
-                    "doc": "Fuzziness factor for spiral arms"
+                    "doc": "Fuzziness factor for spiral arms",
+                    "default": 0.0
                   }
                 ]
               }
@@ -74,7 +82,8 @@
             "doc": "Properties specific to spiral galaxies, null for other types"
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "metadata",
@@ -85,17 +94,20 @@
           {
             "name": "generation_date",
             "type": "string",
-            "doc": "ISO-8601 formatted date-time when the galaxy was generated"
+            "doc": "ISO-8601 formatted date-time when the galaxy was generated",
+            "default": ""
           },
           {
             "name": "generator_version",
             "type": "string",
-            "doc": "Version of the generator software used"
+            "doc": "Version of the generator software used",
+            "default": ""
           },
           {
             "name": "description",
             "type": "string",
-            "doc": "Human-readable description of the galaxy"
+            "doc": "Human-readable description of the galaxy",
+            "default": ""
           },
           {
             "name": "performance_metrics",
@@ -177,10 +189,12 @@
                 }
               ]
             },
-            "doc": "Performance metrics captured during galaxy generation"
+            "doc": "Performance metrics captured during galaxy generation",
+            "default": {}
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "systems",
@@ -192,7 +206,8 @@
           "fields": [
             {
               "name": "system_id",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "coordinates",
@@ -202,23 +217,28 @@
                 "fields": [
                   {
                     "name": "x",
-                    "type": "double"
+                    "type": "double",
+                    "default": 0.0
                   },
                   {
                     "name": "y",
-                    "type": "double"
+                    "type": "double",
+                    "default": 0.0
                   },
                   {
                     "name": "z",
-                    "type": "double"
+                    "type": "double",
+                    "default": 0.0
                   }
                 ]
-              }
+              },
+              "default": {}
             }
           ]
         }
       },
-      "doc": "Array of star systems within the galaxy"
+      "doc": "Array of star systems within the galaxy",
+      "default": []
     },
     {
       "name": "coordinates",

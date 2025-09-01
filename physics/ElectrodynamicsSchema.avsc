@@ -7,7 +7,8 @@
     {
       "name": "system_designation",
       "type": "string",
-      "doc": "Designation of the electromagnetic system being modeled"
+      "doc": "Designation of the electromagnetic system being modeled",
+      "default": ""
     },
     {
       "name": "electric_field",
@@ -18,7 +19,8 @@
           {
             "name": "field_strength_v_per_m",
             "type": "double",
-            "doc": "Electric field strength in Volts per meter"
+            "doc": "Electric field strength in Volts per meter",
+            "default": 0.0
           },
           {
             "name": "field_direction",
@@ -26,7 +28,8 @@
               "type": "array",
               "items": "double"
             },
-            "doc": "3D vector representing the electric field direction [x, y, z]"
+            "doc": "3D vector representing the electric field direction [x, y, z]",
+            "default": []
           },
           {
             "name": "field_variability",
@@ -41,7 +44,8 @@
                 "STOCHASTIC"
               ]
             },
-            "doc": "Temporal variability of the electric field"
+            "doc": "Temporal variability of the electric field",
+            "default": "STATIC"
           },
           {
             "name": "frequency_hz",
@@ -54,7 +58,8 @@
           }
         ]
       },
-      "doc": "Electric field properties"
+      "doc": "Electric field properties",
+      "default": {}
     },
     {
       "name": "charge_distribution",
@@ -67,7 +72,8 @@
             {
               "name": "charge_density_c_per_m3",
               "type": "double",
-              "doc": "Charge density in Coulombs per cubic meter"
+              "doc": "Charge density in Coulombs per cubic meter",
+              "default": 0.0
             },
             {
               "name": "position",
@@ -75,12 +81,14 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Position vector [x, y, z] in meters"
+              "doc": "Position vector [x, y, z] in meters",
+              "default": []
             },
             {
               "name": "radius_m",
               "type": "double",
-              "doc": "Characteristic radius of the charge region in meters"
+              "doc": "Characteristic radius of the charge region in meters",
+              "default": 0.0
             },
             {
               "name": "charge_type",
@@ -95,12 +103,14 @@
                   "MULTIPOLAR"
                 ]
               },
-              "doc": "Type of charge distribution"
+              "doc": "Type of charge distribution",
+              "default": "POSITIVE"
             }
           ]
         }
       },
-      "doc": "Distribution of electric charges in the system"
+      "doc": "Distribution of electric charges in the system",
+      "default": []
     },
     {
       "name": "current_systems",
@@ -113,7 +123,8 @@
             {
               "name": "current_density_a_per_m2",
               "type": "double",
-              "doc": "Current density in Amperes per square meter"
+              "doc": "Current density in Amperes per square meter",
+              "default": 0.0
             },
             {
               "name": "current_path",
@@ -124,7 +135,8 @@
                   "items": "double"
                 }
               },
-              "doc": "Path of the current as a series of 3D points [x, y, z]"
+              "doc": "Path of the current as a series of 3D points [x, y, z]",
+              "default": []
             },
             {
               "name": "current_type",
@@ -140,7 +152,8 @@
                   "FILAMENTARY"
                 ]
               },
-              "doc": "Type of current system"
+              "doc": "Type of current system",
+              "default": "DIRECT"
             },
             {
               "name": "frequency_hz",
@@ -154,7 +167,8 @@
           ]
         }
       },
-      "doc": "Current systems within the electromagnetic environment"
+      "doc": "Current systems within the electromagnetic environment",
+      "default": []
     },
     {
       "name": "electromagnetic_waves",
@@ -179,22 +193,26 @@
                   "GAMMA_RAY"
                 ]
               },
-              "doc": "Type of electromagnetic wave"
+              "doc": "Type of electromagnetic wave",
+              "default": "RADIO"
             },
             {
               "name": "frequency_hz",
               "type": "double",
-              "doc": "Frequency in Hertz"
+              "doc": "Frequency in Hertz",
+              "default": 0.0
             },
             {
               "name": "wavelength_m",
               "type": "double",
-              "doc": "Wavelength in meters"
+              "doc": "Wavelength in meters",
+              "default": 0.0
             },
             {
               "name": "amplitude_v_per_m",
               "type": "double",
-              "doc": "Wave amplitude in Volts per meter"
+              "doc": "Wave amplitude in Volts per meter",
+              "default": 0.0
             },
             {
               "name": "polarization",
@@ -209,7 +227,8 @@
                   "PARTIAL"
                 ]
               },
-              "doc": "Wave polarization type"
+              "doc": "Wave polarization type",
+              "default": "LINEAR"
             },
             {
               "name": "propagation_direction",
@@ -217,17 +236,20 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Direction of wave propagation as a 3D vector [x, y, z]"
+              "doc": "Direction of wave propagation as a 3D vector [x, y, z]",
+              "default": []
             },
             {
               "name": "power_flux_w_per_m2",
               "type": "double",
-              "doc": "Power flux in Watts per square meter"
+              "doc": "Power flux in Watts per square meter",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Electromagnetic waves present in the system"
+      "doc": "Electromagnetic waves present in the system",
+      "default": []
     },
     {
       "name": "plasma_interactions",
@@ -251,22 +273,26 @@
                   "WHISTLER_MODE"
                 ]
               },
-              "doc": "Type of plasma-electromagnetic interaction"
+              "doc": "Type of plasma-electromagnetic interaction",
+              "default": "CYCLOTRON_RESONANCE"
             },
             {
               "name": "characteristic_frequency_hz",
               "type": "double",
-              "doc": "Characteristic frequency of the interaction in Hertz"
+              "doc": "Characteristic frequency of the interaction in Hertz",
+              "default": 0.0
             },
             {
               "name": "energy_transfer_rate_w",
               "type": "double",
-              "doc": "Energy transfer rate in Watts"
+              "doc": "Energy transfer rate in Watts",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Interactions between electromagnetic fields and plasma"
+      "doc": "Interactions between electromagnetic fields and plasma",
+      "default": []
     },
     {
       "name": "electromagnetic_phenomena",
@@ -290,22 +316,26 @@
                   "ELECTROMAGNETIC_PULSE"
                 ]
               },
-              "doc": "Type of electromagnetic phenomenon"
+              "doc": "Type of electromagnetic phenomenon",
+              "default": "AURORA"
             },
             {
               "name": "intensity",
               "type": "double",
-              "doc": "Relative intensity of the phenomenon (0.0 to 1.0)"
+              "doc": "Relative intensity of the phenomenon (0.0 to 1.0)",
+              "default": 0.0
             },
             {
               "name": "duration_s",
               "type": "double",
-              "doc": "Duration in seconds"
+              "doc": "Duration in seconds",
+              "default": 0.0
             },
             {
               "name": "energy_j",
               "type": "double",
-              "doc": "Total energy in Joules"
+              "doc": "Total energy in Joules",
+              "default": 0.0
             },
             {
               "name": "location",
@@ -313,12 +343,14 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Location of the phenomenon as a 3D point [x, y, z]"
+              "doc": "Location of the phenomenon as a 3D point [x, y, z]",
+              "default": []
             }
           ]
         }
       },
-      "doc": "Observable electromagnetic phenomena in the system"
+      "doc": "Observable electromagnetic phenomena in the system",
+      "default": []
     },
     {
       "name": "electromagnetic_spectrum",
@@ -334,17 +366,20 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Frequency range in Hertz [min, max]"
+              "doc": "Frequency range in Hertz [min, max]",
+              "default": []
             },
             {
               "name": "power_spectral_density_w_per_hz",
               "type": "double",
-              "doc": "Power spectral density in Watts per Hertz"
+              "doc": "Power spectral density in Watts per Hertz",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Electromagnetic spectrum of the system"
+      "doc": "Electromagnetic spectrum of the system",
+      "default": []
     },
     {
       "name": "coordinates",

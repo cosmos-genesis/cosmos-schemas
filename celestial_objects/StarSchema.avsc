@@ -8,22 +8,26 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this star belongs to"
+      "doc": "Identifier of the galaxy this star belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
       "type": "string",
-      "doc": "Identifier of the star system that contains this star"
+      "doc": "Identifier of the star system that contains this star",
+      "default": ""
     },
     {
       "name": "star_id",
       "type": "string",
-      "doc": "Stable identifier for this star within the data lake"
+      "doc": "Stable identifier for this star within the data lake",
+      "default": ""
     },
     {
       "name": "object_id",
       "type": "string",
-      "doc": "The unique identifier for the star."
+      "doc": "The unique identifier for the star.",
+      "default": ""
     },
     {
       "name": "coordinates",
@@ -38,17 +42,20 @@
     {
       "name": "star_mass_sm",
       "type": "double",
-      "doc": "The mass of the star in Solar Masses."
+      "doc": "The mass of the star in Solar Masses.",
+      "default": 0.0
     },
     {
       "name": "star_age_myr",
       "type": "long",
-      "doc": "The age of the star in millions of years."
+      "doc": "The age of the star in millions of years.",
+      "default": 0
     },
     {
       "name": "star_luminosity",
       "type": "double",
-      "doc": "The luminosity of the star relative to the Sun."
+      "doc": "The luminosity of the star relative to the Sun.",
+      "default": 0.0
     },
     {
       "name": "system_trait",

@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "debris_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "debris_type",
@@ -21,30 +22,36 @@
           "ICE_PARTICLE",
           "ASTEROID_FRAGMENT"
         ]
-      }
+      },
+      "default": "SPACECRAFT_FRAGMENT"
     },
     {
       "name": "size_m",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "mass_kg",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "orbital_elements",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "collision_risk",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "tracking_confidence",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

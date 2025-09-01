@@ -8,17 +8,20 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this disk belongs to"
+      "doc": "Identifier of the galaxy this disk belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
       "type": "string",
-      "doc": "Identifier of the star system that contains this disk"
+      "doc": "Identifier of the star system that contains this disk",
+      "default": ""
     },
     {
       "name": "disk_id",
       "type": "string",
-      "doc": "Stable identifier for this disk within the data lake"
+      "doc": "Stable identifier for this disk within the data lake",
+      "default": ""
     },
     {
       "name": "disk_type",
@@ -29,20 +32,24 @@
           "PROTOPLANETARY_DISK",
           "DEBRIS_DISK"
         ]
-      }
+      },
+      "default": "PROTOPLANETARY_DISK"
     },
     {
       "name": "inner_radius_au",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "outer_radius_au",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "total_mass_em",
       "type": "double",
-      "doc": "Total mass of the disk in Earth Masses."
+      "doc": "Total mass of the disk in Earth Masses.",
+      "default": 0.0
     },
     {
       "name": "composition",
@@ -50,7 +57,8 @@
         "type": "array",
         "items": "string"
       },
-      "doc": "A list of primary material keys."
+      "doc": "A list of primary material keys.",
+      "default": []
     },
     {
       "name": "coordinates",

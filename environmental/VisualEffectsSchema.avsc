@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "effect_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "effect_type",
@@ -21,7 +22,8 @@
           "RING_SHADOW",
           "LIGHT_SCATTERING"
         ]
-      }
+      },
+      "default": "AURORA"
     },
     {
       "name": "visual_properties",
@@ -37,36 +39,43 @@
                 "type": "array",
                 "items": "int"
               }
-            }
+            },
+            "default": []
           },
           {
             "name": "opacity_map",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "intensity",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "animation_parameters",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "render_priority",
-      "type": "int"
+      "type": "int",
+      "default": 0
     },
     {
       "name": "distance_fade",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

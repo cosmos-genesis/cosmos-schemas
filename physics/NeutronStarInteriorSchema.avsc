@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "star_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "layers",
@@ -28,38 +29,46 @@
                   "INNER_CORE",
                   "QUARK_MATTER"
                 ]
-              }
+              },
+              "default": "OUTER_CRUST"
             },
             {
               "name": "density_g_cm3",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "pressure_dyne_cm2",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "temperature_k",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "composition",
               "type": {
                 "type": "array",
                 "items": "string"
-              }
+              },
+              "default": []
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "central_density_g_cm3",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "superfluidity_temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "oscillation_modes",
@@ -71,19 +80,23 @@
           "fields": [
             {
               "name": "mode_type",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "frequency_hz",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "damping_time_s",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

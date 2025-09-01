@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "effect_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "effect_type",
@@ -21,15 +22,18 @@
           "STRING_EFFECT",
           "CAUSAL_DYNAMICAL_TRIANGULATION"
         ]
-      }
+      },
+      "default": "SPACETIME_FOAM"
     },
     {
       "name": "planck_scale_factor",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "energy_scale_gev",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "quantum_fluctuations",
@@ -41,27 +45,33 @@
           "fields": [
             {
               "name": "amplitude",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "characteristic_length_m",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "lifetime_s",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "dimensional_reduction_scale",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "quantum_decoherence_rate",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

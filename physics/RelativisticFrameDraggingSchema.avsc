@@ -6,15 +6,18 @@
   "fields": [
     {
       "name": "source_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "angular_momentum_j_m2",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "spin_parameter",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "dragging_effects",
@@ -26,27 +29,33 @@
           "fields": [
             {
               "name": "radius_m",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "precession_rate_rad_s",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "frame_dragging_potential",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "ergosphere_radius_m",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "lense_thirring_effect",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

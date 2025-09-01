@@ -7,11 +7,13 @@
   "fields": [
     {
       "name": "distribution_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "total_mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "profile_type",
@@ -26,15 +28,18 @@
           "MOORE",
           "SERSIC"
         ]
-      }
+      },
+      "default": "NFW"
     },
     {
       "name": "scale_radius_kpc",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "concentration_parameter",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "substructure",
@@ -46,37 +51,44 @@
           "fields": [
             {
               "name": "mass_solar_masses",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "position_kpc",
               "type": {
                 "type": "array",
                 "items": "double"
-              }
+              },
+              "default": []
             },
             {
               "name": "velocity_km_s",
               "type": {
                 "type": "array",
                 "items": "double"
-              }
+              },
+              "default": []
             },
             {
               "name": "tidal_radius_kpc",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "velocity_dispersion_km_s",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "anisotropy_parameter",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

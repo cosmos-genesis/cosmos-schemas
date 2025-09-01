@@ -7,7 +7,8 @@
     {
       "name": "wave_designation",
       "type": "string",
-      "doc": "Unique designation for the gravitational wave event or source"
+      "doc": "Unique designation for the gravitational wave event or source",
+      "default": ""
     },
     {
       "name": "source_type",
@@ -25,7 +26,8 @@
           "EXOTIC"
         ]
       },
-      "doc": "Type of astrophysical source generating the gravitational waves"
+      "doc": "Type of astrophysical source generating the gravitational waves",
+      "default": "BINARY_BLACK_HOLE"
     },
     {
       "name": "source_properties",
@@ -39,7 +41,8 @@
               "type": "array",
               "items": "double"
             },
-            "doc": "Masses of the components in solar masses (e.g., [30.0, 25.0] for a binary black hole)"
+            "doc": "Masses of the components in solar masses (e.g., [30.0, 25.0] for a binary black hole)",
+            "default": []
           },
           {
             "name": "component_spins",
@@ -50,7 +53,8 @@
                 "items": "double"
               }
             },
-            "doc": "Dimensionless spin vectors for each component [sx, sy, sz]"
+            "doc": "Dimensionless spin vectors for each component [sx, sy, sz]",
+            "default": []
           },
           {
             "name": "orbital_parameters",
@@ -61,40 +65,48 @@
                 {
                   "name": "separation_m",
                   "type": "double",
-                  "doc": "Orbital separation in meters"
+                  "doc": "Orbital separation in meters",
+                  "default": 0.0
                 },
                 {
                   "name": "eccentricity",
                   "type": "double",
-                  "doc": "Orbital eccentricity"
+                  "doc": "Orbital eccentricity",
+                  "default": 0.0
                 },
                 {
                   "name": "inclination_rad",
                   "type": "double",
-                  "doc": "Orbital inclination in radians"
+                  "doc": "Orbital inclination in radians",
+                  "default": 0.0
                 },
                 {
                   "name": "orbital_period_s",
                   "type": "double",
-                  "doc": "Orbital period in seconds"
+                  "doc": "Orbital period in seconds",
+                  "default": 0.0
                 }
               ]
             },
-            "doc": "Orbital parameters of the binary system"
+            "doc": "Orbital parameters of the binary system",
+            "default": {}
           },
           {
             "name": "distance_mpc",
             "type": "double",
-            "doc": "Distance to the source in megaparsecs"
+            "doc": "Distance to the source in megaparsecs",
+            "default": 0.0
           },
           {
             "name": "redshift",
             "type": "double",
-            "doc": "Cosmological redshift of the source"
+            "doc": "Cosmological redshift of the source",
+            "default": 0.0
           }
         ]
       },
-      "doc": "Properties of the gravitational wave source"
+      "doc": "Properties of the gravitational wave source",
+      "default": {}
     },
     {
       "name": "wave_properties",
@@ -105,7 +117,8 @@
           {
             "name": "strain_amplitude",
             "type": "double",
-            "doc": "Peak dimensionless strain amplitude h"
+            "doc": "Peak dimensionless strain amplitude h",
+            "default": 0.0
           },
           {
             "name": "frequency_range_hz",
@@ -113,12 +126,14 @@
               "type": "array",
               "items": "double"
             },
-            "doc": "Frequency range in Hertz [min, max]"
+            "doc": "Frequency range in Hertz [min, max]",
+            "default": []
           },
           {
             "name": "peak_frequency_hz",
             "type": "double",
-            "doc": "Peak frequency in Hertz"
+            "doc": "Peak frequency in Hertz",
+            "default": 0.0
           },
           {
             "name": "polarization_modes",
@@ -137,7 +152,8 @@
                 ]
               }
             },
-            "doc": "Polarization modes present in the wave"
+            "doc": "Polarization modes present in the wave",
+            "default": []
           },
           {
             "name": "phase_evolution",
@@ -150,36 +166,43 @@
                   {
                     "name": "time_s",
                     "type": "double",
-                    "doc": "Time in seconds"
+                    "doc": "Time in seconds",
+                    "default": 0.0
                   },
                   {
                     "name": "phase_rad",
                     "type": "double",
-                    "doc": "Phase in radians"
+                    "doc": "Phase in radians",
+                    "default": 0.0
                   },
                   {
                     "name": "frequency_hz",
                     "type": "double",
-                    "doc": "Instantaneous frequency in Hertz"
+                    "doc": "Instantaneous frequency in Hertz",
+                    "default": 0.0
                   }
                 ]
               }
             },
-            "doc": "Evolution of phase and frequency over time"
+            "doc": "Evolution of phase and frequency over time",
+            "default": []
           },
           {
             "name": "duration_s",
             "type": "double",
-            "doc": "Duration of the signal in seconds"
+            "doc": "Duration of the signal in seconds",
+            "default": 0.0
           },
           {
             "name": "energy_flux_w_per_m2",
             "type": "double",
-            "doc": "Energy flux in Watts per square meter"
+            "doc": "Energy flux in Watts per square meter",
+            "default": 0.0
           }
         ]
       },
-      "doc": "Properties of the gravitational wave itself"
+      "doc": "Properties of the gravitational wave itself",
+      "default": {}
     },
     {
       "name": "waveform_model",
@@ -190,7 +213,8 @@
           {
             "name": "model_name",
             "type": "string",
-            "doc": "Name of the waveform model (e.g., 'IMRPhenomD', 'SEOBNRv4')"
+            "doc": "Name of the waveform model (e.g., 'IMRPhenomD', 'SEOBNRv4')",
+            "default": ""
           },
           {
             "name": "model_type",
@@ -205,7 +229,8 @@
                 "HYBRID"
               ]
             },
-            "doc": "Type of waveform model"
+            "doc": "Type of waveform model",
+            "default": "PHENOMENOLOGICAL"
           },
           {
             "name": "model_parameters",
@@ -213,16 +238,19 @@
               "type": "map",
               "values": "double"
             },
-            "doc": "Model-specific parameters as key-value pairs"
+            "doc": "Model-specific parameters as key-value pairs",
+            "default": {}
           },
           {
             "name": "validity_range",
             "type": "string",
-            "doc": "Description of the model's validity range"
+            "doc": "Description of the model's validity range",
+            "default": ""
           }
         ]
       },
-      "doc": "Model used to describe the gravitational waveform"
+      "doc": "Model used to describe the gravitational waveform",
+      "default": {}
     },
     {
       "name": "merger_properties",
@@ -233,27 +261,32 @@
           {
             "name": "merger_time",
             "type": "string",
-            "doc": "Time of merger in ISO format"
+            "doc": "Time of merger in ISO format",
+            "default": ""
           },
           {
             "name": "final_mass_solar",
             "type": "double",
-            "doc": "Final mass after merger in solar masses"
+            "doc": "Final mass after merger in solar masses",
+            "default": 0.0
           },
           {
             "name": "final_spin",
             "type": "double",
-            "doc": "Final dimensionless spin parameter"
+            "doc": "Final dimensionless spin parameter",
+            "default": 0.0
           },
           {
             "name": "energy_radiated_j",
             "type": "double",
-            "doc": "Total energy radiated in Joules"
+            "doc": "Total energy radiated in Joules",
+            "default": 0.0
           },
           {
             "name": "peak_luminosity_w",
             "type": "double",
-            "doc": "Peak luminosity in Watts"
+            "doc": "Peak luminosity in Watts",
+            "default": 0.0
           },
           {
             "name": "recoil_velocity_km_per_s",
@@ -261,11 +294,13 @@
               "type": "array",
               "items": "double"
             },
-            "doc": "Recoil (kick) velocity vector in km/s [vx, vy, vz]"
+            "doc": "Recoil (kick) velocity vector in km/s [vx, vy, vz]",
+            "default": []
           }
         ]
       },
-      "doc": "Properties of the merger event, if applicable"
+      "doc": "Properties of the merger event, if applicable",
+      "default": {}
     },
     {
       "name": "detection_properties",
@@ -276,12 +311,14 @@
           {
             "name": "signal_to_noise_ratio",
             "type": "double",
-            "doc": "Signal-to-noise ratio of the detection"
+            "doc": "Signal-to-noise ratio of the detection",
+            "default": 0.0
           },
           {
             "name": "detection_confidence",
             "type": "double",
-            "doc": "Confidence level of the detection (0.0 to 1.0)"
+            "doc": "Confidence level of the detection (0.0 to 1.0)",
+            "default": 0.0
           },
           {
             "name": "detectors",
@@ -289,7 +326,8 @@
               "type": "array",
               "items": "string"
             },
-            "doc": "List of detectors that observed the signal"
+            "doc": "List of detectors that observed the signal",
+            "default": []
           },
           {
             "name": "parameter_estimation",
@@ -302,21 +340,25 @@
                   {
                     "name": "value",
                     "type": "double",
-                    "doc": "Estimated value"
+                    "doc": "Estimated value",
+                    "default": 0.0
                   },
                   {
                     "name": "uncertainty",
                     "type": "double",
-                    "doc": "Uncertainty (standard deviation)"
+                    "doc": "Uncertainty (standard deviation)",
+                    "default": 0.0
                   }
                 ]
               }
             },
-            "doc": "Parameter estimation results as key-value pairs"
+            "doc": "Parameter estimation results as key-value pairs",
+            "default": {}
           }
         ]
       },
-      "doc": "Properties related to the detection of the gravitational wave"
+      "doc": "Properties related to the detection of the gravitational wave",
+      "default": {}
     },
     {
       "name": "electromagnetic_counterpart",
@@ -327,7 +369,8 @@
           {
             "name": "has_counterpart",
             "type": "boolean",
-            "doc": "Whether an electromagnetic counterpart was detected"
+            "doc": "Whether an electromagnetic counterpart was detected",
+            "default": false
           },
           {
             "name": "counterpart_type",
@@ -368,7 +411,8 @@
           }
         ]
       },
-      "doc": "Information about any electromagnetic counterpart to the gravitational wave"
+      "doc": "Information about any electromagnetic counterpart to the gravitational wave",
+      "default": {}
     },
     {
       "name": "scientific_implications",
@@ -391,22 +435,26 @@
                   "STELLAR_EVOLUTION"
                 ]
               },
-              "doc": "Type of scientific implication"
+              "doc": "Type of scientific implication",
+              "default": "COSMOLOGICAL"
             },
             {
               "name": "description",
               "type": "string",
-              "doc": "Description of the scientific implication"
+              "doc": "Description of the scientific implication",
+              "default": ""
             },
             {
               "name": "confidence_level",
               "type": "double",
-              "doc": "Confidence level for this implication (0.0 to 1.0)"
+              "doc": "Confidence level for this implication (0.0 to 1.0)",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Scientific implications derived from the gravitational wave observation"
+      "doc": "Scientific implications derived from the gravitational wave observation",
+      "default": []
     },
     {
       "name": "coordinates",

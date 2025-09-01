@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "chain_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "resonant_bodies",
@@ -18,35 +19,43 @@
           "fields": [
             {
               "name": "body_designation",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "orbital_period_days",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "resonance_ratio",
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "chain_stability_index",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "libration_amplitude_degrees",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "resonance_strength",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "chaos_indicator",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "secular_effects",
@@ -58,19 +67,23 @@
           "fields": [
             {
               "name": "effect_type",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "timescale_years",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "amplitude",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

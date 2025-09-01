@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "composition_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "elements",
@@ -18,45 +19,54 @@
           "fields": [
             {
               "name": "atomic_number",
-              "type": "int"
+              "type": "int",
+              "default": 0
             },
             {
               "name": "symbol",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "percentage",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "distribution_pattern",
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "bulk_density",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "phase_state",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "isotope_ratios",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "enrichment_factors",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     }
   ],
   "version": "1.0.0"

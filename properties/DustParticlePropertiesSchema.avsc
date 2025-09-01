@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "particle_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "particle_properties",
@@ -20,22 +22,27 @@
         "fields": [
           {
             "name": "size_microns",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "composition_type",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "charge_state",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "beta_parameter",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "radiation_properties",
@@ -45,26 +52,32 @@
         "fields": [
           {
             "name": "absorption_coefficient",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "scattering_coefficient",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "polarization_factor",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "lifetime_years",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "poynting_robertson_drift",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     }
   ],
   "version": "1.0.0"

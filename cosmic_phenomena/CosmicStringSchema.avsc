@@ -6,15 +6,18 @@
   "fields": [
     {
       "name": "string_network_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "string_tension_gev2",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "network_density",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "string_segments",
@@ -26,23 +29,28 @@
           "fields": [
             {
               "name": "length_mpc",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "velocity_c",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "curvature_radius_mpc",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "reconnection_probability",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "string_loops",
@@ -54,27 +62,33 @@
           "fields": [
             {
               "name": "size_pc",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "oscillation_frequency_hz",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "gravitational_power_w",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "intercommutation_rate",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "scaling_solution_parameter",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

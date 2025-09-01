@@ -1,0 +1,229 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "PlanetarySystem",
+  "doc": "System-level orbital architecture plan for a star system.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy (optional)."
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system this architecture belongs to.",
+      "default": ""
+    },
+    {
+      "name": "star_mass_sm",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mass of the central star in solar masses (if known)."
+    },
+    {
+      "name": "star_age_myr",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Age of the central star in Myr (if known)."
+    },
+    {
+      "name": "metallicity_feh",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Stellar metallicity [Fe/H] (if known)."
+    },
+    {
+      "name": "target_planet_count",
+      "type": "int",
+      "doc": "Target number of planets to assemble.",
+      "default": 0
+    },
+    {
+      "name": "spacing_model",
+      "type": {
+        "type": "enum",
+        "name": "SpacingModel",
+        "symbols": [
+          "LOG_SPACING",
+          "MUTUAL_HILL"
+        ]
+      },
+      "doc": "Architecture spacing model used to derive orbits.",
+      "default": "LOG_SPACING"
+    },
+    {
+      "name": "k_mutual_hill",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "K factor for mutual Hill spacing (if model MUTUAL_HILL)."
+    },
+    {
+      "name": "a0_au",
+      "type": "double",
+      "doc": "Anchor semi-major axis for the innermost planet (AU).",
+      "default": 0.0
+    },
+    {
+      "name": "semi_major_axes_au",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "List of semi-major axes (AU), inner-to-outer.",
+      "default": []
+    },
+    {
+      "name": "resonance_hints",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": [],
+      "doc": "Optional resonance hints for adjacent pairs (e.g., '3:2 (1-2)')."
+    },
+    {
+      "name": "gap_regions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "GapRegionAU",
+          "fields": [
+            {
+              "name": "inner_au",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "outer_au",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": [],
+      "doc": "Suggested protected gaps between orbits for belt placement."
+    },
+    {
+      "name": "belt_slots",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "BeltSlotAU",
+          "fields": [
+            {
+              "name": "inner_radius_au",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "outer_radius_au",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": [],
+      "doc": "Candidate asteroid belt slots derived from gap regions."
+    },
+    {
+      "name": "zones_by_orbit",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "enum",
+          "name": "OrbitZone",
+          "symbols": [
+            "HOT",
+            "WARM",
+            "COLD",
+            "ICE"
+          ]
+        }
+      },
+      "doc": "Thermal zone per orbit index based on distance and stellar properties.",
+      "default": []
+    },
+    {
+      "name": "eccentricity_envelope",
+      "type": {
+        "type": "record",
+        "name": "EccentricityEnvelope",
+        "fields": [
+          {
+            "name": "mean",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "sigma",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "max",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Global eccentricity envelope to guide planet eccentricities.",
+      "default": {}
+    },
+    {
+      "name": "inclination_envelope_deg",
+      "type": {
+        "type": "record",
+        "name": "InclinationEnvelopeDeg",
+        "fields": [
+          {
+            "name": "mean_deg",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "sigma_deg",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "max_deg",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Global inclination envelope (degrees).",
+      "default": {}
+    },
+    {
+      "name": "notes",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

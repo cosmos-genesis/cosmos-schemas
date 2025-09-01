@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "orbit_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "parent_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "keplerian_elements",
@@ -20,53 +22,65 @@
         "fields": [
           {
             "name": "semi_major_axis_au",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "eccentricity",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "inclination_deg",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "longitude_of_ascending_node_deg",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "argument_of_periapsis_deg",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "mean_anomaly_deg",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "orbital_period_days",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "epoch",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "perturbations",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "is_stable",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "collision_risk",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

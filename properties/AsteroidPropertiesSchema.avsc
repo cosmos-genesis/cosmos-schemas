@@ -7,11 +7,13 @@
   "fields": [
     {
       "name": "asteroid_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "classification",
@@ -27,7 +29,8 @@
           "E_TYPE",
           "P_TYPE"
         ]
-      }
+      },
+      "default": "C_TYPE"
     },
     {
       "name": "surface_properties",
@@ -37,25 +40,30 @@
         "fields": [
           {
             "name": "regolith_depth_m",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "boulder_distribution",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "crater_density",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "surface_age_myr",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "dynamic_properties",
@@ -79,14 +87,17 @@
           },
           {
             "name": "yarkovsky_drift_au_per_my",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "collision_probability",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "binary_companion_id",
@@ -101,7 +112,8 @@
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     }
   ]
 }

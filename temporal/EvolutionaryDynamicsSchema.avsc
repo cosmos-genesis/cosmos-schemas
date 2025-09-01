@@ -7,12 +7,14 @@
     {
       "name": "object_id",
       "type": "string",
-      "doc": "Unique identifier for the evolutionary dynamics object"
+      "doc": "Unique identifier for the evolutionary dynamics object",
+      "default": ""
     },
     {
       "name": "target_object_id",
       "type": "string",
-      "doc": "ID of the celestial object this evolutionary model applies to"
+      "doc": "ID of the celestial object this evolutionary model applies to",
+      "default": ""
     },
     {
       "name": "time_scale",
@@ -26,12 +28,14 @@
           "COSMIC"
         ]
       },
-      "doc": "The time scale of evolutionary changes"
+      "doc": "The time scale of evolutionary changes",
+      "default": "GEOLOGICAL"
     },
     {
       "name": "change_rate",
       "type": "double",
-      "doc": "Rate of change in standard units per million years"
+      "doc": "Rate of change in standard units per million years",
+      "default": 0.0
     },
     {
       "name": "evolutionary_stages",
@@ -43,12 +47,14 @@
           "fields": [
             {
               "name": "stage_name",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "start_time",
               "type": "double",
-              "doc": "Start time in millions of years from reference point"
+              "doc": "Start time in millions of years from reference point",
+              "default": 0.0
             },
             {
               "name": "end_time",
@@ -56,7 +62,8 @@
                 "double",
                 "null"
               ],
-              "doc": "End time in millions of years from reference point, null if ongoing"
+              "doc": "End time in millions of years from reference point, null if ongoing",
+              "default": 0.0
             },
             {
               "name": "key_properties",
@@ -67,11 +74,13 @@
                   "double",
                   "boolean"
                 ]
-              }
+              },
+              "default": {}
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "transition_triggers",
@@ -92,24 +101,29 @@
                   "EXTERNAL",
                   "RANDOM"
                 ]
-              }
+              },
+              "default": "THRESHOLD"
             },
             {
               "name": "trigger_condition",
               "type": "string",
-              "doc": "Description of the condition that triggers transition"
+              "doc": "Description of the condition that triggers transition",
+              "default": ""
             },
             {
               "name": "from_stage",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "to_stage",
-              "type": "string"
+              "type": "string",
+              "default": ""
             }
           ]
         }
-      }
+      },
+      "default": []
     }
   ],
   "version": "1.0.0"

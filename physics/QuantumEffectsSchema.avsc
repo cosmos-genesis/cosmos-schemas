@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "effect_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "effect_type",
@@ -21,19 +22,23 @@
           "QUANTUM_ENTANGLEMENT",
           "DEGENERATE_MATTER"
         ]
-      }
+      },
+      "default": "HAWKING_RADIATION"
     },
     {
       "name": "temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "energy_scale_ev",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "spacetime_curvature",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "particle_interactions",
@@ -45,30 +50,36 @@
           "fields": [
             {
               "name": "interaction_type",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "probability",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "energy_threshold_ev",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "coherence_time_s",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "quantum_noise_spectrum",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

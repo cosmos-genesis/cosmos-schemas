@@ -7,11 +7,13 @@
   "fields": [
     {
       "name": "marker_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "location_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "marker_type",
@@ -26,26 +28,31 @@
           "RESOURCE_EXTRACTION",
           "WASTE_SIGNATURE"
         ]
-      }
+      },
+      "default": "ARTIFICIAL_STRUCTURE"
     },
     {
       "name": "detection_confidence",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "technological_level",
-      "type": "int"
+      "type": "int",
+      "default": 0
     },
     {
       "name": "signal_strength",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "temporal_pattern",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "artifact_age_years",

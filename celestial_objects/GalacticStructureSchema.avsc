@@ -7,21 +7,28 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this structure belongs to"
+      "doc": "Identifier of the galaxy this structure belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
-      "type": "string",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
       "doc": "Identifier of the star system this structure is associated with, if applicable"
     },
     {
       "name": "structure_id",
       "type": "string",
-      "doc": "Stable identifier for this structure within the data lake"
+      "doc": "Stable identifier for this structure within the data lake",
+      "default": ""
     },
     {
       "name": "structure_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "structure_type",
@@ -35,29 +42,37 @@
           "DISK",
           "HALO",
           "GLOBULAR_CLUSTER",
-          "STELLAR_STREAM"
+          "STELLAR_STREAM",
+          "RING",
+          "OPEN_CLUSTER"
         ]
-      }
+      },
+      "default": "SPIRAL_ARM"
     },
     {
       "name": "size_ly",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "stellar_density",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "metallicity",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "age_gyr",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "topology_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "topology_type",
@@ -20,7 +21,8 @@
           "POINCARE_DODECAHEDRAL",
           "WEEKS_SPACE"
         ]
-      }
+      },
+      "default": "FLAT_TORUS"
     },
     {
       "name": "fundamental_domain",
@@ -30,39 +32,46 @@
         "fields": [
           {
             "name": "volume_gpc3",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "shape_parameters",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "symmetry_group",
-            "type": "string"
+            "type": "string",
+            "default": ""
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "matching_circles_radius_deg",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "correlation_pattern",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "cosmic_crystallography_signature",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

@@ -6,22 +6,26 @@
   "fields": [
     {
       "name": "iso_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "origin_vector",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "hyperbolic_excess_velocity_kms",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "original_system_estimate",
@@ -33,21 +37,24 @@
     },
     {
       "name": "residency_time_years",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "galactic_velocity_vector",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "interstellar_medium_effects",
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     }
   ],
   "version": "1.0.0"

@@ -6,19 +6,23 @@
   "fields": [
     {
       "name": "cloud_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "volume_cubic_ly",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "grain_properties",
@@ -28,11 +32,13 @@
         "fields": [
           {
             "name": "mean_size_microns",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "size_distribution",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "composition",
@@ -44,26 +50,32 @@
                 "fields": [
                   {
                     "name": "material",
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                   },
                   {
                     "name": "mass_fraction",
-                    "type": "double"
+                    "type": "double",
+                    "default": 0.0
                   }
                 ]
               }
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "extinction_coefficient",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "polarization_percentage",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

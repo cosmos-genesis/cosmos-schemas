@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "surface_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "composition",
@@ -18,26 +19,31 @@
           "fields": [
             {
               "name": "material_type",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "percentage",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "color_rgb",
               "type": {
                 "type": "array",
                 "items": "int"
-              }
+              },
+              "default": []
             },
             {
               "name": "reflectivity",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "terrain",
@@ -50,25 +56,30 @@
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "roughness",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "feature_distribution",
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           },
           {
             "name": "biome_type",
-            "type": "string"
+            "type": "string",
+            "default": ""
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "render_properties",
@@ -81,25 +92,30 @@
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           },
           {
             "name": "normal_map",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "detail_level",
-            "type": "int"
+            "type": "int",
+            "default": 0
           },
           {
             "name": "shader_parameters",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "coordinates",

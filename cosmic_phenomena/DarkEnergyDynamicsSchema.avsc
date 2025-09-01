@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "model_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "equation_of_state",
@@ -16,21 +17,25 @@
         "fields": [
           {
             "name": "w_0",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "w_a",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "time_dependence",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "model_type",
@@ -45,26 +50,31 @@
           "CHAMELEON",
           "TACHYON"
         ]
-      }
+      },
+      "default": "COSMOLOGICAL_CONSTANT"
     },
     {
       "name": "energy_density_evolution",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "sound_speed_squared",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "interaction_with_dark_matter",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "clustering_scale_mpc",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

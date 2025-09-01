@@ -7,12 +7,14 @@
     {
       "name": "mass_earth_masses",
       "type": "double",
-      "doc": "Mass of the planet in Earth masses"
+      "doc": "Mass of the planet in Earth masses",
+      "default": 0.0
     },
     {
       "name": "radius_km",
       "type": "double",
-      "doc": "Radius of the planet in kilometers"
+      "doc": "Radius of the planet in kilometers",
+      "default": 0.0
     },
     {
       "name": "density_kg_m3",
@@ -21,7 +23,7 @@
         "double"
       ],
       "default": null,
-      "doc": "Density of the planet in kg/m³"
+      "doc": "Density of the planet in kg/m\u00b3"
     },
     {
       "name": "gravity_ms2",
@@ -30,7 +32,7 @@
         "double"
       ],
       "default": null,
-      "doc": "Surface gravity of the planet in m/s²"
+      "doc": "Surface gravity of the planet in m/s\u00b2"
     },
     {
       "name": "escape_velocity_ms",

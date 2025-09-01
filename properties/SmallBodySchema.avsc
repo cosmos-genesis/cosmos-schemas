@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "parent_population_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "classification",
@@ -28,7 +30,8 @@
           "TROJAN",
           "VULCANOID"
         ]
-      }
+      },
+      "default": "ASTEROID"
     },
     {
       "name": "physical_properties",
@@ -38,49 +41,60 @@
         "fields": [
           {
             "name": "mean_diameter_km",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "mass_kg",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "albedo",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "rotation_period_hours",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "bulk_density_kg_m3",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "shape_parameters",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "orbit_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "composition_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "spectral_signature_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "discovery_probability",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     }
   ],
   "version": "1.0.0"

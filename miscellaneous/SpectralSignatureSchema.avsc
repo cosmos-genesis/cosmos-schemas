@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "signature_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "object_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "spectrum_data",
@@ -23,54 +25,64 @@
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "intensities",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "absorption_lines",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "emission_lines",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "temperature_k",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "redshift",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "signal_to_noise_ratio",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "classification",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "notable_features",
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "event_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "event_type",
@@ -23,15 +24,18 @@
           "TRANSIT",
           "RESONANCE"
         ]
-      }
+      },
+      "default": "ECLIPSE"
     },
     {
       "name": "start_time",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "duration_seconds",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "periodicity_seconds",
@@ -46,11 +50,13 @@
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     },
     {
       "name": "magnitude",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "visibility_regions",
@@ -60,7 +66,8 @@
           "type": "array",
           "items": "double"
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

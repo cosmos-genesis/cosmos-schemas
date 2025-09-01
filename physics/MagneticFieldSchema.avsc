@@ -8,17 +8,20 @@
     {
       "name": "parent_body_designation",
       "type": "string",
-      "doc": "Designation of the celestial body or phenomenon that generates this magnetic field"
+      "doc": "Designation of the celestial body or phenomenon that generates this magnetic field",
+      "default": ""
     },
     {
       "name": "field_strength_tesla",
       "type": "double",
-      "doc": "Strength of the magnetic field measured in Tesla"
+      "doc": "Strength of the magnetic field measured in Tesla",
+      "default": 0.0
     },
     {
       "name": "polarity",
       "type": "string",
-      "doc": "Polarity of the magnetic field (e.g., 'north-south', 'multipolar')"
+      "doc": "Polarity of the magnetic field (e.g., 'north-south', 'multipolar')",
+      "default": ""
     },
     {
       "name": "field_geometry",
@@ -33,7 +36,8 @@
           "IRREGULAR"
         ]
       },
-      "doc": "Geometric configuration of the magnetic field"
+      "doc": "Geometric configuration of the magnetic field",
+      "default": "DIPOLAR"
     },
     {
       "name": "field_lines",
@@ -44,7 +48,8 @@
           "items": "double"
         }
       },
-      "doc": "3D representation of magnetic field lines as arrays of points"
+      "doc": "3D representation of magnetic field lines as arrays of points",
+      "default": []
     },
     {
       "name": "reversal_frequency_years",
@@ -58,7 +63,8 @@
     {
       "name": "interaction_radius_km",
       "type": "double",
-      "doc": "Radius of significant magnetic field influence in kilometers"
+      "doc": "Radius of significant magnetic field influence in kilometers",
+      "default": 0.0
     },
     {
       "name": "field_stability",
@@ -73,7 +79,8 @@
           "UNKNOWN"
         ]
       },
-      "doc": "Stability classification of the magnetic field"
+      "doc": "Stability classification of the magnetic field",
+      "default": "STABLE"
     },
     {
       "name": "associated_phenomena",
@@ -81,7 +88,8 @@
         "type": "array",
         "items": "string"
       },
-      "doc": "List of phenomena associated with this magnetic field (e.g., 'aurora', 'radiation belts')"
+      "doc": "List of phenomena associated with this magnetic field (e.g., 'aurora', 'radiation belts')",
+      "default": []
     },
     {
       "name": "coordinates",

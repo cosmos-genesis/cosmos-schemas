@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "deposit_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "resource_type",
@@ -22,30 +23,36 @@
           "INDUSTRIAL_MINERALS",
           "ENERGY_SOURCE"
         ]
-      }
+      },
+      "default": "PRECIOUS_METALS"
     },
     {
       "name": "quantity",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "quality",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "accessibility",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "extraction_difficulty",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     }
   ],
   "version": "1.0.0"

@@ -7,12 +7,14 @@
     {
       "name": "designation",
       "type": "string",
-      "doc": "Designation or name of the radiation belt"
+      "doc": "Designation or name of the radiation belt",
+      "default": ""
     },
     {
       "name": "peak_intensity",
       "type": "double",
-      "doc": "Peak intensity of the radiation belt"
+      "doc": "Peak intensity of the radiation belt",
+      "default": 0.0
     },
     {
       "name": "altitude_range_km",
@@ -20,7 +22,8 @@
         "type": "array",
         "items": "double"
       },
-      "doc": "Altitude range of the radiation belt in kilometers [min, max]"
+      "doc": "Altitude range of the radiation belt in kilometers [min, max]",
+      "default": []
     }
   ],
   "version": "1.0.0"

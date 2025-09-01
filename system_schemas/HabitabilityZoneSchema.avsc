@@ -6,42 +6,51 @@
   "fields": [
     {
       "name": "zone_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "temperature_range_k",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "radiation_level",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "gravity_g",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "atmospheric_pressure_atm",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "water_availability",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "toxic_compounds_level",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "magnetic_field_protection",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "habitability_score",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

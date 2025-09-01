@@ -6,31 +6,38 @@
   "fields": [
     {
       "name": "vulcanoid_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "thermal_stress_factor",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "sublimation_rate",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "solar_wind_exposure",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "detection_difficulty",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "stability_against_perturbations",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     }
   ],
   "version": "1.0.0"

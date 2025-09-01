@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "black_hole_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "black_hole_type",
@@ -18,28 +19,34 @@
           "INTERMEDIATE",
           "SUPERMASSIVE"
         ]
-      }
+      },
+      "default": "STELLAR"
     },
     {
       "name": "mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "schwarzschild_radius_km",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "accretion_disk_present",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "spin_parameter",
       "type": "double",
-      "doc": "Kerr parameter, between 0 and 1"
+      "doc": "Kerr parameter, between 0 and 1",
+      "default": 0.0
     },
     {
       "name": "jet_present",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "merger_history",

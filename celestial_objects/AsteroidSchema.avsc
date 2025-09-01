@@ -8,22 +8,26 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Identifier of the galaxy this asteroid belongs to"
+      "doc": "Identifier of the galaxy this asteroid belongs to",
+      "default": ""
     },
     {
       "name": "system_id",
       "type": "string",
-      "doc": "Identifier of the star system that contains this asteroid"
+      "doc": "Identifier of the star system that contains this asteroid",
+      "default": ""
     },
     {
       "name": "asteroid_id",
       "type": "string",
-      "doc": "Stable identifier for this asteroid within the data lake"
+      "doc": "Stable identifier for this asteroid within the data lake",
+      "default": ""
     },
     {
       "name": "object_id",
       "type": "string",
-      "doc": "Unique identifier for the asteroid"
+      "doc": "Unique identifier for the asteroid",
+      "default": ""
     },
     {
       "name": "coordinates",
@@ -45,32 +49,38 @@
           "P_TYPE"
         ]
       },
-      "doc": "The spectral classification of the asteroid"
+      "doc": "The spectral classification of the asteroid",
+      "default": "C_TYPE"
     },
     {
       "name": "diameter_km",
       "type": "double",
-      "doc": "Diameter of the asteroid in kilometers"
+      "doc": "Diameter of the asteroid in kilometers",
+      "default": 0.0
     },
     {
       "name": "mass_kg",
       "type": "double",
-      "doc": "Mass of the asteroid in kilograms"
+      "doc": "Mass of the asteroid in kilograms",
+      "default": 0.0
     },
     {
       "name": "density_g_cm3",
       "type": "double",
-      "doc": "Density of the asteroid in g/cm³"
+      "doc": "Density of the asteroid in g/cm\u00b3",
+      "default": 0.0
     },
     {
       "name": "albedo",
       "type": "double",
-      "doc": "Reflectivity of the asteroid's surface (0.0 to 1.0)"
+      "doc": "Reflectivity of the asteroid's surface (0.0 to 1.0)",
+      "default": 0.0
     },
     {
       "name": "rotation_period_hours",
       "type": "double",
-      "doc": "Time it takes for the asteroid to complete one rotation in hours"
+      "doc": "Time it takes for the asteroid to complete one rotation in hours",
+      "default": 0.0
     },
     {
       "name": "orbital_properties",
@@ -81,26 +91,31 @@
           {
             "name": "semi_major_axis_au",
             "type": "double",
-            "doc": "Semi-major axis of the orbit in astronomical units (AU)"
+            "doc": "Semi-major axis of the orbit in astronomical units (AU)",
+            "default": 0.0
           },
           {
             "name": "eccentricity",
             "type": "double",
-            "doc": "Eccentricity of the orbit (0.0 to 1.0)"
+            "doc": "Eccentricity of the orbit (0.0 to 1.0)",
+            "default": 0.0
           },
           {
             "name": "inclination_deg",
             "type": "double",
-            "doc": "Inclination of the orbit in degrees"
+            "doc": "Inclination of the orbit in degrees",
+            "default": 0.0
           },
           {
             "name": "orbital_period_years",
             "type": "double",
-            "doc": "Time it takes for the asteroid to complete one orbit in Earth years"
+            "doc": "Time it takes for the asteroid to complete one orbit in Earth years",
+            "default": 0.0
           }
         ]
       },
-      "doc": "Orbital parameters of the asteroid"
+      "doc": "Orbital parameters of the asteroid",
+      "default": {}
     },
     {
       "name": "composition",
@@ -111,7 +126,8 @@
           {
             "name": "primary_material",
             "type": "string",
-            "doc": "Primary material composition (e.g., silicates, carbonaceous, metallic, icy)"
+            "doc": "Primary material composition (e.g., silicates, carbonaceous, metallic, icy)",
+            "default": ""
           },
           {
             "name": "secondary_materials",
@@ -119,7 +135,8 @@
               "type": "array",
               "items": "string"
             },
-            "doc": "List of secondary materials present in the asteroid"
+            "doc": "List of secondary materials present in the asteroid",
+            "default": []
           },
           {
             "name": "resources",
@@ -127,11 +144,13 @@
               "type": "array",
               "items": "string"
             },
-            "doc": "List of valuable resources available in the asteroid"
+            "doc": "List of valuable resources available in the asteroid",
+            "default": []
           }
         ]
       },
-      "doc": "Composition details of the asteroid"
+      "doc": "Composition details of the asteroid",
+      "default": {}
     },
     {
       "name": "parent_belt_id",

@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "population_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "parent_object_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "population_type",
@@ -24,7 +26,8 @@
           "DUST_CLOUD",
           "METEOROID_STREAM"
         ]
-      }
+      },
+      "default": "OORT_CLOUD"
     },
     {
       "name": "spatial_distribution",
@@ -34,19 +37,23 @@
         "fields": [
           {
             "name": "inner_boundary_au",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "outer_boundary_au",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "vertical_thickness_au",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "density_distribution",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "void_regions",
@@ -56,10 +63,12 @@
                 "type": "array",
                 "items": "double"
               }
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "population_properties",
@@ -69,35 +78,41 @@
         "fields": [
           {
             "name": "total_mass_kg",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "estimated_object_count",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "size_distribution",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "composition_distribution",
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           },
           {
             "name": "albedo_range",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "dynamics",
@@ -110,32 +125,38 @@
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "eccentricity_range",
             "type": {
               "type": "array",
               "items": "double"
-            }
+            },
+            "default": []
           },
           {
             "name": "velocity_dispersion_kms",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "perturbation_state",
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           {
             "name": "resonances",
             "type": {
               "type": "array",
               "items": "string"
-            }
+            },
+            "default": []
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "spawn_rules",
@@ -145,26 +166,32 @@
         "fields": [
           {
             "name": "min_spawn_distance_au",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "max_objects_per_sector",
-            "type": "int"
+            "type": "int",
+            "default": 0
           },
           {
             "name": "size_threshold_km",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "importance_sampling",
-            "type": "boolean"
+            "type": "boolean",
+            "default": false
           },
           {
             "name": "spawn_seed",
-            "type": "long"
+            "type": "long",
+            "default": 0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "notable_members",
@@ -176,26 +203,31 @@
           "fields": [
             {
               "name": "object_id",
-              "type": "string"
+              "type": "string",
+              "default": ""
             },
             {
               "name": "size_km",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             },
             {
               "name": "orbit_elements",
               "type": {
                 "type": "array",
                 "items": "double"
-              }
+              },
+              "default": []
             },
             {
               "name": "discovery_probability",
-              "type": "double"
+              "type": "double",
+              "default": 0.0
             }
           ]
         }
-      }
+      },
+      "default": []
     },
     {
       "name": "last_perturbation_date",
@@ -207,7 +239,8 @@
     },
     {
       "name": "stability_rating",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "coordinates",

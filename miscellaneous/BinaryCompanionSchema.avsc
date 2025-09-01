@@ -6,43 +6,53 @@
   "fields": [
     {
       "name": "companion_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "primary_star_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "spectral_type",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "orbital_period_years",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "semi_major_axis_au",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "eccentricity",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "inclination_degrees",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "age_myr",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "habitable_zone_impacted",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "coordinates",

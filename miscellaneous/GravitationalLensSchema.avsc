@@ -6,27 +6,33 @@
   "fields": [
     {
       "name": "lens_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "mass_solar_masses",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "einstein_radius_arcsec",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "magnification",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "lens_distance_ly",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "source_distance_ly",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "lens_type",
@@ -39,7 +45,8 @@
           "BLACK_HOLE",
           "DARK_MATTER_HALO"
         ]
-      }
+      },
+      "default": "GALAXY"
     },
     {
       "name": "coordinates",

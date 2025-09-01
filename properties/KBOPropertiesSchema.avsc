@@ -6,11 +6,13 @@
   "fields": [
     {
       "name": "kbo_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "dynamical_class",
@@ -23,11 +25,13 @@
           "SCATTERED",
           "DETACHED"
         ]
-      }
+      },
+      "default": "CLASSICAL"
     },
     {
       "name": "binary_system",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "resonance_with_neptune",
@@ -39,15 +43,18 @@
     },
     {
       "name": "cold_classical_belt",
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     {
       "name": "surface_color_index",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "volatile_retention_factor",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     }
   ],
   "version": "1.0.0"

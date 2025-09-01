@@ -6,15 +6,18 @@
   "fields": [
     {
       "name": "trojan_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "small_body_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "host_planet_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "lagrange_point",
@@ -25,22 +28,26 @@
           "L4",
           "L5"
         ]
-      }
+      },
+      "default": "L4"
     },
     {
       "name": "libration_amplitude_deg",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "stability_lifetime_years",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "tadpole_orbit_parameters",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     }
   ],
   "version": "1.0.0"

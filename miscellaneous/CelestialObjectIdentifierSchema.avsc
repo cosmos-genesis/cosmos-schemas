@@ -6,7 +6,8 @@
   "fields": [
     {
       "name": "object_id",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "object_type",
@@ -26,11 +27,13 @@
           "SPACE_STATION",
           "ARTIFICIAL_OBJECT"
         ]
-      }
+      },
+      "default": "GALAXY"
     },
     {
       "name": "catalog_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "parent_id",
@@ -42,28 +45,32 @@
     },
     {
       "name": "discovery_date",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "alternate_names",
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     },
     {
       "name": "hierarchical_path",
       "type": {
         "type": "array",
         "items": "string"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

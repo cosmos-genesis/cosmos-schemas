@@ -6,15 +6,18 @@
   "fields": [
     {
       "name": "axion_designation",
-      "type": "string"
+      "type": "string",
+      "default": ""
     },
     {
       "name": "mass_ev",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "decay_constant_gev",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "production_mechanism",
@@ -27,7 +30,8 @@
           "WALL_DECAY",
           "THERMAL"
         ]
-      }
+      },
+      "default": "MISALIGNMENT"
     },
     {
       "name": "oscillation_properties",
@@ -37,29 +41,35 @@
         "fields": [
           {
             "name": "frequency_hz",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "quality_factor",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           },
           {
             "name": "coherence_time_s",
-            "type": "double"
+            "type": "double",
+            "default": 0.0
           }
         ]
-      }
+      },
+      "default": {}
     },
     {
       "name": "coupling_strength",
-      "type": "double"
+      "type": "double",
+      "default": 0.0
     },
     {
       "name": "density_distribution",
       "type": {
         "type": "array",
         "items": "double"
-      }
+      },
+      "default": []
     },
     {
       "name": "coordinates",

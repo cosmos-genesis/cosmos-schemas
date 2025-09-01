@@ -7,7 +7,8 @@
     {
       "name": "system_designation",
       "type": "string",
-      "doc": "Designation of the optical system being modeled"
+      "doc": "Designation of the optical system being modeled",
+      "default": ""
     },
     {
       "name": "medium_properties",
@@ -30,7 +31,8 @@
                 "COMPOSITE"
               ]
             },
-            "doc": "Type of medium through which light propagates"
+            "doc": "Type of medium through which light propagates",
+            "default": "VACUUM"
           },
           {
             "name": "refractive_index",
@@ -41,12 +43,14 @@
                 {
                   "name": "real_part",
                   "type": "double",
-                  "doc": "Real part of the refractive index"
+                  "doc": "Real part of the refractive index",
+                  "default": 0.0
                 },
                 {
                   "name": "imaginary_part",
                   "type": "double",
-                  "doc": "Imaginary part of the refractive index (extinction coefficient)"
+                  "doc": "Imaginary part of the refractive index (extinction coefficient)",
+                  "default": 0.0
                 },
                 {
                   "name": "wavelength_dependence",
@@ -59,31 +63,37 @@
                         {
                           "name": "wavelength_nm",
                           "type": "double",
-                          "doc": "Wavelength in nanometers"
+                          "doc": "Wavelength in nanometers",
+                          "default": 0.0
                         },
                         {
                           "name": "index_value",
                           "type": "double",
-                          "doc": "Refractive index at this wavelength"
+                          "doc": "Refractive index at this wavelength",
+                          "default": 0.0
                         }
                       ]
                     }
                   },
-                  "doc": "Wavelength dependence of the refractive index"
+                  "doc": "Wavelength dependence of the refractive index",
+                  "default": []
                 }
               ]
             },
-            "doc": "Refractive index properties of the medium"
+            "doc": "Refractive index properties of the medium",
+            "default": {}
           },
           {
             "name": "density_kg_per_m3",
             "type": "double",
-            "doc": "Density of the medium in kg/m³"
+            "doc": "Density of the medium in kg/m\u00b3",
+            "default": 0.0
           },
           {
             "name": "temperature_k",
             "type": "double",
-            "doc": "Temperature of the medium in Kelvin"
+            "doc": "Temperature of the medium in Kelvin",
+            "default": 0.0
           },
           {
             "name": "composition",
@@ -96,12 +106,14 @@
                   {
                     "name": "component_name",
                     "type": "string",
-                    "doc": "Name of the component (e.g., 'hydrogen', 'silicate dust')"
+                    "doc": "Name of the component (e.g., 'hydrogen', 'silicate dust')",
+                    "default": ""
                   },
                   {
                     "name": "mass_fraction",
                     "type": "double",
-                    "doc": "Mass fraction of this component (0.0 to 1.0)"
+                    "doc": "Mass fraction of this component (0.0 to 1.0)",
+                    "default": 0.0
                   },
                   {
                     "name": "optical_properties",
@@ -109,16 +121,19 @@
                       "type": "map",
                       "values": "double"
                     },
-                    "doc": "Component-specific optical properties as key-value pairs"
+                    "doc": "Component-specific optical properties as key-value pairs",
+                    "default": {}
                   }
                 ]
               }
             },
-            "doc": "Composition of the medium"
+            "doc": "Composition of the medium",
+            "default": []
           }
         ]
       },
-      "doc": "Properties of the medium through which light propagates"
+      "doc": "Properties of the medium through which light propagates",
+      "default": {}
     },
     {
       "name": "extinction_properties",
@@ -137,41 +152,49 @@
                   {
                     "name": "wavelength_nm",
                     "type": "double",
-                    "doc": "Wavelength in nanometers"
+                    "doc": "Wavelength in nanometers",
+                    "default": 0.0
                   },
                   {
                     "name": "extinction_magnitude",
                     "type": "double",
-                    "doc": "Extinction in magnitudes at this wavelength"
+                    "doc": "Extinction in magnitudes at this wavelength",
+                    "default": 0.0
                   }
                 ]
               }
             },
-            "doc": "Extinction as a function of wavelength"
+            "doc": "Extinction as a function of wavelength",
+            "default": []
           },
           {
             "name": "total_extinction_av",
             "type": "double",
-            "doc": "Total extinction in V-band magnitudes"
+            "doc": "Total extinction in V-band magnitudes",
+            "default": 0.0
           },
           {
             "name": "reddening_ebv",
             "type": "double",
-            "doc": "E(B-V) color excess"
+            "doc": "E(B-V) color excess",
+            "default": 0.0
           },
           {
             "name": "extinction_law_rv",
             "type": "double",
-            "doc": "Ratio of total to selective extinction (R_V)"
+            "doc": "Ratio of total to selective extinction (R_V)",
+            "default": 0.0
           },
           {
             "name": "extinction_model",
             "type": "string",
-            "doc": "Name of the extinction model (e.g., 'CCM89', 'Calzetti')"
+            "doc": "Name of the extinction model (e.g., 'CCM89', 'Calzetti')",
+            "default": ""
           }
         ]
       },
-      "doc": "Interstellar or atmospheric extinction properties"
+      "doc": "Interstellar or atmospheric extinction properties",
+      "default": {}
     },
     {
       "name": "scattering_properties",
@@ -194,22 +217,26 @@
                 "MULTIPLE"
               ]
             },
-            "doc": "Type of scattering process"
+            "doc": "Type of scattering process",
+            "default": "RAYLEIGH"
           },
           {
             "name": "scattering_cross_section_m2",
             "type": "double",
-            "doc": "Scattering cross-section in square meters"
+            "doc": "Scattering cross-section in square meters",
+            "default": 0.0
           },
           {
             "name": "mean_free_path_m",
             "type": "double",
-            "doc": "Mean free path for scattering in meters"
+            "doc": "Mean free path for scattering in meters",
+            "default": 0.0
           },
           {
             "name": "albedo",
             "type": "double",
-            "doc": "Single-scattering albedo (0.0 to 1.0)"
+            "doc": "Single-scattering albedo (0.0 to 1.0)",
+            "default": 0.0
           },
           {
             "name": "phase_function",
@@ -222,26 +249,31 @@
                   {
                     "name": "angle_rad",
                     "type": "double",
-                    "doc": "Scattering angle in radians"
+                    "doc": "Scattering angle in radians",
+                    "default": 0.0
                   },
                   {
                     "name": "probability",
                     "type": "double",
-                    "doc": "Relative probability of scattering at this angle"
+                    "doc": "Relative probability of scattering at this angle",
+                    "default": 0.0
                   }
                 ]
               }
             },
-            "doc": "Angular distribution of scattered light"
+            "doc": "Angular distribution of scattered light",
+            "default": []
           },
           {
             "name": "anisotropy_parameter_g",
             "type": "double",
-            "doc": "Anisotropy parameter g (-1.0 to 1.0)"
+            "doc": "Anisotropy parameter g (-1.0 to 1.0)",
+            "default": 0.0
           }
         ]
       },
-      "doc": "Light scattering properties"
+      "doc": "Light scattering properties",
+      "default": {}
     },
     {
       "name": "refraction_effects",
@@ -264,27 +296,32 @@
                   "BIREFRINGENCE"
                 ]
               },
-              "doc": "Type of refraction effect"
+              "doc": "Type of refraction effect",
+              "default": "ATMOSPHERIC_REFRACTION"
             },
             {
               "name": "angular_deviation_rad",
               "type": "double",
-              "doc": "Angular deviation due to refraction in radians"
+              "doc": "Angular deviation due to refraction in radians",
+              "default": 0.0
             },
             {
               "name": "wavelength_dependence",
               "type": "boolean",
-              "doc": "Whether the effect has significant wavelength dependence"
+              "doc": "Whether the effect has significant wavelength dependence",
+              "default": false
             },
             {
               "name": "effect_description",
               "type": "string",
-              "doc": "Description of the refraction effect"
+              "doc": "Description of the refraction effect",
+              "default": ""
             }
           ]
         }
       },
-      "doc": "Refraction effects in the system"
+      "doc": "Refraction effects in the system",
+      "default": []
     },
     {
       "name": "emission_properties",
@@ -309,7 +346,8 @@
                   "SYNCHROTRON"
                 ]
               },
-              "doc": "Type of light emission"
+              "doc": "Type of light emission",
+              "default": "THERMAL"
             },
             {
               "name": "emission_spectrum",
@@ -322,22 +360,26 @@
                     {
                       "name": "wavelength_nm",
                       "type": "double",
-                      "doc": "Wavelength in nanometers"
+                      "doc": "Wavelength in nanometers",
+                      "default": 0.0
                     },
                     {
                       "name": "intensity",
                       "type": "double",
-                      "doc": "Relative intensity at this wavelength"
+                      "doc": "Relative intensity at this wavelength",
+                      "default": 0.0
                     }
                   ]
                 }
               },
-              "doc": "Emission spectrum"
+              "doc": "Emission spectrum",
+              "default": []
             },
             {
               "name": "total_luminosity_w",
               "type": "double",
-              "doc": "Total luminosity in Watts"
+              "doc": "Total luminosity in Watts",
+              "default": 0.0
             },
             {
               "name": "emission_temperature_k",
@@ -351,7 +393,8 @@
           ]
         }
       },
-      "doc": "Light emission properties"
+      "doc": "Light emission properties",
+      "default": []
     },
     {
       "name": "absorption_properties",
@@ -374,7 +417,8 @@
                   "MOLECULAR"
                 ]
               },
-              "doc": "Type of absorption"
+              "doc": "Type of absorption",
+              "default": "CONTINUUM"
             },
             {
               "name": "absorption_spectrum",
@@ -387,32 +431,38 @@
                     {
                       "name": "wavelength_nm",
                       "type": "double",
-                      "doc": "Wavelength in nanometers"
+                      "doc": "Wavelength in nanometers",
+                      "default": 0.0
                     },
                     {
                       "name": "optical_depth",
                       "type": "double",
-                      "doc": "Optical depth at this wavelength"
+                      "doc": "Optical depth at this wavelength",
+                      "default": 0.0
                     }
                   ]
                 }
               },
-              "doc": "Absorption spectrum"
+              "doc": "Absorption spectrum",
+              "default": []
             },
             {
               "name": "absorbing_species",
               "type": "string",
-              "doc": "Chemical species responsible for the absorption"
+              "doc": "Chemical species responsible for the absorption",
+              "default": ""
             },
             {
               "name": "column_density_per_m2",
               "type": "double",
-              "doc": "Column density in particles per square meter"
+              "doc": "Column density in particles per square meter",
+              "default": 0.0
             }
           ]
         }
       },
-      "doc": "Light absorption properties"
+      "doc": "Light absorption properties",
+      "default": []
     },
     {
       "name": "optical_phenomena",
@@ -440,17 +490,20 @@
                   "TWINKLING"
                 ]
               },
-              "doc": "Type of optical phenomenon"
+              "doc": "Type of optical phenomenon",
+              "default": "RAINBOW"
             },
             {
               "name": "angular_size_rad",
               "type": "double",
-              "doc": "Angular size in radians"
+              "doc": "Angular size in radians",
+              "default": 0.0
             },
             {
               "name": "brightness",
               "type": "double",
-              "doc": "Relative brightness (0.0 to 1.0)"
+              "doc": "Relative brightness (0.0 to 1.0)",
+              "default": 0.0
             },
             {
               "name": "wavelength_range_nm",
@@ -458,17 +511,20 @@
                 "type": "array",
                 "items": "double"
               },
-              "doc": "Wavelength range in nanometers [min, max]"
+              "doc": "Wavelength range in nanometers [min, max]",
+              "default": []
             },
             {
               "name": "phenomenon_description",
               "type": "string",
-              "doc": "Description of the optical phenomenon"
+              "doc": "Description of the optical phenomenon",
+              "default": ""
             }
           ]
         }
       },
-      "doc": "Observable optical phenomena"
+      "doc": "Observable optical phenomena",
+      "default": []
     },
     {
       "name": "polarization_properties",
@@ -479,12 +535,14 @@
           {
             "name": "polarization_degree",
             "type": "double",
-            "doc": "Degree of polarization (0.0 to 1.0)"
+            "doc": "Degree of polarization (0.0 to 1.0)",
+            "default": 0.0
           },
           {
             "name": "polarization_angle_rad",
             "type": "double",
-            "doc": "Polarization angle in radians"
+            "doc": "Polarization angle in radians",
+            "default": 0.0
           },
           {
             "name": "polarization_type",
@@ -499,7 +557,8 @@
                 "UNPOLARIZED"
               ]
             },
-            "doc": "Type of polarization"
+            "doc": "Type of polarization",
+            "default": "LINEAR"
           },
           {
             "name": "stokes_parameters",
@@ -507,16 +566,19 @@
               "type": "array",
               "items": "double"
             },
-            "doc": "Stokes parameters [I, Q, U, V]"
+            "doc": "Stokes parameters [I, Q, U, V]",
+            "default": []
           },
           {
             "name": "polarization_mechanism",
             "type": "string",
-            "doc": "Physical mechanism causing the polarization"
+            "doc": "Physical mechanism causing the polarization",
+            "default": ""
           }
         ]
       },
-      "doc": "Polarization properties of light"
+      "doc": "Polarization properties of light",
+      "default": {}
     },
     {
       "name": "observational_effects",
@@ -540,22 +602,26 @@
                   "DISPERSION"
                 ]
               },
-              "doc": "Type of observational effect"
+              "doc": "Type of observational effect",
+              "default": "SEEING"
             },
             {
               "name": "effect_magnitude",
               "type": "double",
-              "doc": "Magnitude of the effect"
+              "doc": "Magnitude of the effect",
+              "default": 0.0
             },
             {
               "name": "effect_description",
               "type": "string",
-              "doc": "Description of how the effect impacts observations"
+              "doc": "Description of how the effect impacts observations",
+              "default": ""
             }
           ]
         }
       },
-      "doc": "Effects impacting astronomical observations"
+      "doc": "Effects impacting astronomical observations",
+      "default": []
     },
     {
       "name": "coordinates",
