@@ -59,6 +59,78 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "black_hole_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this black hole within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this black hole belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the star system that contains this black hole (if stellar-mass BH)"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age of the black hole since formation in millions of years"
+    },
+    {
+      "name": "mass_msun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Black hole mass in solar masses (alias for mass_solar_masses for physics consistency)"
+    },
+    {
+      "name": "accretion_rate_msun_yr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Accretion rate in solar masses per year (Eddington-limited)"
+    },
+    {
+      "name": "jet_power_erg_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Relativistic jet power in erg/s (Blandford-Znajek mechanism)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ],
   "version": "1.0.0"

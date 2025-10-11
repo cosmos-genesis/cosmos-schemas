@@ -243,6 +243,60 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "age_gyr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the galaxy in billions of years (Gyr)"
+    },
+    {
+      "name": "total_stellar_mass_msun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Total stellar mass in solar masses (integrated from star formation history)"
+    },
+    {
+      "name": "gas_mass_msun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Total gas mass in solar masses (ISM + molecular clouds)"
+    },
+    {
+      "name": "sfr_msun_yr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Star formation rate in solar masses per year"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    },
+    {
+      "name": "morphology_params",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "JSON-encoded morphology parameters for spatial distribution (scale_length_kpc, scale_height_ly, num_arms, pitch_angle_deg, etc.)"
     }
   ],
   "version": "1.0.0"

@@ -81,6 +81,33 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age of the moon since formation in millions of years"
+    },
+    {
+      "name": "semi_major_axis_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital semi-major axis in AU (computed from orbital_distance_km for physics models)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ]
 }

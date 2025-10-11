@@ -181,6 +181,33 @@
       ],
       "default": null,
       "doc": "Array of ring systems orbiting this planet - Legacy field, use surface_properties.ring_properties instead"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age of the planet since formation in millions of years"
+    },
+    {
+      "name": "atmospheric_pressure_bar",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Surface atmospheric pressure in bars (1 bar = Earth sea level)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ]
 }

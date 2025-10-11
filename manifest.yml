@@ -552,15 +552,6 @@ schemas:
     description: Planetary ring system record
     compatibility: BACKWARD
     version: 1.0.0
-  - name: PlanetarySystem
-    aliases:
-    - PlanetarySystem
-    - PlanetarySystemSchema
-    file: schemas/celestial_objects/PlanetarySystemSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: System-level orbital architecture plan for a star system.
-    compatibility: BACKWARD
-    version: 1.0.0
   - name: Star
     aliases:
     - Star
@@ -576,7 +567,7 @@ schemas:
     - StarSystemSchema
     file: schemas/celestial_objects/StarSystemSchema.avsc
     namespace: CosmosGenesis.celestial_objects
-    description: Single star system entity
+    description: Single star system entity (container for Star + planets + etc.)
     compatibility: BACKWARD
     version: 1.0.0
   biological:

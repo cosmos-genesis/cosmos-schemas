@@ -74,6 +74,64 @@
       ],
       "default": null,
       "doc": "Detailed properties of the star including evolution, activity, and environment."
+    },
+    {
+      "name": "star_radius_rsun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Stellar radius in Solar Radii (computed during evolution)"
+    },
+    {
+      "name": "star_temperature_k",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Effective temperature in Kelvin (computed from L and R via Stefan-Boltzmann)"
+    },
+    {
+      "name": "evolutionary_stage",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "EvolutionaryStage",
+          "symbols": [
+            "MS",
+            "SGB",
+            "RGB",
+            "AGB",
+            "WD",
+            "NS",
+            "BH"
+          ],
+          "doc": "MS=Main Sequence, SGB=Subgiant, RGB=Red Giant Branch, AGB=Asymptotic Giant Branch, WD=White Dwarf, NS=Neutron Star, BH=Black Hole"
+        }
+      ],
+      "default": null,
+      "doc": "Current evolutionary stage of the star"
+    },
+    {
+      "name": "metallicity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Metallicity ([Fe/H] or Z) - fraction of metals by mass"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ]
 }
