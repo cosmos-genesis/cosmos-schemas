@@ -35,18 +35,6 @@ schemas:
     description: Black hole properties and environments
     compatibility: BACKWARD
     version: 1.0.0
-    primary_key: black_hole_id
-    physics:
-      supports_aging: true
-      evolution_model: black_hole
-      timescale: COSMIC
-      priority: 1
-      fields:
-        age: age_myr
-        mass: mass_msun
-        spin: spin_parameter
-        accretion_rate: accretion_rate_msun_yr
-        jet_power: jet_power_erg_s
   - name: CosmicString
     aliases:
     - CosmicString
@@ -528,17 +516,6 @@ schemas:
     description: Galaxy entity and properties
     compatibility: BACKWARD
     version: 1.0.0
-    primary_key: galaxy_id
-    physics:
-      supports_aging: true
-      evolution_model: galactic
-      timescale: COSMIC
-      priority: 0
-      fields:
-        age: age_gyr
-        stellar_mass: total_stellar_mass_msun
-        gas_mass: gas_mass_msun
-        star_formation_rate: sfr_msun_yr
   - name: Moon
     aliases:
     - Moon
@@ -548,16 +525,6 @@ schemas:
     description: Natural satellite orbiting a planet
     compatibility: BACKWARD
     version: 1.0.0
-    primary_key: moon_id
-    physics:
-      supports_aging: true
-      evolution_model: lunar
-      timescale: GEOLOGICAL
-      priority: 2
-      fields:
-        age: age_myr
-        mass: mass_lm
-        semi_major_axis: semi_major_axis_au
   - name: OortCloud
     aliases:
     - OortCloud
@@ -576,18 +543,6 @@ schemas:
     description: Single planet entity with physical, orbital, and surface properties
     compatibility: BACKWARD
     version: 1.0.0
-    primary_key: planet_id
-    physics:
-      supports_aging: true
-      evolution_model: planetary
-      timescale: GEOLOGICAL
-      priority: 2
-      fields:
-        age: age_myr
-        mass: mass_em
-        semi_major_axis: orbital_distance_au
-        surface_temperature: surface_temperature_k
-        atmospheric_pressure: atmospheric_pressure_bar
   - name: PlanetaryRings
     aliases:
     - PlanetaryRings
@@ -606,18 +561,6 @@ schemas:
     description: Single star entity
     compatibility: BACKWARD
     version: 1.0.0
-    primary_key: star_id
-    physics:
-      supports_aging: true
-      evolution_model: stellar
-      timescale: STELLAR
-      priority: 1
-      fields:
-        age: star_age_myr
-        mass: star_mass_sm
-        luminosity: star_luminosity
-        radius: star_radius_rsun
-        temperature: star_temperature_k
   - name: StarSystem
     aliases:
     - StarSystem
