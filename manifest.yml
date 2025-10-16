@@ -26,6 +26,15 @@ schemas:
       which planets form.
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: disk_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: disk_age_myr
+        mass: total_mass_em
   - name: BlackHole
     aliases:
     - BlackHole
@@ -35,6 +44,18 @@ schemas:
     description: Black hole properties and environments
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: black_hole_id
+    physics:
+      supports_aging: true
+      evolution_model: black_hole
+      timescale: COSMIC
+      priority: 1
+      fields:
+        age: age_myr
+        mass: mass_msun
+        spin: spin_parameter
+        accretion_rate: accretion_rate_msun_yr
+        jet_power: jet_power_erg_s
   - name: CosmicString
     aliases:
     - CosmicString
@@ -80,6 +101,17 @@ schemas:
     description: Nebular types and parameters
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: nebula_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: nebula_age_myr
+        mass: mass_solar_masses
+        radius: size_ly
+        temperature: temperature_k
   - name: PrimordialBlackHole
     aliases:
     - PrimordialBlackHole
@@ -489,6 +521,16 @@ schemas:
     description: Single asteroid entity
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: asteroid_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: asteroid_age_myr
+        mass: mass_kg
+        semi_major_axis: semi_major_axis_au
   - name: AsteroidBelt
     aliases:
     - AsteroidBelt
@@ -498,6 +540,15 @@ schemas:
     description: Collection of asteroid properties and orbital parameters
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: belt_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: GEOLOGICAL
+      priority: 1
+      fields:
+        age: belt_age_myr
+        mass: total_mass_em
   - name: GalacticStructure
     aliases:
     - GalacticStructure
@@ -516,6 +567,17 @@ schemas:
     description: Galaxy entity and properties
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: galaxy_id
+    physics:
+      supports_aging: true
+      evolution_model: galactic
+      timescale: COSMIC
+      priority: 0
+      fields:
+        age: age_gyr
+        stellar_mass: total_stellar_mass_msun
+        gas_mass: gas_mass_msun
+        star_formation_rate: sfr_msun_yr
   - name: Moon
     aliases:
     - Moon
@@ -525,6 +587,16 @@ schemas:
     description: Natural satellite orbiting a planet
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: moon_id
+    physics:
+      supports_aging: true
+      evolution_model: lunar
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_lm
+        semi_major_axis: semi_major_axis_au
   - name: OortCloud
     aliases:
     - OortCloud
@@ -534,6 +606,14 @@ schemas:
     description: Oort cloud object for a star system
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: cloud_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: cloud_age_myr
   - name: Planet
     aliases:
     - Planet
@@ -543,6 +623,18 @@ schemas:
     description: Single planet entity with physical, orbital, and surface properties
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: planet_id
+    physics:
+      supports_aging: true
+      evolution_model: planetary
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_em
+        semi_major_axis: orbital_distance_au
+        surface_temperature: surface_temperature_k
+        atmospheric_pressure: atmospheric_pressure_bar
   - name: PlanetaryRings
     aliases:
     - PlanetaryRings
@@ -552,6 +644,14 @@ schemas:
     description: Planetary ring system record
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: ring_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: ring_age_myr
   - name: Star
     aliases:
     - Star
@@ -561,6 +661,18 @@ schemas:
     description: Single star entity
     compatibility: BACKWARD
     version: 1.0.0
+    primary_key: star_id
+    physics:
+      supports_aging: true
+      evolution_model: stellar
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: star_age_myr
+        mass: star_mass_sm
+        luminosity: star_luminosity
+        radius: star_radius_rsun
+        temperature: star_temperature_k
   - name: StarSystem
     aliases:
     - StarSystem

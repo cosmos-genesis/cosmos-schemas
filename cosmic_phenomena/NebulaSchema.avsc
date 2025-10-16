@@ -77,6 +77,30 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "nebula_id",
+      "type": "string",
+      "default": "",
+      "doc": "Stable identifier for this nebula within the data lake"
+    },
+    {
+      "name": "nebula_age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the nebula in millions of years (Myr)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ],
   "version": "1.0.0"

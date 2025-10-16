@@ -69,6 +69,24 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "belt_age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the asteroid belt in millions of years (Myr)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ]
 }

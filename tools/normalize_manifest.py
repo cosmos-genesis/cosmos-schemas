@@ -166,10 +166,15 @@ def _merge_manifest(
             desc = existing_entry.get("description") or info.doc
             comp = existing_entry.get("compatibility") or "BACKWARD"
             ver = existing_entry.get("version") or "1.0.0"
+            # CRITICAL: Preserve physics metadata and primary_key
+            primary_key = existing_entry.get("primary_key")
+            physics = existing_entry.get("physics")
         else:
             desc = info.doc
             comp = "BACKWARD"
             ver = "1.0.0"
+            primary_key = None
+            physics = None
 
         merged = {
             "name": canonical_name,
@@ -180,6 +185,13 @@ def _merge_manifest(
             "compatibility": comp,
             "version": ver,
         }
+
+        # Add optional fields only if they exist (maintain clean YAML)
+        if primary_key:
+            merged["primary_key"] = primary_key
+        if physics:
+            merged["physics"] = physics
+
         group_entries.append(merged)
 
     # Include any existing entries that reference files no longer present (so we don't drop them silently)
