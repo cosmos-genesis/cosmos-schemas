@@ -21,6 +21,15 @@
       "default": ""
     },
     {
+      "name": "system_designation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Catalog-style designation for this star system (e.g., 'CG-M101-004237')"
+    },
+    {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "3D coordinates of the system in galactic frame"

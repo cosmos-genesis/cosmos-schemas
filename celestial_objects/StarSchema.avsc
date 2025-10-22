@@ -30,6 +30,15 @@
       "default": ""
     },
     {
+      "name": "star_designation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Catalog-style designation for this star (e.g., 'CG-M101-004237 A' for primary in binary)"
+    },
+    {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates",
       "doc": "The star's 3D position in space."
