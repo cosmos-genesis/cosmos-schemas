@@ -125,6 +125,21 @@ def _canonicalize_name(name: str, canonical_style: str = "unsuffixed") -> str:
     return name
 
 
+def _derive_table_name(name: str, canonical_style: str = "unsuffixed") -> str:
+    """
+    Derive lowercase table name from schema name.
+
+    Examples:
+        "Star" -> "star"
+        "StarSchema" -> "star"
+        "ProtoplanetaryDisk" -> "protoplanetarydisk"
+    """
+    canonical = _canonicalize_name(name, canonical_style)
+    # Remove "Schema" suffix if present, then lowercase
+    base = canonical[:-6] if canonical.endswith("Schema") else canonical
+    return base.lower()
+
+
 def _aliases_for(name: str, canonical_style: str = "unsuffixed") -> List[str]:
     base = _canonicalize_name(name, canonical_style)
     alts = {base, f"{base}Schema", name}
@@ -160,15 +175,18 @@ def _merge_manifest(
 
         canonical_name = _canonicalize_name(info.name, canonical_style)
         alias_list = _aliases_for(info.name, canonical_style)
+        table_name = _derive_table_name(info.name, canonical_style)
 
         if existing_entry:
             # Preserve description/compatibility/version if present
             desc = existing_entry.get("description") or info.doc
             comp = existing_entry.get("compatibility") or "BACKWARD"
             ver = existing_entry.get("version") or "1.0.0"
-            # CRITICAL: Preserve physics metadata and primary_key
+            # CRITICAL: Preserve physics metadata, primary_key, and table_name
             primary_key = existing_entry.get("primary_key")
             physics = existing_entry.get("physics")
+            # Use existing table_name if present, otherwise derive
+            table_name = existing_entry.get("table_name") or table_name
         else:
             desc = info.doc
             comp = "BACKWARD"
@@ -184,6 +202,7 @@ def _merge_manifest(
             "description": desc,
             "compatibility": comp,
             "version": ver,
+            "table_name": table_name,  # ALWAYS include table_name
         }
 
         # Add optional fields only if they exist (maintain clean YAML)
@@ -203,12 +222,17 @@ def _merge_manifest(
                 _entry_key(x) != key for x in out_schemas[group]
             ):
                 out = dict(e)
-                # Normalize aliases and name if missing
+                # Normalize aliases, name, and table_name if missing
                 if "name" in out:
                     out.setdefault(
                         "aliases", _aliases_for(out["name"], canonical_style)
                     )
                     out["name"] = _canonicalize_name(out["name"], canonical_style)
+                    # Add table_name if missing
+                    if "table_name" not in out:
+                        out["table_name"] = _derive_table_name(
+                            out["name"], canonical_style
+                        )
                 out_schemas.setdefault(group, []).append(out)
 
     # Sort deterministically

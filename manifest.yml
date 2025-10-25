@@ -15,6 +15,7 @@ schemas:
     description: Evolution of systems over time
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: evolutionarydynamics
   cosmic_phenomena:
   - name: ProtoplanetaryDisk
     aliases:
@@ -26,6 +27,7 @@ schemas:
       which planets form.
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: protoplanetarydisk
     primary_key: disk_id
     physics:
       supports_aging: true
@@ -44,6 +46,7 @@ schemas:
     description: Black hole properties and environments
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: blackhole
     primary_key: black_hole_id
     physics:
       supports_aging: true
@@ -65,6 +68,7 @@ schemas:
     description: Hypothetical cosmic string parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: cosmicstring
   - name: DarkEnergyDynamics
     aliases:
     - DarkEnergyDynamics
@@ -74,6 +78,7 @@ schemas:
     description: Cosmological dark energy models
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: darkenergydynamics
   - name: DarkMatterDistribution
     aliases:
     - DarkMatterDistribution
@@ -83,6 +88,7 @@ schemas:
     description: Dark-matter densities and shapes
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: darkmatterdistribution
   - name: DustCloud
     aliases:
     - DustCloud
@@ -92,6 +98,7 @@ schemas:
     description: Dust distributions and grain properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: dustcloud
   - name: Nebula
     aliases:
     - Nebula
@@ -101,6 +108,7 @@ schemas:
     description: Nebular types and parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: nebula
     primary_key: nebula_id
     physics:
       supports_aging: true
@@ -121,15 +129,7 @@ schemas:
     description: Primordial black hole population parameters
     compatibility: BACKWARD
     version: 1.0.0
-  - name: ProtoplanetaryDisk
-    file: schemas/cosmic_phenomena/ProtoplanetaryDiskSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Gas-and-dust disk around young stars
-    compatibility: BACKWARD
-    version: 1.0.0
-    aliases:
-    - ProtoplanetaryDisk
-    - ProtoplanetaryDiskSchema
+    table_name: primordialblackhole
   - name: RelativisticJet
     aliases:
     - RelativisticJet
@@ -139,6 +139,7 @@ schemas:
     description: AGN/GRB jet descriptors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: relativisticjet
   miscellaneous:
   - name: BinaryCompanion
     aliases:
@@ -149,6 +150,7 @@ schemas:
     description: Binary companion relationships
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: binarycompanion
   - name: CelestialObjectIdentifier
     aliases:
     - CelestialObjectIdentifier
@@ -158,6 +160,7 @@ schemas:
     description: Global identifiers for linking records
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: celestialobjectidentifier
   - name: CosmicWeb
     aliases:
     - CosmicWeb
@@ -167,6 +170,7 @@ schemas:
     description: Cosmic web filaments and nodes
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: cosmicweb
   - name: DynamicPopulation
     aliases:
     - DynamicPopulation
@@ -176,6 +180,7 @@ schemas:
     description: Time-varying population descriptors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: dynamicpopulation
   - name: GravitationalLens
     aliases:
     - GravitationalLens
@@ -185,6 +190,7 @@ schemas:
     description: Lensing models and parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: gravitationallens
   - name: NavigationBeacons
     aliases:
     - NavigationBeacons
@@ -194,6 +200,7 @@ schemas:
     description: Beacons and markers in simulated space
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: navigationbeacons
   - name: ObjectOrbit
     aliases:
     - ObjectOrbit
@@ -203,6 +210,7 @@ schemas:
     description: Generic object orbit links
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: objectorbit
   - name: SpectralSignature
     aliases:
     - SpectralSignature
@@ -212,6 +220,7 @@ schemas:
     description: Spectral signatures and lines
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: spectralsignature
   - name: TimeEvents
     aliases:
     - TimeEvents
@@ -221,6 +230,7 @@ schemas:
     description: Event timeline descriptors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: timeevents
   environmental:
   - name: ChemicalReservoir
     aliases:
@@ -231,6 +241,7 @@ schemas:
     description: Reservoirs and fluxes of chemicals
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: chemicalreservoir
   - name: GeologicalFormation
     aliases:
     - GeologicalFormation
@@ -240,6 +251,7 @@ schemas:
     description: Geological formations and features
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: geologicalformation
   - name: InterstellarMedium
     aliases:
     - InterstellarMedium
@@ -249,6 +261,7 @@ schemas:
     description: ISM parameters (density, temperature, phases)
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: interstellarmedium
   - name: MicroEnvironment
     aliases:
     - MicroEnvironment
@@ -258,6 +271,7 @@ schemas:
     description: Localized environmental conditions
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: microenvironment
   - name: OrbitalDebris
     aliases:
     - OrbitalDebris
@@ -267,6 +281,7 @@ schemas:
     description: Cataloged orbital debris populations
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: orbitaldebris
   - name: PlanetaryWeather
     aliases:
     - PlanetaryWeather
@@ -276,6 +291,7 @@ schemas:
     description: Weather state and forecasts on planets
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: planetaryweather
   - name: ThermalMap
     aliases:
     - ThermalMap
@@ -285,6 +301,7 @@ schemas:
     description: Temperature distribution across a surface or region
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: thermalmap
   - name: VisualEffects
     aliases:
     - VisualEffects
@@ -294,6 +311,7 @@ schemas:
     description: Visual/optical artifacts in observations
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: visualeffects
   properties:
   - name: AsteroidProperties
     aliases:
@@ -304,6 +322,7 @@ schemas:
     description: Physical properties for individual asteroids
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: asteroidproperties
   - name: AtmosphereType
     file: schemas/properties/AtmosphereTypeSchema.avsc
     namespace: CosmosGenesis.properties
@@ -313,6 +332,7 @@ schemas:
     aliases:
     - AtmosphereType
     - AtmosphereTypeSchema
+    table_name: atmospheretype
   - name: BeltType
     file: schemas/properties/BeltTypeSchema.avsc
     namespace: CosmosGenesis.properties
@@ -322,6 +342,7 @@ schemas:
     aliases:
     - BeltType
     - BeltTypeSchema
+    table_name: belttype
   - name: CentaurProperties
     aliases:
     - CentaurProperties
@@ -331,6 +352,7 @@ schemas:
     description: Centaur object properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: centaurproperties
   - name: CometProperties
     aliases:
     - CometProperties
@@ -340,6 +362,7 @@ schemas:
     description: Comet nucleus/coma/tail properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: cometproperties
   - name: CompositionType
     file: schemas/properties/CompositionTypeSchema.avsc
     namespace: CosmosGenesis.properties
@@ -349,6 +372,7 @@ schemas:
     aliases:
     - CompositionType
     - CompositionTypeSchema
+    table_name: compositiontype
   - name: Coordinates
     aliases:
     - Coordinates
@@ -358,6 +382,7 @@ schemas:
     description: Celestial coordinate representations
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: coordinates
   - name: DustParticle
     aliases:
     - DustParticle
@@ -367,6 +392,7 @@ schemas:
     description: Dust particle properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: dustparticle
   - name: ElementalComposition
     aliases:
     - ElementalComposition
@@ -376,6 +402,7 @@ schemas:
     description: Elemental abundances
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: elementalcomposition
   - name: InternalStructureProperties
     aliases:
     - InternalStructureProperties
@@ -385,6 +412,7 @@ schemas:
     description: Layered internal structure parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: internalstructureproperties
   - name: InterstellarObjectProperties
     aliases:
     - InterstellarObjectProperties
@@ -394,6 +422,7 @@ schemas:
     description: Interstellar object descriptors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: interstellarobjectproperties
   - name: KBOProperties
     aliases:
     - KBOProperties
@@ -403,6 +432,7 @@ schemas:
     description: Kuiper Belt Object properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: kboproperties
   - name: MoonType
     file: schemas/properties/MoonTypeSchema.avsc
     namespace: CosmosGenesis.properties
@@ -412,6 +442,7 @@ schemas:
     aliases:
     - MoonType
     - MoonTypeSchema
+    table_name: moontype
   - name: OrbitalProperties
     aliases:
     - OrbitalProperties
@@ -421,6 +452,7 @@ schemas:
     description: Orbital elements and derived metrics
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: orbitalproperties
   - name: PlanetType
     file: schemas/properties/PlanetTypeSchema.avsc
     namespace: CosmosGenesis.properties
@@ -430,6 +462,7 @@ schemas:
     aliases:
     - PlanetType
     - PlanetTypeSchema
+    table_name: planettype
   - name: PlanetaryPhysicalProperties
     aliases:
     - PlanetaryPhysicalProperties
@@ -439,6 +472,7 @@ schemas:
     description: Mass, radius, density, spin, albedo, etc.
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: planetaryphysicalproperties
   - name: ResourceDeposit
     aliases:
     - ResourceDeposit
@@ -448,6 +482,7 @@ schemas:
     description: Resource deposits and grades
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: resourcedeposit
   - name: RingComposition
     file: schemas/properties/RingCompositionSchema.avsc
     namespace: CosmosGenesis.properties
@@ -457,6 +492,7 @@ schemas:
     aliases:
     - RingComposition
     - RingCompositionSchema
+    table_name: ringcomposition
   - name: SmallBody
     aliases:
     - SmallBody
@@ -466,6 +502,7 @@ schemas:
     description: Small body common attributes
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: smallbody
   - name: StarType
     file: schemas/properties/StarTypeSchema.avsc
     namespace: CosmosGenesis.properties
@@ -475,6 +512,7 @@ schemas:
     aliases:
     - StarType
     - StarTypeSchema
+    table_name: startype
   - name: StellarProperties
     aliases:
     - StellarProperties
@@ -484,6 +522,7 @@ schemas:
     description: Stellar physical parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: stellarproperties
   - name: SurfaceProperties
     aliases:
     - SurfaceProperties
@@ -493,6 +532,7 @@ schemas:
     description: Surface features and materials
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: surfaceproperties
   - name: TrojanProperties
     aliases:
     - TrojanProperties
@@ -502,6 +542,7 @@ schemas:
     description: Trojan object properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: trojanproperties
   - name: VulcanoidProperties
     aliases:
     - VulcanoidProperties
@@ -511,6 +552,7 @@ schemas:
     description: Vulcanoid object properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: vulcanoidproperties
   celestial_objects:
   - name: Asteroid
     aliases:
@@ -521,6 +563,7 @@ schemas:
     description: Single asteroid entity
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: asteroid
     primary_key: asteroid_id
     physics:
       supports_aging: true
@@ -540,6 +583,7 @@ schemas:
     description: Collection of asteroid properties and orbital parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: asteroidbelt
     primary_key: belt_id
     physics:
       supports_aging: true
@@ -558,6 +602,7 @@ schemas:
     description: Galactic substructures and components
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: galacticstructure
   - name: Galaxy
     aliases:
     - Galaxy
@@ -567,6 +612,7 @@ schemas:
     description: Galaxy entity and properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: galaxy
     primary_key: galaxy_id
     physics:
       supports_aging: true
@@ -587,6 +633,7 @@ schemas:
     description: Natural satellite orbiting a planet
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: moon
     primary_key: moon_id
     physics:
       supports_aging: true
@@ -606,6 +653,7 @@ schemas:
     description: Oort cloud object for a star system
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: oortcloud
     primary_key: cloud_id
     physics:
       supports_aging: true
@@ -623,6 +671,7 @@ schemas:
     description: Single planet entity with physical, orbital, and surface properties
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: planet
     primary_key: planet_id
     physics:
       supports_aging: true
@@ -644,6 +693,7 @@ schemas:
     description: Planetary ring system record
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: planetaryrings
     primary_key: ring_id
     physics:
       supports_aging: true
@@ -661,6 +711,7 @@ schemas:
     description: Single star entity
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: star
     primary_key: star_id
     physics:
       supports_aging: true
@@ -682,6 +733,7 @@ schemas:
     description: Single star system entity (container for Star + planets + etc.)
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: starsystem
   biological:
   - name: Biosignatures
     aliases:
@@ -692,6 +744,7 @@ schemas:
     description: Molecular and atmospheric biosignature indicators
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: biosignatures
   - name: CivilizationMarkers
     aliases:
     - CivilizationMarkers
@@ -701,6 +754,7 @@ schemas:
     description: Technological or biological signatures of civilizations
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: civilizationmarkers
   system_schemas:
   - name: AccretionSystem
     aliases:
@@ -711,6 +765,7 @@ schemas:
     description: Accretion system aggregations
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: accretionsystem
   - name: AtmosphericSystem
     aliases:
     - AtmosphericSystem
@@ -720,6 +775,7 @@ schemas:
     description: Atmospheric system aggregation schema
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: atmosphericsystem
   - name: HabitabilityZone
     aliases:
     - HabitabilityZone
@@ -729,6 +785,7 @@ schemas:
     description: Habitable zone parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: habitabilityzone
   - name: SpaceEnvironment
     aliases:
     - SpaceEnvironment
@@ -738,6 +795,7 @@ schemas:
     description: Space environment aggregation schema
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: spaceenvironment
   - name: SurfaceSystem
     aliases:
     - SurfaceSystem
@@ -747,6 +805,7 @@ schemas:
     description: Surface system aggregation schema
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: surfacesystem
   physics:
   - name: AxionDarkMatter
     aliases:
@@ -757,6 +816,7 @@ schemas:
     description: Parameters for axion dark matter models
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: axiondarkmatter
   - name: CosmicTopology
     aliases:
     - CosmicTopology
@@ -766,6 +826,7 @@ schemas:
     description: Large-scale topology descriptors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: cosmictopology
   - name: Electrodynamics
     aliases:
     - Electrodynamics
@@ -775,6 +836,7 @@ schemas:
     description: Maxwellian field descriptors and coupling
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: electrodynamics
   - name: FluidDynamics
     aliases:
     - FluidDynamics
@@ -784,6 +846,7 @@ schemas:
     description: Macro fluid dynamics parameters (e.g., Reynolds, viscosity)
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: fluiddynamics
   - name: GalacticChemistry
     aliases:
     - GalacticChemistry
@@ -793,6 +856,7 @@ schemas:
     description: ISM/IGM chemical abundances and processes
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: galacticchemistry
   - name: GravitationalWave
     aliases:
     - GravitationalWave
@@ -802,6 +866,7 @@ schemas:
     description: Gravitational wave sources and waveforms
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: gravitationalwave
   - name: MagneticField
     aliases:
     - MagneticField
@@ -811,6 +876,7 @@ schemas:
     description: Magnetic field in space
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: magneticfield
   - name: MagneticFieldSystem
     aliases:
     - MagneticFieldSystem
@@ -820,6 +886,7 @@ schemas:
     description: Coupled magnetic field system model
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: magneticfieldsystem
   - name: Magnetosphere
     aliases:
     - Magnetosphere
@@ -829,6 +896,7 @@ schemas:
     description: Planetary or stellar magnetosphere
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: magnetosphere
   - name: NeutronStarInterior
     aliases:
     - NeutronStarInterior
@@ -838,6 +906,7 @@ schemas:
     description: EOS and state parameters for neutron star interiors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: neutronstarinterior
   - name: NuclearPhysics
     aliases:
     - NuclearPhysics
@@ -847,6 +916,7 @@ schemas:
     description: Nuclear reaction parameters and yields
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: nuclearphysics
   - name: Optics
     aliases:
     - Optics
@@ -856,6 +926,7 @@ schemas:
     description: Optical propagation and scattering in space environments
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: optics
   - name: ParticlePhysics
     aliases:
     - ParticlePhysics
@@ -865,6 +936,7 @@ schemas:
     description: Particle populations and spectra
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: particlephysics
   - name: PlasmaPhenomena
     aliases:
     - PlasmaPhenomena
@@ -874,6 +946,7 @@ schemas:
     description: Various plasma events and parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: plasmaphenomena
   - name: QuantumEffects
     aliases:
     - QuantumEffects
@@ -883,6 +956,7 @@ schemas:
     description: Quantum-scale effects relevant to astro-particles
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: quantumeffects
   - name: QuantumGravityEffects
     aliases:
     - QuantumGravityEffects
@@ -892,6 +966,7 @@ schemas:
     description: Hypothesized QG-scale effects
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: quantumgravityeffects
   - name: RadiationBelt
     aliases:
     - RadiationBelt
@@ -901,6 +976,7 @@ schemas:
     description: Charged particle belts around planets
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: radiationbelt
   - name: RelativisticFrameDragging
     aliases:
     - RelativisticFrameDragging
@@ -910,6 +986,7 @@ schemas:
     description: Lense–Thirring frame dragging parameters
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: relativisticframedragging
   - name: ResonanceChain
     aliases:
     - ResonanceChain
@@ -919,6 +996,7 @@ schemas:
     description: Orbital resonance chains across bodies
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: resonancechain
   - name: Thermodynamics
     aliases:
     - Thermodynamics
@@ -928,6 +1006,7 @@ schemas:
     description: Thermodynamic state variables
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: thermodynamics
   - name: TidalForces
     aliases:
     - TidalForces
@@ -937,3 +1016,4 @@ schemas:
     description: Tidal interactions and stress tensors
     compatibility: BACKWARD
     version: 1.0.0
+    table_name: tidalforces
