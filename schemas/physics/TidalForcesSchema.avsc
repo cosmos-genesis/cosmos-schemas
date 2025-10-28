@@ -1,0 +1,316 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "TidalForces",
+  "doc": "Represents tidal interactions between celestial bodies, affecting orbital dynamics, rotation, and internal heating.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "doc": "Designation of the tidal system being modeled",
+      "default": ""
+    },
+    {
+      "name": "primary_body",
+      "type": {
+        "type": "record",
+        "name": "TidalBody",
+        "fields": [
+          {
+            "name": "body_designation",
+            "type": "string",
+            "doc": "Designation of the celestial body",
+            "default": ""
+          },
+          {
+            "name": "mass_kg",
+            "type": "double",
+            "doc": "Mass of the body in kilograms",
+            "default": 0.0
+          },
+          {
+            "name": "radius_m",
+            "type": "double",
+            "doc": "Equatorial radius in meters",
+            "default": 0.0
+          },
+          {
+            "name": "love_number_k2",
+            "type": "double",
+            "doc": "Second-order Love number (k\u2082) representing the body's response to tidal potential",
+            "default": 0.0
+          },
+          {
+            "name": "tidal_quality_factor_q",
+            "type": "double",
+            "doc": "Tidal quality factor (Q) representing energy dissipation efficiency",
+            "default": 0.0
+          },
+          {
+            "name": "rotation_period_s",
+            "type": "double",
+            "doc": "Rotation period in seconds",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Primary body in the tidal interaction (typically the larger body)",
+      "default": {}
+    },
+    {
+      "name": "secondary_bodies",
+      "type": {
+        "type": "array",
+        "items": "TidalBody"
+      },
+      "doc": "Secondary bodies experiencing tidal forces from the primary body",
+      "default": []
+    },
+    {
+      "name": "tidal_interactions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "TidalInteraction",
+          "fields": [
+            {
+              "name": "body_pair",
+              "type": {
+                "type": "array",
+                "items": "string"
+              },
+              "doc": "Pair of body designations involved in this interaction [body1, body2]",
+              "default": []
+            },
+            {
+              "name": "tidal_height_m",
+              "type": "double",
+              "doc": "Theoretical equilibrium tidal height in meters",
+              "default": 0.0
+            },
+            {
+              "name": "tidal_phase_lag_rad",
+              "type": "double",
+              "doc": "Phase lag of the tidal bulge in radians",
+              "default": 0.0
+            },
+            {
+              "name": "tidal_torque_n_m",
+              "type": "double",
+              "doc": "Tidal torque in Newton-meters",
+              "default": 0.0
+            },
+            {
+              "name": "energy_dissipation_rate_w",
+              "type": "double",
+              "doc": "Rate of tidal energy dissipation in Watts",
+              "default": 0.0
+            },
+            {
+              "name": "orbital_migration_rate_m_per_s",
+              "type": "double",
+              "doc": "Rate of orbital migration in meters per second",
+              "default": 0.0
+            },
+            {
+              "name": "spin_evolution_rate_rad_per_s2",
+              "type": "double",
+              "doc": "Rate of spin evolution in radians per second squared",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Specific tidal interactions between pairs of bodies",
+      "default": []
+    },
+    {
+      "name": "tidal_heating",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "TidalHeating",
+          "fields": [
+            {
+              "name": "body_designation",
+              "type": "string",
+              "doc": "Designation of the body experiencing tidal heating",
+              "default": ""
+            },
+            {
+              "name": "heating_rate_w",
+              "type": "double",
+              "doc": "Total tidal heating rate in Watts",
+              "default": 0.0
+            },
+            {
+              "name": "surface_heat_flux_w_per_m2",
+              "type": "double",
+              "doc": "Surface heat flux due to tidal heating in Watts per square meter",
+              "default": 0.0
+            },
+            {
+              "name": "temperature_contribution_k",
+              "type": "double",
+              "doc": "Temperature increase due to tidal heating in Kelvin",
+              "default": 0.0
+            },
+            {
+              "name": "heating_distribution",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "HeatDistribution",
+                  "fields": [
+                    {
+                      "name": "latitude_deg",
+                      "type": "double",
+                      "doc": "Latitude in degrees",
+                      "default": 0.0
+                    },
+                    {
+                      "name": "longitude_deg",
+                      "type": "double",
+                      "doc": "Longitude in degrees",
+                      "default": 0.0
+                    },
+                    {
+                      "name": "heat_flux_w_per_m2",
+                      "type": "double",
+                      "doc": "Local heat flux in Watts per square meter",
+                      "default": 0.0
+                    }
+                  ]
+                }
+              },
+              "doc": "Spatial distribution of tidal heating",
+              "default": []
+            }
+          ]
+        }
+      },
+      "doc": "Tidal heating effects on bodies in the system",
+      "default": []
+    },
+    {
+      "name": "resonance_properties",
+      "type": {
+        "type": "record",
+        "name": "TidalResonance",
+        "fields": [
+          {
+            "name": "resonance_type",
+            "type": {
+              "type": "enum",
+              "name": "ResonanceType",
+              "symbols": [
+                "MEAN_MOTION",
+                "SPIN_ORBIT",
+                "EVECTION",
+                "SECULAR",
+                "LINDBLAD",
+                "COROTATION"
+              ]
+            },
+            "doc": "Type of resonance",
+            "default": "MEAN_MOTION"
+          },
+          {
+            "name": "resonance_ratio",
+            "type": "string",
+            "doc": "Ratio describing the resonance (e.g., '2:1', '3:2')",
+            "default": ""
+          },
+          {
+            "name": "bodies_involved",
+            "type": {
+              "type": "array",
+              "items": "string"
+            },
+            "doc": "Bodies involved in the resonance",
+            "default": []
+          },
+          {
+            "name": "resonance_strength",
+            "type": "double",
+            "doc": "Strength of the resonance (0.0 to 1.0)",
+            "default": 0.0
+          },
+          {
+            "name": "libration_period_s",
+            "type": "double",
+            "doc": "Libration period in seconds",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Resonance properties of the tidal system",
+      "default": {}
+    },
+    {
+      "name": "tidal_evolution",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EvolutionStage",
+          "fields": [
+            {
+              "name": "time_years",
+              "type": "double",
+              "doc": "Time in years (relative to present)",
+              "default": 0.0
+            },
+            {
+              "name": "semimajor_axis_m",
+              "type": "double",
+              "doc": "Semimajor axis in meters",
+              "default": 0.0
+            },
+            {
+              "name": "eccentricity",
+              "type": "double",
+              "doc": "Orbital eccentricity",
+              "default": 0.0
+            },
+            {
+              "name": "rotation_period_s",
+              "type": "double",
+              "doc": "Rotation period in seconds",
+              "default": 0.0
+            },
+            {
+              "name": "obliquity_deg",
+              "type": "double",
+              "doc": "Axial tilt in degrees",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Past and future tidal evolution of the system",
+      "default": []
+    },
+    {
+      "name": "roche_limit_m",
+      "type": "double",
+      "doc": "Roche limit in meters, within which tidal forces would disrupt a satellite",
+      "default": 0.0
+    },
+    {
+      "name": "hill_sphere_radius_m",
+      "type": "double",
+      "doc": "Hill sphere radius in meters, within which the primary body's gravity dominates",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Spatial coordinates of the tidal system"
+    }
+  ],
+  "version": "1.0.0"
+}

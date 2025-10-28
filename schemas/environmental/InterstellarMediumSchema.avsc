@@ -1,0 +1,77 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "InterstellarMedium",
+  "doc": "Represents regions of interstellar space.",
+  "fields": [
+    {
+      "name": "region_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "medium_type",
+      "type": {
+        "type": "enum",
+        "name": "MediumType",
+        "symbols": [
+          "MOLECULAR_CLOUD",
+          "COLD_NEUTRAL",
+          "WARM_NEUTRAL",
+          "WARM_IONIZED",
+          "HOT_IONIZED",
+          "CORONAL_GAS"
+        ]
+      },
+      "default": "MOLECULAR_CLOUD"
+    },
+    {
+      "name": "density_particles_cm3",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "magnetic_field_strength_gauss",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "turbulence_level",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "chemical_composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ISMComposition",
+          "fields": [
+            {
+              "name": "species",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "abundance",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

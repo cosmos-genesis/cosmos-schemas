@@ -1,0 +1,1019 @@
+version: 1
+naming:
+  canonical: unsuffixed
+  alias_patterns:
+  - '{name}'
+  - '{name}Schema'
+schemas:
+  temporal:
+  - name: EvolutionaryDynamics
+    aliases:
+    - EvolutionaryDynamics
+    - EvolutionaryDynamicsSchema
+    file: schemas/temporal/EvolutionaryDynamicsSchema.avsc
+    namespace: CosmosGenesis.temporal
+    description: Evolution of systems over time
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: evolutionarydynamics
+  cosmic_phenomena:
+  - name: ProtoplanetaryDisk
+    aliases:
+    - ProtoplanetaryDisk
+    - ProtoplanetaryDiskSchema
+    file: schemas/cosmic_phenomena/ProtoplanetaryDiskSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Represents a disk of gas and dust surrounding a young star, from
+      which planets form.
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: protoplanetarydisk
+    primary_key: disk_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: disk_age_myr
+        mass: total_mass_em
+  - name: BlackHole
+    aliases:
+    - BlackHole
+    - BlackHoleSchema
+    file: schemas/cosmic_phenomena/BlackHoleSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Black hole properties and environments
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: blackhole
+    primary_key: black_hole_id
+    physics:
+      supports_aging: true
+      evolution_model: black_hole
+      timescale: COSMIC
+      priority: 1
+      fields:
+        age: age_myr
+        mass: mass_msun
+        spin: spin_parameter
+        accretion_rate: accretion_rate_msun_yr
+        jet_power: jet_power_erg_s
+  - name: CosmicString
+    aliases:
+    - CosmicString
+    - CosmicStringSchema
+    file: schemas/cosmic_phenomena/CosmicStringSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Hypothetical cosmic string parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: cosmicstring
+  - name: DarkEnergyDynamics
+    aliases:
+    - DarkEnergyDynamics
+    - DarkEnergyDynamicsSchema
+    file: schemas/cosmic_phenomena/DarkEnergyDynamicsSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Cosmological dark energy models
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: darkenergydynamics
+  - name: DarkMatterDistribution
+    aliases:
+    - DarkMatterDistribution
+    - DarkMatterDistributionSchema
+    file: schemas/cosmic_phenomena/DarkMatterDistributionSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Dark-matter densities and shapes
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: darkmatterdistribution
+  - name: DustCloud
+    aliases:
+    - DustCloud
+    - DustCloudSchema
+    file: schemas/cosmic_phenomena/DustCloudSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Dust distributions and grain properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: dustcloud
+  - name: Nebula
+    aliases:
+    - Nebula
+    - NebulaSchema
+    file: schemas/cosmic_phenomena/NebulaSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Nebular types and parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: nebula
+    primary_key: nebula_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: nebula_age_myr
+        mass: mass_solar_masses
+        radius: size_ly
+        temperature: temperature_k
+  - name: PrimordialBlackHole
+    aliases:
+    - PrimordialBlackHole
+    - PrimordialBlackHoleSchema
+    file: schemas/cosmic_phenomena/PrimordialBlackHoleSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Primordial black hole population parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: primordialblackhole
+  - name: RelativisticJet
+    aliases:
+    - RelativisticJet
+    - RelativisticJetSchema
+    file: schemas/cosmic_phenomena/RelativisticJetSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: AGN/GRB jet descriptors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: relativisticjet
+  miscellaneous:
+  - name: BinaryCompanion
+    aliases:
+    - BinaryCompanion
+    - BinaryCompanionSchema
+    file: schemas/miscellaneous/BinaryCompanionSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Binary companion relationships
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: binarycompanion
+  - name: CelestialObjectIdentifier
+    aliases:
+    - CelestialObjectIdentifier
+    - CelestialObjectIdentifierSchema
+    file: schemas/miscellaneous/CelestialObjectIdentifierSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Global identifiers for linking records
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: celestialobjectidentifier
+  - name: CosmicWeb
+    aliases:
+    - CosmicWeb
+    - CosmicWebSchema
+    file: schemas/miscellaneous/CosmicWebSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Cosmic web filaments and nodes
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: cosmicweb
+  - name: DynamicPopulation
+    aliases:
+    - DynamicPopulation
+    - DynamicPopulationSchema
+    file: schemas/miscellaneous/DynamicPopulationSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Time-varying population descriptors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: dynamicpopulation
+  - name: GravitationalLens
+    aliases:
+    - GravitationalLens
+    - GravitationalLensSchema
+    file: schemas/miscellaneous/GravitationalLensSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Lensing models and parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: gravitationallens
+  - name: NavigationBeacons
+    aliases:
+    - NavigationBeacons
+    - NavigationBeaconsSchema
+    file: schemas/miscellaneous/NavigationBeaconsSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Beacons and markers in simulated space
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: navigationbeacons
+  - name: ObjectOrbit
+    aliases:
+    - ObjectOrbit
+    - ObjectOrbitSchema
+    file: schemas/miscellaneous/ObjectOrbitSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Generic object orbit links
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: objectorbit
+  - name: SpectralSignature
+    aliases:
+    - SpectralSignature
+    - SpectralSignatureSchema
+    file: schemas/miscellaneous/SpectralSignatureSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Spectral signatures and lines
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: spectralsignature
+  - name: TimeEvents
+    aliases:
+    - TimeEvents
+    - TimeEventsSchema
+    file: schemas/miscellaneous/TimeEventsSchema.avsc
+    namespace: CosmosGenesis.miscellaneous
+    description: Event timeline descriptors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: timeevents
+  environmental:
+  - name: ChemicalReservoir
+    aliases:
+    - ChemicalReservoir
+    - ChemicalReservoirSchema
+    file: schemas/environmental/ChemicalReservoirSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Reservoirs and fluxes of chemicals
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: chemicalreservoir
+  - name: GeologicalFormation
+    aliases:
+    - GeologicalFormation
+    - GeologicalFormationSchema
+    file: schemas/environmental/GeologicalFormationSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Geological formations and features
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: geologicalformation
+  - name: InterstellarMedium
+    aliases:
+    - InterstellarMedium
+    - InterstellarMediumSchema
+    file: schemas/environmental/InterstellarMediumSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: ISM parameters (density, temperature, phases)
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: interstellarmedium
+  - name: MicroEnvironment
+    aliases:
+    - MicroEnvironment
+    - MicroEnvironmentSchema
+    file: schemas/environmental/MicroEnvironmentSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Localized environmental conditions
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: microenvironment
+  - name: OrbitalDebris
+    aliases:
+    - OrbitalDebris
+    - OrbitalDebrisSchema
+    file: schemas/environmental/OrbitalDebrisSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Cataloged orbital debris populations
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: orbitaldebris
+  - name: PlanetaryWeather
+    aliases:
+    - PlanetaryWeather
+    - PlanetaryWeatherSchema
+    file: schemas/environmental/PlanetaryWeatherSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Weather state and forecasts on planets
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: planetaryweather
+  - name: ThermalMap
+    aliases:
+    - ThermalMap
+    - ThermalMapSchema
+    file: schemas/environmental/ThermalMapSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Temperature distribution across a surface or region
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: thermalmap
+  - name: VisualEffects
+    aliases:
+    - VisualEffects
+    - VisualEffectsSchema
+    file: schemas/environmental/VisualEffectsSchema.avsc
+    namespace: CosmosGenesis.environmental
+    description: Visual/optical artifacts in observations
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: visualeffects
+  properties:
+  - name: AsteroidProperties
+    aliases:
+    - AsteroidProperties
+    - AsteroidPropertiesSchema
+    file: schemas/properties/AsteroidPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Physical properties for individual asteroids
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: asteroidproperties
+  - name: AtmosphereType
+    file: schemas/properties/AtmosphereTypeSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Atmosphere taxonomies
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - AtmosphereType
+    - AtmosphereTypeSchema
+    table_name: atmospheretype
+  - name: BeltType
+    file: schemas/properties/BeltTypeSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Types of asteroid/comet belts
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - BeltType
+    - BeltTypeSchema
+    table_name: belttype
+  - name: CentaurProperties
+    aliases:
+    - CentaurProperties
+    - CentaurPropertiesSchema
+    file: schemas/properties/CentaurPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Centaur object properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: centaurproperties
+  - name: CometProperties
+    aliases:
+    - CometProperties
+    - CometPropertiesSchema
+    file: schemas/properties/CometPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Comet nucleus/coma/tail properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: cometproperties
+  - name: CompositionType
+    file: schemas/properties/CompositionTypeSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Composition taxonomies (rocky, icy, metallic)
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - CompositionType
+    - CompositionTypeSchema
+    table_name: compositiontype
+  - name: Coordinates
+    aliases:
+    - Coordinates
+    - CoordinatesSchema
+    file: schemas/properties/CoordinatesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Celestial coordinate representations
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: coordinates
+  - name: DustParticle
+    aliases:
+    - DustParticle
+    - DustParticleSchema
+    file: schemas/properties/DustParticlePropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Dust particle properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: dustparticle
+  - name: ElementalComposition
+    aliases:
+    - ElementalComposition
+    - ElementalCompositionSchema
+    file: schemas/properties/ElementalCompositionSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Elemental abundances
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: elementalcomposition
+  - name: InternalStructureProperties
+    aliases:
+    - InternalStructureProperties
+    - InternalStructurePropertiesSchema
+    file: schemas/properties/InternalStructurePropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Layered internal structure parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: internalstructureproperties
+  - name: InterstellarObjectProperties
+    aliases:
+    - InterstellarObjectProperties
+    - InterstellarObjectPropertiesSchema
+    file: schemas/properties/InterstellarObjectPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Interstellar object descriptors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: interstellarobjectproperties
+  - name: KBOProperties
+    aliases:
+    - KBOProperties
+    - KBOPropertiesSchema
+    file: schemas/properties/KBOPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Kuiper Belt Object properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: kboproperties
+  - name: MoonType
+    file: schemas/properties/MoonTypeSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Classification of moons
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - MoonType
+    - MoonTypeSchema
+    table_name: moontype
+  - name: OrbitalProperties
+    aliases:
+    - OrbitalProperties
+    - OrbitalPropertiesSchema
+    file: schemas/properties/OrbitalPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Orbital elements and derived metrics
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: orbitalproperties
+  - name: PlanetType
+    file: schemas/properties/PlanetTypeSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Planet classification (e.g., terrestrial, gas giant)
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - PlanetType
+    - PlanetTypeSchema
+    table_name: planettype
+  - name: PlanetaryPhysicalProperties
+    aliases:
+    - PlanetaryPhysicalProperties
+    - PlanetaryPhysicalPropertiesSchema
+    file: schemas/properties/PlanetaryPhysicalPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Mass, radius, density, spin, albedo, etc.
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: planetaryphysicalproperties
+  - name: ResourceDeposit
+    aliases:
+    - ResourceDeposit
+    - ResourceDepositSchema
+    file: schemas/properties/ResourceDepositSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Resource deposits and grades
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: resourcedeposit
+  - name: RingComposition
+    file: schemas/properties/RingCompositionSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Planetary ring composition
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - RingComposition
+    - RingCompositionSchema
+    table_name: ringcomposition
+  - name: SmallBody
+    aliases:
+    - SmallBody
+    - SmallBodySchema
+    file: schemas/properties/SmallBodySchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Small body common attributes
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: smallbody
+  - name: StarType
+    file: schemas/properties/StarTypeSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Stellar classification (e.g., OBAFGKM)
+    compatibility: BACKWARD
+    version: 1.0.0
+    aliases:
+    - StarType
+    - StarTypeSchema
+    table_name: startype
+  - name: StellarProperties
+    aliases:
+    - StellarProperties
+    - StellarPropertiesSchema
+    file: schemas/properties/StellarPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Stellar physical parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: stellarproperties
+  - name: SurfaceProperties
+    aliases:
+    - SurfaceProperties
+    - SurfacePropertiesSchema
+    file: schemas/properties/SurfacePropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Surface features and materials
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: surfaceproperties
+  - name: TrojanProperties
+    aliases:
+    - TrojanProperties
+    - TrojanPropertiesSchema
+    file: schemas/properties/TrojanPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Trojan object properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: trojanproperties
+  - name: VulcanoidProperties
+    aliases:
+    - VulcanoidProperties
+    - VulcanoidPropertiesSchema
+    file: schemas/properties/VulcanoidPropertiesSchema.avsc
+    namespace: CosmosGenesis.properties
+    description: Vulcanoid object properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: vulcanoidproperties
+  celestial_objects:
+  - name: Asteroid
+    aliases:
+    - Asteroid
+    - AsteroidSchema
+    file: schemas/celestial_objects/AsteroidSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Single asteroid entity
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: asteroid
+    primary_key: asteroid_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: asteroid_age_myr
+        mass: mass_kg
+        semi_major_axis: semi_major_axis_au
+  - name: AsteroidBelt
+    aliases:
+    - AsteroidBelt
+    - AsteroidBeltSchema
+    file: schemas/celestial_objects/AsteroidBeltSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Collection of asteroid properties and orbital parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: asteroidbelt
+    primary_key: belt_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: GEOLOGICAL
+      priority: 1
+      fields:
+        age: belt_age_myr
+        mass: total_mass_em
+  - name: GalacticStructure
+    aliases:
+    - GalacticStructure
+    - GalacticStructureSchema
+    file: schemas/celestial_objects/GalacticStructureSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Galactic substructures and components
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: galacticstructure
+  - name: Galaxy
+    aliases:
+    - Galaxy
+    - GalaxySchema
+    file: schemas/celestial_objects/GalaxySchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Galaxy entity and properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: galaxy
+    primary_key: galaxy_id
+    physics:
+      supports_aging: true
+      evolution_model: galactic
+      timescale: COSMIC
+      priority: 0
+      fields:
+        age: age_gyr
+        stellar_mass: total_stellar_mass_msun
+        gas_mass: gas_mass_msun
+        star_formation_rate: sfr_msun_yr
+  - name: Moon
+    aliases:
+    - Moon
+    - MoonSchema
+    file: schemas/celestial_objects/MoonSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Natural satellite orbiting a planet
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: moon
+    primary_key: moon_id
+    physics:
+      supports_aging: true
+      evolution_model: lunar
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_lm
+        semi_major_axis: semi_major_axis_au
+  - name: OortCloud
+    aliases:
+    - OortCloud
+    - OortCloudSchema
+    file: schemas/celestial_objects/OortCloudSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Oort cloud object for a star system
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: oortcloud
+    primary_key: cloud_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: cloud_age_myr
+  - name: Planet
+    aliases:
+    - Planet
+    - PlanetSchema
+    file: schemas/celestial_objects/PlanetSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Single planet entity with physical, orbital, and surface properties
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: planet
+    primary_key: planet_id
+    physics:
+      supports_aging: true
+      evolution_model: planetary
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_em
+        semi_major_axis: orbital_distance_au
+        surface_temperature: surface_temperature_k
+        atmospheric_pressure: atmospheric_pressure_bar
+  - name: PlanetaryRings
+    aliases:
+    - PlanetaryRings
+    - PlanetaryRingsSchema
+    file: schemas/celestial_objects/PlanetaryRingsSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Planetary ring system record
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: planetaryrings
+    primary_key: ring_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: ring_age_myr
+  - name: Star
+    aliases:
+    - Star
+    - StarSchema
+    file: schemas/celestial_objects/StarSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Single star entity
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: star
+    primary_key: star_id
+    physics:
+      supports_aging: true
+      evolution_model: stellar
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: star_age_myr
+        mass: star_mass_sm
+        luminosity: star_luminosity
+        radius: star_radius_rsun
+        temperature: star_temperature_k
+  - name: StarSystem
+    aliases:
+    - StarSystem
+    - StarSystemSchema
+    file: schemas/celestial_objects/StarSystemSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Single star system entity (container for Star + planets + etc.)
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: starsystem
+  biological:
+  - name: Biosignatures
+    aliases:
+    - Biosignatures
+    - BiosignaturesSchema
+    file: schemas/biological/BiosignaturesSchema.avsc
+    namespace: CosmosGenesis.biological
+    description: Molecular and atmospheric biosignature indicators
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: biosignatures
+  - name: CivilizationMarkers
+    aliases:
+    - CivilizationMarkers
+    - CivilizationMarkersSchema
+    file: schemas/biological/CivilizationMarkersSchema.avsc
+    namespace: CosmosGenesis.biological
+    description: Technological or biological signatures of civilizations
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: civilizationmarkers
+  system_schemas:
+  - name: AccretionSystem
+    aliases:
+    - AccretionSystem
+    - AccretionSystemSchema
+    file: schemas/system_schemas/AccretionSystemSchema.avsc
+    namespace: CosmosGenesis.system_schemas
+    description: Accretion system aggregations
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: accretionsystem
+  - name: AtmosphericSystem
+    aliases:
+    - AtmosphericSystem
+    - AtmosphericSystemSchema
+    file: schemas/system_schemas/AtmosphericSystemSchema.avsc
+    namespace: CosmosGenesis.system_schemas
+    description: Atmospheric system aggregation schema
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: atmosphericsystem
+  - name: HabitabilityZone
+    aliases:
+    - HabitabilityZone
+    - HabitabilityZoneSchema
+    file: schemas/system_schemas/HabitabilityZoneSchema.avsc
+    namespace: CosmosGenesis.system_schemas
+    description: Habitable zone parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: habitabilityzone
+  - name: SpaceEnvironment
+    aliases:
+    - SpaceEnvironment
+    - SpaceEnvironmentSchema
+    file: schemas/system_schemas/SpaceEnvironmentSchema.avsc
+    namespace: CosmosGenesis.system_schemas
+    description: Space environment aggregation schema
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: spaceenvironment
+  - name: SurfaceSystem
+    aliases:
+    - SurfaceSystem
+    - SurfaceSystemSchema
+    file: schemas/system_schemas/SurfaceSystemSchema.avsc
+    namespace: CosmosGenesis.system_schemas
+    description: Surface system aggregation schema
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: surfacesystem
+  physics:
+  - name: AxionDarkMatter
+    aliases:
+    - AxionDarkMatter
+    - AxionDarkMatterSchema
+    file: schemas/physics/AxionDarkMatterSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Parameters for axion dark matter models
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: axiondarkmatter
+  - name: CosmicTopology
+    aliases:
+    - CosmicTopology
+    - CosmicTopologySchema
+    file: schemas/physics/CosmicTopologySchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Large-scale topology descriptors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: cosmictopology
+  - name: Electrodynamics
+    aliases:
+    - Electrodynamics
+    - ElectrodynamicsSchema
+    file: schemas/physics/ElectrodynamicsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Maxwellian field descriptors and coupling
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: electrodynamics
+  - name: FluidDynamics
+    aliases:
+    - FluidDynamics
+    - FluidDynamicsSchema
+    file: schemas/physics/FluidDynamicsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Macro fluid dynamics parameters (e.g., Reynolds, viscosity)
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: fluiddynamics
+  - name: GalacticChemistry
+    aliases:
+    - GalacticChemistry
+    - GalacticChemistrySchema
+    file: schemas/physics/GalacticChemistrySchema.avsc
+    namespace: CosmosGenesis.physics
+    description: ISM/IGM chemical abundances and processes
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: galacticchemistry
+  - name: GravitationalWave
+    aliases:
+    - GravitationalWave
+    - GravitationalWaveSchema
+    file: schemas/physics/GravitationalWaveSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Gravitational wave sources and waveforms
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: gravitationalwave
+  - name: MagneticField
+    aliases:
+    - MagneticField
+    - MagneticFieldSchema
+    file: schemas/physics/MagneticFieldSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Magnetic field in space
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: magneticfield
+  - name: MagneticFieldSystem
+    aliases:
+    - MagneticFieldSystem
+    - MagneticFieldSystemSchema
+    file: schemas/physics/MagneticFieldSystemSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Coupled magnetic field system model
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: magneticfieldsystem
+  - name: Magnetosphere
+    aliases:
+    - Magnetosphere
+    - MagnetosphereSchema
+    file: schemas/physics/MagnetosphereSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Planetary or stellar magnetosphere
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: magnetosphere
+  - name: NeutronStarInterior
+    aliases:
+    - NeutronStarInterior
+    - NeutronStarInteriorSchema
+    file: schemas/physics/NeutronStarInteriorSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: EOS and state parameters for neutron star interiors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: neutronstarinterior
+  - name: NuclearPhysics
+    aliases:
+    - NuclearPhysics
+    - NuclearPhysicsSchema
+    file: schemas/physics/NuclearPhysicsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Nuclear reaction parameters and yields
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: nuclearphysics
+  - name: Optics
+    aliases:
+    - Optics
+    - OpticsSchema
+    file: schemas/physics/OpticsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Optical propagation and scattering in space environments
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: optics
+  - name: ParticlePhysics
+    aliases:
+    - ParticlePhysics
+    - ParticlePhysicsSchema
+    file: schemas/physics/ParticlePhysicsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Particle populations and spectra
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: particlephysics
+  - name: PlasmaPhenomena
+    aliases:
+    - PlasmaPhenomena
+    - PlasmaPhenomenaSchema
+    file: schemas/physics/PlasmaPhenomenaSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Various plasma events and parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: plasmaphenomena
+  - name: QuantumEffects
+    aliases:
+    - QuantumEffects
+    - QuantumEffectsSchema
+    file: schemas/physics/QuantumEffectsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Quantum-scale effects relevant to astro-particles
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: quantumeffects
+  - name: QuantumGravityEffects
+    aliases:
+    - QuantumGravityEffects
+    - QuantumGravityEffectsSchema
+    file: schemas/physics/QuantumGravityEffectsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Hypothesized QG-scale effects
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: quantumgravityeffects
+  - name: RadiationBelt
+    aliases:
+    - RadiationBelt
+    - RadiationBeltSchema
+    file: schemas/physics/RadiationBeltSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Charged particle belts around planets
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: radiationbelt
+  - name: RelativisticFrameDragging
+    aliases:
+    - RelativisticFrameDragging
+    - RelativisticFrameDraggingSchema
+    file: schemas/physics/RelativisticFrameDraggingSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Lense–Thirring frame dragging parameters
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: relativisticframedragging
+  - name: ResonanceChain
+    aliases:
+    - ResonanceChain
+    - ResonanceChainSchema
+    file: schemas/physics/ResonanceChainSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Orbital resonance chains across bodies
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: resonancechain
+  - name: Thermodynamics
+    aliases:
+    - Thermodynamics
+    - ThermodynamicsSchema
+    file: schemas/physics/ThermodynamicsSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Thermodynamic state variables
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: thermodynamics
+  - name: TidalForces
+    aliases:
+    - TidalForces
+    - TidalForcesSchema
+    file: schemas/physics/TidalForcesSchema.avsc
+    namespace: CosmosGenesis.physics
+    description: Tidal interactions and stress tensors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: tidalforces

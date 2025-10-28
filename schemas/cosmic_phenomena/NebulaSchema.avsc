@@ -1,0 +1,107 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "Nebula",
+  "doc": "Represents various types of nebulae.",
+  "fields": [
+    {
+      "name": "nebula_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "nebula_type",
+      "type": {
+        "type": "enum",
+        "name": "NebulaType",
+        "symbols": [
+          "EMISSION",
+          "REFLECTION",
+          "PLANETARY",
+          "SUPERNOVA_REMNANT",
+          "DARK",
+          "PROTO_PLANETARY"
+        ]
+      },
+      "default": "EMISSION"
+    },
+    {
+      "name": "size_ly",
+      "type": "double",
+      "doc": "Size in light years",
+      "default": 0.0
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ElementAbundance",
+          "fields": [
+            {
+              "name": "element",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "percentage",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "ionization_level",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "visible_light_emission",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "nebula_id",
+      "type": "string",
+      "default": "",
+      "doc": "Stable identifier for this nebula within the data lake"
+    },
+    {
+      "name": "nebula_age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the nebula in millions of years (Myr)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

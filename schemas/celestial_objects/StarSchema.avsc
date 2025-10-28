@@ -1,0 +1,146 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "Star",
+  "doc": "Represents a star in a star system.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this star belongs to",
+      "default": ""
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this star",
+      "default": ""
+    },
+    {
+      "name": "star_id",
+      "type": "string",
+      "doc": "Stable identifier for this star within the data lake",
+      "default": ""
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "doc": "The unique identifier for the star.",
+      "default": ""
+    },
+    {
+      "name": "star_designation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Catalog-style designation for this star (e.g., 'CG-M101-004237 A' for primary in binary)"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "The star's 3D position in space."
+    },
+    {
+      "name": "star_type",
+      "type": "CosmosGenesis.properties.StarType",
+      "doc": "The spectral classification of the star."
+    },
+    {
+      "name": "star_mass_sm",
+      "type": "double",
+      "doc": "The mass of the star in Solar Masses.",
+      "default": 0.0
+    },
+    {
+      "name": "star_age_myr",
+      "type": "long",
+      "doc": "The age of the star in millions of years.",
+      "default": 0
+    },
+    {
+      "name": "star_luminosity",
+      "type": "double",
+      "doc": "The luminosity of the star relative to the Sun.",
+      "default": 0.0
+    },
+    {
+      "name": "system_trait",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "A unique gameplay or lore hook for the star system."
+    },
+    {
+      "name": "stellar_properties",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.StellarProperties"
+      ],
+      "default": null,
+      "doc": "Detailed properties of the star including evolution, activity, and environment."
+    },
+    {
+      "name": "star_radius_rsun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Stellar radius in Solar Radii (computed during evolution)"
+    },
+    {
+      "name": "star_temperature_k",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Effective temperature in Kelvin (computed from L and R via Stefan-Boltzmann)"
+    },
+    {
+      "name": "evolutionary_stage",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "EvolutionaryStage",
+          "symbols": [
+            "MS",
+            "SGB",
+            "RGB",
+            "AGB",
+            "WD",
+            "NS",
+            "BH"
+          ],
+          "doc": "MS=Main Sequence, SGB=Subgiant, RGB=Red Giant Branch, AGB=Asymptotic Giant Branch, WD=White Dwarf, NS=Neutron Star, BH=Black Hole"
+        }
+      ],
+      "default": null,
+      "doc": "Current evolutionary stage of the star"
+    },
+    {
+      "name": "metallicity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Metallicity ([Fe/H] or Z) - fraction of metals by mass"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    }
+  ]
+}

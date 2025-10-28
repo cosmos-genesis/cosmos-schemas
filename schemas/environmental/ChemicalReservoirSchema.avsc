@@ -1,0 +1,85 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "ChemicalReservoir",
+  "doc": "Represents chemical compositions and deposits on planetary bodies.",
+  "fields": [
+    {
+      "name": "reservoir_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "reservoir_type",
+      "type": {
+        "type": "enum",
+        "name": "ReservoirType",
+        "symbols": [
+          "MINERAL_DEPOSIT",
+          "ORGANIC_COMPOUND",
+          "ICE_DEPOSIT",
+          "GAS_POCKET",
+          "LIQUID_POOL",
+          "CRYSTALLINE_FORMATION"
+        ]
+      },
+      "default": "MINERAL_DEPOSIT"
+    },
+    {
+      "name": "chemical_composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ChemicalComponent",
+          "fields": [
+            {
+              "name": "compound_formula",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "concentration",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "phase_state",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "volume_km3",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "pressure_pa",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "stability_conditions",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

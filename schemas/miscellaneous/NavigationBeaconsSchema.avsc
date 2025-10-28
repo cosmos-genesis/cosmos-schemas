@@ -1,0 +1,70 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "NavigationBeacons",
+  "doc": "Navigation reference points and markers",
+  "fields": [
+    {
+      "name": "beacon_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "beacon_type",
+      "type": {
+        "type": "enum",
+        "name": "BeaconType",
+        "symbols": [
+          "NATURAL_LANDMARK",
+          "ARTIFICIAL_BEACON",
+          "JUMP_POINT",
+          "WARNING_MARKER",
+          "TRAFFIC_CONTROL",
+          "WAYPOINT"
+        ]
+      },
+      "default": "NATURAL_LANDMARK"
+    },
+    {
+      "name": "coordinates",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "signal_strength",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "broadcast_frequency",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coverage_radius_au",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "access_restrictions",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

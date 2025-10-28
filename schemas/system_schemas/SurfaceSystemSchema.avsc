@@ -1,0 +1,126 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "SurfaceSystem",
+  "doc": "Comprehensive surface system including composition, features, and rendering properties.",
+  "fields": [
+    {
+      "name": "surface_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "MaterialComponent",
+          "fields": [
+            {
+              "name": "material_type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "percentage",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "color_rgb",
+              "type": {
+                "type": "array",
+                "items": "int"
+              },
+              "default": []
+            },
+            {
+              "name": "reflectivity",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "terrain",
+      "type": {
+        "type": "record",
+        "name": "TerrainProperties",
+        "fields": [
+          {
+            "name": "elevation_map",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          },
+          {
+            "name": "roughness",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "feature_distribution",
+            "type": {
+              "type": "array",
+              "items": "string"
+            },
+            "default": []
+          },
+          {
+            "name": "biome_type",
+            "type": "string",
+            "default": ""
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "render_properties",
+      "type": {
+        "type": "record",
+        "name": "RenderProperties",
+        "fields": [
+          {
+            "name": "texture_maps",
+            "type": {
+              "type": "array",
+              "items": "string"
+            },
+            "default": []
+          },
+          {
+            "name": "normal_map",
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "detail_level",
+            "type": "int",
+            "default": 0
+          },
+          {
+            "name": "shader_parameters",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

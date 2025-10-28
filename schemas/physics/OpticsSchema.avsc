@@ -1,0 +1,633 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "Optics",
+  "doc": "Represents optical phenomena, light propagation, and interactions with matter in astrophysical contexts.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "doc": "Designation of the optical system being modeled",
+      "default": ""
+    },
+    {
+      "name": "medium_properties",
+      "type": {
+        "type": "record",
+        "name": "OpticalMedium",
+        "fields": [
+          {
+            "name": "medium_type",
+            "type": {
+              "type": "enum",
+              "name": "MediumType",
+              "symbols": [
+                "VACUUM",
+                "PLASMA",
+                "GAS",
+                "DUST",
+                "LIQUID",
+                "SOLID",
+                "COMPOSITE"
+              ]
+            },
+            "doc": "Type of medium through which light propagates",
+            "default": "VACUUM"
+          },
+          {
+            "name": "refractive_index",
+            "type": {
+              "type": "record",
+              "name": "RefractiveIndex",
+              "fields": [
+                {
+                  "name": "real_part",
+                  "type": "double",
+                  "doc": "Real part of the refractive index",
+                  "default": 0.0
+                },
+                {
+                  "name": "imaginary_part",
+                  "type": "double",
+                  "doc": "Imaginary part of the refractive index (extinction coefficient)",
+                  "default": 0.0
+                },
+                {
+                  "name": "wavelength_dependence",
+                  "type": {
+                    "type": "array",
+                    "items": {
+                      "type": "record",
+                      "name": "SpectralRefractiveIndex",
+                      "fields": [
+                        {
+                          "name": "wavelength_nm",
+                          "type": "double",
+                          "doc": "Wavelength in nanometers",
+                          "default": 0.0
+                        },
+                        {
+                          "name": "index_value",
+                          "type": "double",
+                          "doc": "Refractive index at this wavelength",
+                          "default": 0.0
+                        }
+                      ]
+                    }
+                  },
+                  "doc": "Wavelength dependence of the refractive index",
+                  "default": []
+                }
+              ]
+            },
+            "doc": "Refractive index properties of the medium",
+            "default": {}
+          },
+          {
+            "name": "density_kg_per_m3",
+            "type": "double",
+            "doc": "Density of the medium in kg/m\u00b3",
+            "default": 0.0
+          },
+          {
+            "name": "temperature_k",
+            "type": "double",
+            "doc": "Temperature of the medium in Kelvin",
+            "default": 0.0
+          },
+          {
+            "name": "composition",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "MediumComponent",
+                "fields": [
+                  {
+                    "name": "component_name",
+                    "type": "string",
+                    "doc": "Name of the component (e.g., 'hydrogen', 'silicate dust')",
+                    "default": ""
+                  },
+                  {
+                    "name": "mass_fraction",
+                    "type": "double",
+                    "doc": "Mass fraction of this component (0.0 to 1.0)",
+                    "default": 0.0
+                  },
+                  {
+                    "name": "optical_properties",
+                    "type": {
+                      "type": "map",
+                      "values": "double"
+                    },
+                    "doc": "Component-specific optical properties as key-value pairs",
+                    "default": {}
+                  }
+                ]
+              }
+            },
+            "doc": "Composition of the medium",
+            "default": []
+          }
+        ]
+      },
+      "doc": "Properties of the medium through which light propagates",
+      "default": {}
+    },
+    {
+      "name": "extinction_properties",
+      "type": {
+        "type": "record",
+        "name": "ExtinctionProperties",
+        "fields": [
+          {
+            "name": "extinction_curve",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "ExtinctionPoint",
+                "fields": [
+                  {
+                    "name": "wavelength_nm",
+                    "type": "double",
+                    "doc": "Wavelength in nanometers",
+                    "default": 0.0
+                  },
+                  {
+                    "name": "extinction_magnitude",
+                    "type": "double",
+                    "doc": "Extinction in magnitudes at this wavelength",
+                    "default": 0.0
+                  }
+                ]
+              }
+            },
+            "doc": "Extinction as a function of wavelength",
+            "default": []
+          },
+          {
+            "name": "total_extinction_av",
+            "type": "double",
+            "doc": "Total extinction in V-band magnitudes",
+            "default": 0.0
+          },
+          {
+            "name": "reddening_ebv",
+            "type": "double",
+            "doc": "E(B-V) color excess",
+            "default": 0.0
+          },
+          {
+            "name": "extinction_law_rv",
+            "type": "double",
+            "doc": "Ratio of total to selective extinction (R_V)",
+            "default": 0.0
+          },
+          {
+            "name": "extinction_model",
+            "type": "string",
+            "doc": "Name of the extinction model (e.g., 'CCM89', 'Calzetti')",
+            "default": ""
+          }
+        ]
+      },
+      "doc": "Interstellar or atmospheric extinction properties",
+      "default": {}
+    },
+    {
+      "name": "scattering_properties",
+      "type": {
+        "type": "record",
+        "name": "ScatteringProperties",
+        "fields": [
+          {
+            "name": "scattering_type",
+            "type": {
+              "type": "enum",
+              "name": "ScatteringType",
+              "symbols": [
+                "RAYLEIGH",
+                "MIE",
+                "THOMSON",
+                "COMPTON",
+                "RAMAN",
+                "RESONANT",
+                "MULTIPLE"
+              ]
+            },
+            "doc": "Type of scattering process",
+            "default": "RAYLEIGH"
+          },
+          {
+            "name": "scattering_cross_section_m2",
+            "type": "double",
+            "doc": "Scattering cross-section in square meters",
+            "default": 0.0
+          },
+          {
+            "name": "mean_free_path_m",
+            "type": "double",
+            "doc": "Mean free path for scattering in meters",
+            "default": 0.0
+          },
+          {
+            "name": "albedo",
+            "type": "double",
+            "doc": "Single-scattering albedo (0.0 to 1.0)",
+            "default": 0.0
+          },
+          {
+            "name": "phase_function",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "record",
+                "name": "PhasePoint",
+                "fields": [
+                  {
+                    "name": "angle_rad",
+                    "type": "double",
+                    "doc": "Scattering angle in radians",
+                    "default": 0.0
+                  },
+                  {
+                    "name": "probability",
+                    "type": "double",
+                    "doc": "Relative probability of scattering at this angle",
+                    "default": 0.0
+                  }
+                ]
+              }
+            },
+            "doc": "Angular distribution of scattered light",
+            "default": []
+          },
+          {
+            "name": "anisotropy_parameter_g",
+            "type": "double",
+            "doc": "Anisotropy parameter g (-1.0 to 1.0)",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Light scattering properties",
+      "default": {}
+    },
+    {
+      "name": "refraction_effects",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "RefractionEffect",
+          "fields": [
+            {
+              "name": "effect_type",
+              "type": {
+                "type": "enum",
+                "name": "RefractionEffectType",
+                "symbols": [
+                  "ATMOSPHERIC_REFRACTION",
+                  "GRAVITATIONAL_LENSING",
+                  "MIRAGE",
+                  "DISPERSION",
+                  "BIREFRINGENCE"
+                ]
+              },
+              "doc": "Type of refraction effect",
+              "default": "ATMOSPHERIC_REFRACTION"
+            },
+            {
+              "name": "angular_deviation_rad",
+              "type": "double",
+              "doc": "Angular deviation due to refraction in radians",
+              "default": 0.0
+            },
+            {
+              "name": "wavelength_dependence",
+              "type": "boolean",
+              "doc": "Whether the effect has significant wavelength dependence",
+              "default": false
+            },
+            {
+              "name": "effect_description",
+              "type": "string",
+              "doc": "Description of the refraction effect",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "doc": "Refraction effects in the system",
+      "default": []
+    },
+    {
+      "name": "emission_properties",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EmissionProperty",
+          "fields": [
+            {
+              "name": "emission_type",
+              "type": {
+                "type": "enum",
+                "name": "EmissionType",
+                "symbols": [
+                  "THERMAL",
+                  "FLUORESCENCE",
+                  "PHOSPHORESCENCE",
+                  "CHEMILUMINESCENCE",
+                  "BIOLUMINESCENCE",
+                  "RECOMBINATION",
+                  "SYNCHROTRON"
+                ]
+              },
+              "doc": "Type of light emission",
+              "default": "THERMAL"
+            },
+            {
+              "name": "emission_spectrum",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "SpectrumPoint",
+                  "fields": [
+                    {
+                      "name": "wavelength_nm",
+                      "type": "double",
+                      "doc": "Wavelength in nanometers",
+                      "default": 0.0
+                    },
+                    {
+                      "name": "intensity",
+                      "type": "double",
+                      "doc": "Relative intensity at this wavelength",
+                      "default": 0.0
+                    }
+                  ]
+                }
+              },
+              "doc": "Emission spectrum",
+              "default": []
+            },
+            {
+              "name": "total_luminosity_w",
+              "type": "double",
+              "doc": "Total luminosity in Watts",
+              "default": 0.0
+            },
+            {
+              "name": "emission_temperature_k",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null,
+              "doc": "Emission temperature in Kelvin, if applicable"
+            }
+          ]
+        }
+      },
+      "doc": "Light emission properties",
+      "default": []
+    },
+    {
+      "name": "absorption_properties",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AbsorptionProperty",
+          "fields": [
+            {
+              "name": "absorption_type",
+              "type": {
+                "type": "enum",
+                "name": "AbsorptionType",
+                "symbols": [
+                  "CONTINUUM",
+                  "LINE",
+                  "BAND",
+                  "PHOTOELECTRIC",
+                  "MOLECULAR"
+                ]
+              },
+              "doc": "Type of absorption",
+              "default": "CONTINUUM"
+            },
+            {
+              "name": "absorption_spectrum",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "record",
+                  "name": "AbsorptionPoint",
+                  "fields": [
+                    {
+                      "name": "wavelength_nm",
+                      "type": "double",
+                      "doc": "Wavelength in nanometers",
+                      "default": 0.0
+                    },
+                    {
+                      "name": "optical_depth",
+                      "type": "double",
+                      "doc": "Optical depth at this wavelength",
+                      "default": 0.0
+                    }
+                  ]
+                }
+              },
+              "doc": "Absorption spectrum",
+              "default": []
+            },
+            {
+              "name": "absorbing_species",
+              "type": "string",
+              "doc": "Chemical species responsible for the absorption",
+              "default": ""
+            },
+            {
+              "name": "column_density_per_m2",
+              "type": "double",
+              "doc": "Column density in particles per square meter",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Light absorption properties",
+      "default": []
+    },
+    {
+      "name": "optical_phenomena",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "OpticalPhenomenon",
+          "fields": [
+            {
+              "name": "phenomenon_type",
+              "type": {
+                "type": "enum",
+                "name": "PhenomenonType",
+                "symbols": [
+                  "RAINBOW",
+                  "HALO",
+                  "MIRAGE",
+                  "AIRGLOW",
+                  "AURORA",
+                  "ZODIACAL_LIGHT",
+                  "GEGENSCHEIN",
+                  "GLORY",
+                  "CORONA",
+                  "TWINKLING"
+                ]
+              },
+              "doc": "Type of optical phenomenon",
+              "default": "RAINBOW"
+            },
+            {
+              "name": "angular_size_rad",
+              "type": "double",
+              "doc": "Angular size in radians",
+              "default": 0.0
+            },
+            {
+              "name": "brightness",
+              "type": "double",
+              "doc": "Relative brightness (0.0 to 1.0)",
+              "default": 0.0
+            },
+            {
+              "name": "wavelength_range_nm",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Wavelength range in nanometers [min, max]",
+              "default": []
+            },
+            {
+              "name": "phenomenon_description",
+              "type": "string",
+              "doc": "Description of the optical phenomenon",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "doc": "Observable optical phenomena",
+      "default": []
+    },
+    {
+      "name": "polarization_properties",
+      "type": {
+        "type": "record",
+        "name": "PolarizationProperties",
+        "fields": [
+          {
+            "name": "polarization_degree",
+            "type": "double",
+            "doc": "Degree of polarization (0.0 to 1.0)",
+            "default": 0.0
+          },
+          {
+            "name": "polarization_angle_rad",
+            "type": "double",
+            "doc": "Polarization angle in radians",
+            "default": 0.0
+          },
+          {
+            "name": "polarization_type",
+            "type": {
+              "type": "enum",
+              "name": "PolarizationType",
+              "symbols": [
+                "LINEAR",
+                "CIRCULAR",
+                "ELLIPTICAL",
+                "PARTIAL",
+                "UNPOLARIZED"
+              ]
+            },
+            "doc": "Type of polarization",
+            "default": "LINEAR"
+          },
+          {
+            "name": "stokes_parameters",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "doc": "Stokes parameters [I, Q, U, V]",
+            "default": []
+          },
+          {
+            "name": "polarization_mechanism",
+            "type": "string",
+            "doc": "Physical mechanism causing the polarization",
+            "default": ""
+          }
+        ]
+      },
+      "doc": "Polarization properties of light",
+      "default": {}
+    },
+    {
+      "name": "observational_effects",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ObservationalEffect",
+          "fields": [
+            {
+              "name": "effect_type",
+              "type": {
+                "type": "enum",
+                "name": "ObsEffectType",
+                "symbols": [
+                  "SEEING",
+                  "ATMOSPHERIC_EXTINCTION",
+                  "DIFFRACTION",
+                  "ABERRATION",
+                  "SCINTILLATION",
+                  "DISPERSION"
+                ]
+              },
+              "doc": "Type of observational effect",
+              "default": "SEEING"
+            },
+            {
+              "name": "effect_magnitude",
+              "type": "double",
+              "doc": "Magnitude of the effect",
+              "default": 0.0
+            },
+            {
+              "name": "effect_description",
+              "type": "string",
+              "doc": "Description of how the effect impacts observations",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "doc": "Effects impacting astronomical observations",
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Spatial coordinates of the optical system"
+    }
+  ],
+  "version": "1.0.0"
+}

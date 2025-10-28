@@ -1,0 +1,115 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "GalacticChemistry",
+  "doc": "Represents chemical evolution and distribution in galaxies.",
+  "fields": [
+    {
+      "name": "galaxy_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "abundance_patterns",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ElementAbundance",
+          "fields": [
+            {
+              "name": "element",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "abundance_fe_h",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "radial_gradient",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "vertical_gradient",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "chemical_regions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ChemicalRegion",
+          "fields": [
+            {
+              "name": "region_name",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "metallicity",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "alpha_enhancement",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "star_formation_rate",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "enrichment_sources",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EnrichmentSource",
+          "fields": [
+            {
+              "name": "source_type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "rate",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "yield_patterns",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "default": []
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

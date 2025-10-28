@@ -1,0 +1,12 @@
+{
+  "type": "enum",
+  "namespace": "CosmosGenesis.properties",
+  "name": "BeltType",
+  "doc": "The classification of an asteroid or debris belt.",
+  "symbols": [
+    "MAIN_BELT",
+    "DEBRIS_DISK",
+    "KUIPER_BELT"
+  ],
+  "version": "1.0.0"
+}

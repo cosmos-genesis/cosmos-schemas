@@ -1,0 +1,93 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "RelativisticJet",
+  "doc": "Represents relativistic jets from active galactic nuclei or microquasars.",
+  "fields": [
+    {
+      "name": "jet_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "source_object_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "jet_speed_c",
+      "type": "double",
+      "doc": "Speed as fraction of light speed",
+      "default": 0.0
+    },
+    {
+      "name": "length_ly",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "opening_angle_degrees",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "power_erg_per_s",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "jet_composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "JetComponent",
+          "fields": [
+            {
+              "name": "particle_type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "energy_distribution",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "number_density",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "magnetic_field_strength_gauss",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "precession_period_years",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "shock_features",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

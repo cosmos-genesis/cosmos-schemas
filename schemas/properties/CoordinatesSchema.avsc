@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "Coordinates",
+  "namespace": "CosmosGenesis.properties",
+  "doc": "3D coordinate system used throughout the universe simulation",
+  "fields": [
+    {
+      "name": "x",
+      "type": "double",
+      "doc": "X coordinate",
+      "default": 0.0
+    },
+    {
+      "name": "y",
+      "type": "double",
+      "doc": "Y coordinate",
+      "default": 0.0
+    },
+    {
+      "name": "z",
+      "type": "double",
+      "doc": "Z coordinate",
+      "default": 0.0
+    }
+  ],
+  "version": "1.0.0"
+}

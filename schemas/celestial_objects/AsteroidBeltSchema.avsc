@@ -1,0 +1,92 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "AsteroidBelt",
+  "doc": "Represents a distinct belt of asteroids or debris within a star system.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this belt belongs to",
+      "default": ""
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this belt",
+      "default": ""
+    },
+    {
+      "name": "belt_id",
+      "type": "string",
+      "doc": "Stable identifier for this asteroid belt within the data lake",
+      "default": ""
+    },
+    {
+      "name": "belt_designation",
+      "type": "string",
+      "doc": "The common name for the belt, e.g., 'Main Belt'.",
+      "default": ""
+    },
+    {
+      "name": "belt_type",
+      "type": "CosmosGenesis.properties.BeltType",
+      "doc": "The classification of the belt."
+    },
+    {
+      "name": "inner_radius_au",
+      "type": "double",
+      "doc": "The inner edge of the belt in Astronomical Units (AU).",
+      "default": 0.0
+    },
+    {
+      "name": "outer_radius_au",
+      "type": "double",
+      "doc": "The outer edge of the belt in Astronomical Units (AU).",
+      "default": 0.0
+    },
+    {
+      "name": "total_mass_em",
+      "type": "double",
+      "doc": "The total estimated mass of the belt in Earth Masses.",
+      "default": 0.0
+    },
+    {
+      "name": "dominant_composition",
+      "type": "CosmosGenesis.properties.CompositionType",
+      "doc": "The primary material composition of the belt."
+    },
+    {
+      "name": "resources",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "doc": "A list of specific, mineable resource keys.",
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "belt_age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the asteroid belt in millions of years (Myr)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    }
+  ]
+}

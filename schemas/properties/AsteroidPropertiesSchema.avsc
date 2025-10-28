@@ -1,0 +1,119 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.properties",
+  "name": "AsteroidProperties",
+  "doc": "Additional properties specific to asteroids",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "asteroid_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "small_body_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "classification",
+      "type": {
+        "type": "enum",
+        "name": "AsteroidClass",
+        "symbols": [
+          "C_TYPE",
+          "S_TYPE",
+          "M_TYPE",
+          "V_TYPE",
+          "D_TYPE",
+          "E_TYPE",
+          "P_TYPE"
+        ]
+      },
+      "default": "C_TYPE"
+    },
+    {
+      "name": "surface_properties",
+      "type": {
+        "type": "record",
+        "name": "SurfaceProperties",
+        "fields": [
+          {
+            "name": "regolith_depth_m",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "boulder_distribution",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          },
+          {
+            "name": "crater_density",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "surface_age_myr",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "dynamic_properties",
+      "type": {
+        "type": "record",
+        "name": "DynamicProperties",
+        "fields": [
+          {
+            "name": "family_membership",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "resonance_state",
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          {
+            "name": "yarkovsky_drift_au_per_my",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "collision_probability",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "binary_companion_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "resource_deposit_ids",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": []
+    }
+  ]
+}

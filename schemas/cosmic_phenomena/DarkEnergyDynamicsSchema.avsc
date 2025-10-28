@@ -1,0 +1,85 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "DarkEnergyDynamics",
+  "doc": "Represents the dynamic behavior of dark energy.",
+  "fields": [
+    {
+      "name": "model_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "equation_of_state",
+      "type": {
+        "type": "record",
+        "name": "EquationOfState",
+        "fields": [
+          {
+            "name": "w_0",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "w_a",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "time_dependence",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "model_type",
+      "type": {
+        "type": "enum",
+        "name": "DarkEnergyModel",
+        "symbols": [
+          "COSMOLOGICAL_CONSTANT",
+          "QUINTESSENCE",
+          "K_ESSENCE",
+          "PHANTOM",
+          "CHAMELEON",
+          "TACHYON"
+        ]
+      },
+      "default": "COSMOLOGICAL_CONSTANT"
+    },
+    {
+      "name": "energy_density_evolution",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "sound_speed_squared",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "interaction_with_dark_matter",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "clustering_scale_mpc",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

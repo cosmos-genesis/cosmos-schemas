@@ -1,0 +1,48 @@
+{
+  "type": "record",
+  "name": "PlanetaryPhysicalProperties",
+  "namespace": "CosmosGenesis.properties",
+  "doc": "Physical properties of a planet including mass, radius, density, gravity, and escape velocity",
+  "fields": [
+    {
+      "name": "mass_earth_masses",
+      "type": "double",
+      "doc": "Mass of the planet in Earth masses",
+      "default": 0.0
+    },
+    {
+      "name": "radius_km",
+      "type": "double",
+      "doc": "Radius of the planet in kilometers",
+      "default": 0.0
+    },
+    {
+      "name": "density_kg_m3",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Density of the planet in kg/m\u00b3"
+    },
+    {
+      "name": "gravity_ms2",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Surface gravity of the planet in m/s\u00b2"
+    },
+    {
+      "name": "escape_velocity_ms",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Escape velocity of the planet in m/s"
+    }
+  ],
+  "version": "1.0.0"
+}

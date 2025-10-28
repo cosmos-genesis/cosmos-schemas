@@ -1,0 +1,95 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.biological",
+  "name": "Biosignatures",
+  "doc": "Represents potential signs of life on exoplanets.",
+  "fields": [
+    {
+      "name": "planet_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "atmospheric_signatures",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AtmosphericBiosignature",
+          "fields": [
+            {
+              "name": "molecule",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "concentration_ppm",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "confidence_biological",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "possible_abiotic_sources",
+              "type": {
+                "type": "array",
+                "items": "string"
+              },
+              "default": []
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "surface_signatures",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "SurfaceBiosignature",
+          "fields": [
+            {
+              "name": "signature_type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "coverage_percentage",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "spectral_features",
+              "type": {
+                "type": "array",
+                "items": "string"
+              },
+              "default": []
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "seasonal_variations",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "chemical_disequilibrium_index",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

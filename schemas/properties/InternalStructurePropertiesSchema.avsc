@@ -1,0 +1,63 @@
+{
+  "type": "record",
+  "name": "InternalStructureProperties",
+  "namespace": "CosmosGenesis.properties",
+  "doc": "Internal structure properties of a planet including core type, layer composition, and tectonic activity",
+  "fields": [
+    {
+      "name": "core_type",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Type of planetary core (e.g., 'iron-nickel', 'rocky', 'metallic hydrogen')"
+    },
+    {
+      "name": "layer_composition",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": [],
+      "doc": "Composition of planetary layers from inside to outside (e.g., 'core', 'mantle', 'crust')"
+    },
+    {
+      "name": "tectonic_activity_level",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Level of tectonic activity (0.0 to 1.0, where 0.0 is none and 1.0 is extremely active)"
+    },
+    {
+      "name": "plate_boundaries",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "items": "double"
+        }
+      },
+      "default": [],
+      "doc": "Array of tectonic plate boundaries represented as coordinate pairs [lon1, lat1, lon2, lat2]"
+    },
+    {
+      "name": "magnetic_field_strength",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Strength of the planetary magnetic field relative to Earth's (Earth = 1.0)"
+    },
+    {
+      "name": "internal_heat_flux",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Heat flux from the planet's interior in W/m²"
+    }
+  ],
+  "version": "1.0.0"
+}

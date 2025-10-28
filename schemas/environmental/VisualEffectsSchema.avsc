@@ -1,0 +1,86 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "VisualEffects",
+  "doc": "Defines parameters for rendering astronomical visual effects.",
+  "fields": [
+    {
+      "name": "effect_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "effect_type",
+      "type": {
+        "type": "enum",
+        "name": "EffectType",
+        "symbols": [
+          "AURORA",
+          "NEBULA_GLOW",
+          "STELLAR_CORONA",
+          "ATMOSPHERIC_HAZE",
+          "RING_SHADOW",
+          "LIGHT_SCATTERING"
+        ]
+      },
+      "default": "AURORA"
+    },
+    {
+      "name": "visual_properties",
+      "type": {
+        "type": "record",
+        "name": "EffectProperties",
+        "fields": [
+          {
+            "name": "color_gradient",
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": "int"
+              }
+            },
+            "default": []
+          },
+          {
+            "name": "opacity_map",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          },
+          {
+            "name": "intensity",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "animation_parameters",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "render_priority",
+      "type": "int",
+      "default": 0
+    },
+    {
+      "name": "distance_fade",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

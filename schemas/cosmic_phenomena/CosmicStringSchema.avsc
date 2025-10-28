@@ -1,0 +1,99 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "CosmicString",
+  "doc": "Represents cosmic strings and their network properties.",
+  "fields": [
+    {
+      "name": "string_network_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "string_tension_gev2",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "network_density",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "string_segments",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StringSegment",
+          "fields": [
+            {
+              "name": "length_mpc",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "velocity_c",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "curvature_radius_mpc",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "reconnection_probability",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "string_loops",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StringLoop",
+          "fields": [
+            {
+              "name": "size_pc",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "oscillation_frequency_hz",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "gravitational_power_w",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "intercommutation_rate",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "scaling_solution_parameter",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

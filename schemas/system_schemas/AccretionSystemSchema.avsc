@@ -1,0 +1,110 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "AccretionSystem",
+  "doc": "Represents accretion phenomena around compact objects.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "accretor_type",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "accretion_rate_solar_masses_per_year",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "disk_structure",
+      "type": {
+        "type": "record",
+        "name": "AccretionDisk",
+        "fields": [
+          {
+            "name": "inner_radius_km",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "outer_radius_km",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "temperature_profile",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          },
+          {
+            "name": "density_profile",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          },
+          {
+            "name": "alpha_viscosity",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "spectral_features",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "SpectralFeature",
+          "fields": [
+            {
+              "name": "feature_type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "wavelength_nm",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "strength",
+              "type": "double",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "quasi_periodic_oscillations",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "outflow_presence",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

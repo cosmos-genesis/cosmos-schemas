@@ -1,0 +1,240 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "Asteroid",
+  "doc": "Represents an individual asteroid in a star system or asteroid belt.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this asteroid belongs to",
+      "default": ""
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this asteroid",
+      "default": ""
+    },
+    {
+      "name": "asteroid_id",
+      "type": "string",
+      "doc": "Stable identifier for this asteroid within the data lake",
+      "default": ""
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "doc": "Unique identifier for the asteroid",
+      "default": ""
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "3D coordinates of the asteroid in the star system"
+    },
+    {
+      "name": "asteroid_type",
+      "type": {
+        "type": "enum",
+        "name": "AsteroidType",
+        "symbols": [
+          "C_TYPE",
+          "S_TYPE",
+          "M_TYPE",
+          "D_TYPE",
+          "V_TYPE",
+          "E_TYPE",
+          "P_TYPE"
+        ]
+      },
+      "doc": "The spectral classification of the asteroid",
+      "default": "C_TYPE"
+    },
+    {
+      "name": "diameter_km",
+      "type": "double",
+      "doc": "Diameter of the asteroid in kilometers",
+      "default": 0.0
+    },
+    {
+      "name": "mass_kg",
+      "type": "double",
+      "doc": "Mass of the asteroid in kilograms",
+      "default": 0.0
+    },
+    {
+      "name": "density_g_cm3",
+      "type": "double",
+      "doc": "Density of the asteroid in g/cm\u00b3",
+      "default": 0.0
+    },
+    {
+      "name": "albedo",
+      "type": "double",
+      "doc": "Reflectivity of the asteroid's surface (0.0 to 1.0)",
+      "default": 0.0
+    },
+    {
+      "name": "rotation_period_hours",
+      "type": "double",
+      "doc": "Time it takes for the asteroid to complete one rotation in hours",
+      "default": 0.0
+    },
+    {
+      "name": "orbital_properties",
+      "type": {
+        "type": "record",
+        "name": "AsteroidOrbitalProperties",
+        "fields": [
+          {
+            "name": "semi_major_axis_au",
+            "type": "double",
+            "doc": "Semi-major axis of the orbit in astronomical units (AU)",
+            "default": 0.0
+          },
+          {
+            "name": "eccentricity",
+            "type": "double",
+            "doc": "Eccentricity of the orbit (0.0 to 1.0)",
+            "default": 0.0
+          },
+          {
+            "name": "inclination_deg",
+            "type": "double",
+            "doc": "Inclination of the orbit in degrees",
+            "default": 0.0
+          },
+          {
+            "name": "orbital_period_years",
+            "type": "double",
+            "doc": "Time it takes for the asteroid to complete one orbit in Earth years",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Orbital parameters of the asteroid",
+      "default": {}
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "record",
+        "name": "AsteroidComposition",
+        "fields": [
+          {
+            "name": "primary_material",
+            "type": "string",
+            "doc": "Primary material composition (e.g., silicates, carbonaceous, metallic, icy)",
+            "default": ""
+          },
+          {
+            "name": "secondary_materials",
+            "type": {
+              "type": "array",
+              "items": "string"
+            },
+            "doc": "List of secondary materials present in the asteroid",
+            "default": []
+          },
+          {
+            "name": "resources",
+            "type": {
+              "type": "array",
+              "items": "string"
+            },
+            "doc": "List of valuable resources available in the asteroid",
+            "default": []
+          }
+        ]
+      },
+      "doc": "Composition details of the asteroid",
+      "default": {}
+    },
+    {
+      "name": "parent_belt_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "ID of the parent asteroid belt, if the asteroid is part of a belt"
+    },
+    {
+      "name": "parent_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the parent star if the asteroid is star-bound"
+    },
+    {
+      "name": "parent_planet_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the parent planet if the asteroid is captured by a planet"
+    },
+    {
+      "name": "parent_moon_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the parent moon if the asteroid is captured by a moon"
+    },
+    {
+      "name": "is_near_earth_object",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the asteroid is classified as a Near-Earth Object (NEO)"
+    },
+    {
+      "name": "is_potentially_hazardous",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the asteroid is classified as potentially hazardous"
+    },
+    {
+      "name": "discovery_date",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Date when the asteroid was discovered (ISO-8601 format)"
+    },
+    {
+      "name": "designation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Designation or name of the asteroid"
+    },
+    {
+      "name": "asteroid_age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the asteroid in millions of years (Myr)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    }
+  ]
+}

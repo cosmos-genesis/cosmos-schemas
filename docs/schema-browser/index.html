@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Genesis Schema Browser</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 2px solid #334155;
+        }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .subtitle { color: #94a3b8; font-size: 1.2rem; }
+        .stats {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            background: #1e293b;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+        .stat-number { font-size: 2rem; font-weight: bold; color: #60a5fa; }
+        .stat-label { color: #94a3b8; font-size: 0.9rem; }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .category-card {
+            background: #1e293b;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            transition: all 0.3s;
+        }
+        .category-card:hover {
+            border-color: #60a5fa;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(96, 165, 250, 0.2);
+        }
+        .category-title {
+            font-size: 1.5rem;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+        .category-count {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .schema-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .schema-list li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.5rem;
+            display: block;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .schema-list li a:hover {
+            background: #334155;
+            color: #60a5fa;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid #334155;
+            color: #64748b;
+        }
+        footer a { color: #60a5fa; text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cosmos Genesis Schema Browser</h1>
+            <p class="subtitle">Open-source astrophysics data schemas for trillion-object scale</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">89</div>
+                <div class="stat-label">Total Schemas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">11</div>
+                <div class="stat-label">Support Aging</div>
+            </div>
+        </div>
+
+        <div class="categories">
+
+            <div class="category-card">
+                <h2 class="category-title">Temporal</h2>
+                <p class="category-count">1 schema</p>
+                <ul class="schema-list">
+                    <li><a href="#evolutionarydynamics">EvolutionaryDynamics</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Cosmic Phenomena</h2>
+                <p class="category-count">9 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#protoplanetarydisk">ProtoplanetaryDisk</a></li>
+                    <li><a href="#blackhole">BlackHole</a></li>
+                    <li><a href="#cosmicstring">CosmicString</a></li>
+                    <li><a href="#darkenergydynamics">DarkEnergyDynamics</a></li>
+                    <li><a href="#darkmatterdistribution">DarkMatterDistribution</a></li>
+                    <li><a href="#dustcloud">DustCloud</a></li>
+                    <li><a href="#nebula">Nebula</a></li>
+                    <li><a href="#primordialblackhole">PrimordialBlackHole</a></li>
+                    <li><a href="#relativisticjet">RelativisticJet</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Miscellaneous</h2>
+                <p class="category-count">9 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#binarycompanion">BinaryCompanion</a></li>
+                    <li><a href="#celestialobjectidentifier">CelestialObjectIdentifier</a></li>
+                    <li><a href="#cosmicweb">CosmicWeb</a></li>
+                    <li><a href="#dynamicpopulation">DynamicPopulation</a></li>
+                    <li><a href="#gravitationallens">GravitationalLens</a></li>
+                    <li><a href="#navigationbeacons">NavigationBeacons</a></li>
+                    <li><a href="#objectorbit">ObjectOrbit</a></li>
+                    <li><a href="#spectralsignature">SpectralSignature</a></li>
+                    <li><a href="#timeevents">TimeEvents</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Environmental</h2>
+                <p class="category-count">8 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#chemicalreservoir">ChemicalReservoir</a></li>
+                    <li><a href="#geologicalformation">GeologicalFormation</a></li>
+                    <li><a href="#interstellarmedium">InterstellarMedium</a></li>
+                    <li><a href="#microenvironment">MicroEnvironment</a></li>
+                    <li><a href="#orbitaldebris">OrbitalDebris</a></li>
+                    <li><a href="#planetaryweather">PlanetaryWeather</a></li>
+                    <li><a href="#thermalmap">ThermalMap</a></li>
+                    <li><a href="#visualeffects">VisualEffects</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Properties</h2>
+                <p class="category-count">24 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#asteroidproperties">AsteroidProperties</a></li>
+                    <li><a href="#atmospheretype">AtmosphereType</a></li>
+                    <li><a href="#belttype">BeltType</a></li>
+                    <li><a href="#centaurproperties">CentaurProperties</a></li>
+                    <li><a href="#cometproperties">CometProperties</a></li>
+                    <li><a href="#compositiontype">CompositionType</a></li>
+                    <li><a href="#coordinates">Coordinates</a></li>
+                    <li><a href="#dustparticle">DustParticle</a></li>
+                    <li><a href="#elementalcomposition">ElementalComposition</a></li>
+                    <li><a href="#internalstructureproperties">InternalStructureProperties</a></li>
+                    <li style="color: #64748b; font-style: italic;">... and 14 more</li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Celestial Objects</h2>
+                <p class="category-count">10 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#asteroid">Asteroid</a></li>
+                    <li><a href="#asteroidbelt">AsteroidBelt</a></li>
+                    <li><a href="#galacticstructure">GalacticStructure</a></li>
+                    <li><a href="#galaxy">Galaxy</a></li>
+                    <li><a href="#moon">Moon</a></li>
+                    <li><a href="#oortcloud">OortCloud</a></li>
+                    <li><a href="#planet">Planet</a></li>
+                    <li><a href="#planetaryrings">PlanetaryRings</a></li>
+                    <li><a href="#star">Star</a></li>
+                    <li><a href="#starsystem">StarSystem</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Biological</h2>
+                <p class="category-count">2 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#biosignatures">Biosignatures</a></li>
+                    <li><a href="#civilizationmarkers">CivilizationMarkers</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">System Schemas</h2>
+                <p class="category-count">5 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#accretionsystem">AccretionSystem</a></li>
+                    <li><a href="#atmosphericsystem">AtmosphericSystem</a></li>
+                    <li><a href="#habitabilityzone">HabitabilityZone</a></li>
+                    <li><a href="#spaceenvironment">SpaceEnvironment</a></li>
+                    <li><a href="#surfacesystem">SurfaceSystem</a></li>
+                </ul>
+            </div>
+
+            <div class="category-card">
+                <h2 class="category-title">Physics</h2>
+                <p class="category-count">21 schemas</p>
+                <ul class="schema-list">
+                    <li><a href="#axiondarkmatter">AxionDarkMatter</a></li>
+                    <li><a href="#cosmictopology">CosmicTopology</a></li>
+                    <li><a href="#electrodynamics">Electrodynamics</a></li>
+                    <li><a href="#fluiddynamics">FluidDynamics</a></li>
+                    <li><a href="#galacticchemistry">GalacticChemistry</a></li>
+                    <li><a href="#gravitationalwave">GravitationalWave</a></li>
+                    <li><a href="#magneticfield">MagneticField</a></li>
+                    <li><a href="#magneticfieldsystem">MagneticFieldSystem</a></li>
+                    <li><a href="#magnetosphere">Magnetosphere</a></li>
+                    <li><a href="#neutronstarinterior">NeutronStarInterior</a></li>
+                    <li style="color: #64748b; font-style: italic;">... and 11 more</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Cosmos Genesis™</strong> - We build the universe. You build the worlds.™</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="https://cosmosgenesis.com">Website</a> •
+                <a href="https://demo.cosmosgenesis.com">Demo</a> •
+                <a href="https://github.com/cosmosgenesis/cosmos-schemas">GitHub</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

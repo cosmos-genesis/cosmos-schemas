@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "GravitationalLens",
+  "doc": "Represents gravitational lensing effects.",
+  "fields": [
+    {
+      "name": "lens_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "mass_solar_masses",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "einstein_radius_arcsec",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "magnification",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "lens_distance_ly",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "source_distance_ly",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "lens_type",
+      "type": {
+        "type": "enum",
+        "name": "LensType",
+        "symbols": [
+          "GALAXY",
+          "GALAXY_CLUSTER",
+          "BLACK_HOLE",
+          "DARK_MATTER_HALO"
+        ]
+      },
+      "default": "GALAXY"
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

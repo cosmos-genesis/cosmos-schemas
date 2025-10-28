@@ -1,0 +1,82 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "PlasmaPhenomena",
+  "doc": "Represents various plasma-based phenomena in space.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "phenomenon_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "phenomenon_type",
+      "type": {
+        "type": "enum",
+        "name": "PlasmaType",
+        "symbols": [
+          "SOLAR_WIND",
+          "CORONAL_MASS_EJECTION",
+          "MAGNETIC_RECONNECTION",
+          "PLASMA_SHEET",
+          "CURRENT_SHEET",
+          "PLASMA_INSTABILITY"
+        ]
+      },
+      "default": "SOLAR_WIND"
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "density_particles_cm3",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "magnetic_field_tesla",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "velocity_km_s",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "particle_composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "PlasmaComponent",
+          "fields": [
+            {
+              "name": "particle_type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "percentage",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "ionization_state",
+              "type": "int",
+              "default": 0
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ]
+}

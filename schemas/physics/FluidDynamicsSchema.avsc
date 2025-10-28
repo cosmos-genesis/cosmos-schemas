@@ -1,0 +1,268 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "FluidDynamics",
+  "doc": "Represents fluid dynamics properties and behaviors in astrophysical contexts such as stellar interiors, planetary atmospheres, and accretion disks.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "doc": "Designation of the fluid system being modeled",
+      "default": ""
+    },
+    {
+      "name": "fluid_type",
+      "type": {
+        "type": "enum",
+        "name": "FluidType",
+        "symbols": [
+          "GAS",
+          "PLASMA",
+          "LIQUID",
+          "SUPERCRITICAL_FLUID",
+          "QUANTUM_FLUID",
+          "DEGENERATE_MATTER"
+        ]
+      },
+      "doc": "Type of fluid being modeled",
+      "default": "GAS"
+    },
+    {
+      "name": "density_kg_per_m3",
+      "type": "double",
+      "doc": "Fluid density in kilograms per cubic meter",
+      "default": 0.0
+    },
+    {
+      "name": "density_profile",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "DensityLayer",
+          "fields": [
+            {
+              "name": "radius_m",
+              "type": "double",
+              "doc": "Radius from center in meters",
+              "default": 0.0
+            },
+            {
+              "name": "density_kg_per_m3",
+              "type": "double",
+              "doc": "Density at this radius in kg/m\u00b3",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Density profile as a function of radius",
+      "default": []
+    },
+    {
+      "name": "viscosity_pa_s",
+      "type": "double",
+      "doc": "Dynamic viscosity in Pascal-seconds",
+      "default": 0.0
+    },
+    {
+      "name": "reynolds_number",
+      "type": "double",
+      "doc": "Reynolds number characterizing the flow regime",
+      "default": 0.0
+    },
+    {
+      "name": "flow_velocity_m_per_s",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "3D vector of flow velocity in meters per second [vx, vy, vz]",
+      "default": []
+    },
+    {
+      "name": "flow_regime",
+      "type": {
+        "type": "enum",
+        "name": "FlowRegime",
+        "symbols": [
+          "LAMINAR",
+          "TRANSITIONAL",
+          "TURBULENT",
+          "CHAOTIC",
+          "SUPERSONIC",
+          "SUBSONIC"
+        ]
+      },
+      "doc": "Classification of the flow regime",
+      "default": "LAMINAR"
+    },
+    {
+      "name": "pressure_gradient_pa_per_m",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "Pressure gradient vector in Pascals per meter [\u2202P/\u2202x, \u2202P/\u2202y, \u2202P/\u2202z]",
+      "default": []
+    },
+    {
+      "name": "vorticity_per_s",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "Vorticity vector in per second [\u03c9x, \u03c9y, \u03c9z]",
+      "default": []
+    },
+    {
+      "name": "turbulence_intensity",
+      "type": "double",
+      "doc": "Intensity of turbulence (0.0 to 1.0)",
+      "default": 0.0
+    },
+    {
+      "name": "mach_number",
+      "type": "double",
+      "doc": "Mach number of the flow",
+      "default": 0.0
+    },
+    {
+      "name": "fluid_structures",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "FluidStructure",
+          "fields": [
+            {
+              "name": "structure_type",
+              "type": {
+                "type": "enum",
+                "name": "StructureType",
+                "symbols": [
+                  "VORTEX",
+                  "JET",
+                  "WAVE",
+                  "SHOCK_FRONT",
+                  "BOUNDARY_LAYER",
+                  "CONVECTION_CELL",
+                  "EDDY"
+                ]
+              },
+              "doc": "Type of fluid structure",
+              "default": "VORTEX"
+            },
+            {
+              "name": "size_m",
+              "type": "double",
+              "doc": "Characteristic size in meters",
+              "default": 0.0
+            },
+            {
+              "name": "lifetime_s",
+              "type": "double",
+              "doc": "Expected lifetime in seconds",
+              "default": 0.0
+            },
+            {
+              "name": "position",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Position vector [x, y, z] in meters",
+              "default": []
+            }
+          ]
+        }
+      },
+      "doc": "Coherent structures within the fluid flow",
+      "default": []
+    },
+    {
+      "name": "magnetohydrodynamic_properties",
+      "type": {
+        "type": "record",
+        "name": "MHDProperties",
+        "fields": [
+          {
+            "name": "magnetic_reynolds_number",
+            "type": "double",
+            "doc": "Magnetic Reynolds number",
+            "default": 0.0
+          },
+          {
+            "name": "alfven_velocity_m_per_s",
+            "type": "double",
+            "doc": "Alfv\u00e9n velocity in meters per second",
+            "default": 0.0
+          },
+          {
+            "name": "magnetic_pressure_pa",
+            "type": "double",
+            "doc": "Magnetic pressure in Pascals",
+            "default": 0.0
+          },
+          {
+            "name": "plasma_beta",
+            "type": "double",
+            "doc": "Ratio of thermal to magnetic pressure",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Magnetohydrodynamic properties for plasma fluids",
+      "default": {}
+    },
+    {
+      "name": "boundary_conditions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "BoundaryCondition",
+          "fields": [
+            {
+              "name": "boundary_type",
+              "type": {
+                "type": "enum",
+                "name": "BoundaryType",
+                "symbols": [
+                  "WALL",
+                  "INLET",
+                  "OUTLET",
+                  "SYMMETRY",
+                  "PERIODIC",
+                  "INTERFACE"
+                ]
+              },
+              "doc": "Type of boundary",
+              "default": "WALL"
+            },
+            {
+              "name": "boundary_description",
+              "type": "string",
+              "doc": "Description of the boundary condition",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "doc": "Boundary conditions of the fluid system",
+      "default": []
+    },
+    {
+      "name": "energy_dissipation_rate_w_per_kg",
+      "type": "double",
+      "doc": "Energy dissipation rate in Watts per kilogram",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Spatial coordinates of the fluid system"
+    }
+  ],
+  "version": "1.0.0"
+}

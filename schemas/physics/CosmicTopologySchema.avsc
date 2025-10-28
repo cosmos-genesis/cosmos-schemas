@@ -1,0 +1,82 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "CosmicTopology",
+  "doc": "Represents the global topology of the universe.",
+  "fields": [
+    {
+      "name": "topology_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "topology_type",
+      "type": {
+        "type": "enum",
+        "name": "TopologyClass",
+        "symbols": [
+          "FLAT_TORUS",
+          "SPHERICAL",
+          "HYPERBOLIC",
+          "POINCARE_DODECAHEDRAL",
+          "WEEKS_SPACE"
+        ]
+      },
+      "default": "FLAT_TORUS"
+    },
+    {
+      "name": "fundamental_domain",
+      "type": {
+        "type": "record",
+        "name": "DomainProperties",
+        "fields": [
+          {
+            "name": "volume_gpc3",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "shape_parameters",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "default": []
+          },
+          {
+            "name": "symmetry_group",
+            "type": "string",
+            "default": ""
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "matching_circles_radius_deg",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "correlation_pattern",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "cosmic_crystallography_signature",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

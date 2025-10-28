@@ -1,0 +1,129 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.system_schemas",
+  "name": "AtmosphericSystem",
+  "doc": "Comprehensive atmospheric system including composition, weather, and visual properties.",
+  "fields": [
+    {
+      "name": "atmosphere_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "AtmosphericComponent",
+          "fields": [
+            {
+              "name": "molecule",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "percentage",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "phase",
+              "type": "string",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "optical_properties",
+      "type": {
+        "type": "record",
+        "name": "OpticalProperties",
+        "fields": [
+          {
+            "name": "sky_color_rgb",
+            "type": {
+              "type": "array",
+              "items": "int"
+            },
+            "default": []
+          },
+          {
+            "name": "rayleigh_scattering",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "opacity",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "albedo",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "weather",
+      "type": {
+        "type": "record",
+        "name": "WeatherSystem",
+        "fields": [
+          {
+            "name": "temperature_k",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "pressure_pa",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "humidity",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "wind_speed_ms",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "precipitation_type",
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "storm_activity",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "atmospheric_height_km",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "greenhouse_effect_factor",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

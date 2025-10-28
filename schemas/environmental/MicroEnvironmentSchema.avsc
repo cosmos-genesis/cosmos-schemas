@@ -1,0 +1,88 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "MicroEnvironment",
+  "doc": "Represents small-scale environmental conditions suitable for potential life.",
+  "fields": [
+    {
+      "name": "environment_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "environment_type",
+      "type": {
+        "type": "enum",
+        "name": "MicroEnvironmentType",
+        "symbols": [
+          "HYDROTHERMAL_VENT",
+          "SUBSURFACE_CAVITY",
+          "MINERAL_INTERFACE",
+          "LIQUID_POCKET",
+          "ICE_CAVITY",
+          "ATMOSPHERIC_DROPLET"
+        ]
+      },
+      "default": "HYDROTHERMAL_VENT"
+    },
+    {
+      "name": "chemical_conditions",
+      "type": {
+        "type": "record",
+        "name": "ChemicalConditions",
+        "fields": [
+          {
+            "name": "ph_value",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "redox_potential_mv",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "available_energy_sources",
+            "type": {
+              "type": "array",
+              "items": "string"
+            },
+            "default": []
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "temperature_range_k",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "pressure_range_pa",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "water_activity",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "radiation_protection_factor",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

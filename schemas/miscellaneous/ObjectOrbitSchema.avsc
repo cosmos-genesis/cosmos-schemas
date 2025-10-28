@@ -1,0 +1,91 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.miscellaneous",
+  "name": "ObjectOrbit",
+  "doc": "Detailed orbital parameters for any celestial object",
+  "fields": [
+    {
+      "name": "orbit_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "parent_body_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "keplerian_elements",
+      "type": {
+        "type": "record",
+        "name": "KeplerianElements",
+        "fields": [
+          {
+            "name": "semi_major_axis_au",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "eccentricity",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "inclination_deg",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "longitude_of_ascending_node_deg",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "argument_of_periapsis_deg",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "mean_anomaly_deg",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "orbital_period_days",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "epoch",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "perturbations",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": []
+    },
+    {
+      "name": "is_stable",
+      "type": "boolean",
+      "default": false
+    },
+    {
+      "name": "collision_risk",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

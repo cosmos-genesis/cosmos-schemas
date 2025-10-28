@@ -1,0 +1,187 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "Thermodynamics",
+  "doc": "Represents thermodynamic properties and processes in celestial bodies and cosmic environments.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "doc": "Designation of the thermodynamic system being modeled",
+      "default": ""
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "doc": "Average temperature of the system in Kelvin",
+      "default": 0.0
+    },
+    {
+      "name": "temperature_gradient",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "doc": "Temperature gradient across the system (in K/m)",
+      "default": []
+    },
+    {
+      "name": "pressure_pa",
+      "type": "double",
+      "doc": "Average pressure in Pascals",
+      "default": 0.0
+    },
+    {
+      "name": "entropy_j_per_k",
+      "type": "double",
+      "doc": "Entropy of the system in Joules per Kelvin",
+      "default": 0.0
+    },
+    {
+      "name": "heat_capacity_j_per_k",
+      "type": "double",
+      "doc": "Heat capacity of the system in Joules per Kelvin",
+      "default": 0.0
+    },
+    {
+      "name": "thermal_conductivity_w_per_m_k",
+      "type": "double",
+      "doc": "Thermal conductivity in Watts per meter-Kelvin",
+      "default": 0.0
+    },
+    {
+      "name": "heat_transfer_mechanisms",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "HeatTransferMechanism",
+          "fields": [
+            {
+              "name": "mechanism_type",
+              "type": {
+                "type": "enum",
+                "name": "HeatTransferType",
+                "symbols": [
+                  "CONDUCTION",
+                  "CONVECTION",
+                  "RADIATION",
+                  "ADVECTION",
+                  "DIFFUSION"
+                ]
+              },
+              "doc": "Type of heat transfer mechanism",
+              "default": "CONDUCTION"
+            },
+            {
+              "name": "efficiency",
+              "type": "double",
+              "doc": "Efficiency of the heat transfer mechanism (0.0 to 1.0)",
+              "default": 0.0
+            },
+            {
+              "name": "energy_flux_w_per_m2",
+              "type": "double",
+              "doc": "Energy flux in Watts per square meter",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Heat transfer mechanisms active in the system",
+      "default": []
+    },
+    {
+      "name": "thermal_equilibrium_state",
+      "type": {
+        "type": "enum",
+        "name": "EquilibriumState",
+        "symbols": [
+          "EQUILIBRIUM",
+          "NON_EQUILIBRIUM",
+          "QUASI_EQUILIBRIUM",
+          "UNSTABLE",
+          "METASTABLE"
+        ]
+      },
+      "doc": "Current thermal equilibrium state of the system",
+      "default": "EQUILIBRIUM"
+    },
+    {
+      "name": "phase_transitions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "PhaseTransition",
+          "fields": [
+            {
+              "name": "transition_type",
+              "type": "string",
+              "doc": "Type of phase transition (e.g., 'solid-liquid', 'gas-plasma')",
+              "default": ""
+            },
+            {
+              "name": "critical_temperature_k",
+              "type": "double",
+              "doc": "Critical temperature for the phase transition in Kelvin",
+              "default": 0.0
+            },
+            {
+              "name": "critical_pressure_pa",
+              "type": "double",
+              "doc": "Critical pressure for the phase transition in Pascals",
+              "default": 0.0
+            },
+            {
+              "name": "latent_heat_j_per_kg",
+              "type": "double",
+              "doc": "Latent heat of the phase transition in Joules per kilogram",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Phase transitions that can occur in the system",
+      "default": []
+    },
+    {
+      "name": "thermal_history",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ThermalEvent",
+          "fields": [
+            {
+              "name": "event_time_years",
+              "type": "double",
+              "doc": "Time of the thermal event in years (relative to system formation)",
+              "default": 0.0
+            },
+            {
+              "name": "temperature_k",
+              "type": "double",
+              "doc": "Temperature at the time of the event in Kelvin",
+              "default": 0.0
+            },
+            {
+              "name": "event_description",
+              "type": "string",
+              "doc": "Description of the thermal event",
+              "default": ""
+            }
+          ]
+        }
+      },
+      "doc": "Historical thermal events in the system's evolution",
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Spatial coordinates of the thermodynamic system"
+    }
+  ],
+  "version": "1.0.0"
+}

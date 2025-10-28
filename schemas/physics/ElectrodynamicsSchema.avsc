@@ -1,0 +1,391 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "Electrodynamics",
+  "doc": "Represents electromagnetic phenomena and interactions in astrophysical environments.",
+  "fields": [
+    {
+      "name": "system_designation",
+      "type": "string",
+      "doc": "Designation of the electromagnetic system being modeled",
+      "default": ""
+    },
+    {
+      "name": "electric_field",
+      "type": {
+        "type": "record",
+        "name": "ElectricField",
+        "fields": [
+          {
+            "name": "field_strength_v_per_m",
+            "type": "double",
+            "doc": "Electric field strength in Volts per meter",
+            "default": 0.0
+          },
+          {
+            "name": "field_direction",
+            "type": {
+              "type": "array",
+              "items": "double"
+            },
+            "doc": "3D vector representing the electric field direction [x, y, z]",
+            "default": []
+          },
+          {
+            "name": "field_variability",
+            "type": {
+              "type": "enum",
+              "name": "FieldVariability",
+              "symbols": [
+                "STATIC",
+                "OSCILLATING",
+                "PULSED",
+                "CHAOTIC",
+                "STOCHASTIC"
+              ]
+            },
+            "doc": "Temporal variability of the electric field",
+            "default": "STATIC"
+          },
+          {
+            "name": "frequency_hz",
+            "type": [
+              "null",
+              "double"
+            ],
+            "default": null,
+            "doc": "Frequency of oscillation in Hertz, if applicable"
+          }
+        ]
+      },
+      "doc": "Electric field properties",
+      "default": {}
+    },
+    {
+      "name": "charge_distribution",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "ChargeRegion",
+          "fields": [
+            {
+              "name": "charge_density_c_per_m3",
+              "type": "double",
+              "doc": "Charge density in Coulombs per cubic meter",
+              "default": 0.0
+            },
+            {
+              "name": "position",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Position vector [x, y, z] in meters",
+              "default": []
+            },
+            {
+              "name": "radius_m",
+              "type": "double",
+              "doc": "Characteristic radius of the charge region in meters",
+              "default": 0.0
+            },
+            {
+              "name": "charge_type",
+              "type": {
+                "type": "enum",
+                "name": "ChargeType",
+                "symbols": [
+                  "POSITIVE",
+                  "NEGATIVE",
+                  "NEUTRAL",
+                  "BIPOLAR",
+                  "MULTIPOLAR"
+                ]
+              },
+              "doc": "Type of charge distribution",
+              "default": "POSITIVE"
+            }
+          ]
+        }
+      },
+      "doc": "Distribution of electric charges in the system",
+      "default": []
+    },
+    {
+      "name": "current_systems",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "CurrentSystem",
+          "fields": [
+            {
+              "name": "current_density_a_per_m2",
+              "type": "double",
+              "doc": "Current density in Amperes per square meter",
+              "default": 0.0
+            },
+            {
+              "name": "current_path",
+              "type": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": "double"
+                }
+              },
+              "doc": "Path of the current as a series of 3D points [x, y, z]",
+              "default": []
+            },
+            {
+              "name": "current_type",
+              "type": {
+                "type": "enum",
+                "name": "CurrentType",
+                "symbols": [
+                  "DIRECT",
+                  "ALTERNATING",
+                  "BIRKELAND",
+                  "RING",
+                  "SHEET",
+                  "FILAMENTARY"
+                ]
+              },
+              "doc": "Type of current system",
+              "default": "DIRECT"
+            },
+            {
+              "name": "frequency_hz",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null,
+              "doc": "Frequency of alternating current in Hertz, if applicable"
+            }
+          ]
+        }
+      },
+      "doc": "Current systems within the electromagnetic environment",
+      "default": []
+    },
+    {
+      "name": "electromagnetic_waves",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EMWave",
+          "fields": [
+            {
+              "name": "wave_type",
+              "type": {
+                "type": "enum",
+                "name": "EMWaveType",
+                "symbols": [
+                  "RADIO",
+                  "MICROWAVE",
+                  "INFRARED",
+                  "VISIBLE",
+                  "ULTRAVIOLET",
+                  "X_RAY",
+                  "GAMMA_RAY"
+                ]
+              },
+              "doc": "Type of electromagnetic wave",
+              "default": "RADIO"
+            },
+            {
+              "name": "frequency_hz",
+              "type": "double",
+              "doc": "Frequency in Hertz",
+              "default": 0.0
+            },
+            {
+              "name": "wavelength_m",
+              "type": "double",
+              "doc": "Wavelength in meters",
+              "default": 0.0
+            },
+            {
+              "name": "amplitude_v_per_m",
+              "type": "double",
+              "doc": "Wave amplitude in Volts per meter",
+              "default": 0.0
+            },
+            {
+              "name": "polarization",
+              "type": {
+                "type": "enum",
+                "name": "Polarization",
+                "symbols": [
+                  "LINEAR",
+                  "CIRCULAR",
+                  "ELLIPTICAL",
+                  "UNPOLARIZED",
+                  "PARTIAL"
+                ]
+              },
+              "doc": "Wave polarization type",
+              "default": "LINEAR"
+            },
+            {
+              "name": "propagation_direction",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Direction of wave propagation as a 3D vector [x, y, z]",
+              "default": []
+            },
+            {
+              "name": "power_flux_w_per_m2",
+              "type": "double",
+              "doc": "Power flux in Watts per square meter",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Electromagnetic waves present in the system",
+      "default": []
+    },
+    {
+      "name": "plasma_interactions",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "PlasmaEMInteraction",
+          "fields": [
+            {
+              "name": "interaction_type",
+              "type": {
+                "type": "enum",
+                "name": "PlasmaInteractionType",
+                "symbols": [
+                  "CYCLOTRON_RESONANCE",
+                  "PLASMA_OSCILLATION",
+                  "LANDAU_DAMPING",
+                  "DEBYE_SHIELDING",
+                  "ALFVEN_WAVE",
+                  "WHISTLER_MODE"
+                ]
+              },
+              "doc": "Type of plasma-electromagnetic interaction",
+              "default": "CYCLOTRON_RESONANCE"
+            },
+            {
+              "name": "characteristic_frequency_hz",
+              "type": "double",
+              "doc": "Characteristic frequency of the interaction in Hertz",
+              "default": 0.0
+            },
+            {
+              "name": "energy_transfer_rate_w",
+              "type": "double",
+              "doc": "Energy transfer rate in Watts",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Interactions between electromagnetic fields and plasma",
+      "default": []
+    },
+    {
+      "name": "electromagnetic_phenomena",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "EMPhenomenon",
+          "fields": [
+            {
+              "name": "phenomenon_type",
+              "type": {
+                "type": "enum",
+                "name": "EMPhenomenonType",
+                "symbols": [
+                  "AURORA",
+                  "LIGHTNING",
+                  "RADIO_EMISSION",
+                  "SYNCHROTRON_RADIATION",
+                  "CHERENKOV_RADIATION",
+                  "ELECTROMAGNETIC_PULSE"
+                ]
+              },
+              "doc": "Type of electromagnetic phenomenon",
+              "default": "AURORA"
+            },
+            {
+              "name": "intensity",
+              "type": "double",
+              "doc": "Relative intensity of the phenomenon (0.0 to 1.0)",
+              "default": 0.0
+            },
+            {
+              "name": "duration_s",
+              "type": "double",
+              "doc": "Duration in seconds",
+              "default": 0.0
+            },
+            {
+              "name": "energy_j",
+              "type": "double",
+              "doc": "Total energy in Joules",
+              "default": 0.0
+            },
+            {
+              "name": "location",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Location of the phenomenon as a 3D point [x, y, z]",
+              "default": []
+            }
+          ]
+        }
+      },
+      "doc": "Observable electromagnetic phenomena in the system",
+      "default": []
+    },
+    {
+      "name": "electromagnetic_spectrum",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "SpectrumBand",
+          "fields": [
+            {
+              "name": "frequency_range_hz",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "doc": "Frequency range in Hertz [min, max]",
+              "default": []
+            },
+            {
+              "name": "power_spectral_density_w_per_hz",
+              "type": "double",
+              "doc": "Power spectral density in Watts per Hertz",
+              "default": 0.0
+            }
+          ]
+        }
+      },
+      "doc": "Electromagnetic spectrum of the system",
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Spatial coordinates of the electromagnetic system"
+    }
+  ],
+  "version": "1.0.0"
+}

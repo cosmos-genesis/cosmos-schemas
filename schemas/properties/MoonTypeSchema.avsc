@@ -1,0 +1,15 @@
+{
+  "type": "enum",
+  "namespace": "CosmosGenesis.properties",
+  "name": "MoonType",
+  "doc": "Classification of moons based on their characteristics and composition.",
+  "symbols": [
+    "IO_VOLCANIC",
+    "EUROPA_OCEAN",
+    "TITAN_SMOG",
+    "TRITON_CRYCVOLCANIC",
+    "LUNA_ROCKY",
+    "CAPTURED_ASTEROID"
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,95 @@
+{
+  "type": "record",
+  "name": "SurfaceProperties",
+  "namespace": "CosmosGenesis.properties",
+  "doc": "Surface properties of a planet including oceans, atmosphere, temperature, and ring systems",
+  "fields": [
+    {
+      "name": "ocean_coverage",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Fraction of surface covered by oceans (0.0 to 1.0)"
+    },
+    {
+      "name": "ocean_composition",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": [],
+      "doc": "Chemical composition of oceans (e.g., 'water', 'methane', 'ammonia')"
+    },
+    {
+      "name": "atmosphere_type",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.AtmosphereType"
+      ],
+      "default": null,
+      "doc": "Type of atmosphere present on the planet"
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Average surface temperature in Kelvin"
+    },
+    {
+      "name": "has_ring_system",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the planet has a ring system"
+    },
+    {
+      "name": "ring_properties",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "RingSystemProperties",
+          "fields": [
+            {
+              "name": "inner_radius_km",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Inner radius of the ring system in kilometers"
+            },
+            {
+              "name": "outer_radius_km",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Outer radius of the ring system in kilometers"
+            },
+            {
+              "name": "thickness_km",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Thickness of the rings in kilometers"
+            },
+            {
+              "name": "albedo",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Reflectivity of the rings (0.0 to 1.0)"
+            }
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Properties of the ring system, if present"
+    },
+    {
+      "name": "potentially_habitable",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the planet is in the habitable zone and could potentially support life"
+    }
+  ],
+  "version": "1.0.0"
+}

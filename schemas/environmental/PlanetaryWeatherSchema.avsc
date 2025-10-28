@@ -1,0 +1,102 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.environmental",
+  "name": "PlanetaryWeather",
+  "doc": "Defines planetary weather patterns and conditions.",
+  "fields": [
+    {
+      "name": "weather_system_id",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "current_conditions",
+      "type": {
+        "type": "record",
+        "name": "WeatherConditions",
+        "fields": [
+          {
+            "name": "temperature_k",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "pressure_pa",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "wind_speed_ms",
+            "type": "double",
+            "default": 0.0
+          },
+          {
+            "name": "precipitation_type",
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "cloud_coverage",
+            "type": "double",
+            "default": 0.0
+          }
+        ]
+      },
+      "default": {}
+    },
+    {
+      "name": "storm_systems",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "StormSystem",
+          "fields": [
+            {
+              "name": "type",
+              "type": "string",
+              "default": ""
+            },
+            {
+              "name": "intensity",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "diameter_km",
+              "type": "double",
+              "default": 0.0
+            },
+            {
+              "name": "movement_vector",
+              "type": {
+                "type": "array",
+                "items": "double"
+              },
+              "default": []
+            }
+          ]
+        }
+      },
+      "default": []
+    },
+    {
+      "name": "seasonal_factor",
+      "type": "double",
+      "default": 0.0
+    },
+    {
+      "name": "active_weather_patterns",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": []
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    }
+  ],
+  "version": "1.0.0"
+}

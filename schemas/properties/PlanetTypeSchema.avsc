@@ -1,0 +1,20 @@
+{
+  "type": "enum",
+  "namespace": "CosmosGenesis.properties",
+  "name": "PlanetType",
+  "doc": "Classification of planets based on composition and characteristics.",
+  "symbols": [
+    "TERRESTRIAL",
+    "GAS_GIANT",
+    "ICE_GIANT",
+    "SUPER_EARTH",
+    "MINI_NEPTUNE",
+    "HOT_JUPITER",
+    "LAVA_WORLD",
+    "OCEAN_WORLD",
+    "DESERT_WORLD",
+    "ICE_WORLD",
+    "ROGUE_PLANET"
+  ],
+  "version": "1.0.0"
+}

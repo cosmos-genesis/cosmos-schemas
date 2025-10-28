@@ -1,0 +1,83 @@
+{
+  "type": "record",
+  "name": "OrbitalProperties",
+  "namespace": "CosmosGenesis.properties",
+  "doc": "Orbital properties of a celestial object including distance, period, and orbital elements",
+  "fields": [
+    {
+      "name": "semi_major_axis_au",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Semi-major axis of the orbit in astronomical units (AU)"
+    },
+    {
+      "name": "orbital_period_days",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Time for object to complete one orbit around its parent body in Earth days"
+    },
+    {
+      "name": "eccentricity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null
+    },
+    {
+      "name": "inclination_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Inclination of the orbit in degrees"
+    },
+    {
+      "name": "longitude_of_ascending_node_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Longitude of the ascending node in degrees"
+    },
+    {
+      "name": "argument_of_periapsis_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Argument of periapsis in degrees"
+    },
+    {
+      "name": "mean_anomaly_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean anomaly in degrees"
+    },
+    {
+      "name": "migration_history",
+      "type": {
+        "type": "array",
+        "items": "double"
+      },
+      "default": [],
+      "doc": "Historical semi-major axis values showing migration path"
+    },
+    {
+      "name": "resonances",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": [],
+      "doc": "Orbital resonances with other objects (e.g., '2:1', '3:2')"
+    }
+  ],
+  "version": "1.0.0"
+}
