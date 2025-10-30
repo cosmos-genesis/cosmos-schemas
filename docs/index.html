@@ -543,7 +543,9 @@
             try {
                 // Try to find the schema file
                 const folder = categoryFolders[category.toLowerCase()] || 'miscellaneous';
-                const url = `../${folder}/${schemaName}Schema.avsc`;
+                // Use raw GitHub content URL since GitHub Pages only serves from /docs
+                const baseUrl = 'https://raw.githubusercontent.com/cosmos-genesis/cosmos-schemas/main';
+                const url = `${baseUrl}/${folder}/${schemaName}Schema.avsc`;
 
                 const response = await fetch(url);
                 if (!response.ok) {
@@ -558,7 +560,7 @@
                     <div class="error">
                         <strong>Error loading schema:</strong><br>
                         ${error.message}<br><br>
-                        <small>Attempted URL: ../${categoryFolders[category.toLowerCase()] || 'miscellaneous'}/${schemaName}Schema.avsc</small>
+                        <small>Attempted URL: ${categoryFolders[category.toLowerCase()] || 'miscellaneous'}/${schemaName}Schema.avsc</small>
                     </div>
                 `;
             }
