@@ -1,197 +1,179 @@
-# Cosmos Genesis™ Schemas
+# Cosmos Genesis Schemas
 
-**Open-source schema definitions for Universe-as-a-Service**
+**89 open-source Avro schemas for astrophysical simulation data**
 
-[![Schema Count](https://img.shields.io/badge/schemas-89-blue)](schemas/manifest.yml)
-[![License](https://img.shields.io/badge/license-Apache%202.0-green)](LICENSE)
-[![Website](https://img.shields.io/badge/website-cosmosgenesis.com-cyan)](https://cosmosgenesis.com)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Schema Browser](https://img.shields.io/badge/docs-schema%20browser-green)](https://cosmos-genesis.github.io/cosmos-schemas/)
 
-## Overview
+Cosmos Genesis Schemas provides production-ready data schemas for building universe-scale simulations, spacefaring games, and astrophysical research applications.
 
-This repository contains **89 open-source Avro schema definitions** for astrophysical objects and phenomena used in the Cosmos Genesis platform. These schemas enable researchers, game developers, and space simulation enthusiasts to work with scientifically-validated universe data at trillion-object scale.
+## What's Included
 
-## What's Inside
+### 🌌 Galactic & Cosmic Structures
+- Galaxies, star clusters, nebulae, protoplanetary disks
+- Black holes, dark matter halos, cosmic filaments
 
-### Schema Categories
+### ⭐ Stellar Objects
+- Stars with full stellar evolution parameters
+- Binary and multiple star systems
+- Stellar populations and initial mass functions
 
-- **Celestial Objects** (19 schemas): Stars, planets, moons, asteroids, comets
-- **Cosmic Phenomena** (16 schemas): Black holes, nebulae, protoplanetary disks, supernovae
-- **Physics Models** (8 schemas): Stellar evolution, orbital mechanics, gravitational interactions
-- **Environmental** (12 schemas): Atmospheres, magnetic fields, radiation belts
-- **System Schemas** (11 schemas): Star systems, galaxies, clusters
-- **Biological** (6 schemas): Habitability models, biosignatures
-- **Properties** (9 schemas): Physical constants, material compositions
-- **Temporal** (8 schemas): Time evolution, aging dynamics
+### 🪐 Planetary Systems
+- Planets, moons, asteroid belts, Oort clouds
+- Planetary rings, atmospheres, magnetic fields
+- Orbital mechanics and Keplerian elements
 
-**Total: 89 schemas** | [Browse Full Manifest →](schemas/manifest.yml)
+### ⚛️ Physics & Evolution
+- Stellar evolution (main sequence, giants, supernovae)
+- Atmospheric composition and chemistry
+- Temporal snapshots for universe aging
+
+### 🔬 Scientific Validation
+All schemas implement peer-reviewed astrophysical models:
+- **Stellar masses**: Kroupa (2001) Initial Mass Function
+- **Stellar evolution**: Hurley et al. (2000) Single Stellar Evolution
+- **Atmospheric models**: Gas giant and terrestrial composition
 
 ## Quick Start
 
-### For Researchers
+### Browse the Schemas
+Explore all 89 schemas interactively:
+**[📖 Interactive Schema Browser](https://cosmos-genesis.github.io/cosmos-schemas/)**
 
-```bash
-# Clone the repository
-git clone https://github.com/cosmosgenesis/cosmos-schemas.git
-cd cosmos-schemas
-
-# Explore schema definitions
-cat schemas/manifest.yml
-cat schemas/celestial_objects/StarSchema.avsc
-```
-
-### For Developers
+### Query Data with Python
+Use the [Cosmos Python SDK](https://github.com/cosmos-genesis/cosmos-python-sdk) to query universe data:
 
 ```python
-# Install Python SDK (coming soon)
-pip install cosmos-genesis-client
-
-# Query universe data
 from cosmos_genesis import CosmosClient
 
-client = CosmosClient(api_key="your_api_key")
-stars = client.query("SELECT * FROM star WHERE stellar_mass_msun > 10")
+client = CosmosClient(api_key="your-key")
+results = client.query_galaxy(
+    galaxy_id="spiral-sm-2arm-001",
+    query="SELECT * FROM star WHERE stellar_mass_msun > 10 LIMIT 100"
+)
 ```
 
-## Schema Documentation
+## Use Cases
 
-**[📖 Interactive Schema Browser](https://cosmosgenesis.github.io/cosmos-schemas/)** (GitHub Pages)
+### 🎮 Game Development
+- Elite Dangerous-style space exploration
+- Procedural universe generation with scientific accuracy
+- Persistent universe infrastructure for multiplayer games
 
-Browse all 89 schemas with:
-- Field definitions and types
-- Physics metadata (evolution models, timescales)
-- Relationships between schemas
-- Example queries
+### 🎬 Film & VFX
+- Scientifically-accurate space scenes
+- Consistent universe data across projects
+- Real stellar evolution for time-lapse sequences
 
-## Scientific Validation
+### 🔭 Research & Education
+- Statistical studies of galactic populations
+- Educational simulations with validated physics
+- Reproducible astrophysical experiments
 
-All schemas implement peer-reviewed astrophysics models:
+## Schema Categories
 
-- **Stellar Evolution**: Hurley et al. (2000) Single Star Evolution
-- **Initial Mass Function**: Kroupa (2001) IMF
-- **Galactic Structure**: Bovy (2017) density distributions
-- **Planetary Formation**: Hansen & Murray (2012) migration models
+| Category | Count | Examples |
+|----------|-------|----------|
+| **Celestial** | 15 | Star, Planet, Moon, Asteroid |
+| **Cosmic** | 8 | Galaxy, Nebula, BlackHole, DarkMatterHalo |
+| **Galactic** | 12 | SpiralArm, StarCluster, GalacticDisk |
+| **Orbital** | 9 | OrbitalElements, TidalForces, OortCloud |
+| **Stellar** | 11 | StellarWind, Supernova, BinarySystem |
+| **Environmental** | 14 | Atmosphere, MagneticField, Radiation |
+| **Temporal** | 5 | UniverseTime, Snapshot, EvolutionHistory |
+| **Physics** | 15 | StellarEvolution, AtmosphericChemistry |
 
-**[Read Research Whitepaper →](https://cosmosgenesis.com/#whitepapers)**
+See [manifest.yml](schemas/manifest.yml) for the complete catalog.
 
-## Repository Structure
+## Schema Format
 
-```
-cosmos-schemas/
-├── schemas/               # 89 Avro schema definitions
-│   ├── manifest.yml      # Master schema catalog
-│   ├── celestial_objects/
-│   ├── cosmic_phenomena/
-│   ├── physics/
-│   └── ...
-├── docs/
-│   └── schema-browser/   # Auto-generated HTML documentation
-├── tools/
-│   ├── validate_schema.py
-│   └── generate_docs.py
-└── examples/
-    └── sample-data/      # Small sample datasets
-```
+All schemas are defined in [Apache Avro](https://avro.apache.org/) format:
 
-## Usage Examples
-
-### Querying Star Data
-
-```sql
--- Find massive O-type stars
-SELECT
-  system_id,
-  stellar_mass_msun,
-  luminosity_lsun,
-  age_myr
-FROM star
-WHERE
-  spectral_type = 'O'
-  AND stellar_mass_msun > 20
-LIMIT 100;
-```
-
-### Analyzing Exoplanet Populations
-
-```sql
--- Rocky planets in habitable zone
-SELECT
-  planet_id,
-  mass_earth,
-  semi_major_axis_au,
-  equilibrium_temperature_k
-FROM planet
-WHERE
-  planet_type = 'ROCKY'
-  AND semi_major_axis_au BETWEEN 0.95 AND 1.37  -- Sun-like star HZ
-  AND mass_earth BETWEEN 0.5 AND 5.0;
-```
-
-## API Access
-
-Cosmos Genesis provides **cloud-native API access** to trillion-object universe datasets:
-
-- **No HPC required** - Query from any machine with AWS credentials
-- **SQL interface** - Standard Athena queries via boto3
-- **Reproducible experiments** - Deterministic seeding with `galaxy_id`
-- **Academic pricing** - $500/month for 10M+ star systems
-
-**[Apply for Research Access →](https://cosmosgenesis.com/#beta-signup)**
-
-## Pricing
-
-| Tier | Monthly | Scale | Target |
-|------|---------|-------|--------|
-| **Academic** | $500 | 10M systems | Researchers with .edu email |
-| **Creator** | $300 | 10M systems | Indie developers, small studios |
-| **Studio** | $2,500 | 100M systems | Mid-size studios, research labs |
-| **Franchise** | Custom | 10B+ objects | AAA studios, space agencies |
-
-**First 50 customers: 20% lifetime discount**
-
-## Contributing
-
-Schema improvements welcome! Please:
-
-1. Fork this repository
-2. Make changes to schema `.avsc` files
-3. Run `python tools/validate_schema.py`
-4. Submit pull request with rationale
-
-**Note:** These schemas are **derived from** our private production system. Complex changes may require coordination with the core team.
-
-## Citation
-
-If you use Cosmos Genesis data in research, please cite:
-
-```bibtex
-@software{cosmosgenesis2025,
-  author = {Edwards, Shawn},
-  title = {Cosmos Genesis: Universe-as-a-Service},
-  year = {2025},
-  url = {https://github.com/cosmosgenesis/cosmos-schemas},
-  doi = {10.5281/zenodo.XXXXXXX}
+```json
+{
+  "type": "record",
+  "name": "Star",
+  "namespace": "com.cosmosgenesis.schemas.celestial",
+  "fields": [
+    {"name": "star_id", "type": "string"},
+    {"name": "stellar_mass_msun", "type": "double"},
+    {"name": "stellar_type", "type": "string"},
+    {"name": "age_myr", "type": "double"}
+  ]
 }
 ```
 
+## Installation
+
+### Clone the Repository
+```bash
+git clone https://github.com/cosmos-genesis/cosmos-schemas.git
+cd cosmos-schemas
+```
+
+### Validate Schemas
+```bash
+python -m schemas.tools.validate_table_names
+python -m schemas.tools.audit_schema_defaults
+```
+
+### Normalize Manifest
+```bash
+# Dry run (report only)
+python -m schemas.tools.normalize_manifest
+
+# Write changes
+python -m schemas.tools.normalize_manifest --write
+```
+
+## Documentation
+
+- **[Schema Browser](https://cosmos-genesis.github.io/cosmos-schemas/)** - Interactive documentation
+- **[Python SDK](https://github.com/cosmos-genesis/cosmos-python-sdk)** - Query interface and examples
+- **[manifest.yml](schemas/manifest.yml)** - Complete schema catalog with physics metadata
+
+## Contributing
+
+We welcome contributions! Please:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/new-schema`)
+3. Add your schema in the appropriate category directory
+4. Update `manifest.yml` with schema metadata
+5. Run validation: `python -m schemas.tools.validate_table_names`
+6. Submit a pull request
+
+### Schema Contribution Guidelines
+
+- Use descriptive field names with units (e.g., `mass_msun` for solar masses)
+- Include `"default": null` for all optional fields
+- Follow naming conventions: PascalCase for schema names, snake_case for fields
+- Add physics metadata to manifest (evolution model, timescale, priority)
+
 ## License
 
-**Apache License 2.0** - See [LICENSE](LICENSE) for details.
+This project is licensed under the **Apache License 2.0** - see [LICENSE](LICENSE) for details.
 
-Schema definitions are open-source. The Cosmos Genesis platform and generation algorithms remain proprietary.
+## Citation
+
+If you use these schemas in academic work, please cite:
+
+```bibtex
+@software{cosmos_schemas_2025,
+  title = {Cosmos Genesis Schemas: Astrophysical Data Schemas for Universe-Scale Simulations},
+  author = {Cosmos Genesis},
+  year = {2025},
+  url = {https://github.com/cosmos-genesis/cosmos-schemas}
+}
+```
 
 ## Links
 
 - **Website**: [cosmosgenesis.com](https://cosmosgenesis.com)
-- **Interactive Demo**: [demo.cosmosgenesis.com](https://demo.cosmosgenesis.com)
-- **Python SDK**: [cosmos-python-sdk](https://github.com/cosmosgenesis/cosmos-python-sdk) (coming soon)
-- **Documentation**: [docs.cosmosgenesis.com](https://docs.cosmosgenesis.com) (coming soon)
-
-## Contact
-
-- **Email**: info@cosmosgenesis.com
-- **Research Inquiries**: founder@cosmosgenesis.com
-- **Issues**: [GitHub Issues](https://github.com/cosmosgenesis/cosmos-schemas/issues)
+- **Demo**: [demo.cosmosgenesis.com](https://demo.cosmosgenesis.com)
+- **Python SDK**: [github.com/cosmos-genesis/cosmos-python-sdk](https://github.com/cosmos-genesis/cosmos-python-sdk)
+- **Schema Browser**: [cosmos-genesis.github.io/cosmos-schemas](https://cosmos-genesis.github.io/cosmos-schemas/)
 
 ---
 
-**Cosmos Genesis™** - *We build the universe. You build the worlds.™*
+**Built with scientific rigor. Designed for universe-scale applications.**
