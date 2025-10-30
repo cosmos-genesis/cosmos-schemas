@@ -97,6 +97,155 @@
         }
         footer a { color: #60a5fa; text-decoration: none; }
         footer a:hover { text-decoration: underline; }
+
+        /* Slide-out panel styles */
+        .schema-panel {
+            position: fixed;
+            top: 0;
+            right: -600px;
+            width: 600px;
+            height: 100vh;
+            background: #1e293b;
+            border-left: 2px solid #334155;
+            box-shadow: -4px 0 16px rgba(0, 0, 0, 0.5);
+            transition: right 0.3s ease-out;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .schema-panel.open {
+            right: 0;
+        }
+        .panel-header {
+            position: sticky;
+            top: 0;
+            background: #0f172a;
+            padding: 1.5rem;
+            border-bottom: 2px solid #334155;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .panel-title {
+            font-size: 1.5rem;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+        .close-btn:hover {
+            color: #60a5fa;
+        }
+        .panel-content {
+            padding: 1.5rem;
+        }
+        .schema-doc {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 3px solid #60a5fa;
+            color: #cbd5e1;
+            font-style: italic;
+        }
+        .schema-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .meta-item {
+            background: #0f172a;
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+        .meta-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 0.25rem;
+        }
+        .meta-value {
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+        .fields-section h3 {
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .field-item {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            border: 1px solid #334155;
+        }
+        .field-name {
+            color: #34d399;
+            font-weight: bold;
+            font-family: 'Monaco', 'Courier New', monospace;
+            margin-bottom: 0.5rem;
+        }
+        .field-type {
+            color: #fbbf24;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .field-doc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .field-default {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #94a3b8;
+        }
+        .error {
+            background: #7f1d1d;
+            border: 1px solid #991b1b;
+            color: #fca5a5;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .schema-panel {
+                width: 100%;
+                right: -100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -262,5 +411,180 @@
             </p>
         </footer>
     </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Slide-out Schema Panel -->
+    <div class="schema-panel" id="schemaPanel">
+        <div class="panel-header">
+            <div class="panel-title" id="panelTitle">Schema Details</div>
+            <button class="close-btn" id="closeBtn">&times;</button>
+        </div>
+        <div class="panel-content" id="panelContent">
+            <div class="loading">Loading schema...</div>
+        </div>
+    </div>
+
+    <script>
+        const panel = document.getElementById('schemaPanel');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const panelTitle = document.getElementById('panelTitle');
+        const panelContent = document.getElementById('panelContent');
+
+        // Category to folder mapping
+        const categoryFolders = {
+            'temporal': 'temporal',
+            'cosmic phenomena': 'cosmic_phenomena',
+            'miscellaneous': 'miscellaneous',
+            'environmental': 'environmental',
+            'properties': 'properties',
+            'celestial objects': 'celestial_objects',
+            'biological': 'biological',
+            'system schemas': 'system_schemas',
+            'physics': 'physics'
+        };
+
+        function openPanel() {
+            panel.classList.add('open');
+            overlay.classList.add('show');
+        }
+
+        function closePanel() {
+            panel.classList.remove('open');
+            overlay.classList.remove('show');
+        }
+
+        function formatType(type) {
+            if (typeof type === 'string') {
+                return type;
+            }
+            if (Array.isArray(type)) {
+                return type.join(' | ');
+            }
+            if (type.type === 'array') {
+                return `array<${formatType(type.items)}>`;
+            }
+            if (type.type === 'map') {
+                return `map<${formatType(type.values)}>`;
+            }
+            if (type.type === 'enum') {
+                return `enum { ${type.symbols.join(', ')} }`;
+            }
+            if (type.type === 'record') {
+                return `record ${type.name}`;
+            }
+            return JSON.stringify(type);
+        }
+
+        function renderField(field, depth = 0) {
+            const indent = depth * 1.5;
+            const fieldHtml = `
+                <div class="field-item" style="margin-left: ${indent}rem">
+                    <div class="field-name">${field.name}</div>
+                    <div class="field-type">Type: ${formatType(field.type)}</div>
+                    ${field.doc ? `<div class="field-doc">${field.doc}</div>` : ''}
+                    ${field.default !== undefined ? `<div class="field-default">Default: ${JSON.stringify(field.default)}</div>` : ''}
+                </div>
+            `;
+
+            // If the field type is a record with nested fields, render them
+            let nestedHtml = '';
+            if (typeof field.type === 'object' && field.type.type === 'record' && field.type.fields) {
+                field.type.fields.forEach(nestedField => {
+                    nestedHtml += renderField(nestedField, depth + 1);
+                });
+            }
+            if (typeof field.type === 'object' && field.type.type === 'array' &&
+                typeof field.type.items === 'object' && field.type.items.type === 'record') {
+                field.type.items.fields.forEach(nestedField => {
+                    nestedHtml += renderField(nestedField, depth + 1);
+                });
+            }
+
+            return fieldHtml + nestedHtml;
+        }
+
+        function renderSchema(schema) {
+            return `
+                ${schema.doc ? `<div class="schema-doc">${schema.doc}</div>` : ''}
+
+                <div class="schema-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">Namespace</div>
+                        <div class="meta-value">${schema.namespace || 'N/A'}</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Version</div>
+                        <div class="meta-value">${schema.version || 'N/A'}</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Type</div>
+                        <div class="meta-value">${schema.type}</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">Fields</div>
+                        <div class="meta-value">${schema.fields ? schema.fields.length : 0}</div>
+                    </div>
+                </div>
+
+                <div class="fields-section">
+                    <h3>Fields</h3>
+                    ${schema.fields ? schema.fields.map(field => renderField(field)).join('') : '<p>No fields</p>'}
+                </div>
+            `;
+        }
+
+        async function loadSchema(schemaName, category) {
+            panelContent.innerHTML = '<div class="loading">Loading schema...</div>';
+            openPanel();
+
+            try {
+                // Try to find the schema file
+                const folder = categoryFolders[category.toLowerCase()] || 'miscellaneous';
+                const url = `../${folder}/${schemaName}Schema.avsc`;
+
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const schema = await response.json();
+                panelTitle.textContent = schema.name || schemaName;
+                panelContent.innerHTML = renderSchema(schema);
+            } catch (error) {
+                panelContent.innerHTML = `
+                    <div class="error">
+                        <strong>Error loading schema:</strong><br>
+                        ${error.message}<br><br>
+                        <small>Attempted URL: ../${categoryFolders[category.toLowerCase()] || 'miscellaneous'}/${schemaName}Schema.avsc</small>
+                    </div>
+                `;
+            }
+        }
+
+        // Event listeners
+        closeBtn.addEventListener('click', closePanel);
+        overlay.addEventListener('click', closePanel);
+
+        // Add click handlers to all schema links
+        document.querySelectorAll('.schema-list li a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const schemaName = link.textContent.trim();
+                const categoryCard = link.closest('.category-card');
+                const category = categoryCard ? categoryCard.querySelector('.category-title').textContent : '';
+                loadSchema(schemaName, category);
+            });
+        });
+
+        // Handle keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && panel.classList.contains('open')) {
+                closePanel();
+            }
+        });
+    </script>
 </body>
 </html>
