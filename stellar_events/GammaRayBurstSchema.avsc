@@ -1,0 +1,135 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.stellar_events",
+  "name": "GammaRayBurst",
+  "doc": "Represents a gamma-ray burst (GRB) — the most energetic transient event in the universe. Long GRBs (>2 s) originate from hypernova/collapsar progenitors; short GRBs (<2 s) from compact binary mergers (NS-NS, NS-BH). On-axis GRBs can sterilize systems within a lethal radius of hundreds of light-years.",
+  "fields": [
+    {
+      "name": "grb_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. GRB 221009A format: YYMMDD + letter)",
+      "default": ""
+    },
+    {
+      "name": "grb_type",
+      "type": {
+        "type": "enum",
+        "name": "GRBType",
+        "symbols": [
+          "LONG",
+          "SHORT",
+          "ULTRA_LONG"
+        ],
+        "doc": "Classification by duration: LONG (T90 > 2s, collapsar/hypernova), SHORT (T90 < 2s, compact merger), ULTRA_LONG (T90 > 1000s, blue supergiant collapse)"
+      },
+      "default": "LONG"
+    },
+    {
+      "name": "duration_s",
+      "type": "double",
+      "doc": "T90 duration in seconds (time to emit 90% of total gamma-ray energy).",
+      "default": 30.0
+    },
+    {
+      "name": "isotropic_energy_erg",
+      "type": "double",
+      "doc": "Isotropic equivalent energy release in ergs. Typical: 10^51–10^54 erg.",
+      "default": 1.0e52
+    },
+    {
+      "name": "jet_opening_angle_deg",
+      "type": "double",
+      "doc": "Half-opening angle of the relativistic jet in degrees. Typical: 3–10 degrees.",
+      "default": 5.0
+    },
+    {
+      "name": "lorentz_factor",
+      "type": "double",
+      "doc": "Initial Lorentz factor of the relativistic jet. Typical: 100–1000.",
+      "default": 300.0
+    },
+    {
+      "name": "on_axis",
+      "type": "boolean",
+      "doc": "True if the jet is beamed toward the galaxy plane (on-axis observation possible). Off-axis GRBs are visible only as X-ray afterglows.",
+      "default": false
+    },
+    {
+      "name": "lethal_radius_ly",
+      "type": "double",
+      "doc": "Radius in light-years within which on-axis gamma flux is sufficient to destroy ozone layers and cause mass extinction. Typical: 5–200 LY depending on energy.",
+      "default": 25.0
+    },
+    {
+      "name": "event_time_myr",
+      "type": "long",
+      "doc": "Universe time when the GRB occurred in millions of years.",
+      "default": 0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "spatial_hash",
+      "type": "int",
+      "doc": "Z-order spatial hash for efficient spatial queries. Calculated from (x, y, z) using Morton encoding.",
+      "default": 0
+    },
+    {
+      "name": "grb_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this GRB within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the progenitor star system (if stellar-mass event)"
+    },
+    {
+      "name": "supernova_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the associated Supernova record (for long GRBs from hypernovae)"
+    },
+    {
+      "name": "affected_systems_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Number of star systems within the on-axis lethal radius. Populated after backpropagation."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

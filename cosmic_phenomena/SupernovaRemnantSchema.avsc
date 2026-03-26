@@ -1,0 +1,130 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "SupernovaRemnant",
+  "doc": "Represents a supernova remnant (SNR) — the long-lived expanding shell of gas and dust ejected by a supernova. SNRs persist for 100,000+ years and transition through physical phases: ejecta-dominated, Sedov-Taylor (adiabatic, X-ray bright), radiative/snowplow, and merger with ISM.",
+  "fields": [
+    {
+      "name": "snr_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. Cas A, G1.9+0.3 format)",
+      "default": ""
+    },
+    {
+      "name": "snr_phase",
+      "type": {
+        "type": "enum",
+        "name": "SNRPhase",
+        "symbols": [
+          "EJECTA_DOMINATED",
+          "SEDOV_TAYLOR",
+          "RADIATIVE",
+          "MERGED"
+        ],
+        "doc": "Evolutionary phase: EJECTA_DOMINATED (<200 yr), SEDOV_TAYLOR (adiabatic, X-ray bright), RADIATIVE (cooling, snowplow), MERGED (dissolved into ISM)"
+      },
+      "default": "SEDOV_TAYLOR"
+    },
+    {
+      "name": "radius_ly",
+      "type": "double",
+      "doc": "Current outer shock radius in light-years.",
+      "default": 0.0
+    },
+    {
+      "name": "expansion_velocity_km_s",
+      "type": "double",
+      "doc": "Current outer shock expansion velocity in km/s. Sedov-Taylor: ~2000–10000 km/s; radiative: <200 km/s.",
+      "default": 3000.0
+    },
+    {
+      "name": "age_myr",
+      "type": "double",
+      "doc": "Age since the supernova explosion in millions of years.",
+      "default": 0.0
+    },
+    {
+      "name": "xray_luminosity_erg_s",
+      "type": "double",
+      "doc": "X-ray luminosity in erg/s. Peaks during Sedov-Taylor phase (~10^37–10^38 erg/s for young SNRs).",
+      "default": 1.0e36
+    },
+    {
+      "name": "swept_mass_msun",
+      "type": "double",
+      "doc": "Total ISM mass swept up by the blast wave in solar masses.",
+      "default": 0.0
+    },
+    {
+      "name": "ejecta_mass_msun",
+      "type": "double",
+      "doc": "Mass of stellar material ejected in the explosion in solar masses.",
+      "default": 5.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "spatial_hash",
+      "type": "int",
+      "doc": "Z-order spatial hash for efficient spatial queries. Calculated from (x, y, z) using Morton encoding.",
+      "default": 0
+    },
+    {
+      "name": "snr_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this supernova remnant within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this SNR belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the progenitor star system"
+    },
+    {
+      "name": "supernova_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent Supernova record"
+    },
+    {
+      "name": "central_object_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the central pulsar or black hole (if present)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

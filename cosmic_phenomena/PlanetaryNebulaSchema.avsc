@@ -1,0 +1,143 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "PlanetaryNebula",
+  "doc": "Represents a planetary nebula — the persistent ionized shell of gas expelled by a low-mass star (M < 8 M☉) during its AGB phase. Planetary nebulae are distinct persistent objects (not events) that remain visible for ~100,000 years, ionized by UV from the central white dwarf. Used as the source record for PN backpropagation (UV/ionizing flux erosion of nearby planetary atmospheres).",
+  "fields": [
+    {
+      "name": "pn_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. NGC 7293 / Helix Nebula format)",
+      "default": ""
+    },
+    {
+      "name": "pn_morphology",
+      "type": {
+        "type": "enum",
+        "name": "PNMorphology",
+        "symbols": [
+          "ROUND",
+          "ELLIPTICAL",
+          "BIPOLAR",
+          "QUADRUPOLAR",
+          "IRREGULAR"
+        ],
+        "doc": "Shell morphology: ROUND (spherically symmetric), ELLIPTICAL (most common), BIPOLAR (pinched waist from binary interaction), QUADRUPOLAR, IRREGULAR"
+      },
+      "default": "ELLIPTICAL"
+    },
+    {
+      "name": "radius_ly",
+      "type": "double",
+      "doc": "Current outer shell radius in light-years. Expands at ~10–30 km/s; reaches ~1–2 LY at dissipation.",
+      "default": 0.1
+    },
+    {
+      "name": "expansion_velocity_km_s",
+      "type": "double",
+      "doc": "Shell expansion velocity in km/s. Typical: 10–30 km/s.",
+      "default": 15.0
+    },
+    {
+      "name": "age_myr",
+      "type": "double",
+      "doc": "Age since the AGB ejection in millions of years. Visible phase: < 0.1 Myr.",
+      "default": 0.0
+    },
+    {
+      "name": "central_star_temperature_k",
+      "type": "double",
+      "doc": "Effective temperature of the central white dwarf in Kelvin. Drives ionization: typical 50,000–200,000 K.",
+      "default": 100000.0
+    },
+    {
+      "name": "ionization_radius_ly",
+      "type": "double",
+      "doc": "Strömgren sphere radius in light-years. UV/ionizing flux within this radius affects planetary atmospheres.",
+      "default": 0.2
+    },
+    {
+      "name": "shell_mass_msun",
+      "type": "double",
+      "doc": "Mass of the ejected shell in solar masses. Typical: 0.1–1.0 M☉.",
+      "default": 0.3
+    },
+    {
+      "name": "shell_temperature_k",
+      "type": "double",
+      "doc": "Shell gas temperature in Kelvin. Inner shell: ~10,000–20,000 K; outer: 5,000–10,000 K.",
+      "default": 10000.0
+    },
+    {
+      "name": "ionization_level",
+      "type": "double",
+      "doc": "Mean ionization fraction of the shell (0.0–1.0). High near central star; decreases outward.",
+      "default": 0.8
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "spatial_hash",
+      "type": "int",
+      "doc": "Z-order spatial hash for efficient spatial queries. Used in PN backpropagation join.",
+      "default": 0
+    },
+    {
+      "name": "pn_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this planetary nebula within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this planetary nebula belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the progenitor star system"
+    },
+    {
+      "name": "white_dwarf_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the central WhiteDwarf record"
+    },
+    {
+      "name": "affected_systems_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Number of nearby star systems with atmospheres eroded by UV flux. Populated after PN backpropagation."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}
