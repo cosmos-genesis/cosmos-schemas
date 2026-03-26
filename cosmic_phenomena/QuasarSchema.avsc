@@ -1,0 +1,115 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "Quasar",
+  "doc": "Represents a quasar (quasi-stellar object) — an extremely luminous active galactic nucleus powered by accretion onto a supermassive black hole. Quasars are the most luminous persistent objects in the universe and serve as long-range navigation beacons. Most quasars are at cosmological distances (high redshift), representing the early universe when SMBH growth was most active.",
+  "fields": [
+    {
+      "name": "quasar_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. 3C 273, QSO J1030+0524 format)",
+      "default": ""
+    },
+    {
+      "name": "quasar_type",
+      "type": {
+        "type": "enum",
+        "name": "QuasarType",
+        "symbols": [
+          "RADIO_LOUD",
+          "RADIO_QUIET",
+          "BROAD_ABSORPTION_LINE",
+          "BLAZAR"
+        ],
+        "doc": "Classification: RADIO_LOUD (relativistic jets, ~10% of quasars), RADIO_QUIET (majority), BROAD_ABSORPTION_LINE (outflow winds), BLAZAR (jet pointed toward observer)"
+      },
+      "default": "RADIO_QUIET"
+    },
+    {
+      "name": "bolometric_luminosity_erg_s",
+      "type": "double",
+      "doc": "Total bolometric luminosity in erg/s. Typical: 10^45–10^48 erg/s (10^12–10^15 L☉).",
+      "default": 1.0e46
+    },
+    {
+      "name": "black_hole_mass_msun",
+      "type": "double",
+      "doc": "Central supermassive black hole mass in solar masses. Typical quasar SMBH: 10^8–10^10 M☉.",
+      "default": 1.0e9
+    },
+    {
+      "name": "accretion_rate_eddington",
+      "type": "double",
+      "doc": "Accretion rate as fraction of Eddington rate. Active quasars: 0.01–1.0.",
+      "default": 0.1
+    },
+    {
+      "name": "redshift",
+      "type": "double",
+      "doc": "Cosmological redshift z. Quasars peak at z~2; observed range z=0.06–7.5+.",
+      "default": 2.0
+    },
+    {
+      "name": "jet_present",
+      "type": "boolean",
+      "doc": "True if relativistic jets are present (radio-loud quasars and blazars).",
+      "default": false
+    },
+    {
+      "name": "jet_power_erg_s",
+      "type": "double",
+      "doc": "Relativistic jet kinetic power in erg/s (for radio-loud quasars).",
+      "default": 0.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "quasar_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this quasar within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "black_hole_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the central BlackHole record"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age of the quasar phase in millions of years (quasar activity is typically a transient phase)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

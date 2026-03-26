@@ -1,0 +1,112 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "StarCluster",
+  "doc": "Represents a star cluster — a gravitationally bound group of stars formed from the same molecular cloud. Open clusters are young, loosely bound, and found in galactic disks; globular clusters are ancient, densely packed spherical systems orbiting galactic halos. Star clusters are important for stellar evolution studies (coeval populations) and galactic archaeology.",
+  "fields": [
+    {
+      "name": "cluster_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. M45 Pleiades, NGC 104 47 Tuc format)",
+      "default": ""
+    },
+    {
+      "name": "cluster_type",
+      "type": {
+        "type": "enum",
+        "name": "StarClusterType",
+        "symbols": [
+          "OPEN",
+          "GLOBULAR",
+          "SUPER_STAR_CLUSTER",
+          "STELLAR_ASSOCIATION"
+        ],
+        "doc": "Cluster classification: OPEN (young, disk population, <10^4 stars), GLOBULAR (ancient, halo, 10^4–10^6 stars), SUPER_STAR_CLUSTER (massive young cluster, >10^5 M☉), STELLAR_ASSOCIATION (unbound or loosely bound OB/T association)"
+      },
+      "default": "OPEN"
+    },
+    {
+      "name": "star_count",
+      "type": "long",
+      "doc": "Number of member stars. Open: 10–10^4; globular: 10^4–10^6.",
+      "default": 1000
+    },
+    {
+      "name": "total_mass_msun",
+      "type": "double",
+      "doc": "Total stellar mass of the cluster in solar masses.",
+      "default": 500.0
+    },
+    {
+      "name": "age_myr",
+      "type": "double",
+      "doc": "Age of the cluster in millions of years. Open clusters: <1000 Myr; globulars: 10,000–13,000 Myr.",
+      "default": 100.0
+    },
+    {
+      "name": "metallicity",
+      "type": "double",
+      "doc": "Mean metallicity [Fe/H] in dex. Globulars: typically -2.5 to -0.5; open clusters: near-solar.",
+      "default": 0.0
+    },
+    {
+      "name": "core_radius_ly",
+      "type": "double",
+      "doc": "Core radius in light-years (half-mass radius for globulars).",
+      "default": 10.0
+    },
+    {
+      "name": "tidal_radius_ly",
+      "type": "double",
+      "doc": "Tidal (Jacobi) radius in light-years beyond which stars are stripped by the galactic tidal field.",
+      "default": 100.0
+    },
+    {
+      "name": "velocity_dispersion_km_s",
+      "type": "double",
+      "doc": "1D velocity dispersion of member stars in km/s.",
+      "default": 1.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "cluster_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this star cluster within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "parent_molecular_cloud_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent MolecularCloud (for young open clusters still embedded in their birth cloud)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

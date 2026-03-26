@@ -1,0 +1,122 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "HIIRegion",
+  "doc": "Represents an HII region — a cloud of ionized hydrogen (H+) surrounding one or more hot O/B stars. The ultraviolet radiation from young massive stars (T > 25,000 K) photoionizes the surrounding gas, creating a Strömgren sphere. HII regions are among the brightest nebulae in galaxies and trace recent star formation. They gradually disperse as the ionizing stars age and the gas is blown away.",
+  "fields": [
+    {
+      "name": "hii_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. M42 Orion Nebula, NGC 604 format)",
+      "default": ""
+    },
+    {
+      "name": "hii_class",
+      "type": {
+        "type": "enum",
+        "name": "HIIRegionClass",
+        "symbols": [
+          "COMPACT",
+          "ULTRACOMPACT",
+          "CLASSICAL",
+          "GIANT",
+          "SUPERGIANT"
+        ],
+        "doc": "Size/density classification: ULTRACOMPACT (<0.1 pc, >10^4 /cm³, very young), COMPACT (0.1–1 pc), CLASSICAL (1–10 pc), GIANT (>100 pc, multiple OB associations), SUPERGIANT (>1 kpc, starburst-scale)"
+      },
+      "default": "CLASSICAL"
+    },
+    {
+      "name": "stromgren_radius_ly",
+      "type": "double",
+      "doc": "Strömgren radius — the ionization boundary in light-years. Set by balance of ionization and recombination.",
+      "default": 50.0
+    },
+    {
+      "name": "electron_temperature_k",
+      "type": "double",
+      "doc": "Electron temperature of the ionized gas in Kelvin. Typical: 6,000–12,000 K.",
+      "default": 8000.0
+    },
+    {
+      "name": "electron_density_per_cm3",
+      "type": "double",
+      "doc": "Electron number density in per cm³. Ultracompact: >10^4; classical: 10–10^3.",
+      "default": 100.0
+    },
+    {
+      "name": "ionizing_photon_rate_per_s",
+      "type": "double",
+      "doc": "Total Lyman-continuum photon emission rate from ionizing stars in photons/s. Sets the Strömgren radius.",
+      "default": 1.0e49
+    },
+    {
+      "name": "halpha_luminosity_erg_s",
+      "type": "double",
+      "doc": "Hα (656.3 nm) line luminosity in erg/s. Primary observational tracer of HII regions.",
+      "default": 1.0e37
+    },
+    {
+      "name": "ionized_mass_msun",
+      "type": "double",
+      "doc": "Total mass of ionized gas in solar masses.",
+      "default": 1000.0
+    },
+    {
+      "name": "age_myr",
+      "type": "double",
+      "doc": "Age of the HII region since the ionizing stars turned on in millions of years. Typical lifetime: 3–10 Myr.",
+      "default": 1.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "hii_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this HII region within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "parent_molecular_cloud_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent MolecularCloud from which this HII region formed"
+    },
+    {
+      "name": "ionizing_star_system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the dominant ionizing star system (typically most massive O star)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}
