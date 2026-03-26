@@ -1,0 +1,113 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "BrownDwarf",
+  "doc": "Represents a brown dwarf — a sub-stellar object with mass between 13 and 80 Jupiter masses. Brown dwarfs are too low-mass to sustain hydrogen fusion but can fuse deuterium (>13 Mjup) and lithium. They are sampled directly from the sub-stellar IMF and are primary objects, not stellar remnants.",
+  "fields": [
+    {
+      "name": "brown_dwarf_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "spectral_type",
+      "type": {
+        "type": "enum",
+        "name": "BrownDwarfSpectralType",
+        "symbols": [
+          "L",
+          "T",
+          "Y"
+        ],
+        "doc": "Spectral classification: L (dusty, ~1300–2200 K), T (methane, ~700–1300 K), Y (<700 K, coldest known)"
+      },
+      "default": "T"
+    },
+    {
+      "name": "mass_mjup",
+      "type": "double",
+      "doc": "Mass in Jupiter masses. Sub-stellar range: 13–80 Mjup (deuterium-burning to hydrogen-burning limit).",
+      "default": 40.0
+    },
+    {
+      "name": "effective_temperature_k",
+      "type": "double",
+      "doc": "Effective surface temperature in Kelvin.",
+      "default": 1000.0
+    },
+    {
+      "name": "luminosity_lsun",
+      "type": "double",
+      "doc": "Luminosity in solar luminosities. Brown dwarfs are intrinsically faint: ~10^-3 to 10^-6 L☉.",
+      "default": 1.0e-5
+    },
+    {
+      "name": "radius_rjup",
+      "type": "double",
+      "doc": "Radius in Jupiter radii. Brown dwarfs are roughly Jupiter-sized regardless of mass.",
+      "default": 1.0
+    },
+    {
+      "name": "age_myr",
+      "type": "double",
+      "doc": "Age of the brown dwarf in millions of years.",
+      "default": 1000.0
+    },
+    {
+      "name": "has_companion",
+      "type": "boolean",
+      "doc": "True if in a binary or companion system (another star, brown dwarf, or planet).",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "brown_dwarf_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this brown dwarf within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this brown dwarf belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the star system this brown dwarf belongs to (if in a companion orbit)"
+    },
+    {
+      "name": "metallicity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Metallicity [Fe/H] in dex. Inherited from the parent molecular cloud at formation."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

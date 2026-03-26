@@ -1,0 +1,117 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "Magnetar",
+  "doc": "Represents a magnetar — a neutron star with an extraordinarily strong magnetic field (>10^14 G). Magnetars exhibit soft gamma repeater (SGR) bursts and anomalous X-ray pulsar (AXP) behaviour. Their intense fields power sporadic high-energy outbursts that can affect nearby planetary atmospheres. References a parent NeutronStar record.",
+  "fields": [
+    {
+      "name": "magnetar_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "surface_magnetic_field_gauss",
+      "type": "double",
+      "doc": "Surface dipole magnetic field strength in Gauss. Must exceed ~10^14 G to qualify as a magnetar.",
+      "default": 1.0e15
+    },
+    {
+      "name": "spin_period_ms",
+      "type": "double",
+      "doc": "Rotation period in milliseconds. Magnetars are typically slow rotators: 2–12 s (2000–12000 ms).",
+      "default": 5000.0
+    },
+    {
+      "name": "spin_down_rate",
+      "type": "double",
+      "doc": "Period derivative (s/s). Magnetars have anomalously large spin-down rates (~10^-10 s/s).",
+      "default": 1.0e-10
+    },
+    {
+      "name": "burst_energy_erg",
+      "type": "double",
+      "doc": "Typical burst energy per SGR/AXP event in ergs. Giant flares can reach 10^46 erg.",
+      "default": 1.0e41
+    },
+    {
+      "name": "burst_recurrence_yr",
+      "type": "double",
+      "doc": "Mean recurrence time between bursts in years. Active magnetars: ~months; quiescent: decades.",
+      "default": 1.0
+    },
+    {
+      "name": "is_active",
+      "type": "boolean",
+      "doc": "True if the magnetar is in an active bursting phase at the time of snapshot.",
+      "default": true
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "magnetar_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this magnetar within the data lake"
+    },
+    {
+      "name": "neutron_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent NeutronStar record"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this magnetar belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the originating star system"
+    },
+    {
+      "name": "xray_luminosity_erg_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Persistent X-ray luminosity in erg/s between bursts (typically 10^33–10^36 erg/s)"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age since magnetar formation in millions of years. Magnetars are typically young (<10 Myr)."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}
