@@ -1,0 +1,82 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "DomainWall",
+  "doc": "Represents a domain wall — a two-dimensional topological defect in the fabric of spacetime, predicted by certain theories of symmetry-breaking phase transitions in the early universe. Domain walls separate regions of space where a scalar field has settled into different vacuum states. Like cosmic strings, they are cosmological-scale structures that persist from the earliest moments of the universe.",
+  "fields": [
+    {
+      "name": "domain_wall_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "symmetry_group",
+      "type": "string",
+      "doc": "The broken symmetry group that produced this domain wall (e.g. Z₂, discrete subgroup of GUT gauge group).",
+      "default": "Z2"
+    },
+    {
+      "name": "surface_energy_density_gev3",
+      "type": "double",
+      "doc": "Surface energy density in GeV³ (natural units). Sets the wall's mass per unit area and gravitational influence.",
+      "default": 1.0e9
+    },
+    {
+      "name": "thickness_m",
+      "type": "double",
+      "doc": "Physical thickness of the wall in metres. Inversely proportional to the symmetry-breaking energy scale.",
+      "default": 1.0e-15
+    },
+    {
+      "name": "extent_ly",
+      "type": "double",
+      "doc": "Characteristic linear extent of the wall in light-years. Domain walls can span cosmological distances.",
+      "default": 1000000.0
+    },
+    {
+      "name": "formation_time_myr",
+      "type": "long",
+      "doc": "Universe time of the phase transition that created this domain wall in millions of years. Typically near 0 (inflationary era).",
+      "default": 0
+    },
+    {
+      "name": "is_cosmologically_dangerous",
+      "type": "boolean",
+      "doc": "True if the wall's energy density would overclose the universe if stable (motivates need for inflation or annihilation).",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Coordinates of the wall's centre of mass"
+    },
+    {
+      "name": "domain_wall_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this domain wall within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the nearest galaxy (domain walls are cosmological, not gravitationally bound to galaxies)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

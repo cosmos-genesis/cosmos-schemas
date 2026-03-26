@@ -1,0 +1,105 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "HypervelocityStar",
+  "doc": "Represents a hypervelocity star (HVS) — a star ejected from a galaxy at speeds exceeding the galactic escape velocity (>1000 km/s). The Hills mechanism predicts HVS production when a binary star system is tidally disrupted by the central supermassive black hole: one star is captured, the other is flung out at extreme velocity. HVS can also arise from supernova kicks in binary systems or three-body interactions near the galactic centre.",
+  "fields": [
+    {
+      "name": "hvs_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "ejection_mechanism",
+      "type": {
+        "type": "enum",
+        "name": "HVSEjectionMechanism",
+        "symbols": [
+          "HILLS_MECHANISM",
+          "SUPERNOVA_KICK",
+          "THREE_BODY_ENCOUNTER",
+          "GALACTIC_NBODY"
+        ],
+        "doc": "Physical ejection mechanism: HILLS_MECHANISM (SMBH tidal disruption of binary), SUPERNOVA_KICK (asymmetric SN in binary), THREE_BODY_ENCOUNTER (stellar flyby), GALACTIC_NBODY (ejection from galactic n-body relaxation)"
+      },
+      "default": "HILLS_MECHANISM"
+    },
+    {
+      "name": "velocity_km_s",
+      "type": "double",
+      "doc": "Current total velocity in km/s. HVS threshold: >1000 km/s; extreme cases: >3000 km/s.",
+      "default": 1500.0
+    },
+    {
+      "name": "stellar_mass_msun",
+      "type": "double",
+      "doc": "Stellar mass in solar masses.",
+      "default": 3.0
+    },
+    {
+      "name": "stellar_type",
+      "type": "string",
+      "doc": "Spectral type (e.g. B2V, A0V). Most observed HVS are early-type (B/A) stars ejected from the Galactic centre.",
+      "default": "B2V"
+    },
+    {
+      "name": "ejection_time_myr",
+      "type": "long",
+      "doc": "Universe time when the star was ejected in millions of years.",
+      "default": 0
+    },
+    {
+      "name": "distance_from_galactic_centre_ly",
+      "type": "double",
+      "doc": "Current distance from the galactic centre in light-years.",
+      "default": 100000.0
+    },
+    {
+      "name": "is_unbound",
+      "type": "boolean",
+      "doc": "True if the star has sufficient velocity to escape the host galaxy entirely.",
+      "default": true
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "hvs_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this hypervelocity star within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host (or formerly host) galaxy"
+    },
+    {
+      "name": "origin_system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the star system from which this star was ejected (if traceable)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

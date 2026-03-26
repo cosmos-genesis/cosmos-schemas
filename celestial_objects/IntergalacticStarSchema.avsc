@@ -1,0 +1,105 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "IntergalacticStar",
+  "doc": "Represents an intergalactic star — a star found in the vast space between galaxies, having been stripped from its host galaxy by tidal forces during a galaxy interaction or merger. Also called intracluster stars when found within galaxy clusters. Intergalactic stars are typically old, metal-poor population II stars tidally stripped from dwarf satellite galaxies or from the outskirts of larger galaxies.",
+  "fields": [
+    {
+      "name": "intergalactic_star_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "stripping_mechanism",
+      "type": {
+        "type": "enum",
+        "name": "StrippingMechanism",
+        "symbols": [
+          "TIDAL_STRIPPING",
+          "GALAXY_MERGER",
+          "HARASSMENT",
+          "RAM_PRESSURE"
+        ],
+        "doc": "Physical mechanism by which the star was removed from its host galaxy: TIDAL_STRIPPING (gravitational tides), GALAXY_MERGER (major merger event), HARASSMENT (high-speed fly-bys), RAM_PRESSURE (ICM gas pressure)"
+      },
+      "default": "TIDAL_STRIPPING"
+    },
+    {
+      "name": "stellar_mass_msun",
+      "type": "double",
+      "doc": "Stellar mass in solar masses.",
+      "default": 0.8
+    },
+    {
+      "name": "stellar_type",
+      "type": "string",
+      "doc": "Spectral type (e.g. K5V, M2III). Intergalactic stars are predominantly old K/M dwarfs and giants.",
+      "default": "K5V"
+    },
+    {
+      "name": "metallicity",
+      "type": "double",
+      "doc": "Metallicity [Fe/H] in dex. Intergalactic stars are typically metal-poor: -2.5 to -0.5.",
+      "default": -1.0
+    },
+    {
+      "name": "age_myr",
+      "type": "double",
+      "doc": "Stellar age in millions of years. Intergalactic stars are typically ancient: 8,000–13,000 Myr.",
+      "default": 10000.0
+    },
+    {
+      "name": "velocity_km_s",
+      "type": "double",
+      "doc": "Current velocity relative to the local group mean in km/s.",
+      "default": 200.0
+    },
+    {
+      "name": "distance_from_nearest_galaxy_ly",
+      "type": "double",
+      "doc": "Distance from the nearest galaxy in light-years.",
+      "default": 300000.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "intergalactic_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this intergalactic star within the data lake"
+    },
+    {
+      "name": "origin_galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the galaxy from which this star was stripped"
+    },
+    {
+      "name": "origin_system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the originating star system record (if traceable)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -138,8 +138,331 @@ schemas:
     namespace: CosmosGenesis.cosmic_phenomena
     description: AGN/GRB jet descriptors
     compatibility: BACKWARD
+    version: 1.2.0
+    table_name: relativistic_jet
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: STELLAR
+      priority: 2
+  - name: ActiveGalacticNucleus
+    aliases:
+    - ActiveGalacticNucleus
+    - ActiveGalacticNucleusSchema
+    file: schemas/cosmic_phenomena/AGNSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Active galactic nucleus; Seyfert/LINER/blazar unified model; SMBH
+      accretion
+    compatibility: BACKWARD
     version: 1.0.0
-    table_name: relativisticjet
+    table_name: agn
+    primary_key: agn_id
+    physics:
+      supports_aging: true
+      evolution_model: agn_activity
+      timescale: COSMIC
+      priority: 4
+      fields:
+        age: age_myr
+        luminosity: bolometric_luminosity_erg_s
+        black_hole_mass: black_hole_mass_msun
+        accretion_rate: accretion_rate_eddington
+  - name: BrownDwarf
+    aliases:
+    - BrownDwarf
+    - BrownDwarfSchema
+    file: schemas/cosmic_phenomena/BrownDwarfSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Sub-stellar brown dwarf (13–80 Mjup); sampled directly from sub-stellar
+      IMF
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: brown_dwarf
+    primary_key: brown_dwarf_id
+    physics:
+      supports_aging: true
+      evolution_model: brown_dwarf_cooling
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: age_myr
+        temperature: effective_temperature_k
+        luminosity: luminosity_lsun
+  - name: DomainWall
+    aliases:
+    - DomainWall
+    - DomainWallSchema
+    file: schemas/cosmic_phenomena/DomainWallSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: 2D cosmological topological defect from early-universe symmetry-breaking
+      phase transition
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: domain_wall
+    primary_key: domain_wall_id
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: COSMIC
+      priority: 6
+      fields:
+        formation_time: formation_time_myr
+        extent: extent_ly
+  - name: HIIRegion
+    aliases:
+    - HIIRegion
+    - HIIRegionSchema
+    file: schemas/cosmic_phenomena/HIIRegionSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Ionized hydrogen nebula around hot O/B stars; traces active star
+      formation
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: hii_region
+    primary_key: hii_id
+    physics:
+      supports_aging: true
+      evolution_model: hii_expansion
+      timescale: STELLAR
+      priority: 3
+      fields:
+        age: age_myr
+        radius: stromgren_radius_ly
+        electron_temperature: electron_temperature_k
+  - name: Magnetar
+    aliases:
+    - Magnetar
+    - MagnetarSchema
+    file: schemas/cosmic_phenomena/MagnetarSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Magnetar (ultra-strong B-field neutron star); SGR/AXP burst hazard
+      source
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: magnetar
+    primary_key: magnetar_id
+    physics:
+      supports_aging: true
+      evolution_model: magnetar
+      timescale: STELLAR
+      priority: 3
+      fields:
+        age: age_myr
+        spin_period: spin_period_ms
+        magnetic_field: surface_magnetic_field_gauss
+        burst_energy: burst_energy_erg
+  - name: MolecularCloud
+    aliases:
+    - MolecularCloud
+    - MolecularCloudSchema
+    file: schemas/cosmic_phenomena/MolecularCloudSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Cold H₂ molecular cloud; principal star formation site; GMC to Bok
+      globule range
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: molecular_cloud
+    primary_key: molecular_cloud_id
+    physics:
+      supports_aging: true
+      evolution_model: cloud_dispersal
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_msun
+        star_formation_rate: star_formation_rate_msun_yr
+  - name: NeutronStar
+    aliases:
+    - NeutronStar
+    - NeutronStarSchema
+    file: schemas/cosmic_phenomena/NeutronStarSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Neutron star remnant from core-collapse supernovae of 8–25 M☉ progenitors
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: neutron_star
+    primary_key: neutron_star_id
+    physics:
+      supports_aging: true
+      evolution_model: neutron_star
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_msun
+        spin_period: spin_period_ms
+        magnetic_field: magnetic_field_gauss
+  - name: PlanetaryNebula
+    aliases:
+    - PlanetaryNebula
+    - PlanetaryNebulaSchema
+    file: schemas/cosmic_phenomena/PlanetaryNebulaSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Ionized AGB shell around central WD; source record for PN UV backpropagation
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: planetary_nebula
+    primary_key: pn_id
+    physics:
+      supports_aging: true
+      evolution_model: pn_expansion
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: age_myr
+        radius: radius_ly
+        ionization_radius: ionization_radius_ly
+        central_star_temperature: central_star_temperature_k
+  - name: Pulsar
+    aliases:
+    - Pulsar
+    - PulsarSchema
+    file: schemas/cosmic_phenomena/PulsarSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Beamed radio pulsar (rotating neutron star); interstellar navigation
+      beacon
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: pulsar
+    primary_key: pulsar_id
+    physics:
+      supports_aging: true
+      evolution_model: pulsar_spindown
+      timescale: STELLAR
+      priority: 3
+      fields:
+        spin_period: spin_period_ms
+        period_derivative: period_derivative
+        characteristic_age: characteristic_age_myr
+  - name: Quasar
+    aliases:
+    - Quasar
+    - QuasarSchema
+    file: schemas/cosmic_phenomena/QuasarSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Luminous AGN quasar powered by SMBH accretion; long-range navigation
+      beacon
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: quasar
+    primary_key: quasar_id
+    physics:
+      supports_aging: true
+      evolution_model: agn_activity
+      timescale: COSMIC
+      priority: 4
+      fields:
+        age: age_myr
+        luminosity: bolometric_luminosity_erg_s
+        black_hole_mass: black_hole_mass_msun
+        accretion_rate: accretion_rate_eddington
+  - name: RadioGalaxy
+    aliases:
+    - RadioGalaxy
+    - RadioGalaxySchema
+    file: schemas/cosmic_phenomena/RadioGalaxySchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: FR I/II radio galaxy with relativistic jets extending to Mpc scales
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: radio_galaxy
+    primary_key: radio_galaxy_id
+    physics:
+      supports_aging: true
+      evolution_model: radio_lobe_expansion
+      timescale: COSMIC
+      priority: 4
+      fields:
+        age: age_myr
+        jet_length: jet_length_kpc
+        radio_luminosity: radio_luminosity_w_hz
+  - name: StrangeQuarkStar
+    aliases:
+    - StrangeQuarkStar
+    - StrangeQuarkStarSchema
+    file: schemas/cosmic_phenomena/StrangeQuarkStarSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Hypothetical compact remnant composed of deconfined strange quark
+      matter (Witten-Bodmer)
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: strange_quark_star
+    primary_key: quark_star_id
+    physics:
+      supports_aging: true
+      evolution_model: quark_star_cooling
+      timescale: STELLAR
+      priority: 6
+      fields:
+        age: age_myr
+        mass: mass_msun
+        spin_period: spin_period_ms
+        surface_temperature: surface_temperature_k
+  - name: SupernovaRemnant
+    aliases:
+    - SupernovaRemnant
+    - SupernovaRemnantSchema
+    file: schemas/cosmic_phenomena/SupernovaRemnantSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Expanding SNR shell (Sedov-Taylor → radiative phases); X-ray bright
+      for 100,000+ yr
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: supernova_remnant
+    primary_key: snr_id
+    physics:
+      supports_aging: true
+      evolution_model: snr_expansion
+      timescale: STELLAR
+      priority: 3
+      fields:
+        age: age_myr
+        radius: radius_ly
+        expansion_velocity: expansion_velocity_km_s
+        xray_luminosity: xray_luminosity_erg_s
+  - name: WhiteDwarf
+    aliases:
+    - WhiteDwarf
+    - WhiteDwarfSchema
+    file: schemas/cosmic_phenomena/WhiteDwarfSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: White dwarf stellar remnant from low-mass stars (M < 8 M☉) after
+      AGB phase
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: white_dwarf
+    primary_key: white_dwarf_id
+    physics:
+      supports_aging: true
+      evolution_model: white_dwarf_cooling
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: cooling_age_myr
+        mass: mass_msun
+        temperature: temperature_k
+        luminosity: luminosity_lsun
+  - name: Wormhole
+    aliases:
+    - Wormhole
+    - WormholeSchema
+    file: schemas/cosmic_phenomena/WormholeSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Hypothetical traversable spacetime shortcut; two-mouthed Morris-Thorne
+      topology
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: wormhole
+    primary_key: wormhole_id
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: COSMIC
+      priority: 6
+      fields:
+        throat_radius: throat_radius_m
+        is_stable: is_stable
   miscellaneous:
   - name: BinaryCompanion
     aliases:
@@ -553,6 +876,92 @@ schemas:
     compatibility: BACKWARD
     version: 1.0.0
     table_name: vulcanoidproperties
+  stellar_events:
+  - name: GammaRayBurst
+    aliases:
+    - GammaRayBurst
+    - GammaRayBurstSchema
+    file: schemas/stellar_events/GammaRayBurstSchema.avsc
+    namespace: CosmosGenesis.stellar_events
+    description: Gamma-ray burst; cosmological-range transient; on-axis lethal radius
+      for cross-system backpropagation
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: gamma_ray_burst
+    primary_key: grb_id
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: COSMIC
+      priority: 3
+      fields:
+        event_time: event_time_myr
+        lethal_radius: lethal_radius_ly
+  - name: Nova
+    aliases:
+    - Nova
+    - NovaSchema
+    file: schemas/stellar_events/NovaSchema.avsc
+    namespace: CosmosGenesis.stellar_events
+    description: Thermonuclear nova outburst on accreting white dwarf in binary system;
+      recurrence model
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: nova
+    primary_key: nova_id
+    physics:
+      supports_aging: true
+      evolution_model: nova_recurrence
+      timescale: STELLAR
+      priority: 3
+      fields:
+        recurrence_period: recurrence_period_yr
+        accretion_rate: accretion_rate_msun_yr
+        event_time: event_time_myr
+  - name: StellarDeathEvent
+    aliases:
+    - StellarDeathEvent
+    - StellarDeathEventSchema
+    file: schemas/stellar_events/StellarDeathEventSchema.avsc
+    namespace: CosmosGenesis.stellar_events
+    description: Records stellar death events (supernovae, planetary nebulae) for
+      backpropagation to nearby systems
+    compatibility: BACKWARD
+    version: 1.1.0
+    table_name: stellar_death_event
+    primary_key: event_id
+    physics:
+      supports_aging: true
+      evolution_model: expanding_blast_wave
+      timescale: STELLAR
+      priority: 1
+      fields:
+        radius: current_blast_radius_ly
+        max_radius: blast_radius_ly
+        expansion_velocity: expansion_velocity_c
+        event_age: event_time_myr
+  - name: Supernova
+    aliases:
+    - Supernova
+    - SupernovaSchema
+    file: schemas/stellar_events/SupernovaSchema.avsc
+    namespace: CosmosGenesis.stellar_events
+    description: Persistent observable supernova record (core-collapse or thermonuclear);
+      distinct from StellarDeathEvent backprop record
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: supernova
+    primary_key: supernova_id
+    physics:
+      supports_aging: true
+      evolution_model: expanding_blast_wave
+      timescale: STELLAR
+      priority: 2
+      fields:
+        radius: current_blast_radius_ly
+        max_radius: blast_radius_ly
+        expansion_velocity: expansion_velocity_c
+        event_age: event_time_myr
   celestial_objects:
   - name: Asteroid
     aliases:
@@ -734,6 +1143,109 @@ schemas:
     compatibility: BACKWARD
     version: 1.0.0
     table_name: starsystem
+  - name: Comet
+    aliases:
+    - Comet
+    - CometSchema
+    file: schemas/celestial_objects/CometSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Individual comet within an Oort cloud
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: comet
+    primary_key: comet_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: comet_age_myr
+        mass: mass_kg
+        semi_major_axis: orbital_properties.semi_major_axis_au
+  - name: HypervelocityStar
+    aliases:
+    - HypervelocityStar
+    - HypervelocityStarSchema
+    file: schemas/celestial_objects/HypervelocityStarSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Star ejected at >1000 km/s via Hills mechanism, SN kick, or three-body
+      encounter
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: hypervelocity_star
+    primary_key: hvs_id
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: GALACTIC
+      priority: 5
+      fields:
+        ejection_time: ejection_time_myr
+        velocity: velocity_km_s
+  - name: IntergalacticStar
+    aliases:
+    - IntergalacticStar
+    - IntergalacticStarSchema
+    file: schemas/celestial_objects/IntergalacticStarSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Tidally stripped star drifting in intergalactic space; old metal-poor
+      population
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: intergalactic_star
+    primary_key: intergalactic_star_id
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: GALACTIC
+      priority: 5
+      fields:
+        age: age_myr
+        velocity: velocity_km_s
+  - name: RoguePlanet
+    aliases:
+    - RoguePlanet
+    - RoguePlanetSchema
+    file: schemas/celestial_objects/RoguePlanetSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Free-floating planet ejected from a star system via n-body gravitational
+      interaction
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: rogue_planet
+    primary_key: rogue_planet_id
+    physics:
+      supports_aging: true
+      evolution_model: rogue_planet_cooling
+      timescale: STELLAR
+      priority: 5
+      fields:
+        ejection_time: ejection_time_myr
+        mass: mass_earth_masses
+        surface_temperature: surface_temperature_k
+  - name: StarCluster
+    aliases:
+    - StarCluster
+    - StarClusterSchema
+    file: schemas/celestial_objects/StarClusterSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Gravitationally bound star cluster; open (young disk) or globular
+      (ancient halo)
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: star_cluster
+    primary_key: cluster_id
+    physics:
+      supports_aging: true
+      evolution_model: cluster_dissolution
+      timescale: GALACTIC
+      priority: 3
+      fields:
+        age: age_myr
+        mass: total_mass_msun
+        core_radius: core_radius_ly
+        tidal_radius: tidal_radius_ly
   biological:
   - name: Biosignatures
     aliases:

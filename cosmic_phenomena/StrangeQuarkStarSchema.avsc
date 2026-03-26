@@ -1,0 +1,122 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "StrangeQuarkStar",
+  "doc": "Represents a strange quark star — a hypothetical compact stellar remnant composed entirely of strange quark matter (a deconfined mixture of up, down, and strange quarks). If strange quark matter is the true ground state of matter (Witten-Bodmer hypothesis), it would be more stable than ordinary nuclear matter, allowing quark stars to exist as stable objects. Strange quark stars would be more compact than neutron stars of the same mass and may emit a distinctive gravitational wave signature.",
+  "fields": [
+    {
+      "name": "quark_star_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "quark_star_type",
+      "type": {
+        "type": "enum",
+        "name": "QuarkStarType",
+        "symbols": [
+          "BARE_STRANGE",
+          "HYBRID",
+          "COLOR_SUPERCONDUCTING"
+        ],
+        "doc": "Quark star variant: BARE_STRANGE (pure strange quark matter, no hadronic crust), HYBRID (quark core + hadronic envelope), COLOR_SUPERCONDUCTING (paired quark condensate phases)"
+      },
+      "default": "BARE_STRANGE"
+    },
+    {
+      "name": "mass_msun",
+      "type": "double",
+      "doc": "Mass in solar masses. Strange quark stars have a tighter mass-radius relation than neutron stars; typical: 1.0–2.0 M☉.",
+      "default": 1.4
+    },
+    {
+      "name": "radius_km",
+      "type": "double",
+      "doc": "Radius in kilometres. Strange quark stars are more compact than neutron stars: ~8–11 km.",
+      "default": 9.0
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": "double",
+      "doc": "Surface temperature in Kelvin.",
+      "default": 1000000.0
+    },
+    {
+      "name": "spin_period_ms",
+      "type": "double",
+      "doc": "Rotation period in milliseconds. Strange quark stars can spin faster than neutron stars (higher binding energy).",
+      "default": 5.0
+    },
+    {
+      "name": "strange_quark_fraction",
+      "type": "double",
+      "doc": "Fraction of baryonic matter in strange quark form (0.0–1.0). 1.0 for pure strange quark star.",
+      "default": 1.0
+    },
+    {
+      "name": "bag_constant_mev4",
+      "type": "double",
+      "doc": "MIT bag model constant B in MeV⁴. Controls the size and stability of the strange quark phase. Typical: 57–94 MeV/fm³.",
+      "default": 60.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "quark_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this strange quark star within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the originating star system"
+    },
+    {
+      "name": "neutron_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the NeutronStar record from which this quark star may have converted (phase transition)"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age since formation in millions of years"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}
