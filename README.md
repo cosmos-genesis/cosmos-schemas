@@ -1,6 +1,6 @@
 # Cosmos Genesis Schemas
 
-**89 open-source Avro schemas for astrophysical simulation data**
+**111 open-source Avro schemas for astrophysical simulation data**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Schema Browser](https://img.shields.io/badge/docs-schema%20browser-green)](https://cosmos-genesis.github.io/cosmos-schemas/)
@@ -28,6 +28,12 @@ Cosmos Genesis Schemas provides production-ready data schemas for building unive
 - Atmospheric composition and chemistry
 - Temporal snapshots for universe aging
 
+### 💀 Stellar Deaths & Exotic Objects
+- White dwarfs, neutron stars, pulsars, magnetars, brown dwarfs
+- Supernovae, gamma-ray bursts, novae, stellar death events
+- Quasars, AGN, radio galaxies, HII regions, molecular clouds
+- Rogue planets, hypervelocity stars, wormholes, domain walls
+
 ### 🔬 Scientific Validation
 All schemas implement peer-reviewed astrophysical models:
 - **Stellar masses**: Kroupa (2001) Initial Mass Function
@@ -37,7 +43,7 @@ All schemas implement peer-reviewed astrophysical models:
 ## Quick Start
 
 ### Browse the Schemas
-Explore all 89 schemas interactively:
+Explore all 111 schemas interactively:
 **[📖 Interactive Schema Browser](https://cosmos-genesis.github.io/cosmos-schemas/)**
 
 ### Query Data with Python
@@ -74,14 +80,16 @@ results = client.query_galaxy(
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| **Celestial** | 15 | Star, Planet, Moon, Asteroid |
-| **Cosmic** | 8 | Galaxy, Nebula, BlackHole, DarkMatterHalo |
-| **Galactic** | 12 | SpiralArm, StarCluster, GalacticDisk |
-| **Orbital** | 9 | OrbitalElements, TidalForces, OortCloud |
-| **Stellar** | 11 | StellarWind, Supernova, BinarySystem |
-| **Environmental** | 14 | Atmosphere, MagneticField, Radiation |
-| **Temporal** | 5 | UniverseTime, Snapshot, EvolutionHistory |
-| **Physics** | 15 | StellarEvolution, AtmosphericChemistry |
+| **Celestial Objects** | 15 | Star, Planet, Moon, Comet, RoguePlanet |
+| **Cosmic Phenomena** | 24 | BlackHole, Quasar, AGN, Pulsar, BrownDwarf |
+| **Physics** | 21 | GravitationalWave, TidalForces, Thermodynamics |
+| **Properties** | 24 | OrbitalProperties, AtmosphereType, StarType |
+| **Environmental** | 8 | InterstellarMedium, PlanetaryWeather |
+| **Stellar Events** | 4 | Supernova, Nova, GammaRayBurst, StellarDeathEvent |
+| **System Schemas** | 5 | HabitabilityZone, AtmosphericSystem |
+| **Miscellaneous** | 9 | CosmicWeb, GravitationalLens, SpectralSignature |
+| **Biological** | 2 | Biosignatures, CivilizationMarkers |
+| **Temporal** | 1 | EvolutionaryDynamics |
 
 See [manifest.yml](schemas/manifest.yml) for the complete catalog.
 
@@ -162,7 +170,7 @@ If you use these schemas in academic work, please cite:
 @software{cosmos_schemas_2025,
   title = {Cosmos Genesis Schemas: Astrophysical Data Schemas for Universe-Scale Simulations},
   author = {Cosmos Genesis},
-  year = {2025},
+  year = {2026},
   url = {https://github.com/cosmos-genesis/cosmos-schemas}
 }
 ```
