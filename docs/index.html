@@ -53,6 +53,11 @@
             border-bottom: 1px solid var(--color-border);
         }
 
+        @keyframes logo-glow {
+            0%, 100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.9)) drop-shadow(0 0 12px rgba(59,130,246,0.7)) drop-shadow(0 0 28px rgba(59,130,246,0.35)); }
+            50%       { filter: drop-shadow(0 0 5px rgba(255,255,255,1))   drop-shadow(0 0 20px rgba(59,130,246,0.9)) drop-shadow(0 0 48px rgba(59,130,246,0.5)); }
+        }
+
         .logo-wrap {
             display: inline-flex;
             align-items: flex-start;
@@ -60,11 +65,17 @@
             margin-bottom: 1.75rem;
         }
 
+        .logo-wrap a {
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 0.25rem;
+            text-decoration: none;
+        }
+
         .logo-wrap img {
             height: 48px;
             width: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.92;
+            animation: logo-glow 4s ease-in-out infinite;
         }
 
         .logo-tm {
@@ -90,17 +101,32 @@
             margin: 0 auto;
         }
 
+        .footer-logo a {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 0.2rem;
+        }
+
         .footer-logo img {
-            height: 28px;
+            height: 24px;
             width: auto;
-            filter: brightness(0) invert(1);
-            opacity: 0.5;
-            vertical-align: middle;
+            filter: drop-shadow(0 0 6px rgba(59,130,246,0.4));
+            opacity: 0.55;
+            transition: opacity 0.2s, filter 0.2s;
+        }
+
+        .footer-logo a:hover img {
+            opacity: 0.8;
+            filter: drop-shadow(0 0 10px rgba(59,130,246,0.7));
         }
 
         .footer-logo .logo-tm {
             font-size: 0.6rem;
+            color: var(--color-text-3);
             vertical-align: super;
+            line-height: 1;
+            margin-top: 0.15rem;
         }
 
         .stats {
@@ -398,8 +424,10 @@
     <div class="container">
         <header>
             <div class="logo-wrap">
-                <img src="cosmos-genesis-logo.png" alt="Cosmos Genesis">
-                <span class="logo-tm">™</span>
+                <a href="https://cosmosgenesis.com" target="_blank" rel="noopener">
+                    <img src="cosmos-genesis-logo.png" alt="Cosmos Genesis">
+                    <span class="logo-tm">™</span>
+                </a>
             </div>
             <div class="page-title">Schema Browser</div>
             <p class="subtitle">111 open-source Avro schemas for astrophysical simulation data at universe scale</p>
@@ -573,7 +601,10 @@
 
         <footer>
             <p class="footer-logo">
-                <img src="cosmos-genesis-logo.png" alt="Cosmos Genesis"><span class="logo-tm">™</span>
+                <a href="https://cosmosgenesis.com" target="_blank" rel="noopener">
+                    <img src="cosmos-genesis-logo.png" alt="Cosmos Genesis">
+                    <span class="logo-tm">™</span>
+                </a>
             </p>
             <p style="margin-top: 0.75rem; color: var(--color-text-3); font-size: 0.85rem;">
                 We build the universe. You build the worlds.
