@@ -1,0 +1,112 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "MolecularCloud",
+  "doc": "Represents a molecular cloud (MC) — a cold, dense region of the interstellar medium where hydrogen exists primarily in molecular form (H₂). Giant molecular clouds (GMCs) are the principal sites of star formation. The Jeans mass criterion determines which clumps collapse to form stars. Molecular clouds are traced by CO emission and contain turbulent, filamentary substructure.",
+  "fields": [
+    {
+      "name": "cloud_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. Orion Molecular Cloud, W51 format)",
+      "default": ""
+    },
+    {
+      "name": "cloud_class",
+      "type": {
+        "type": "enum",
+        "name": "MolecularCloudClass",
+        "symbols": [
+          "GIANT",
+          "DARK",
+          "INFRARED_DARK",
+          "BOK_GLOBULE"
+        ],
+        "doc": "Classification: GIANT (GMC, >10^4 M☉), DARK (smaller, optically thick), INFRARED_DARK (cold pre-star-forming clump, IRDC), BOK_GLOBULE (small isolated dark cloud, ~1–50 M☉)"
+      },
+      "default": "GIANT"
+    },
+    {
+      "name": "mass_msun",
+      "type": "double",
+      "doc": "Total molecular gas mass in solar masses. Bok globules: 1–50; GMCs: 10^4–10^6.",
+      "default": 100000.0
+    },
+    {
+      "name": "radius_ly",
+      "type": "double",
+      "doc": "Effective radius in light-years. GMCs: 50–300 LY; Bok globules: 0.3–3 LY.",
+      "default": 100.0
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "doc": "Mean gas temperature in Kelvin. Molecular clouds: 10–30 K.",
+      "default": 15.0
+    },
+    {
+      "name": "density_h2_per_cm3",
+      "type": "double",
+      "doc": "Mean H₂ number density in molecules per cm³. Dense cores: 10^3–10^6 /cm³.",
+      "default": 100.0
+    },
+    {
+      "name": "star_formation_rate_msun_yr",
+      "type": "double",
+      "doc": "Current star formation rate in solar masses per year. Typical GMC: 0.01–1 M☉/yr.",
+      "default": 0.1
+    },
+    {
+      "name": "star_formation_efficiency",
+      "type": "double",
+      "doc": "Fraction of cloud mass that will be converted to stars before dispersal (0.0–1.0). Typical: 0.01–0.10.",
+      "default": 0.03
+    },
+    {
+      "name": "turbulent_velocity_km_s",
+      "type": "double",
+      "doc": "RMS turbulent velocity in km/s. Supports cloud against gravitational collapse.",
+      "default": 2.0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "molecular_cloud_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this molecular cloud within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the molecular cloud in millions of years. GMC lifetimes: 10–30 Myr."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

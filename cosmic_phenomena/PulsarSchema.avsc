@@ -1,0 +1,121 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "Pulsar",
+  "doc": "Represents a pulsar — a rapidly rotating neutron star whose beamed radio emission sweeps across the line of sight. Pulsars are precise natural clocks used for interstellar navigation. References a parent NeutronStar record.",
+  "fields": [
+    {
+      "name": "pulsar_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. PSR B1919+21 format)",
+      "default": ""
+    },
+    {
+      "name": "spin_period_ms",
+      "type": "double",
+      "doc": "Rotation period in milliseconds. Normal pulsars: 10–5000 ms; millisecond pulsars: 1.4–30 ms.",
+      "default": 100.0
+    },
+    {
+      "name": "period_derivative",
+      "type": "double",
+      "doc": "Rate of period change (s/s, dimensionless). Indicates spin-down rate due to magnetic dipole radiation.",
+      "default": 1.0e-15
+    },
+    {
+      "name": "dispersion_measure_pc_cm3",
+      "type": "double",
+      "doc": "Dispersion measure in pc/cm³. Integral of electron density along line of sight; used for distance estimation.",
+      "default": 0.0
+    },
+    {
+      "name": "characteristic_age_myr",
+      "type": "double",
+      "doc": "Characteristic age P/(2*Pdot) in millions of years. Approximates time since birth for non-recycled pulsars.",
+      "default": 0.0
+    },
+    {
+      "name": "surface_magnetic_field_gauss",
+      "type": "double",
+      "doc": "Inferred surface magnetic field in Gauss, derived from P and Pdot. Typical: 10^11–10^13 G.",
+      "default": 1.0e12
+    },
+    {
+      "name": "beam_opening_angle_deg",
+      "type": "double",
+      "doc": "Half-opening angle of the radio beam in degrees. Typical 5–30 degrees.",
+      "default": 15.0
+    },
+    {
+      "name": "pulse_width_ms",
+      "type": "double",
+      "doc": "Width of the observed pulse at 50% peak intensity in milliseconds.",
+      "default": 10.0
+    },
+    {
+      "name": "is_millisecond_pulsar",
+      "type": "boolean",
+      "doc": "True if spin period < 30 ms. MSPs are recycled (spun up) by accretion from a binary companion.",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "pulsar_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this pulsar within the data lake"
+    },
+    {
+      "name": "neutron_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent NeutronStar record"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this pulsar belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the originating star system"
+    },
+    {
+      "name": "spin_down_luminosity_erg_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Spin-down luminosity (rotational energy loss rate) in erg/s"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

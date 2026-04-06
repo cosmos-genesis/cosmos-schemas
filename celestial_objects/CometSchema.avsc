@@ -1,0 +1,260 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "Comet",
+  "doc": "Represents an individual comet within an Oort cloud.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy this comet belongs to",
+      "default": ""
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system that contains this comet",
+      "default": ""
+    },
+    {
+      "name": "comet_id",
+      "type": "string",
+      "doc": "Stable identifier for this comet within the data lake",
+      "default": ""
+    },
+    {
+      "name": "object_id",
+      "type": "string",
+      "doc": "Unique identifier for the comet",
+      "default": ""
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "3D coordinates of the comet in the star system"
+    },
+    {
+      "name": "designation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Designation or name of the comet (e.g., COM-system_id-index)"
+    },
+    {
+      "name": "parent_cloud_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "ID of the parent Oort cloud, if the comet originates from a cloud"
+    },
+    {
+      "name": "parent_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the parent star if the comet is star-bound"
+    },
+    {
+      "name": "orbital_configuration",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "CometOrbitalConfiguration",
+          "symbols": [
+            "S_TYPE",
+            "P_TYPE",
+            "CIRCUMTRIPLE",
+            "S_TYPE_BINARY_PAIR"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Orbital configuration for multi-star systems"
+    },
+    {
+      "name": "orbital_properties",
+      "type": {
+        "type": "record",
+        "name": "CometOrbitalProperties",
+        "fields": [
+          {
+            "name": "semi_major_axis_au",
+            "type": "double",
+            "doc": "Semi-major axis of the orbit in astronomical units (AU)",
+            "default": 0.0
+          },
+          {
+            "name": "eccentricity",
+            "type": "double",
+            "doc": "Eccentricity of the orbit (typically 0.85-0.999 for long-period comets)",
+            "default": 0.0
+          },
+          {
+            "name": "inclination_deg",
+            "type": "double",
+            "doc": "Inclination of the orbit in degrees (isotropic distribution, 0-180)",
+            "default": 0.0
+          },
+          {
+            "name": "longitude_of_ascending_node_deg",
+            "type": "double",
+            "doc": "Longitude of the ascending node in degrees",
+            "default": 0.0
+          },
+          {
+            "name": "argument_of_periapsis_deg",
+            "type": "double",
+            "doc": "Argument of periapsis in degrees",
+            "default": 0.0
+          },
+          {
+            "name": "mean_anomaly_deg",
+            "type": "double",
+            "doc": "Mean anomaly in degrees (position in orbit)",
+            "default": 0.0
+          },
+          {
+            "name": "perihelion_distance_au",
+            "type": "double",
+            "doc": "Perihelion distance (closest approach to star) in AU",
+            "default": 0.0
+          },
+          {
+            "name": "aphelion_distance_au",
+            "type": "double",
+            "doc": "Aphelion distance (farthest from star) in AU",
+            "default": 0.0
+          },
+          {
+            "name": "orbital_period_years",
+            "type": "double",
+            "doc": "Time it takes for the comet to complete one orbit in Earth years",
+            "default": 0.0
+          }
+        ]
+      },
+      "doc": "Orbital parameters of the comet",
+      "default": {}
+    },
+    {
+      "name": "nucleus_diameter_km",
+      "type": "double",
+      "doc": "Diameter of the comet nucleus in kilometers",
+      "default": 0.0
+    },
+    {
+      "name": "mass_kg",
+      "type": "double",
+      "doc": "Mass of the comet nucleus in kilograms",
+      "default": 0.0
+    },
+    {
+      "name": "density_g_cm3",
+      "type": "double",
+      "doc": "Density of the comet nucleus in g/cm³ (typically 0.5-1.0 for icy bodies)",
+      "default": 0.0
+    },
+    {
+      "name": "albedo",
+      "type": "double",
+      "doc": "Reflectivity of the comet nucleus surface (0.0 to 1.0, typically 0.02-0.06 for dark nuclei)",
+      "default": 0.0
+    },
+    {
+      "name": "rotation_period_hours",
+      "type": "double",
+      "doc": "Time it takes for the comet nucleus to complete one rotation in hours",
+      "default": 0.0
+    },
+    {
+      "name": "axial_tilt_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Axial tilt (obliquity) in degrees relative to the orbital plane (0-180°). Comet nuclei often have random orientations, affecting outgassing patterns."
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "record",
+        "name": "CometComposition",
+        "fields": [
+          {
+            "name": "volatile_ice_fraction",
+            "type": "double",
+            "doc": "Fraction of volatile ices (H2O, CO2, CO, etc.)",
+            "default": 0.0
+          },
+          {
+            "name": "dust_fraction",
+            "type": "double",
+            "doc": "Fraction of dust and silicate particles",
+            "default": 0.0
+          },
+          {
+            "name": "rock_fraction",
+            "type": "double",
+            "doc": "Fraction of rocky/refractory material",
+            "default": 0.0
+          },
+          {
+            "name": "primary_volatile",
+            "type": "string",
+            "doc": "Primary volatile component (e.g., 'H2O', 'CO2', 'CO')",
+            "default": ""
+          }
+        ]
+      },
+      "doc": "Composition details of the comet nucleus",
+      "default": {}
+    },
+    {
+      "name": "activity_state",
+      "type": {
+        "type": "enum",
+        "name": "CometActivityState",
+        "symbols": [
+          "DORMANT",
+          "ACTIVE",
+          "TRANSITIONAL"
+        ]
+      },
+      "doc": "Current activity state of the comet (DORMANT in Oort cloud, ACTIVE near perihelion)",
+      "default": "DORMANT"
+    },
+    {
+      "name": "is_long_period",
+      "type": "boolean",
+      "default": true,
+      "doc": "Whether this is a long-period comet (>200 year orbital period)"
+    },
+    {
+      "name": "comet_age_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Age of the comet in millions of years (Myr)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    }
+  ]
+}

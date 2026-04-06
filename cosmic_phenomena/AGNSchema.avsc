@@ -1,0 +1,116 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "ActiveGalacticNucleus",
+  "doc": "Represents an active galactic nucleus (AGN) — a compact region at the centre of a galaxy where accretion onto a supermassive black hole releases enormous energy. AGN is the general class; quasars are the most luminous subset. Unified AGN model: orientation-dependent classification (Seyfert 1/2, LINER, quasar, blazar all share the same physical engine).",
+  "fields": [
+    {
+      "name": "agn_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "agn_class",
+      "type": {
+        "type": "enum",
+        "name": "AGNClass",
+        "symbols": [
+          "SEYFERT_1",
+          "SEYFERT_2",
+          "LINER",
+          "QUASAR",
+          "BLAZAR",
+          "NLSY1"
+        ],
+        "doc": "AGN classification under unified model: SEYFERT_1 (broad+narrow lines, unobscured), SEYFERT_2 (narrow lines only, obscured torus), LINER (low ionization), QUASAR (luminous AGN), BLAZAR (jet on-axis), NLSY1 (narrow-line Seyfert 1)"
+      },
+      "default": "SEYFERT_1"
+    },
+    {
+      "name": "bolometric_luminosity_erg_s",
+      "type": "double",
+      "doc": "Total bolometric luminosity in erg/s. Seyferts: 10^42–10^45; quasars: >10^45.",
+      "default": 1.0e44
+    },
+    {
+      "name": "black_hole_mass_msun",
+      "type": "double",
+      "doc": "Central SMBH mass in solar masses.",
+      "default": 1.0e8
+    },
+    {
+      "name": "accretion_rate_eddington",
+      "type": "double",
+      "doc": "Accretion rate as fraction of Eddington rate.",
+      "default": 0.01
+    },
+    {
+      "name": "is_obscured",
+      "type": "boolean",
+      "doc": "True if the accretion disk is obscured by a dusty torus (Seyfert 2 / Type 2 AGN).",
+      "default": false
+    },
+    {
+      "name": "jet_present",
+      "type": "boolean",
+      "doc": "True if relativistic jets are present.",
+      "default": false
+    },
+    {
+      "name": "xray_luminosity_erg_s",
+      "type": "double",
+      "doc": "Hard X-ray luminosity in erg/s. Key observational AGN diagnostic.",
+      "default": 1.0e43
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "agn_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this AGN within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "black_hole_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the central BlackHole record"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Duration of current AGN activity phase in millions of years"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,116 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "RadioGalaxy",
+  "doc": "Represents a radio galaxy — an elliptical galaxy with an AGN producing powerful relativistic jets that extend far beyond the host galaxy, forming radio lobes visible at megaparsec scales. Classified by the Fanaroff-Riley (FR) scheme: FR I (edge-darkened, lower power) and FR II (edge-brightened with hotspots, higher power).",
+  "fields": [
+    {
+      "name": "radio_galaxy_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "fr_class",
+      "type": {
+        "type": "enum",
+        "name": "FanaroffRileyClass",
+        "symbols": [
+          "FR_I",
+          "FR_II",
+          "FR_HYBRID"
+        ],
+        "doc": "Fanaroff-Riley classification: FR_I (edge-darkened jets, P_radio < 10^25 W/Hz), FR_II (edge-brightened lobes with hotspots, P_radio > 10^25 W/Hz), FR_HYBRID (different FR class per lobe)"
+      },
+      "default": "FR_II"
+    },
+    {
+      "name": "radio_luminosity_w_hz",
+      "type": "double",
+      "doc": "Radio luminosity at 1.4 GHz in W/Hz. FR I/II boundary: ~10^25 W/Hz.",
+      "default": 1.0e26
+    },
+    {
+      "name": "jet_length_kpc",
+      "type": "double",
+      "doc": "Full extent of the radio jet/lobe structure in kiloparsecs. FR II lobes can extend to Mpc scales.",
+      "default": 500.0
+    },
+    {
+      "name": "jet_power_erg_s",
+      "type": "double",
+      "doc": "Total mechanical jet power in erg/s. Typical: 10^43–10^46 erg/s.",
+      "default": 1.0e44
+    },
+    {
+      "name": "lobe_separation_kpc",
+      "type": "double",
+      "doc": "Separation between the two radio lobes in kiloparsecs.",
+      "default": 1000.0
+    },
+    {
+      "name": "hotspot_present",
+      "type": "boolean",
+      "doc": "True if compact hotspots are visible at the lobe termination points (characteristic of FR II).",
+      "default": true
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "radio_galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this radio galaxy within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "agn_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the central AGN record"
+    },
+    {
+      "name": "black_hole_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the central BlackHole record"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age of the radio lobe structure in millions of years"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

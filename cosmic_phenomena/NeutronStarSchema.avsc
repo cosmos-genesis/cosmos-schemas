@@ -1,0 +1,123 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "NeutronStar",
+  "doc": "Represents a neutron star stellar remnant. Neutron stars form from core-collapse supernovae of stars with 8–25 M☉. They are supported by neutron degeneracy pressure with extreme densities (~10^17 kg/m³) and intense magnetic fields. Parent record for Pulsar and Magnetar subtypes.",
+  "fields": [
+    {
+      "name": "neutron_star_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "mass_msun",
+      "type": "double",
+      "doc": "Neutron star mass in solar masses. Typical range 1.1–2.3 M☉; TOV limit ~2.3 M☉.",
+      "default": 1.4
+    },
+    {
+      "name": "radius_km",
+      "type": "double",
+      "doc": "Neutron star radius in kilometers. Typical ~10–13 km.",
+      "default": 11.0
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": "double",
+      "doc": "Surface temperature in Kelvin. Newly formed: ~10^11 K; old: ~10^5 K.",
+      "default": 1000000.0
+    },
+    {
+      "name": "magnetic_field_gauss",
+      "type": "double",
+      "doc": "Surface magnetic field strength in Gauss. Typical pulsars: 10^12 G; magnetars: >10^14 G.",
+      "default": 1.0e12
+    },
+    {
+      "name": "spin_period_ms",
+      "type": "double",
+      "doc": "Rotation period in milliseconds. Ranges from ~1.4 ms (recycled MSPs) to ~10,000 ms (old isolated NS).",
+      "default": 100.0
+    },
+    {
+      "name": "is_pulsar",
+      "type": "boolean",
+      "doc": "True if the neutron star's beam sweeps across the line of sight (observable as a pulsar).",
+      "default": false
+    },
+    {
+      "name": "is_magnetar",
+      "type": "boolean",
+      "doc": "True if magnetic field exceeds ~10^14 G and exhibits burst/flare activity.",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "neutron_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this neutron star within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this neutron star belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the originating star system"
+    },
+    {
+      "name": "snr_association_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the associated supernova remnant (if still within visible SNR shell)"
+    },
+    {
+      "name": "progenitor_mass_msun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mass of the progenitor star before core collapse (solar masses)"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Age since neutron star formation in millions of years"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

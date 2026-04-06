@@ -1,0 +1,115 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "name": "RoguePlanet",
+  "doc": "Represents a rogue planet (free-floating planet, FFP) — a planetary-mass object ejected from its parent star system through gravitational interactions during n-body relaxation. Rogue planets drift through interstellar space unbound to any star. They are a natural output of Tier 4 system n-body relaxation: dynamically unstable configurations produce ejected bodies captured as rogue planet records rather than silently discarded.",
+  "fields": [
+    {
+      "name": "rogue_planet_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "planet_type",
+      "type": {
+        "type": "enum",
+        "name": "RoguePlanetType",
+        "symbols": [
+          "GAS_GIANT",
+          "ICE_GIANT",
+          "SUPER_EARTH",
+          "TERRESTRIAL",
+          "SUB_EARTH"
+        ],
+        "doc": "Planet type classification inherited from the ejected planet"
+      },
+      "default": "GAS_GIANT"
+    },
+    {
+      "name": "mass_earth_masses",
+      "type": "double",
+      "doc": "Planet mass in Earth masses.",
+      "default": 318.0
+    },
+    {
+      "name": "radius_earth_radii",
+      "type": "double",
+      "doc": "Planet radius in Earth radii.",
+      "default": 11.0
+    },
+    {
+      "name": "ejection_velocity_km_s",
+      "type": "double",
+      "doc": "Velocity relative to the local standard of rest at the time of ejection in km/s.",
+      "default": 10.0
+    },
+    {
+      "name": "ejection_time_myr",
+      "type": "long",
+      "doc": "Universe time when the planet was ejected from its parent system in millions of years.",
+      "default": 0
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": "double",
+      "doc": "Effective surface/cloud-top temperature in Kelvin. Without a host star, temperature is set by internal heat only. Gas giants retain residual heat for Gyr.",
+      "default": 50.0
+    },
+    {
+      "name": "has_subsurface_ocean",
+      "type": "boolean",
+      "doc": "True if the rogue planet may harbour a subsurface liquid water ocean maintained by radiogenic or tidal heating (relevant for astrobiological interest).",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "rogue_planet_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this rogue planet within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "origin_system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent star system from which this planet was ejected"
+    },
+    {
+      "name": "origin_planet_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the original Planet record (if the planet existed prior to ejection)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

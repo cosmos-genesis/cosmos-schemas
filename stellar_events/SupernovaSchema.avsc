@@ -1,0 +1,163 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.stellar_events",
+  "name": "Supernova",
+  "doc": "Represents a supernova — the persistent observable record of a core-collapse or thermonuclear stellar explosion. Distinct from StellarDeathEvent (internal backpropagation record): Supernova is the long-lived observable object (visible for thousands of years), while StellarDeathEvent is the internal join record for blast-damage calculations.",
+  "fields": [
+    {
+      "name": "supernova_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. SN 1987A format)",
+      "default": ""
+    },
+    {
+      "name": "supernova_type",
+      "type": {
+        "type": "enum",
+        "name": "SupernovaType",
+        "symbols": [
+          "TYPE_IA",
+          "TYPE_IB",
+          "TYPE_IC",
+          "TYPE_II_P",
+          "TYPE_II_L",
+          "TYPE_IIN",
+          "TYPE_IIB",
+          "HYPERNOVA"
+        ],
+        "doc": "Spectral/physical classification: Type Ia (thermonuclear WD), Ib/Ic (stripped core-collapse), II (hydrogen-envelope core-collapse), Hypernova (M > 40 M☉, GRB progenitor)"
+      },
+      "default": "TYPE_II_P"
+    },
+    {
+      "name": "progenitor_mass_msun",
+      "type": "double",
+      "doc": "Progenitor star mass in solar masses before explosion.",
+      "default": 15.0
+    },
+    {
+      "name": "explosion_energy_erg",
+      "type": "double",
+      "doc": "Total kinetic energy of the explosion in ergs. Typical core-collapse: 10^51 erg (1 foe); hypernovae: 10^52 erg.",
+      "default": 1.0e51
+    },
+    {
+      "name": "peak_luminosity_lsun",
+      "type": "double",
+      "doc": "Peak luminosity in solar luminosities. Type Ia: ~5×10^9 L☉; core-collapse: ~10^9 L☉.",
+      "default": 1.0e9
+    },
+    {
+      "name": "blast_radius_ly",
+      "type": "double",
+      "doc": "Maximum blast wave radius in light-years where significant damage occurs. Scales as ~50 LY × (M/25 M☉)^0.5.",
+      "default": 50.0
+    },
+    {
+      "name": "current_blast_radius_ly",
+      "type": "double",
+      "doc": "Current blast wave radius at snapshot time (light-years). Expands at ~0.01c from event_time_myr.",
+      "default": 0.0
+    },
+    {
+      "name": "expansion_velocity_c",
+      "type": "double",
+      "doc": "Ejecta expansion velocity as fraction of c. Typical: 0.01–0.03c (3000–10000 km/s).",
+      "default": 0.01
+    },
+    {
+      "name": "remnant_type",
+      "type": {
+        "type": "enum",
+        "name": "SupernovaRemnantType",
+        "symbols": [
+          "NEUTRON_STAR",
+          "BLACK_HOLE",
+          "NO_REMNANT"
+        ],
+        "doc": "Compact object left after the explosion. NO_REMNANT for pair-instability supernovae."
+      },
+      "default": "NEUTRON_STAR"
+    },
+    {
+      "name": "event_time_myr",
+      "type": "long",
+      "doc": "Universe time when the explosion occurred in millions of years.",
+      "default": 0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "spatial_hash",
+      "type": "int",
+      "doc": "Z-order spatial hash for efficient spatial queries. Calculated from (x, y, z) using Morton encoding.",
+      "default": 0
+    },
+    {
+      "name": "supernova_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this supernova within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this supernova belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the progenitor star system"
+    },
+    {
+      "name": "remnant_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the resulting NeutronStar or BlackHole record"
+    },
+    {
+      "name": "snr_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the associated SupernovaRemnant record (expanding shell)"
+    },
+    {
+      "name": "affected_systems_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Number of star systems damaged within blast_radius_ly. Populated after backpropagation."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

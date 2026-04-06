@@ -1,0 +1,125 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "WhiteDwarf",
+  "doc": "Represents a white dwarf stellar remnant. White dwarfs form from low-mass stars (M < 8 M☉) after the AGB phase. They are supported by electron degeneracy pressure and cool over billions of years.",
+  "fields": [
+    {
+      "name": "white_dwarf_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "white_dwarf_type",
+      "type": {
+        "type": "enum",
+        "name": "WhiteDwarfType",
+        "symbols": [
+          "DA",
+          "DB",
+          "DC",
+          "DZ",
+          "DQ",
+          "DO"
+        ],
+        "doc": "Spectral classification: DA (hydrogen), DB (helium), DC (featureless), DZ (metal lines), DQ (carbon), DO (ionized helium)"
+      },
+      "default": "DA"
+    },
+    {
+      "name": "mass_msun",
+      "type": "double",
+      "doc": "White dwarf mass in solar masses. Typical range 0.5–1.4 M☉; Chandrasekhar limit is 1.4 M☉.",
+      "default": 0.6
+    },
+    {
+      "name": "radius_earth_radii",
+      "type": "double",
+      "doc": "White dwarf radius in Earth radii. Typical ~1 R_Earth due to electron degeneracy pressure.",
+      "default": 1.0
+    },
+    {
+      "name": "temperature_k",
+      "type": "double",
+      "doc": "Effective surface temperature in Kelvin. Newly formed: ~100,000 K; ancient: <5,000 K.",
+      "default": 25000.0
+    },
+    {
+      "name": "luminosity_lsun",
+      "type": "double",
+      "doc": "Luminosity in solar luminosities. Decreases as white dwarf cools.",
+      "default": 0.001
+    },
+    {
+      "name": "cooling_age_myr",
+      "type": "double",
+      "doc": "Time since white dwarf formation (cooling age) in millions of years.",
+      "default": 0.0
+    },
+    {
+      "name": "is_accreting",
+      "type": "boolean",
+      "doc": "True if accreting mass from a binary companion. Accreting WDs can produce novae or Type Ia supernovae.",
+      "default": false
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "white_dwarf_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this white dwarf within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this white dwarf belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the originating star system"
+    },
+    {
+      "name": "progenitor_mass_msun",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mass of the progenitor star before the AGB phase (solar masses)"
+    },
+    {
+      "name": "age_myr",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Total age of the system since stellar birth in millions of years"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,114 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.cosmic_phenomena",
+  "name": "Wormhole",
+  "doc": "Represents a traversable wormhole — a hypothetical topological shortcut through spacetime connecting two distant regions of the universe. Based on the Lorentzian traversable wormhole solution (Morris-Thorne metric). Requires exotic matter with negative energy density to remain open. Theoretical object included for Universe-as-a-Service worldbuilding completeness.",
+  "fields": [
+    {
+      "name": "wormhole_designation",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "wormhole_type",
+      "type": {
+        "type": "enum",
+        "name": "WormholeType",
+        "symbols": [
+          "TRAVERSABLE",
+          "EINSTEIN_ROSEN",
+          "MICRO",
+          "PRIMORDIAL"
+        ],
+        "doc": "Classification: TRAVERSABLE (Morris-Thorne, passable), EINSTEIN_ROSEN (non-traversable bridge), MICRO (Planck-scale quantum foam), PRIMORDIAL (formed during inflation)"
+      },
+      "default": "TRAVERSABLE"
+    },
+    {
+      "name": "throat_radius_m",
+      "type": "double",
+      "doc": "Radius of the wormhole throat in metres. Traversable: ~10–10^9 m; micro: ~10^-35 m.",
+      "default": 1000.0
+    },
+    {
+      "name": "exotic_matter_density_kg_m3",
+      "type": "double",
+      "doc": "Exotic matter density required to stabilize the throat in kg/m³. Negative values denote negative energy density.",
+      "default": -1.0e10
+    },
+    {
+      "name": "tidal_force_g",
+      "type": "double",
+      "doc": "Tidal force experienced by a traveller at the throat in units of g (9.8 m/s²). <1g for safe traversal.",
+      "default": 0.1
+    },
+    {
+      "name": "transit_time_s",
+      "type": "double",
+      "doc": "Coordinate transit time for a traveller to pass through the wormhole in seconds.",
+      "default": 1.0
+    },
+    {
+      "name": "is_stable",
+      "type": "boolean",
+      "doc": "True if the wormhole is currently in a stable, traversable configuration.",
+      "default": true
+    },
+    {
+      "name": "coordinates_entry",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Coordinates of the entry mouth"
+    },
+    {
+      "name": "coordinates_exit",
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "Coordinates of the exit mouth"
+    },
+    {
+      "name": "wormhole_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this wormhole within the data lake"
+    },
+    {
+      "name": "entry_galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy containing the entry mouth"
+    },
+    {
+      "name": "exit_galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy containing the exit mouth (may differ from entry)"
+    },
+    {
+      "name": "separation_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Coordinate distance between the two wormhole mouths in light-years"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,130 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.stellar_events",
+  "name": "Nova",
+  "doc": "Represents a nova — a thermonuclear runaway event on the surface of an accreting white dwarf in a binary system. Novae are recurrent (hours to centuries between outbursts) and do not destroy the white dwarf. Distinct from Type Ia supernova (which destroys the WD). Novae contribute to galactic chemical enrichment via CNO-processed ejecta.",
+  "fields": [
+    {
+      "name": "nova_designation",
+      "type": "string",
+      "doc": "Standard designation (e.g. Nova Her 2021 format)",
+      "default": ""
+    },
+    {
+      "name": "nova_class",
+      "type": {
+        "type": "enum",
+        "name": "NovaClass",
+        "symbols": [
+          "CLASSICAL",
+          "RECURRENT",
+          "DWARF",
+          "SYMBIOTIC"
+        ],
+        "doc": "Nova classification: CLASSICAL (first observed outburst), RECURRENT (multiple outbursts <100 yr), DWARF (low-amplitude, small ejection), SYMBIOTIC (WD + giant companion)"
+      },
+      "default": "CLASSICAL"
+    },
+    {
+      "name": "peak_luminosity_lsun",
+      "type": "double",
+      "doc": "Peak optical luminosity in solar luminosities. Typical: 10^4–10^6 L☉.",
+      "default": 1.0e5
+    },
+    {
+      "name": "ejected_mass_msun",
+      "type": "double",
+      "doc": "Mass of hydrogen-rich envelope ejected in the outburst in solar masses. Typical: 10^-5–10^-4 M☉.",
+      "default": 1.0e-4
+    },
+    {
+      "name": "ejecta_velocity_km_s",
+      "type": "double",
+      "doc": "Ejecta expansion velocity in km/s. Typical: 500–5000 km/s.",
+      "default": 1000.0
+    },
+    {
+      "name": "recurrence_period_yr",
+      "type": "double",
+      "doc": "Mean time between outbursts in years. Classical novae: centuries to millennia; recurrent: 1–100 yr.",
+      "default": 10000.0
+    },
+    {
+      "name": "accretion_rate_msun_yr",
+      "type": "double",
+      "doc": "Mass accretion rate from companion in solar masses per year. Higher rates → shorter recurrence.",
+      "default": 1.0e-8
+    },
+    {
+      "name": "white_dwarf_mass_msun",
+      "type": "double",
+      "doc": "White dwarf mass in solar masses. Heavier WDs → smaller critical ignition mass → shorter recurrence.",
+      "default": 1.0
+    },
+    {
+      "name": "event_time_myr",
+      "type": "long",
+      "doc": "Universe time of the most recent outburst in millions of years.",
+      "default": 0
+    },
+    {
+      "name": "coordinates",
+      "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "nova_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable identifier for this nova within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the host galaxy"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the binary star system containing the accreting white dwarf"
+    },
+    {
+      "name": "white_dwarf_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Foreign key to the parent WhiteDwarf record"
+    },
+    {
+      "name": "outburst_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Number of observed outbursts for recurrent novae"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was created (for temporal tracking)"
+    }
+  ],
+  "version": "1.0.0"
+}

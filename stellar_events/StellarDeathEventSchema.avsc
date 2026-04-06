@@ -1,0 +1,137 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.stellar_events",
+  "name": "StellarDeathEvent",
+  "doc": "Records stellar death events (supernovae, planetary nebulae) for backpropagation to nearby systems. These events are detected during generation (for stars already dead at t=0) and during aging cycles (for stars that die during simulation). Each event records the location, type, and physical parameters needed to calculate effects on surrounding star systems.",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "Unique identifier for this death event (format: {system_id}_sn_t{time} or {system_id}_nebula_t{time})"
+    },
+    {
+      "name": "system_id",
+      "type": "string",
+      "doc": "Identifier of the star system where the death occurred"
+    },
+    {
+      "name": "galaxy_id",
+      "type": "string",
+      "doc": "Identifier of the galaxy containing this event"
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "DeathEventType",
+        "symbols": [
+          "SUPERNOVA",
+          "PLANETARY_NEBULA"
+        ],
+        "doc": "Type of stellar death event: SUPERNOVA (M > 8 M☉, core collapse) or PLANETARY_NEBULA (M < 8 M☉, AGB envelope ejection)"
+      },
+      "doc": "Type of stellar death event"
+    },
+    {
+      "name": "event_time_myr",
+      "type": "long",
+      "doc": "Universe time when the death event occurred (Myr). For events at initial generation, this is 0. For events during aging, this is the aging timestep when the star crossed its lifetime threshold."
+    },
+    {
+      "name": "progenitor_mass_msun",
+      "type": "double",
+      "doc": "Mass of the progenitor star in solar masses before death. Used to calculate blast radius and energy."
+    },
+    {
+      "name": "remnant_type",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "RemnantType",
+          "symbols": [
+            "BLACK_HOLE",
+            "NEUTRON_STAR",
+            "WHITE_DWARF"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Type of stellar remnant left after death: BLACK_HOLE (M > 25 M☉), NEUTRON_STAR (8-25 M☉), or WHITE_DWARF (M < 8 M☉)"
+    },
+    {
+      "name": "x",
+      "type": "double",
+      "doc": "Galactic X coordinate of event in light-years"
+    },
+    {
+      "name": "y",
+      "type": "double",
+      "doc": "Galactic Y coordinate of event in light-years"
+    },
+    {
+      "name": "z",
+      "type": "double",
+      "doc": "Galactic Z coordinate of event in light-years"
+    },
+    {
+      "name": "blast_radius_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Maximum supernova blast radius in light-years (distance where significant damage occurs). Calculated as 50 LY × (M/25 M☉)^0.5. Null for planetary nebulae."
+    },
+    {
+      "name": "current_blast_radius_ly",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Current blast wave radius in light-years (expands over time at ~0.01c). Starts at 0 at event_time and expands until reaching blast_radius_ly. For planetary nebulae, tracks ionization front expansion."
+    },
+    {
+      "name": "expansion_velocity_c",
+      "type": "double",
+      "default": 0.01,
+      "doc": "Blast wave expansion velocity as fraction of light speed. Typical supernova: 0.01c (3000 km/s). Planetary nebulae: 0.00003c (10 km/s)."
+    },
+    {
+      "name": "ionization_radius_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Ionization radius (Strömgren sphere) in light-years for planetary nebulae. Typically 0.5-5 LY, calculated as 2.0 × nebula_size. Null for supernovae."
+    },
+    {
+      "name": "energy_erg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Total energy released in the event (erg). For supernovae: ~10^51 erg (1 foe). For planetary nebulae: ~10^48 erg."
+    },
+    {
+      "name": "spatial_hash",
+      "type": "int",
+      "doc": "Z-order spatial hash for efficient spatial queries (partition key). Calculated from (x, y, z) coordinates using Morton encoding."
+    },
+    {
+      "name": "affected_systems_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Number of star systems affected by this event (within blast/ionization radius). Populated after backpropagation is applied."
+    },
+    {
+      "name": "universe_time",
+      "type": "long",
+      "doc": "Universe time in Myr when this event record was created (may differ from event_time_myr for retrospective events discovered during generation)"
+    }
+  ],
+  "version": "1.1.0"
+}
