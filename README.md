@@ -185,3 +185,10 @@ If you use these schemas in academic work, please cite:
 ---
 
 **Built with scientific rigor. Designed for universe-scale applications.**
+
+## Federal Identifiers
+
+| | |
+|---|---|
+| UEI | `FT5TH3QW8PC3` |
+| CAGE | [1ETL9](https://cage.dla.mil/Search) |
