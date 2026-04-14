@@ -7,7 +7,13 @@
     {
       "name": "galaxy_id",
       "type": "string",
-      "doc": "Unique identifier for the galaxy",
+      "doc": "Unique run identifier (UUID) for this generation — stable partition key, unique per run",
+      "default": ""
+    },
+    {
+      "name": "galaxy_name",
+      "type": "string",
+      "doc": "User-provided display name for the galaxy (e.g. 'Milky Way'). Drives all deterministic seeding in the Spark pipeline — same galaxy_name + seed always reproduces identical output.",
       "default": ""
     },
     {

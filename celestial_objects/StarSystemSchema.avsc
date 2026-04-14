@@ -12,7 +12,16 @@
         "string"
       ],
       "default": null,
-      "doc": "Identifier of the galaxy this system belongs to"
+      "doc": "Unique run identifier (UUID) of the parent galaxy — partition key"
+    },
+    {
+      "name": "galaxy_name",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "User-provided display name of the parent galaxy. Drives deterministic seeding: system_id = '{galaxy_name}_system_{N}', system_designation = 'CG-{galaxy_name[:4]}-{hash}'."
     },
     {
       "name": "system_id",
