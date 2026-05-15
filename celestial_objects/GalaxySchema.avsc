@@ -13,7 +13,7 @@
     {
       "name": "galaxy_name",
       "type": "string",
-      "doc": "User-provided display name for the galaxy (e.g. 'Milky Way'). Drives all deterministic seeding in the Spark pipeline — same galaxy_name + seed always reproduces identical output.",
+      "doc": "User-provided name for the galaxy (e.g. 'Milky Way'). Drives all deterministic seeding — same name + seed always reproduces the same output across multiple runs.",
       "default": ""
     },
     {
@@ -30,6 +30,20 @@
       },
       "doc": "The morphological classification of the galaxy",
       "default": "SPIRAL"
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "GalaxyStatus",
+        "symbols": [
+          "GENERATING",
+          "COMPLETE",
+          "FAILED"
+        ]
+      },
+      "doc": "Generation status: GENERATING (in progress), COMPLETE (finished), FAILED (error occurred)",
+      "default": "COMPLETE"
     },
     {
       "name": "properties",
@@ -80,6 +94,85 @@
                     "type": "double",
                     "doc": "Fuzziness factor for spiral arms",
                     "default": 0.0
+                  },
+                  {
+                    "name": "pattern_speed_km_s_kpc",
+                    "type": "double",
+                    "doc": "Spiral arm pattern speed in km/s/kpc (Omega_p). Typical: 20-30 km/s/kpc. Arms rotate slower than stars (density wave theory).",
+                    "default": 25.0
+                  },
+                  {
+                    "name": "corotation_radius_kpc",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Corotation radius in kpc where stellar angular velocity equals pattern speed: Ω(R_CR) = Ω_p. Typical: 8-12 kpc for Milky Way."
+                  },
+                  {
+                    "name": "inner_lindblad_resonance_kpc",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Inner Lindblad Resonance radius in kpc where: Ω - κ/m = Ω_p. Inner boundary of spiral arms."
+                  },
+                  {
+                    "name": "outer_lindblad_resonance_kpc",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Outer Lindblad Resonance radius in kpc where: Ω + κ/m = Ω_p. Outer boundary of spiral arms."
+                  },
+                  {
+                    "name": "potential_amplitude_kpc2_myr2",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Amplitude of spiral gravitational potential perturbation in kpc²/Myr² units. Typical: 200-500. Controls arm strength. Used in Φ_spiral = A × cos(m×θ - k_r×r - Ω_p×t)."
+                  },
+                  {
+                    "name": "pitch_angle_deg",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Pitch angle of spiral arms in degrees. Typical: 10-25°. Used to calculate radial wavenumber k_r = m/(r×tan(pitch))."
+                  },
+                  {
+                    "name": "scale_length_kpc",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Exponential scale length of galaxy disk in kpc. Typical: 3-5 kpc. Used for surface density Σ(r) = Σ_0 × exp(-r/R_d)."
+                  },
+                  {
+                    "name": "circular_velocity_km_s",
+                    "type": [
+                      "null",
+                      "double"
+                    ],
+                    "default": null,
+                    "doc": "Circular velocity for flat rotation curve in km/s. Calculated from V_c = Ω_p × R_CR at corotation. Typical: 180-250 km/s. Used for equilibrium initial velocities."
+                  },
+                  {
+                    "name": "rotation_direction",
+                    "type": {
+                      "type": "enum",
+                      "name": "ArmWindingDirection",
+                      "symbols": ["CCW", "CW"]
+                    },
+                    "doc": "Spiral arm winding direction as viewed from galactic north. CCW = counter-clockwise (majority of observed galaxies), CW = clockwise.",
+                    "default": "CCW"
                   }
                 ]
               }
@@ -114,6 +207,12 @@
             "type": "string",
             "doc": "Human-readable description of the galaxy",
             "default": ""
+          },
+          {
+            "name": "seed",
+            "type": ["null", "long"],
+            "doc": "PRNG seed used to generate this galaxy — same seed + same params reproduces an identical galaxy",
+            "default": null
           },
           {
             "name": "performance_metrics",
@@ -303,6 +402,39 @@
       ],
       "default": null,
       "doc": "JSON-encoded morphology parameters for spatial distribution (scale_length_kpc, scale_height_ly, num_arms, pitch_angle_deg, etc.)"
+    },
+    {
+      "name": "velocity",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "GalaxyVelocity",
+          "fields": [
+            {
+              "name": "x",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Velocity component in x direction (m/s)"
+            },
+            {
+              "name": "y",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Velocity component in y direction (m/s)"
+            },
+            {
+              "name": "z",
+              "type": "double",
+              "default": 0.0,
+              "doc": "Velocity component in z direction (m/s)"
+            }
+          ],
+          "doc": "Proper motion velocity vector of the galaxy through the universe (m/s)"
+        }
+      ],
+      "default": null,
+      "doc": "Galaxy proper motion velocity vector (null for static galaxies). Typical galaxy velocities range from 100-1000 km/s relative to local group."
     }
   ],
   "version": "1.0.0"
