@@ -83,6 +83,15 @@
       "default": 0.0
     },
     {
+      "name": "axial_tilt_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Axial tilt (obliquity) in degrees relative to the orbital plane (0-180°). Asteroids often have random orientations due to collisions."
+    },
+    {
       "name": "orbital_properties",
       "type": {
         "type": "record",
@@ -104,6 +113,36 @@
             "name": "inclination_deg",
             "type": "double",
             "doc": "Inclination of the orbit in degrees",
+            "default": 0.0
+          },
+          {
+            "name": "longitude_of_ascending_node_deg",
+            "type": "double",
+            "doc": "Longitude of the ascending node in degrees",
+            "default": 0.0
+          },
+          {
+            "name": "argument_of_periapsis_deg",
+            "type": "double",
+            "doc": "Argument of periapsis in degrees",
+            "default": 0.0
+          },
+          {
+            "name": "mean_anomaly_deg",
+            "type": "double",
+            "doc": "Mean anomaly in degrees (position in orbit)",
+            "default": 0.0
+          },
+          {
+            "name": "perihelion_distance_au",
+            "type": "double",
+            "doc": "Perihelion distance (closest approach to star) in AU",
+            "default": 0.0
+          },
+          {
+            "name": "aphelion_distance_au",
+            "type": "double",
+            "doc": "Aphelion distance (farthest from star) in AU",
             "default": 0.0
           },
           {
@@ -187,6 +226,12 @@
       ],
       "default": null,
       "doc": "Identifier of the parent moon if the asteroid is captured by a moon"
+    },
+    {
+      "name": "is_visitor",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether this asteroid is an interstellar visitor on a hyperbolic trajectory (e.g. ʻOumuamua)"
     },
     {
       "name": "is_near_earth_object",

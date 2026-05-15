@@ -26,125 +26,19 @@ schemas:
     description: Represents a disk of gas and dust surrounding a young star, from
       which planets form.
     compatibility: BACKWARD
-    version: 1.0.0
-    table_name: protoplanetarydisk
+    version: 1.1.0
+    table_name: protoplanetary_disk
     primary_key: disk_id
     physics:
       supports_aging: true
-      evolution_model: temporal_simple
+      evolution_model: protoplanetary_disk
       timescale: STELLAR
       priority: 1
       fields:
         age: disk_age_myr
         mass: total_mass_em
-  - name: BlackHole
-    aliases:
-    - BlackHole
-    - BlackHoleSchema
-    file: schemas/cosmic_phenomena/BlackHoleSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Black hole properties and environments
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: blackhole
-    primary_key: black_hole_id
-    physics:
-      supports_aging: true
-      evolution_model: black_hole
-      timescale: COSMIC
-      priority: 1
-      fields:
-        age: age_myr
-        mass: mass_msun
-        spin: spin_parameter
         accretion_rate: accretion_rate_msun_yr
-        jet_power: jet_power_erg_s
-  - name: CosmicString
-    aliases:
-    - CosmicString
-    - CosmicStringSchema
-    file: schemas/cosmic_phenomena/CosmicStringSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Hypothetical cosmic string parameters
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: cosmicstring
-  - name: DarkEnergyDynamics
-    aliases:
-    - DarkEnergyDynamics
-    - DarkEnergyDynamicsSchema
-    file: schemas/cosmic_phenomena/DarkEnergyDynamicsSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Cosmological dark energy models
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: darkenergydynamics
-  - name: DarkMatterDistribution
-    aliases:
-    - DarkMatterDistribution
-    - DarkMatterDistributionSchema
-    file: schemas/cosmic_phenomena/DarkMatterDistributionSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Dark-matter densities and shapes
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: darkmatterdistribution
-  - name: DustCloud
-    aliases:
-    - DustCloud
-    - DustCloudSchema
-    file: schemas/cosmic_phenomena/DustCloudSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Dust distributions and grain properties
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: dustcloud
-  - name: Nebula
-    aliases:
-    - Nebula
-    - NebulaSchema
-    file: schemas/cosmic_phenomena/NebulaSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Nebular types and parameters
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: nebula
-    primary_key: nebula_id
-    physics:
-      supports_aging: true
-      evolution_model: temporal_simple
-      timescale: STELLAR
-      priority: 1
-      fields:
-        age: nebula_age_myr
-        mass: mass_solar_masses
-        radius: size_ly
-        temperature: temperature_k
-  - name: PrimordialBlackHole
-    aliases:
-    - PrimordialBlackHole
-    - PrimordialBlackHoleSchema
-    file: schemas/cosmic_phenomena/PrimordialBlackHoleSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: Primordial black hole population parameters
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: primordialblackhole
-  - name: RelativisticJet
-    aliases:
-    - RelativisticJet
-    - RelativisticJetSchema
-    file: schemas/cosmic_phenomena/RelativisticJetSchema.avsc
-    namespace: CosmosGenesis.cosmic_phenomena
-    description: AGN/GRB jet descriptors
-    compatibility: BACKWARD
-    version: 1.2.0
-    table_name: relativistic_jet
-    physics:
-      supports_aging: false
-      evolution_model: static
-      timescale: STELLAR
-      priority: 2
+        photoevap_rate: photoevap_rate_msun_yr
   - name: ActiveGalacticNucleus
     aliases:
     - ActiveGalacticNucleus
@@ -167,6 +61,28 @@ schemas:
         luminosity: bolometric_luminosity_erg_s
         black_hole_mass: black_hole_mass_msun
         accretion_rate: accretion_rate_eddington
+  - name: BlackHole
+    aliases:
+    - BlackHole
+    - BlackHoleSchema
+    file: schemas/cosmic_phenomena/BlackHoleSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Black hole properties and environments
+    compatibility: BACKWARD
+    version: 1.1.0
+    table_name: black_hole
+    primary_key: black_hole_id
+    physics:
+      supports_aging: true
+      evolution_model: black_hole
+      timescale: COSMIC
+      priority: 1
+      fields:
+        age: age_myr
+        mass: mass_msun
+        spin: spin_parameter
+        accretion_rate: accretion_rate_msun_yr
+        jet_power: jet_power_erg_s
   - name: BrownDwarf
     aliases:
     - BrownDwarf
@@ -188,6 +104,36 @@ schemas:
         age: age_myr
         temperature: effective_temperature_k
         luminosity: luminosity_lsun
+  - name: CosmicString
+    aliases:
+    - CosmicString
+    - CosmicStringSchema
+    file: schemas/cosmic_phenomena/CosmicStringSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Hypothetical cosmic string parameters
+    compatibility: BACKWARD
+    version: 1.1.0
+    table_name: cosmic_string
+  - name: DarkEnergyDynamics
+    aliases:
+    - DarkEnergyDynamics
+    - DarkEnergyDynamicsSchema
+    file: schemas/cosmic_phenomena/DarkEnergyDynamicsSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Cosmological dark energy models
+    compatibility: BACKWARD
+    version: 1.1.0
+    table_name: darkenergydynamics
+  - name: DarkMatterDistribution
+    aliases:
+    - DarkMatterDistribution
+    - DarkMatterDistributionSchema
+    file: schemas/cosmic_phenomena/DarkMatterDistributionSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Dark-matter densities and shapes
+    compatibility: BACKWARD
+    version: 1.1.0
+    table_name: darkmatterdistribution
   - name: DomainWall
     aliases:
     - DomainWall
@@ -208,6 +154,21 @@ schemas:
       fields:
         formation_time: formation_time_myr
         extent: extent_ly
+  - name: DustCloud
+    aliases:
+    - DustCloud
+    - DustCloudSchema
+    file: schemas/cosmic_phenomena/DustCloudSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Dust distributions and grain properties
+    compatibility: BACKWARD
+    version: 1.2.0
+    table_name: dust_cloud
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: STELLAR
+      priority: 2
   - name: HIIRegion
     aliases:
     - HIIRegion
@@ -272,6 +233,27 @@ schemas:
         age: age_myr
         mass: mass_msun
         star_formation_rate: star_formation_rate_msun_yr
+  - name: Nebula
+    aliases:
+    - Nebula
+    - NebulaSchema
+    file: schemas/cosmic_phenomena/NebulaSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Nebular types and parameters
+    compatibility: BACKWARD
+    version: 1.3.0
+    table_name: nebula
+    primary_key: nebula_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: nebula_age_myr
+        mass: mass_solar_masses
+        radius: size_ly
+        temperature: temperature_k
   - name: NeutronStar
     aliases:
     - NeutronStar
@@ -314,6 +296,27 @@ schemas:
         radius: radius_ly
         ionization_radius: ionization_radius_ly
         central_star_temperature: central_star_temperature_k
+  - name: PrimordialBlackHole
+    aliases:
+    - PrimordialBlackHole
+    - PrimordialBlackHoleSchema
+    file: schemas/cosmic_phenomena/PrimordialBlackHoleSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: Primordial black hole population parameters
+    compatibility: BACKWARD
+    version: 1.3.0
+    table_name: primordial_black_hole
+    physics:
+      supports_aging: true
+      evolution_model: hawking_evaporation
+      timescale: COSMIC
+      priority: 1
+      fields:
+        age: age_myr
+        mass: current_mass_g
+        lifetime: remaining_lifetime_s
+        temperature: hawking_temperature_k
+        evaporation_rate: evaporation_rate_g_s
   - name: Pulsar
     aliases:
     - Pulsar
@@ -377,6 +380,21 @@ schemas:
         age: age_myr
         jet_length: jet_length_kpc
         radio_luminosity: radio_luminosity_w_hz
+  - name: RelativisticJet
+    aliases:
+    - RelativisticJet
+    - RelativisticJetSchema
+    file: schemas/cosmic_phenomena/RelativisticJetSchema.avsc
+    namespace: CosmosGenesis.cosmic_phenomena
+    description: AGN/GRB jet descriptors
+    compatibility: BACKWARD
+    version: 1.2.0
+    table_name: relativistic_jet
+    physics:
+      supports_aging: false
+      evolution_model: static
+      timescale: STELLAR
+      priority: 2
   - name: StrangeQuarkStar
     aliases:
     - StrangeQuarkStar
@@ -472,8 +490,20 @@ schemas:
     namespace: CosmosGenesis.miscellaneous
     description: Binary companion relationships
     compatibility: BACKWARD
-    version: 1.0.0
-    table_name: binarycompanion
+    version: 1.2.0
+    table_name: binary_companion
+    primary_key: companion_id
+    physics:
+      supports_aging: true
+      evolution_model: binary_stellar
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: age_myr
+        mass: mass_solar_masses
+        semi_major_axis: semi_major_axis_au
+        eccentricity: eccentricity
+        mass_transfer_rate: mass_transfer_rate_msun_yr
   - name: CelestialObjectIdentifier
     aliases:
     - CelestialObjectIdentifier
@@ -583,7 +613,7 @@ schemas:
     namespace: CosmosGenesis.environmental
     description: ISM parameters (density, temperature, phases)
     compatibility: BACKWARD
-    version: 1.0.0
+    version: 1.1.0
     table_name: interstellarmedium
   - name: MicroEnvironment
     aliases:
@@ -1002,6 +1032,26 @@ schemas:
       fields:
         age: belt_age_myr
         mass: total_mass_em
+  - name: Comet
+    aliases:
+    - Comet
+    - CometSchema
+    file: schemas/celestial_objects/CometSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Individual comet within an Oort cloud
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: comet
+    primary_key: comet_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: comet_age_myr
+        mass: mass_kg
+        semi_major_axis: orbital_properties.semi_major_axis_au
   - name: GalacticStructure
     aliases:
     - GalacticStructure
@@ -1033,136 +1083,12 @@ schemas:
         stellar_mass: total_stellar_mass_msun
         gas_mass: gas_mass_msun
         star_formation_rate: sfr_msun_yr
-  - name: Moon
-    aliases:
-    - Moon
-    - MoonSchema
-    file: schemas/celestial_objects/MoonSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Natural satellite orbiting a planet
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: moon
-    primary_key: moon_id
-    physics:
-      supports_aging: true
-      evolution_model: lunar
-      timescale: GEOLOGICAL
-      priority: 2
-      fields:
-        age: age_myr
-        mass: mass_lm
-        semi_major_axis: semi_major_axis_au
-  - name: OortCloud
-    aliases:
-    - OortCloud
-    - OortCloudSchema
-    file: schemas/celestial_objects/OortCloudSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Oort cloud object for a star system
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: oortcloud
-    primary_key: cloud_id
-    physics:
-      supports_aging: true
-      evolution_model: temporal_simple
-      timescale: STELLAR
-      priority: 1
-      fields:
-        age: cloud_age_myr
-  - name: Planet
-    aliases:
-    - Planet
-    - PlanetSchema
-    file: schemas/celestial_objects/PlanetSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Single planet entity with physical, orbital, and surface properties
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: planet
-    primary_key: planet_id
-    physics:
-      supports_aging: true
-      evolution_model: planetary
-      timescale: GEOLOGICAL
-      priority: 2
-      fields:
-        age: age_myr
-        mass: mass_em
-        semi_major_axis: orbital_distance_au
-        surface_temperature: surface_temperature_k
-        atmospheric_pressure: atmospheric_pressure_bar
-  - name: PlanetaryRings
-    aliases:
-    - PlanetaryRings
-    - PlanetaryRingsSchema
-    file: schemas/celestial_objects/PlanetaryRingsSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Planetary ring system record
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: planetaryrings
-    primary_key: ring_id
-    physics:
-      supports_aging: true
-      evolution_model: temporal_simple
-      timescale: STELLAR
-      priority: 2
-      fields:
-        age: ring_age_myr
-  - name: Star
-    aliases:
-    - Star
-    - StarSchema
-    file: schemas/celestial_objects/StarSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Single star entity
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: star
-    primary_key: star_id
-    physics:
-      supports_aging: true
-      evolution_model: stellar
-      timescale: STELLAR
-      priority: 1
-      fields:
-        age: star_age_myr
-        mass: star_mass_sm
-        luminosity: star_luminosity
-        radius: star_radius_rsun
-        temperature: star_temperature_k
-  - name: StarSystem
-    aliases:
-    - StarSystem
-    - StarSystemSchema
-    file: schemas/celestial_objects/StarSystemSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Single star system entity (container for Star + planets + etc.)
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: starsystem
-  - name: Comet
-    aliases:
-    - Comet
-    - CometSchema
-    file: schemas/celestial_objects/CometSchema.avsc
-    namespace: CosmosGenesis.celestial_objects
-    description: Individual comet within an Oort cloud
-    compatibility: BACKWARD
-    version: 1.0.0
-    table_name: comet
-    primary_key: comet_id
-    physics:
-      supports_aging: true
-      evolution_model: temporal_simple
-      timescale: GEOLOGICAL
-      priority: 2
-      fields:
-        age: comet_age_myr
-        mass: mass_kg
-        semi_major_axis: orbital_properties.semi_major_axis_au
+        velocity_x: velocity.x
+        velocity_y: velocity.y
+        velocity_z: velocity.z
+        x: coordinates.x
+        y: coordinates.y
+        z: coordinates.z
   - name: HypervelocityStar
     aliases:
     - HypervelocityStar
@@ -1203,6 +1129,84 @@ schemas:
       fields:
         age: age_myr
         velocity: velocity_km_s
+  - name: Moon
+    aliases:
+    - Moon
+    - MoonSchema
+    file: schemas/celestial_objects/MoonSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Natural satellite orbiting a planet
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: moon
+    primary_key: moon_id
+    physics:
+      supports_aging: true
+      evolution_model: lunar
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_lm
+        semi_major_axis: semi_major_axis_au
+  - name: OortCloud
+    aliases:
+    - OortCloud
+    - OortCloudSchema
+    file: schemas/celestial_objects/OortCloudSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Oort cloud object for a star system
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: oortcloud
+    primary_key: oort_cloud_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 1
+      fields:
+        age: cloud_age_myr
+  - name: Planet
+    aliases:
+    - Planet
+    - PlanetSchema
+    file: schemas/celestial_objects/PlanetSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Single planet entity with physical, orbital, and surface properties
+    compatibility: BACKWARD
+    version: 1.2.0
+    table_name: planet
+    primary_key: planet_id
+    physics:
+      supports_aging: true
+      evolution_model: planetary
+      timescale: GEOLOGICAL
+      priority: 2
+      fields:
+        age: age_myr
+        mass: mass_em
+        semi_major_axis: semi_major_axis_au
+        surface_temperature: surface_temperature_k
+        atmospheric_pressure: atmospheric_pressure_bar
+  - name: PlanetaryRings
+    aliases:
+    - PlanetaryRings
+    - PlanetaryRingsSchema
+    file: schemas/celestial_objects/PlanetaryRingsSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Planetary ring system record
+    compatibility: BACKWARD
+    version: 1.0.0
+    table_name: planetary_rings
+    primary_key: ring_id
+    physics:
+      supports_aging: true
+      evolution_model: temporal_simple
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: ring_age_myr
   - name: RoguePlanet
     aliases:
     - RoguePlanet
@@ -1224,6 +1228,30 @@ schemas:
         ejection_time: ejection_time_myr
         mass: mass_earth_masses
         surface_temperature: surface_temperature_k
+  - name: Star
+    aliases:
+    - Star
+    - StarSchema
+    file: schemas/celestial_objects/StarSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Primary stars in star systems (companions stored in BinaryCompanion
+      table)
+    compatibility: BACKWARD
+    version: 2.2.0
+    table_name: star
+    primary_key: star_id
+    physics:
+      supports_aging: true
+      evolution_model: stellar
+      timescale: STELLAR
+      priority: 2
+      fields:
+        age: star_age_myr
+        mass: star_mass_sm
+        luminosity: star_luminosity
+        radius: star_radius_rsun
+        temperature: star_temperature_k
+        metallicity: metallicity
   - name: StarCluster
     aliases:
     - StarCluster
@@ -1246,6 +1274,34 @@ schemas:
         mass: total_mass_msun
         core_radius: core_radius_ly
         tidal_radius: tidal_radius_ly
+  - name: StarSystem
+    aliases:
+    - StarSystem
+    - StarSystemSchema
+    file: schemas/celestial_objects/StarSystemSchema.avsc
+    namespace: CosmosGenesis.celestial_objects
+    description: Star system spatial and orbital properties (star data in Star table)
+    compatibility: BACKWARD
+    version: 2.2.0
+    table_name: starsystem
+    primary_key: system_id
+    physics:
+      supports_aging: true
+      evolution_model: galactic
+      timescale: GALACTIC
+      priority: 1
+      fields:
+        theta: galactic_theta_rad
+        x: coordinates.x
+        y: coordinates.y
+        z: coordinates.z
+        semi_major_axis: galactic_semi_major_axis_ly
+        eccentricity: galactic_eccentricity
+        inclination: galactic_inclination_deg
+        longitude_asc_node: galactic_longitude_ascending_node_deg
+        argument_periapsis: galactic_argument_periapsis_deg
+        mean_anomaly: galactic_mean_anomaly_deg
+        orbital_period: galactic_orbital_period_myr
   biological:
   - name: Biosignatures
     aliases:

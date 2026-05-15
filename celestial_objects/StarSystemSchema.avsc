@@ -2,8 +2,8 @@
   "type": "record",
   "namespace": "CosmosGenesis.celestial_objects",
   "name": "StarSystem",
-  "doc": "Top-level star system metadata and summary properties for assembly orchestration.",
-  "version": "1.0.0",
+  "doc": "Star system metadata and spatial properties. Primary star properties are stored in the Star table.",
+  "version": "2.2.0",
   "fields": [
     {
       "name": "galaxy_id",
@@ -21,7 +21,7 @@
         "string"
       ],
       "default": null,
-      "doc": "User-provided display name of the parent galaxy. Drives deterministic seeding: system_id = '{galaxy_name}_system_{N}', system_designation = 'CG-{galaxy_name[:4]}-{hash}'."
+      "doc": "User-provided name of the parent galaxy — used as deterministic seed base for all IDs in this system"
     },
     {
       "name": "system_id",
@@ -41,7 +41,16 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates",
-      "doc": "3D coordinates of the system in galactic frame"
+      "doc": "3D coordinates of the system barycenter in galactic frame (galactic_x_ly, galactic_y_ly, galactic_z_ly)"
+    },
+    {
+      "name": "galactic_theta_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Azimuthal angle in radians for galactic coordinate systems (used for morphology-based evolution)"
     },
     {
       "name": "system_trait",
@@ -53,49 +62,44 @@
       "doc": "High-level trait of the system (e.g., calm, variable, flare_prone)"
     },
     {
-      "name": "star_type",
-      "type": [
-        "null",
-        "string"
-      ],
-      "default": null,
-      "doc": "Primary star spectral type label (e.g., G_type)"
-    },
-    {
-      "name": "star_age_myr",
-      "type": [
-        "null",
-        "int"
-      ],
-      "default": null,
-      "doc": "Age of the primary star in Myr"
-    },
-    {
-      "name": "star_mass_sm",
-      "type": [
-        "null",
-        "double"
-      ],
-      "default": null,
-      "doc": "Mass of the primary star in solar masses"
-    },
-    {
-      "name": "metallicity_feh",
-      "type": [
-        "null",
-        "double"
-      ],
-      "default": null,
-      "doc": "Stellar metallicity [Fe/H]"
-    },
-    {
       "name": "multiplicity",
       "type": [
         "null",
         "int"
       ],
       "default": null,
-      "doc": "Number of stars in the system (1=single)"
+      "doc": "Number of stars in the system (1=single, 2=binary, 3=trinary)"
+    },
+    {
+      "name": "is_trinary",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Whether this system is a hierarchical trinary system (three stars with proper separation ratios)"
+    },
+    {
+      "name": "trinary_architecture",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "TrinaryArchitecture",
+          "symbols": [
+            "CLOSE_PAIR_DISTANT",
+            "WIDE_WITH_BINARY"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "For trinary systems: CLOSE_PAIR_DISTANT (tight A-B binary with distant C), WIDE_WITH_BINARY (primary A has close companion B, with distant C)"
+    },
+    {
+      "name": "has_binary_companions",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the system has binary/multiple star companions (for quick tree view filtering)"
     },
     {
       "name": "snow_line_au",
@@ -104,12 +108,12 @@
         "double"
       ],
       "default": null,
-      "doc": "Estimated snow line distance in AU"
+      "doc": "Estimated snow line distance in AU based on primary star luminosity"
     },
     {
       "name": "habitable_zone_au",
       "type": "CosmosGenesis.system_schemas.HabitabilityZone",
-      "doc": "Habitable zone boundaries in AU"
+      "doc": "Habitable zone boundaries in AU based on primary star properties"
     },
     {
       "name": "total_planet_count",
@@ -130,22 +134,232 @@
       "doc": "Target number of moons for assembly planning"
     },
     {
+      "name": "asteroid_belt_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Actual number of asteroid belts in this system"
+    },
+    {
+      "name": "oort_cloud_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Actual number of Oort clouds in this system (typically 0 or 1)"
+    },
+    {
+      "name": "protoplanetary_disk_count",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Actual number of protoplanetary disks in this system (0 or 1 for young stars)"
+    },
+    {
       "name": "has_asteroid_belts",
       "type": "boolean",
-      "default": true,
-      "doc": "Whether belts should be present"
+      "default": false,
+      "doc": "Whether the system has any asteroid belts (reflects actual generated data)"
     },
     {
       "name": "has_oort_cloud",
       "type": "boolean",
-      "default": true,
-      "doc": "Whether an Oort cloud should be present"
+      "default": false,
+      "doc": "Whether the system has an Oort cloud (reflects actual generated data)"
     },
     {
       "name": "has_protoplanetary_disk",
       "type": "boolean",
-      "doc": "Whether the system currently has a protoplanetary disk (young)",
+      "doc": "Whether the system currently has a protoplanetary disk (reflects actual generated data)",
       "default": false
+    },
+    {
+      "name": "has_planets",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the system has any planets (reflects actual generated data)"
+    },
+    {
+      "name": "has_black_hole",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the system contains a stellar-mass black hole from stellar evolution"
+    },
+    {
+      "name": "has_planetary_nebula",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the system contains a planetary nebula from recent stellar death"
+    },
+    {
+      "name": "has_stellar_death_event",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether the system has experienced a stellar death event (supernova or nebula formation)"
+    },
+    {
+      "name": "has_renderable_content",
+      "type": "boolean",
+      "default": true,
+      "doc": "Whether the system has any planets, moons, or binary stars that would appear in scene manager tree (defaults true for backwards compatibility)"
+    },
+    {
+      "name": "galactic_semi_major_axis_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Semi-major axis of the system's orbit around the galactic center (SMBH) in light-years"
+    },
+    {
+      "name": "galactic_eccentricity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital eccentricity for the system's galactic orbit (0 = circular, <1 = elliptical)"
+    },
+    {
+      "name": "galactic_inclination_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Inclination of the system's galactic orbit relative to the galactic plane in degrees (0° = in-plane, 90° = perpendicular)"
+    },
+    {
+      "name": "galactic_longitude_ascending_node_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Longitude of ascending node for galactic orbit in degrees (orientation of orbital plane)"
+    },
+    {
+      "name": "galactic_argument_periapsis_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Argument of periapsis for galactic orbit in degrees (orientation of ellipse within orbital plane)"
+    },
+    {
+      "name": "galactic_mean_anomaly_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Initial mean anomaly for galactic orbit in degrees (position along orbit at universe_time=0)"
+    },
+    {
+      "name": "galactic_orbital_period_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital period around the galactic center in millions of years (typical ~200-250 Myr for solar neighborhood)"
+    },
+    {
+      "name": "angular_velocity_rad_per_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Angular velocity Ω(r) for galactic rotation in radians per million years (Ω = V_circ / r for flat rotation curve)"
+    },
+    {
+      "name": "equilibrium_vx_m_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Equilibrium velocity X component in m/s (galactic frame, from N-body relaxation or rotation curve)"
+    },
+    {
+      "name": "equilibrium_vy_m_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Equilibrium velocity Y component in m/s (galactic frame, from N-body relaxation or rotation curve)"
+    },
+    {
+      "name": "equilibrium_vz_m_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Equilibrium velocity Z component in m/s (galactic frame, from N-body relaxation or rotation curve)"
+    },
+    {
+      "name": "epicyclic_frequency_rad_per_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Epicyclic frequency κ(r) for radial oscillations in radians per million years (κ = √2 × Ω for flat rotation curve)"
+    },
+    {
+      "name": "density_wave_phase_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Initial phase relative to spiral density wave pattern in radians (Δφ = m×θ - k_r×r - Ω_p×t, determines if star is in arm or between arms)"
+    },
+    {
+      "name": "epicyclic_amplitude_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Amplitude of epicyclic radial oscillation in light-years (typical ~300 ly, creates radial 'breathing' motion)"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    },
+    {
+      "name": "spatial_hash",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Z-order spatial partition bucket [0, 1024) derived from galactic coordinates. Used for partition-pruned spatial queries (sphere, box, K-NN) via Athena predicate pushdown."
+    },
+    {
+      "name": "morton_id",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "48-bit Morton (Z-order) code encoding galactic_x_ly, galactic_y_ly, galactic_z_ly into a spatially-local integer key. Each axis is quantised to 16 bits over ±100,000 LY; bits are interleaved (x=bits 0,3,6,…; y=1,4,7,…; z=2,5,8,…). Used by the client-side GalaxyMortonIndex for O(log N) zero-latency nearest-neighbour queries. Consistent with TypeScript GalaxyMortonIndex.ts and Python encode_morton_48()."
     }
   ]
 }
