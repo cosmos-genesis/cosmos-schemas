@@ -2,8 +2,8 @@
   "type": "record",
   "name": "Planet",
   "namespace": "CosmosGenesis.celestial_objects",
-  "doc": "Comprehensive representation of a planet with detailed physical, orbital, surface, and internal properties",
-  "version": "1.0.0",
+  "doc": "Comprehensive representation of a planet with detailed physical, orbital, surface, and internal properties. v1.3.0: added captured flag and origin_interstellar_object_id for planets captured from interstellar space (ʻOumuamua-class capture events detected by Phase 7 Hill-sphere integration); age_myr promoted from LONG to DOUBLE for sub-Myr resolution.",
+  "version": "1.3.0",
   "fields": [
     {
       "name": "galaxy_id",
@@ -31,6 +31,44 @@
       ],
       "default": null,
       "doc": "Identifier of the parent star this planet orbits"
+    },
+    {
+      "name": "orbital_classification",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "OrbitalClassification",
+          "symbols": [
+            "S_TYPE",
+            "S_TYPE_BINARY_PAIR",
+            "P_TYPE",
+            "CIRCUMTRIPLE",
+            "SINGLE_STAR",
+            "UNSTABLE"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Orbital classification for binary and trinary systems: S_TYPE (circumprimary around single star), S_TYPE_BINARY_PAIR (around inner binary pair in trinary), P_TYPE (circumbinary), CIRCUMTRIPLE (around all three stars), SINGLE_STAR (no binary companion), UNSTABLE (dynamically unstable zone)"
+    },
+    {
+      "name": "orbited_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the star or barycenter this planet orbits. For S_TYPE: star ID (e.g., 'system_123_star'). For P_TYPE: barycenter ID (e.g., 'system_123_barycenter'). For CIRCUMTRIPLE: system barycenter."
+    },
+    {
+      "name": "stability_coefficient",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital stability coefficient (0.0-1.0) based on Holman & Wiegert (1999) formulas. 1.0 = highly stable (far from boundaries), 0.5 = moderate stability, 0.0 = unstable (at boundary). For trinary systems, accounts for perturbations from multiple companions."
     },
     {
       "name": "planet_id",
@@ -108,13 +146,13 @@
       "doc": "Array of moons orbiting this planet"
     },
     {
-      "name": "orbital_distance_au",
+      "name": "semi_major_axis_au",
       "type": [
         "null",
         "double"
       ],
       "default": null,
-      "doc": "Semi-major axis of the planet's orbit in astronomical units (AU) - Legacy field, use orbital_properties.semi_major_axis_au instead"
+      "doc": "Semi-major axis of the planet's orbit in astronomical units (AU)"
     },
     {
       "name": "orbital_period_days",
@@ -124,6 +162,51 @@
       ],
       "default": null,
       "doc": "Time for planet to complete one orbit around its star in Earth days - Legacy field, use orbital_properties.orbital_period_days instead"
+    },
+    {
+      "name": "eccentricity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital eccentricity (0 = circular, 0-1 = elliptical) - Legacy flat field, also in orbital_properties"
+    },
+    {
+      "name": "inclination_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital inclination in degrees - Legacy flat field, also in orbital_properties"
+    },
+    {
+      "name": "mean_anomaly_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean anomaly at epoch in degrees - Legacy flat field, also in orbital_properties"
+    },
+    {
+      "name": "longitude_of_ascending_node_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Longitude of ascending node in degrees - Legacy flat field, also in orbital_properties"
+    },
+    {
+      "name": "argument_of_periapsis_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Argument of periapsis in degrees - Legacy flat field, also in orbital_properties"
     },
     {
       "name": "mass_em",
@@ -186,10 +269,10 @@
       "name": "age_myr",
       "type": [
         "null",
-        "long"
+        "double"
       ],
       "default": null,
-      "doc": "Age of the planet since formation in millions of years"
+      "doc": "Age of the planet since formation in millions of years (DOUBLE from v1.3.0 — sub-Myr precision required for stellar death event timing within PN and SNR phases)"
     },
     {
       "name": "atmospheric_pressure_bar",
@@ -201,6 +284,69 @@
       "doc": "Surface atmospheric pressure in bars (1 bar = Earth sea level)"
     },
     {
+      "name": "affected_by_stellar_event",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "True if this planet was affected by a nearby stellar death event (supernova or planetary nebula). Used to track backpropagation effects."
+    },
+    {
+      "name": "atmosphere_loss_fraction",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Fraction of atmosphere lost due to stellar death event (0.0-1.0). 0.0 = no loss, 1.0 = complete atmosphere stripped. Calculated based on distance from supernova blast wave or UV photoevaporation from planetary nebula."
+    },
+    {
+      "name": "damage_severity",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "DamageSeverity",
+          "symbols": [
+            "NONE",
+            "MINOR",
+            "MODERATE",
+            "SEVERE"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Classification of damage from stellar death event. SEVERE (>60% atmosphere loss): sterilization/climate collapse. MODERATE (30-60%): mass extinction events. MINOR (10-30%): ozone depletion/radiation increase. NONE (<10%): negligible effects."
+    },
+    {
+      "name": "last_stellar_event_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Reference to the StellarDeathEvent record that most recently affected this planet. Null if never affected by stellar event."
+    },
+    {
+      "name": "rotation_period_hours",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Rotation period (length of day) in hours. Negative values indicate retrograde rotation. Legacy field, use physical_properties.rotation_period_hours instead."
+    },
+    {
+      "name": "axial_tilt_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Axial tilt (obliquity) in degrees - angle between rotation axis and orbital plane normal (0-180°). Legacy field, use physical_properties.axial_tilt_deg instead."
+    },
+    {
       "name": "universe_time",
       "type": [
         "null",
@@ -208,6 +354,96 @@
       ],
       "default": null,
       "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    },
+    {
+      "name": "rotation_differential_factor",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Differential rotation factor Δω/ω_eq (0.0-1.0) for gas giants and ice giants. Represents fractional difference between equatorial and polar rotation rates. 0.0 = rigid rotation (rocky planets), 0.05-0.10 = Jupiter-type differential. Formula: ω(θ) = ω_eq - Δω × sin²(latitude)"
+    },
+    {
+      "name": "rotation_law",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "PlanetRotationLaw",
+          "symbols": [
+            "JUPITER",
+            "RIGID",
+            "TIDAL_LOCK"
+          ],
+          "doc": "JUPITER=Jupiter-type weak differential rotation (gas/ice giants), RIGID=solid body rotation (rocky planets), TIDAL_LOCK=tidally locked (rotation_period = orbital_period)"
+        }
+      ],
+      "default": null,
+      "doc": "Type of rotation law governing how rotation period varies with latitude (for gas/ice giants) or indicates tidal locking"
+    },
+    {
+      "name": "albedo",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Bond albedo (0.0–1.0): fraction of incident solar radiation reflected back into space. Physics-based by planet type: ice_world 0.55–0.90, ocean_world 0.30–0.45, desert_world 0.15–0.30, gas_giant 0.40–0.60, hot_jupiter 0.04–0.12, lava_world 0.05–0.10, terrestrial 0.20–0.35."
+    },
+    {
+      "name": "ocean_coverage",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Fraction of the planet surface covered by liquid ocean (0.0–1.0). Non-zero only for ocean_world (0.60–0.90) and potentially-habitable terrestrial planets (0.40–0.70). Used by the planet surface shader to modulate the ocean/land biome blend."
+    },
+    {
+      "name": "captured",
+      "type": "boolean",
+      "default": false,
+      "doc": "True if this planet was captured from interstellar space rather than formed in situ. Set by Phase 7 n-body Hill-sphere detection when an InterstellarObject achieves a PERMANENT or TEMPORARY capture. Captured planets may have high orbital inclinations, unusual compositions, or retrograde orbits."
+    },
+    {
+      "name": "origin_interstellar_object_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "interstellar_object_id of the InterstellarObject record that became this planet upon capture. Set when captured=true and capture_type=PERMANENT. Provides a traceable link: ejection system → interstellar transit → capture system. Enables the full ʻOumuamua-factory narrative in the client."
+    },
+    {
+      "name": "has_magnetosphere",
+      "type": "boolean",
+      "default": false,
+      "doc": "True if this planet has a significant intrinsic magnetic field generating a magnetosphere. Drives whether an ISOLATION RadiationZone is instantiated to shield the interior from stellar wind and cosmic rays. Rocky planets with active liquid iron cores (Earth-like), magnetized gas giants (Jupiter, Saturn), and most ice giants qualify. Airless bodies without active cores (Moon, Mars) do not."
+    },
+    {
+      "name": "magnetopause_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Subsolar magnetopause standoff distance in AU. Non-null only when has_magnetosphere=true. Used as the outer boundary of the ISOLATION RadiationZone record that shields this planet's interior. Computed from dipole field strength and stellar wind dynamic pressure: r_mp = R_p × (B²/(2μ₀ × ρ_sw × v_sw²))^(1/6). Earth: ~6.4e-4 AU; Jupiter: ~0.028 AU."
+    },
+    {
+      "name": "has_radiation_belts",
+      "type": "boolean",
+      "default": false,
+      "doc": "True if the planet has Van Allen-type radiation belts (requires has_magnetosphere=true). Gas giants with strong magnetospheres always have radiation belts. Rocky planets with magnetospheres may or may not depending on sufficient trapped particle flux from the stellar wind. Drives generation of inner/outer STANDARD_RAMP RadiationZone records for the belt regions."
+    },
+    {
+      "name": "ionospheric_cutoff_mhz",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Ionospheric plasma frequency cutoff in MHz. Radio signals below this frequency are reflected rather than transmitted through the ionosphere (total internal reflection). Earth: ~10 MHz; gas giants: ~5–30 MHz; airless bodies: null (no ionosphere). Used by the EM Signature system to determine which frequency bands are blocked for ground-level observers and to simulate the ionospheric cutoff audio effect."
     }
   ]
 }
