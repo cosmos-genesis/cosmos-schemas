@@ -98,10 +98,28 @@
       "name": "age_myr",
       "type": [
         "null",
-        "long"
+        "double"
       ],
       "default": null,
-      "doc": "Age since magnetar formation in millions of years. Magnetars are typically young (<10 Myr)."
+      "doc": "Age since magnetar formation in millions of years as DOUBLE (fractional precision). Promoted from LONG in v1.1.0 — sub-Myr resolution required for burst activity gating. Magnetars are typically young (<10 Myr); active phase typically < 1 Myr."
+    },
+    {
+      "name": "burst_rise_time_ms",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Characteristic rise time of SGR/AXP burst events in milliseconds. Giant flares (e.g., SGR 1806-20, 2004) rise in ~0.25 ms. Regular short bursts rise in 1–10 ms. Used by the EM Signature system to shape the audio burst attack envelope."
+    },
+    {
+      "name": "burst_decay_time_ms",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Characteristic exponential decay time of burst events in milliseconds after peak. Giant flares decay over ~200 ms with oscillations; short bursts decay in 10–100 ms. Used by the EM Signature system to shape the audio burst release envelope."
     },
     {
       "name": "universe_time",
@@ -113,5 +131,5 @@
       "doc": "Universe time in Myr when this record was created (for temporal tracking)"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

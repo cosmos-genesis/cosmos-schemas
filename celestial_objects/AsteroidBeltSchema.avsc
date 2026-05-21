@@ -80,6 +80,87 @@
       "doc": "Age of the asteroid belt in millions of years (Myr)"
     },
     {
+      "name": "parent_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "ID of the star this belt orbits (for single star systems or S-TYPE configuration)"
+    },
+    {
+      "name": "orbital_configuration",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Type of orbit: S_TYPE (single star), P_TYPE (binary barycenter), CIRCUMTRIPLE (trinary system barycenter), S_TYPE_BINARY_PAIR (inner binary in trinary)"
+    },
+    {
+      "name": "semi_major_axis_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean orbital radius of the belt center in AU"
+    },
+    {
+      "name": "eccentricity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital eccentricity of the belt as a whole (0.0-0.3 typical)"
+    },
+    {
+      "name": "inclination_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital inclination of the belt plane in degrees relative to system plane"
+    },
+    {
+      "name": "longitude_ascending_node_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Longitude of ascending node in degrees (0-360)"
+    },
+    {
+      "name": "argument_periapsis_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Argument of periapsis in degrees (0-360)"
+    },
+    {
+      "name": "mean_anomaly_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean anomaly in degrees (0-360) - position along orbit"
+    },
+    {
+      "name": "asteroid_count",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Actual count of named asteroids contained in this belt (not estimated particle count)"
+    },
+    {
       "name": "universe_time",
       "type": [
         "null",
