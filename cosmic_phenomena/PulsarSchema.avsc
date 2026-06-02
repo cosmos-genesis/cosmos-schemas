@@ -108,6 +108,34 @@
       "doc": "Spin-down luminosity (rotational energy loss rate) in erg/s"
     },
     {
+      "name": "radio_luminosity_w_hz",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Specific radio luminosity at the peak emission frequency in W/Hz. Drives audio synthesis amplitude in the EM Signature system. Reference: Crab Pulsar ~1e21 W/Hz; millisecond pulsars span ~1e18–1e22 W/Hz. Used together with observer distance for inverse-square audio level scaling."
+    },
+    {
+      "name": "pulse_profile",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "PulsarPulseProfile",
+          "symbols": [
+            "SINGLE_GAUSSIAN",
+            "DOUBLE_GAUSSIAN",
+            "COMPLEX",
+            "IRREGULAR"
+          ],
+          "doc": "Shape of the integrated pulse profile. SINGLE_GAUSSIAN: single smooth peak (majority of pulsars). DOUBLE_GAUSSIAN: interpulse visible opposite the main pulse (e.g. Crab, Vela). COMPLEX: multiple sub-pulses; typical of millisecond pulsars. IRREGULAR: chaotic, not well-modelled by Gaussian decomposition."
+        }
+      ],
+      "default": null,
+      "doc": "Pulse profile shape classification. Used by the client audio synthesis to choose the waveform envelope for each click event."
+    },
+    {
       "name": "universe_time",
       "type": [
         "null",
@@ -117,5 +145,5 @@
       "doc": "Universe time in Myr when this record was created (for temporal tracking)"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
