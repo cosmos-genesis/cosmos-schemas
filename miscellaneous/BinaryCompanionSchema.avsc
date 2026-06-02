@@ -2,8 +2,14 @@
   "type": "record",
   "namespace": "CosmosGenesis.miscellaneous",
   "name": "BinaryCompanion",
-  "doc": "Represents a companion star in a binary or multiple star system.",
+  "doc": "Represents a companion star in a binary or trinary star system with hierarchical orbital mechanics.",
+  "version": "1.2.0",
   "fields": [
+    {
+      "name": "companion_id",
+      "type": "string",
+      "doc": "Unique identifier for this binary companion (PRIMARY KEY)"
+    },
     {
       "name": "companion_designation",
       "type": "string",
@@ -45,9 +51,33 @@
       "default": 0.0
     },
     {
+      "name": "longitude_of_ascending_node_deg",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Longitude of ascending node in degrees (same as primary for binary systems)"
+    },
+    {
+      "name": "argument_of_periapsis_deg",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Argument of periapsis in degrees (same as primary for binary systems)"
+    },
+    {
+      "name": "mean_anomaly",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Initial mean anomaly in degrees (0° for companions, opposite to primary's 180°)"
+    },
+    {
       "name": "age_myr",
       "type": "double",
       "default": 0.0
+    },
+    {
+      "name": "mass_transfer_rate_msun_yr",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Current mass transfer rate in M_☉/yr (>0 when Roche lobe overflow occurs)"
     },
     {
       "name": "habitable_zone_impacted",
@@ -57,7 +87,65 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "companion_type",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "CompanionType",
+          "symbols": [
+            "BINARY",
+            "TRINARY_TERTIARY"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "Type of companion: BINARY (standard binary companion), TRINARY_TERTIARY (tertiary star in hierarchical trinary system)"
+    },
+    {
+      "name": "trinary_architecture",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "TrinaryArchitecture",
+          "symbols": [
+            "CLOSE_PAIR_DISTANT",
+            "WIDE_WITH_BINARY"
+          ]
+        }
+      ],
+      "default": null,
+      "doc": "For trinary systems: CLOSE_PAIR_DISTANT (tight A-B binary with distant C), WIDE_WITH_BINARY (primary A has close companion B, with distant C)"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this companion belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the star system containing this companion"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
-  ],
-  "version": "1.0.0"
+  ]
 }
