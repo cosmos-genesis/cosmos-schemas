@@ -3,7 +3,7 @@
   "namespace": "CosmosGenesis.cosmic_phenomena",
   "name": "DarkMatterDistribution",
   "doc": "Represents dark matter distribution and properties in cosmic structures.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "fields": [
     {
       "name": "distribution_designation",
@@ -89,6 +89,15 @@
       "name": "anisotropy_parameter",
       "type": "double",
       "default": 0.0
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this dark matter distribution belongs to"
     },
     {
       "name": "coordinates",

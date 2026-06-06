@@ -2,14 +2,20 @@
   "type": "record",
   "namespace": "CosmosGenesis.celestial_objects",
   "name": "Star",
-  "doc": "Represents a star in a star system.",
-  "version": "1.0.0",
+  "doc": "Represents a primary star in a star system. Companions are stored in BinaryCompanion table.",
+  "version": "2.2.0",
   "fields": [
     {
       "name": "galaxy_id",
       "type": "string",
       "doc": "Identifier of the galaxy this star belongs to",
       "default": ""
+    },
+    {
+      "name": "galaxy_name",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "User-provided name of the parent galaxy — used as deterministic seed base for all IDs in this star"
     },
     {
       "name": "system_id",
@@ -20,13 +26,7 @@
     {
       "name": "star_id",
       "type": "string",
-      "doc": "Stable identifier for this star within the data lake",
-      "default": ""
-    },
-    {
-      "name": "object_id",
-      "type": "string",
-      "doc": "The unique identifier for the star.",
+      "doc": "Unique identifier for this star (PRIMARY KEY)",
       "default": ""
     },
     {
@@ -36,53 +36,35 @@
         "string"
       ],
       "default": null,
-      "doc": "Catalog-style designation for this star (e.g., 'CG-M101-004237 A' for primary in binary)"
+      "doc": "Catalog-style designation for this star (e.g., 'CG-M101-004237 A' for primary, or just 'CG-M101-004237' for single stars)"
     },
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates",
-      "doc": "The star's 3D position in space."
+      "doc": "The star's 3D position in galactic coordinates (same as system barycenter for single stars)"
     },
     {
       "name": "star_type",
       "type": "CosmosGenesis.properties.StarType",
-      "doc": "The spectral classification of the star."
+      "doc": "The spectral classification of the star (e.g., G2V, M3V, K0III)"
     },
     {
       "name": "star_mass_sm",
       "type": "double",
-      "doc": "The mass of the star in Solar Masses.",
+      "doc": "The mass of the star in Solar Masses",
       "default": 0.0
     },
     {
       "name": "star_age_myr",
-      "type": "long",
-      "doc": "The age of the star in millions of years.",
-      "default": 0
+      "type": "double",
+      "doc": "The age of the star in millions of years (fractional Myr for sub-Myr precision)",
+      "default": 0.0
     },
     {
       "name": "star_luminosity",
       "type": "double",
-      "doc": "The luminosity of the star relative to the Sun.",
+      "doc": "The luminosity of the star relative to the Sun (L/L☉)",
       "default": 0.0
-    },
-    {
-      "name": "system_trait",
-      "type": [
-        "null",
-        "string"
-      ],
-      "default": null,
-      "doc": "A unique gameplay or lore hook for the star system."
-    },
-    {
-      "name": "stellar_properties",
-      "type": [
-        "null",
-        "CosmosGenesis.properties.StellarProperties"
-      ],
-      "default": null,
-      "doc": "Detailed properties of the star including evolution, activity, and environment."
     },
     {
       "name": "star_radius_rsun",
@@ -91,7 +73,7 @@
         "double"
       ],
       "default": null,
-      "doc": "Stellar radius in Solar Radii (computed during evolution)"
+      "doc": "Stellar radius in Solar Radii (computed during evolution or from mass-radius relation)"
     },
     {
       "name": "star_temperature_k",
@@ -100,7 +82,7 @@
         "double"
       ],
       "default": null,
-      "doc": "Effective temperature in Kelvin (computed from L and R via Stefan-Boltzmann)"
+      "doc": "Effective temperature in Kelvin (computed from L and R via Stefan-Boltzmann law)"
     },
     {
       "name": "evolutionary_stage",
@@ -131,7 +113,25 @@
         "double"
       ],
       "default": null,
-      "doc": "Metallicity ([Fe/H] or Z) - fraction of metals by mass"
+      "doc": "Metallicity ([Fe/H] or Z) - fraction of metals by mass, affects planet formation and stellar evolution"
+    },
+    {
+      "name": "system_trait",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Inherited from star system - gameplay or lore hook (e.g., calm, variable, flare_prone)"
+    },
+    {
+      "name": "stellar_properties",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.StellarProperties"
+      ],
+      "default": null,
+      "doc": "Detailed properties of the star including evolution, activity, magnetic field, and environment"
     },
     {
       "name": "universe_time",
@@ -141,6 +141,222 @@
       ],
       "default": null,
       "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    },
+    {
+      "name": "primary_semi_major_axis_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, the primary star's semi-major axis around the system barycenter in AU. Calculated using: a₁ = a_total × (M₂/(M₁+M₂)) where a_total is the binary separation. NULL for single stars or if barycenter_orbits_enabled=false."
+    },
+    {
+      "name": "primary_orbital_period_years",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, the primary star's orbital period around the barycenter in years. Equal to the companion's period (both orbit with same period). Derived from Kepler's 3rd law: P² = 4π²a³/(G(M₁+M₂)). NULL for single stars."
+    },
+    {
+      "name": "primary_eccentricity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, the primary star's orbital eccentricity (0 = circular, approaching 1 = highly elliptical). Equal to the companion's eccentricity (both share same orbit shape). NULL for single stars."
+    },
+    {
+      "name": "primary_inclination_degrees",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, the primary star's orbital inclination relative to the reference plane in degrees. Equal to companion's inclination. NULL for single stars."
+    },
+    {
+      "name": "primary_longitude_ascending_node",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, longitude of ascending node in degrees (where orbit crosses reference plane). Currently set to 0.0 for simplicity. NULL for single stars."
+    },
+    {
+      "name": "primary_argument_periapsis",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, argument of periapsis in degrees (angle from ascending node to periapsis). Currently set to 0.0 for simplicity. NULL for single stars."
+    },
+    {
+      "name": "primary_mean_anomaly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "BARYCENTER ORBIT: For binary/trinary systems, mean anomaly at epoch in degrees (position in orbit at t=0). Set to 180° so primary starts on opposite side of barycenter from companion. NULL for single stars."
+    },
+    {
+      "name": "galactic_theta_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Azimuthal angle in radians for galactic coordinate systems (used for morphology-based evolution)"
+    },
+    {
+      "name": "angular_velocity_rad_per_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Angular velocity Ω(r) for galactic rotation in radians per million years (Ω = V_circ / r for flat rotation curve)"
+    },
+    {
+      "name": "epicyclic_frequency_rad_per_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Epicyclic frequency κ(r) for radial oscillations in radians per million years (κ = √2 × Ω for flat rotation curve)"
+    },
+    {
+      "name": "density_wave_phase_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Initial phase relative to spiral density wave pattern in radians (Δφ = m×θ - k_r×r - Ω_p×t, determines if star is in arm or between arms)"
+    },
+    {
+      "name": "epicyclic_amplitude_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Amplitude of epicyclic radial oscillation in light-years (typical ~300 ly, creates radial 'breathing' motion)"
+    },
+    {
+      "name": "galactic_v_r_kpc_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Initial radial velocity component in kpc/Myr (equilibrium velocity for potential integration, includes small epicyclic oscillation)"
+    },
+    {
+      "name": "galactic_v_theta_kpc_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Initial tangential velocity component in kpc/Myr (equilibrium velocity for potential integration, V_c for circular orbits)"
+    },
+    {
+      "name": "galactic_v_z_kpc_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Initial vertical velocity component in kpc/Myr (equilibrium velocity for 3D potential integration, includes vertical oscillation for disk stars and dispersion for bulge stars)"
+    },
+    {
+      "name": "is_bulge_star",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Flag indicating if this star is part of the galactic bulge (true) or disk (false). Bulge stars are pressure-supported with random velocities, disk stars are rotation-supported with circular velocities."
+    },
+    {
+      "name": "rotation_period_equatorial_hours",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Rotation period at the equator in hours (stellar spin). For differential rotators, this is the fastest rotation rate. Negative values indicate retrograde rotation."
+    },
+    {
+      "name": "rotation_differential_factor",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Differential rotation factor Δω/ω_eq (0.0-1.0). Represents fractional difference between equatorial and polar rotation rates. 0.0 = rigid rotation, 0.2-0.4 = solar-type, 0.05-0.10 = Jupiter-type. Formula: ω(θ) = ω_eq - Δω × sin²(latitude)"
+    },
+    {
+      "name": "rotation_law",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "RotationLaw",
+          "symbols": [
+            "SOLAR",
+            "JUPITER",
+            "RIGID"
+          ],
+          "doc": "SOLAR=solar-type differential rotation (G,K,M stars), JUPITER=Jupiter-type weak differential (gas giants), RIGID=solid body rotation (O,B,A,F stars, rocky planets)"
+        }
+      ],
+      "default": null,
+      "doc": "Type of rotation law governing how rotation period varies with latitude"
+    },
+    {
+      "name": "star_apparent_magnitude",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Apparent visual (V-band) magnitude as observed from Earth. From HYG/Hipparcos catalog for real stars; null for procedurally generated stars. Lower values are brighter (Sun = −26.74, Sirius = −1.46)."
+    },
+    {
+      "name": "star_absolute_magnitude",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Absolute visual magnitude M_v — apparent magnitude at a standard distance of 10 parsecs. From HYG catalog for real stars; null for procedurally generated stars. Intrinsic luminosity marker independent of distance."
+    },
+    {
+      "name": "eq_vx_pc_yr",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Proper motion X component in equatorial J2000 Cartesian coordinates, parsecs/year. From HYG catalog (Hipparcos proper motions + radial velocity). Reference epoch: epoch_jyr (J2000.0 = 2000.0). Propagation: x(T) = x0 + eq_vx * (T - epoch_jyr)."
+    },
+    {
+      "name": "eq_vy_pc_yr",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Proper motion Y component in equatorial J2000 Cartesian coordinates, parsecs/year."
+    },
+    {
+      "name": "eq_vz_pc_yr",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Proper motion Z component in equatorial J2000 Cartesian coordinates, parsecs/year."
+    },
+    {
+      "name": "epoch_jyr",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Reference epoch for position snapshot as a Julian year (e.g. J2000.0 = 2000.0). Required for proper motion propagation. HYG catalog positions are J2000.0."
     }
   ]
 }
