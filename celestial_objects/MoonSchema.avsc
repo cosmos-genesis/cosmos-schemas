@@ -67,6 +67,24 @@
       "default": true
     },
     {
+      "name": "rotation_period_hours",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Rotation period in hours. For tidally locked moons, this equals the orbital period. Negative values indicate retrograde rotation."
+    },
+    {
+      "name": "axial_tilt_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Axial tilt (obliquity) in degrees relative to the moon's orbital plane (0-180°). Tidally locked moons typically have low axial tilts."
+    },
+    {
       "name": "orbital_distance_km",
       "type": "double",
       "doc": "Average orbital distance from the parent planet in kilometers.",
@@ -77,6 +95,51 @@
       "type": "double",
       "doc": "The number of Earth days it takes to orbit the parent planet.",
       "default": 0.0
+    },
+    {
+      "name": "eccentricity",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital eccentricity (0 = circular, 0-1 = elliptical)"
+    },
+    {
+      "name": "inclination_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Orbital inclination in degrees relative to parent planet's equator"
+    },
+    {
+      "name": "mean_anomaly_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean anomaly at epoch in degrees"
+    },
+    {
+      "name": "longitude_of_ascending_node_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Longitude of ascending node in degrees"
+    },
+    {
+      "name": "argument_of_periapsis_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Argument of periapsis in degrees"
     },
     {
       "name": "coordinates",
@@ -108,6 +171,60 @@
       ],
       "default": null,
       "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
+    },
+    {
+      "name": "albedo",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Bond albedo (0.0–1.0). Icy moons: 0.60–0.99 (Enceladus 0.99, Europa 0.64). Rocky moons: 0.05–0.15 (Phobos 0.07, Luna 0.12). Mixed: 0.15–0.40."
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean surface temperature in Kelvin. Derived from parent star luminosity and orbital distance; tidally heated moons (IO_VOLCANIC) use an additional tidal flux term."
+    },
+    {
+      "name": "atmosphere_type",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.AtmosphereType"
+      ],
+      "default": null,
+      "doc": "Atmospheric composition class. TITAN_SMOG moons: THICK. IO_VOLCANIC moons: TOXIC (SO₂). EUROPA_OCEAN, TRITON_CRYCVOLCANIC: THIN. All others: NONE."
+    },
+    {
+      "name": "composition_class",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Surface composition category: 'rocky' (silicate/metal dominated), 'icy' (water/ammonia ice dominated), or 'mixed' (significant fractions of both). Drives albedo ranges and shader surface tinting."
+    },
+    {
+      "name": "ocean_coverage",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Fraction of the moon surface covered by liquid (0.0–1.0). Non-zero for europa_ocean (subsurface water ocean beneath ice shell) and triton_cryovolcanic (trace liquid surface patches)."
+    },
+    {
+      "name": "ocean_type",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Chemical composition of the surface or subsurface liquid. One of: water, methane, liquid_nitrogen, sulfuric_acid, brine, liquid_co2. Null when ocean_coverage is null or 0 (SURF-1)."
     }
   ]
 }
