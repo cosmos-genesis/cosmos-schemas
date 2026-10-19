@@ -165,6 +165,12 @@
             font-size: 0.85rem;
         }
 
+        .stat-note {
+            color: var(--color-text-3);
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+        }
+
         .categories {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -430,173 +436,27 @@
                 </a>
             </div>
             <div class="page-title">Schema Browser</div>
-            <p class="subtitle">116 open-source Avro schemas for astrophysical simulation data at universe scale</p>
+            <p class="subtitle"><span id="subtitleCount">…</span> open-source Avro schemas for astrophysical simulation data at universe scale</p>
         </header>
 
         <div class="stats">
             <div class="stat-card">
-                <div class="stat-number">116</div>
+                <div class="stat-number" id="statTotal">–</div>
                 <div class="stat-label">Total Schemas</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">10</div>
+                <div class="stat-number" id="statCategories">–</div>
                 <div class="stat-label">Categories</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">25</div>
+            <div class="stat-card" title="Schemas whose manifest entry sets physics.supports_aging: true">
+                <div class="stat-number" id="statAging">–</div>
                 <div class="stat-label">Support Aging</div>
+                <div class="stat-note">evolve over simulated time</div>
             </div>
         </div>
 
-        <div class="categories">
-
-            <div class="category-card">
-                <h2 class="category-title">Celestial Objects</h2>
-                <p class="category-count">15 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#asteroid">Asteroid</a></li>
-                    <li><a href="#asteroidbelt">AsteroidBelt</a></li>
-                    <li><a href="#comet">Comet</a></li>
-                    <li><a href="#galacticstructure">GalacticStructure</a></li>
-                    <li><a href="#galaxy">Galaxy</a></li>
-                    <li><a href="#hypervelocitystar">HypervelocityStar</a></li>
-                    <li><a href="#intergalacticstar">IntergalacticStar</a></li>
-                    <li><a href="#moon">Moon</a></li>
-                    <li><a href="#oortcloud">OortCloud</a></li>
-                    <li><a href="#planet">Planet</a></li>
-                    <li><a href="#planetaryrings">PlanetaryRings</a></li>
-                    <li><a href="#rogueplanet">RoguePlanet</a></li>
-                    <li><a href="#starcluster">StarCluster</a></li>
-                    <li><a href="#star">Star</a></li>
-                    <li><a href="#starsystem">StarSystem</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Cosmic Phenomena</h2>
-                <p class="category-count">24 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#activegalacticnucleus">ActiveGalacticNucleus</a></li>
-                    <li><a href="#blackhole">BlackHole</a></li>
-                    <li><a href="#browndwarf">BrownDwarf</a></li>
-                    <li><a href="#cosmicstring">CosmicString</a></li>
-                    <li><a href="#darkenergydynamics">DarkEnergyDynamics</a></li>
-                    <li><a href="#darkmatterdistribution">DarkMatterDistribution</a></li>
-                    <li><a href="#domainwall">DomainWall</a></li>
-                    <li><a href="#dustcloud">DustCloud</a></li>
-                    <li><a href="#hiiregion">HIIRegion</a></li>
-                    <li><a href="#magnetar">Magnetar</a></li>
-                    <li class="more">… and 14 more</li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Stellar Events</h2>
-                <p class="category-count">4 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#gammarayburst">GammaRayBurst</a></li>
-                    <li><a href="#nova">Nova</a></li>
-                    <li><a href="#stellardeathevent">StellarDeathEvent</a></li>
-                    <li><a href="#supernova">Supernova</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Physics</h2>
-                <p class="category-count">21 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#axiondarkmatter">AxionDarkMatter</a></li>
-                    <li><a href="#cosmictopology">CosmicTopology</a></li>
-                    <li><a href="#electrodynamics">Electrodynamics</a></li>
-                    <li><a href="#fluiddynamics">FluidDynamics</a></li>
-                    <li><a href="#galacticchemistry">GalacticChemistry</a></li>
-                    <li><a href="#gravitationalwave">GravitationalWave</a></li>
-                    <li><a href="#magneticfield">MagneticField</a></li>
-                    <li><a href="#magneticfieldsystem">MagneticFieldSystem</a></li>
-                    <li><a href="#magnetosphere">Magnetosphere</a></li>
-                    <li><a href="#neutronstarinterior">NeutronStarInterior</a></li>
-                    <li class="more">… and 11 more</li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Properties</h2>
-                <p class="category-count">24 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#asteroidproperties">AsteroidProperties</a></li>
-                    <li><a href="#atmospheretype">AtmosphereType</a></li>
-                    <li><a href="#belttype">BeltType</a></li>
-                    <li><a href="#centaurproperties">CentaurProperties</a></li>
-                    <li><a href="#cometproperties">CometProperties</a></li>
-                    <li><a href="#compositiontype">CompositionType</a></li>
-                    <li><a href="#coordinates">Coordinates</a></li>
-                    <li><a href="#dustparticle">DustParticle</a></li>
-                    <li><a href="#elementalcomposition">ElementalComposition</a></li>
-                    <li><a href="#internalstructureproperties">InternalStructureProperties</a></li>
-                    <li class="more">… and 14 more</li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Environmental</h2>
-                <p class="category-count">8 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#chemicalreservoir">ChemicalReservoir</a></li>
-                    <li><a href="#geologicalformation">GeologicalFormation</a></li>
-                    <li><a href="#interstellarmedium">InterstellarMedium</a></li>
-                    <li><a href="#microenvironment">MicroEnvironment</a></li>
-                    <li><a href="#orbitaldebris">OrbitalDebris</a></li>
-                    <li><a href="#planetaryweather">PlanetaryWeather</a></li>
-                    <li><a href="#thermalmap">ThermalMap</a></li>
-                    <li><a href="#visualeffects">VisualEffects</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">System Schemas</h2>
-                <p class="category-count">5 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#accretionsystem">AccretionSystem</a></li>
-                    <li><a href="#atmosphericsystem">AtmosphericSystem</a></li>
-                    <li><a href="#habitabilityzone">HabitabilityZone</a></li>
-                    <li><a href="#spaceenvironment">SpaceEnvironment</a></li>
-                    <li><a href="#surfacesystem">SurfaceSystem</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Miscellaneous</h2>
-                <p class="category-count">9 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#binarycompanion">BinaryCompanion</a></li>
-                    <li><a href="#celestialobjectidentifier">CelestialObjectIdentifier</a></li>
-                    <li><a href="#cosmicweb">CosmicWeb</a></li>
-                    <li><a href="#dynamicpopulation">DynamicPopulation</a></li>
-                    <li><a href="#gravitationallens">GravitationalLens</a></li>
-                    <li><a href="#navigationbeacons">NavigationBeacons</a></li>
-                    <li><a href="#objectorbit">ObjectOrbit</a></li>
-                    <li><a href="#spectralsignature">SpectralSignature</a></li>
-                    <li><a href="#timeevents">TimeEvents</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Biological</h2>
-                <p class="category-count">2 schemas</p>
-                <ul class="schema-list">
-                    <li><a href="#biosignatures">Biosignatures</a></li>
-                    <li><a href="#civilizationmarkers">CivilizationMarkers</a></li>
-                </ul>
-            </div>
-
-            <div class="category-card">
-                <h2 class="category-title">Temporal</h2>
-                <p class="category-count">1 schema</p>
-                <ul class="schema-list">
-                    <li><a href="#evolutionarydynamics">EvolutionaryDynamics</a></li>
-                </ul>
-            </div>
-
+        <div class="categories" id="categories">
+            <div class="loading">Loading schemas…</div>
         </div>
 
         <footer>
@@ -634,6 +494,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js" integrity="sha384-+pxiN6T7yvpryuJmE1gM9PX7yQit15auDb+ZwwvJOd/4be2Cie5/IuVXgQb/S9du" crossorigin="anonymous"></script>
     <script>
         const panel = document.getElementById('schemaPanel');
         const overlay = document.getElementById('overlay');
@@ -641,18 +502,79 @@
         const panelTitle = document.getElementById('panelTitle');
         const panelContent = document.getElementById('panelContent');
 
-        const categoryFolders = {
-            'celestial objects': 'celestial_objects',
-            'cosmic phenomena': 'cosmic_phenomena',
-            'stellar events': 'stellar_events',
-            'physics': 'physics',
-            'properties': 'properties',
-            'environmental': 'environmental',
-            'system schemas': 'system_schemas',
-            'miscellaneous': 'miscellaneous',
-            'biological': 'biological',
-            'temporal': 'temporal'
-        };
+        // The manifest is the single source for every list and count on this page:
+        // sync_schemas.py publishes it alongside the .avsc files, so a synced schema
+        // appears here with no edit to this file (KAN-1649). ?base= lets a local
+        // checkout be browsed for testing, but only from localhost: the panel renders
+        // schema text, so honoring it on the published origin would let a crafted link
+        // display attacker-controlled content.
+        const PUBLISHED_BASE = 'https://raw.githubusercontent.com/cosmos-genesis/cosmos-schemas/main';
+        const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
+        const baseUrl = (isLocal && new URLSearchParams(location.search).get('base')) || PUBLISHED_BASE;
+
+        const categoriesEl = document.getElementById('categories');
+
+        function categoryTitle(key) {
+            return key.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        }
+
+        function renderBrowser(manifest) {
+            const categories = Object.entries(manifest.schemas)
+                .map(([key, entries]) => ({ title: categoryTitle(key), entries }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            const all = categories.flatMap(c => c.entries);
+            // "Support Aging" = schemas whose manifest entry declares physics.supports_aging: true
+            const aging = all.filter(e => e.physics && e.physics.supports_aging === true).length;
+
+            document.getElementById('subtitleCount').textContent = all.length;
+            document.getElementById('statTotal').textContent = all.length;
+            document.getElementById('statCategories').textContent = categories.length;
+            document.getElementById('statAging').textContent = aging;
+
+            categoriesEl.replaceChildren(...categories.map(({ title, entries }) => {
+                const card = document.createElement('div');
+                card.className = 'category-card';
+
+                const h2 = document.createElement('h2');
+                h2.className = 'category-title';
+                h2.textContent = title;
+
+                const count = document.createElement('p');
+                count.className = 'category-count';
+                count.textContent = `${entries.length} ${entries.length === 1 ? 'schema' : 'schemas'}`;
+
+                const ul = document.createElement('ul');
+                ul.className = 'schema-list';
+                [...entries].sort((a, b) => a.name.localeCompare(b.name)).forEach(entry => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#${entry.name.toLowerCase()}`;
+                    a.textContent = entry.name;
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        loadSchema(entry);
+                    });
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+
+                card.append(h2, count, ul);
+                return card;
+            }));
+        }
+
+        async function loadManifest() {
+            try {
+                const response = await fetch(`${baseUrl}/manifest.yml`);
+                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                renderBrowser(jsyaml.load(await response.text()));
+            } catch (error) {
+                const box = document.createElement('div');
+                box.className = 'error';
+                box.textContent = `Error loading schema index: ${error.message}`;
+                categoriesEl.replaceChildren(box);
+            }
+        }
 
         function openPanel() {
             panel.classList.add('open');
@@ -725,20 +647,20 @@
             `;
         }
 
-        async function loadSchema(schemaName, category) {
+        async function loadSchema(entry) {
             panelContent.innerHTML = '<div class="loading">Loading schema…</div>';
             openPanel();
 
             try {
-                const folder = categoryFolders[category.toLowerCase()] || 'miscellaneous';
-                const baseUrl = 'https://raw.githubusercontent.com/cosmos-genesis/cosmos-schemas/main';
-                const url = `${baseUrl}/${folder}/${schemaName}Schema.avsc`;
+                // manifest `file` paths are relative to the source repo's root (schemas/<dir>/...);
+                // the mirror publishes the same files at its own root.
+                const url = `${baseUrl}/${entry.file.replace(/^schemas\//, '')}`;
 
                 const response = await fetch(url);
                 if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
 
                 const schema = await response.json();
-                panelTitle.textContent = schema.name || schemaName;
+                panelTitle.textContent = schema.name || entry.name;
                 panelContent.innerHTML = renderSchema(schema);
             } catch (error) {
                 panelContent.innerHTML = `
@@ -753,15 +675,7 @@
         closeBtn.addEventListener('click', closePanel);
         overlay.addEventListener('click', closePanel);
 
-        document.querySelectorAll('.schema-list li a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const schemaName = link.textContent.trim();
-                const categoryCard = link.closest('.category-card');
-                const category = categoryCard ? categoryCard.querySelector('.category-title').textContent : '';
-                loadSchema(schemaName, category);
-            });
-        });
+        loadManifest();
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
