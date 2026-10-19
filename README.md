@@ -1,6 +1,6 @@
 # Cosmos Genesis Schemas
 
-**111 open-source Avro schemas for astrophysical simulation data**
+**116 open-source Avro schemas for astrophysical simulation data**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Schema Browser](https://img.shields.io/badge/docs-schema%20browser-green)](https://cosmos-genesis.github.io/cosmos-schemas/)
@@ -43,7 +43,7 @@ All schemas implement peer-reviewed astrophysical models:
 ## Quick Start
 
 ### Browse the Schemas
-Explore all 111 schemas interactively:
+Explore all 116 schemas interactively:
 **[📖 Interactive Schema Browser](https://cosmos-genesis.github.io/cosmos-schemas/)**
 
 ### Query Data with Python
