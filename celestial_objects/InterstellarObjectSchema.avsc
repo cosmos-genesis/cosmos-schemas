@@ -1,0 +1,222 @@
+{
+  "type": "record",
+  "name": "InterstellarObject",
+  "namespace": "CosmosGenesis.celestial_objects",
+  "doc": "A body moving through interstellar space with no bound stellar host: ejected planets, captured visitors, and system debris. Produced by Phase 3 back-propagation (SN/PN/GRB ejection events) or imported as modelled interstellar visitors (ʻOumuamua-class). These objects participate in galactic-scale n-body integration (Phase 7) and can be captured by systems via Hill-sphere detection.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "interstellar_object_id",
+      "type": "string",
+      "default": "",
+      "doc": "Stable UUID for this object within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Parent galaxy UUID — partition key for Iceberg queries"
+    },
+    {
+      "name": "object_designation",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Catalog-style name (e.g., 'CG-M101-ISO-000042'). Null if undesignated."
+    },
+    {
+      "name": "origin_system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "system_id of the host system that ejected this object. Null for objects generated without a known progenitor system (e.g., primordial rogue planets)."
+    },
+    {
+      "name": "ejection_cause",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "EjectionCause",
+          "doc": "Physical process responsible for removing this object from its host system. SUPERNOVA: blast wave momentum transfer exceeds escape velocity. PLANETARY_NEBULA: photoevaporation + radiation pressure over PN lifetime. GRB: on-axis gamma-ray burst impulse. PLANETARY_ENCOUNTER: n-body scattering from a close approach. TIDAL_DISRUPTION: tidal stripping during cluster dissolution or galaxy merger.",
+          "symbols": [
+            "SUPERNOVA",
+            "PLANETARY_NEBULA",
+            "GRB",
+            "PLANETARY_ENCOUNTER",
+            "TIDAL_DISRUPTION"
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "object_type",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "InterstellarObjectType",
+          "doc": "Physical class of the interstellar object. ROGUE_PLANET: planetary-mass body (>0.1 M_earth). ASTEROID_BODY: rocky/metallic body (<0.1 M_earth, radius > 0.1 km). COMET_BODY: volatile-rich icy body that develops a coma near stars. DEBRIS: sub-km fragment, dust aggregate, or ring-system remnant.",
+          "symbols": [
+            "ROGUE_PLANET",
+            "ASTEROID_BODY",
+            "COMET_BODY",
+            "DEBRIS"
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "mass_earth_masses",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mass in Earth masses. Null for DEBRIS class where individual mass is not tracked."
+    },
+    {
+      "name": "radius_earth_radii",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Mean radius in Earth radii. Null for DEBRIS class."
+    },
+    {
+      "name": "surface_temperature_k",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Effective surface temperature in Kelvin. For rogue planets this is set by residual internal heat + any nearby stellar flux; declines with time for isolated objects."
+    },
+    {
+      "name": "composition",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": [],
+      "doc": "Material composition tags (e.g., ['silicate', 'iron_core', 'water_ice', 'co2_ice']). Inherited from the progenitor planet record at ejection time."
+    },
+    {
+      "name": "galactic_x_ly",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Galactic X position in light-years at universe_time"
+    },
+    {
+      "name": "galactic_y_ly",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Galactic Y position in light-years at universe_time"
+    },
+    {
+      "name": "galactic_z_ly",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Galactic Z position in light-years at universe_time"
+    },
+    {
+      "name": "velocity_x_ly_myr",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Galactic-frame velocity X component in ly/Myr (~1.022 km/s per ly/Myr). Positive = toward increasing X."
+    },
+    {
+      "name": "velocity_y_ly_myr",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Galactic-frame velocity Y component in ly/Myr"
+    },
+    {
+      "name": "velocity_z_ly_myr",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Galactic-frame velocity Z component in ly/Myr"
+    },
+    {
+      "name": "ejection_time_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr (fractional) when the object was ejected from its host system. Used to compute current position via galactic n-body integration from this epoch. Sub-Myr precision required for PN (15 kyr) and SN (200 yr) phase timing."
+    },
+    {
+      "name": "captured_by_system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "system_id of the system that captured this object, if capture has occurred. Set by Phase 7 Hill-sphere detection. Null = still free-floating."
+    },
+    {
+      "name": "capture_type",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "CaptureType",
+          "doc": "FLYBY: hyperbolic trajectory — object passes through Hill sphere without binding. TEMPORARY: bound but on a chaotic orbit likely to be re-ejected within ~10 orbital periods. PERMANENT: stably bound, orbit has circularized or settled into resonance.",
+          "symbols": [
+            "FLYBY",
+            "TEMPORARY",
+            "PERMANENT"
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "capture_time_myr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when capture was detected. Null if not captured."
+    },
+    {
+      "name": "spatial_hash",
+      "type": [
+        "null",
+        "int"
+      ],
+      "default": null,
+      "doc": "Z-order spatial partition bucket [0, 1024) derived from galactic position. Matches StarSystem.spatial_hash encoding for cross-table spatial JOIN predicate pushdown."
+    },
+    {
+      "name": "morton_id",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "48-bit Morton (Z-order) code encoding galactic_x_ly, galactic_y_ly, galactic_z_ly. Same encoding as StarSystem.morton_id — each axis quantised to 16 bits over ±100,000 LY; bits interleaved x,y,z. Used by client GalaxyMortonIndex for O(log N) nearest-neighbour queries."
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record state was snapshotted (for Iceberg time-travel queries)"
+    }
+  ]
+}

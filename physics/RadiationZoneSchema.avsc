@@ -1,0 +1,186 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "RadiationZone",
+  "doc": "Describes a spatially bounded radiation environment around a celestial object. One record per zone; multiple zones may exist for a single source (e.g., a magnetized planet has an isolation zone for the magnetosphere and a standard ramp zone for the radiation belts). Zone types map directly to the Radiation Toolbox zone model: STANDARD_RAMP (stellar HZ / radiation belt), BACKGROUND (ISM cosmic ray floor), ISOLATION (magnetosphere interior — shields from external flux), DIRECTIONAL_RAMP (pulsar beam / AGN jet cone). All boundaries are in AU; all dose rates in Sv/hr for consistency with SI. Generated during Phase 5 (environments & magnetospheres). v1.0.0: initial schema.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "zone_id",
+      "type": "string",
+      "doc": "Stable primary key for this radiation zone record (UUID).",
+      "default": ""
+    },
+    {
+      "name": "source_id",
+      "type": "string",
+      "doc": "FK to the emitting or shielding object (star_id, pulsar_id, magnetar_id, planet_id, black_hole_id, etc.). Combined with source_type to resolve the parent table.",
+      "default": ""
+    },
+    {
+      "name": "source_type",
+      "type": {
+        "type": "enum",
+        "name": "RadiationSourceType",
+        "symbols": [
+          "STAR",
+          "PLANET",
+          "PULSAR",
+          "MAGNETAR",
+          "NEUTRON_STAR",
+          "BLACK_HOLE",
+          "AGN",
+          "SUPERNOVA_REMNANT",
+          "INTERSTELLAR_MEDIUM"
+        ],
+        "doc": "Type of the emitting or shielding body. Used to resolve source_id to the correct Iceberg table."
+      }
+    },
+    {
+      "name": "zone_type",
+      "type": {
+        "type": "enum",
+        "name": "RadiationZoneType",
+        "symbols": [
+          "STANDARD_RAMP",
+          "BACKGROUND",
+          "ISOLATION",
+          "DIRECTIONAL_RAMP"
+        ],
+        "doc": "STANDARD_RAMP: linear dose ramp from inner_boundary to outer_boundary (stellar HZ, radiation belts). BACKGROUND: omnidirectional floor level (ISM cosmic ray background). ISOLATION: interior is shielded from external flux up to magnetopause — dose inside falls below background (magnetosphere model). DIRECTIONAL_RAMP: unidirectional beam along a cone axis (pulsar, AGN jet) — dose outside cone axis = background."
+      }
+    },
+    {
+      "name": "inner_boundary_au",
+      "type": "double",
+      "doc": "Inner edge of the zone in AU from the source body center. For DIRECTIONAL_RAMP, this is the distance along the beam axis at which peak flux begins. For BACKGROUND, set to 0.0.",
+      "default": 0.0
+    },
+    {
+      "name": "outer_boundary_au",
+      "type": "double",
+      "doc": "Outer boundary / falloff edge of the zone in AU. Beyond this distance the dose drops to the background floor. For ISOLATION zones, this is the magnetopause radius — the shielding boundary.",
+      "default": 0.0
+    },
+    {
+      "name": "peak_dose_sv_hr",
+      "type": "double",
+      "doc": "Peak dose rate in Sv/hr at the inner boundary (or beam axis center for DIRECTIONAL_RAMP). Scales to background_dose_sv_hr at the outer boundary via the falloff model. Reference: ISM cosmic ray background ~0.000001 Sv/hr; Earth surface ~0.00000027 Sv/hr; Van Allen inner belt ~0.01 Sv/hr; pulsar beam (ms pulsar) ~1e6 Sv/hr.",
+      "default": 0.0
+    },
+    {
+      "name": "background_dose_sv_hr",
+      "type": "double",
+      "doc": "Ambient dose rate in Sv/hr outside the zone boundary. Used as the floor for STANDARD_RAMP and as the interior-blocked value for ISOLATION zones. Default 0.000001 Sv/hr ≈ ISM cosmic ray background.",
+      "default": 1.0e-6
+    },
+    {
+      "name": "falloff_model",
+      "type": {
+        "type": "enum",
+        "name": "RadiationFalloffModel",
+        "symbols": [
+          "LINEAR",
+          "INVERSE_SQUARE",
+          "EXPONENTIAL",
+          "STEP"
+        ],
+        "doc": "Dose falloff law from inner to outer boundary. LINEAR: uniform ramp. INVERSE_SQUARE: flux ∝ 1/r² (stellar radiation). EXPONENTIAL: rapid decay (magnetar burst attenuation in dense nebula). STEP: abrupt cutoff at outer boundary (magnetopause isolation)."
+      },
+      "default": "INVERSE_SQUARE"
+    },
+    {
+      "name": "beam_axis_theta_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For DIRECTIONAL_RAMP zones only: polar angle of the beam axis in radians (measured from galactic north). Null for omnidirectional zones."
+    },
+    {
+      "name": "beam_axis_phi_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For DIRECTIONAL_RAMP zones only: azimuthal angle of the beam axis in radians (galactic frame). Null for omnidirectional zones."
+    },
+    {
+      "name": "beam_half_angle_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For DIRECTIONAL_RAMP zones only: half-opening angle of the radiation cone in degrees. Outside this cone angle the dose falls to background. Mapped from the source beam_opening_angle_deg for pulsars; jet opening angle for AGN. Null for omnidirectional zones."
+    },
+    {
+      "name": "rotation_period_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For rotating DIRECTIONAL_RAMP zones (pulsars): the beam sweep period in seconds. Null for static zones. The client uses this to animate the beam axis rotation, producing the characteristic on/off pulsing dose signature."
+    },
+    {
+      "name": "is_stochastic",
+      "type": "boolean",
+      "doc": "True if the zone emits at irregular intervals (magnetar bursts, stellar flares) rather than continuously or periodically. Stochastic zones have a mean recurrence but random timing; the peak_dose_sv_hr applies during active burst windows only.",
+      "default": false
+    },
+    {
+      "name": "mean_recurrence_yr",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For stochastic zones only (is_stochastic=true): mean time between events in years. Maps to burst_recurrence_yr on MagnetarSchema. Null for continuous emitters."
+    },
+    {
+      "name": "burst_duration_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For stochastic zones only: duration of each burst event in seconds. Used by the client to set the dose exposure window. Null for continuous emitters."
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Partition key: galaxy this zone belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "System this zone belongs to (null for galactic-scale sources like AGN)"
+    },
+    {
+      "name": "generation_version",
+      "type": "string",
+      "doc": "Pipeline version that generated this record (e.g. '1.0'). Partition column.",
+      "default": "1.0"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was generated"
+    }
+  ]
+}

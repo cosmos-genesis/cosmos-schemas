@@ -85,9 +85,24 @@
       "default": []
     },
     {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this relativistic jet belongs to"
+    },
+    {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "universe_time",
+      "type": "long",
+      "default": 0,
+      "doc": "Universe time in Myr when this relativistic jet state was recorded (for aging/time-travel)"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.2.0"
 }

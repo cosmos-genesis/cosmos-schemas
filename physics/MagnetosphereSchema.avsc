@@ -2,8 +2,8 @@
   "type": "record",
   "namespace": "CosmosGenesis.physics",
   "name": "Magnetosphere",
-  "doc": "Represents a planetary or stellar magnetosphere.",
-  "version": "1.0.0",
+  "doc": "Represents a planetary or stellar magnetosphere. v1.1.0: added AU-scale boundary fields (magnetopause_radius_au, bow_shock_radius_au) alongside km fields for backward compatibility; added parent_body_id FK; extended RadiationBelt with peak_dose_sv_hr (SI dose rate in Sv/hr replacing the unitless peak_intensity) and AU-scale inner/outer belt boundaries.",
+  "version": "1.1.0",
   "fields": [
     {
       "name": "parent_body_designation",
@@ -11,24 +11,55 @@
       "default": ""
     },
     {
+      "name": "parent_body_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "FK to the magnetized body (planet_id or star_id). Combined with the Iceberg partition (system_id) to join the parent record without a full table scan."
+    },
+    {
       "name": "field_strength_tesla",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Surface equatorial magnetic dipole field strength in Tesla. Earth: 6e-5 T; Jupiter: 4e-4 T; magnetar: ~1e10 T."
     },
     {
       "name": "dipole_tilt_degrees",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Angle between the magnetic dipole axis and the rotation axis in degrees. Earth: ~11°; Uranus: ~60°; Neptune: ~47°."
     },
     {
       "name": "magnetopause_radius_km",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Subsolar magnetopause standoff distance in km (legacy field, retained for backward compatibility). For generation-scale calculations use magnetopause_radius_au instead."
+    },
+    {
+      "name": "magnetopause_radius_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Subsolar magnetopause standoff distance in AU. This is where stellar wind dynamic pressure equals the planetary magnetic pressure. Earth: ~0.000641 AU (10 R_E); Jupiter: ~0.028 AU (45 R_J); pulsars: varies with spin-down wind. Used to instantiate the ISOLATION RadiationZone boundary."
     },
     {
       "name": "bow_shock_radius_km",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Subsolar bow shock standoff distance in km (legacy field). For generation-scale calculations use bow_shock_radius_au instead."
+    },
+    {
+      "name": "bow_shock_radius_au",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Bow shock standoff distance in AU (typically ~1.3–1.5× magnetopause radius). The bow shock is the outermost transition where the supersonic stellar wind decelerates."
     },
     {
       "name": "radiation_belts",
@@ -41,12 +72,23 @@
             {
               "name": "designation",
               "type": "string",
-              "default": ""
+              "default": "",
+              "doc": "Human-readable belt name (e.g. 'Inner Belt', 'Outer Belt', 'Jupiter Main Belt')."
             },
             {
               "name": "peak_intensity",
               "type": "double",
-              "default": 0.0
+              "default": 0.0,
+              "doc": "DEPRECATED — unitless peak intensity from v1.0.0. Use peak_dose_sv_hr instead. Retained for backward read compatibility."
+            },
+            {
+              "name": "peak_dose_sv_hr",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null,
+              "doc": "Peak radiation dose rate in the belt core in Sv/hr. Earth inner belt: ~0.01 Sv/hr; Earth outer belt: ~0.001 Sv/hr; Jupiter main belt: ~20 Sv/hr. Used by the RadiationZone system (STANDARD_RAMP) to set peak_dose_sv_hr for the belt zone record."
             },
             {
               "name": "altitude_range_km",
@@ -54,7 +96,26 @@
                 "type": "array",
                 "items": "double"
               },
-              "default": []
+              "default": [],
+              "doc": "Two-element array [inner_altitude_km, outer_altitude_km] above the planet surface. Legacy field; use inner_boundary_au / outer_boundary_au for generation-scale physics."
+            },
+            {
+              "name": "inner_boundary_au",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null,
+              "doc": "Inner edge of the radiation belt in AU from the planetary center. Earth inner belt inner edge: ~0.000085 AU (1.2 R_E); Earth outer belt inner edge: ~0.00085 AU (3.5 R_E)."
+            },
+            {
+              "name": "outer_boundary_au",
+              "type": [
+                "null",
+                "double"
+              ],
+              "default": null,
+              "doc": "Outer edge of the radiation belt in AU from the planetary center. Earth inner belt outer edge: ~0.00085 AU (2 R_E); Earth outer belt outer edge: ~0.00427 AU (6 R_E)."
             }
           ]
         }
@@ -64,7 +125,8 @@
     {
       "name": "aurora_present",
       "type": "boolean",
-      "default": false
+      "default": false,
+      "doc": "True if the magnetosphere drives aurora-like precipitation phenomena at the poles."
     },
     {
       "name": "coordinates",

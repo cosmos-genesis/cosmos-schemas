@@ -68,7 +68,17 @@
           {
             "name": "rotation_period_days",
             "type": "double",
-            "default": 0.0
+            "default": 0.0,
+            "doc": "Stellar rotation period in days. Young stars rotate faster, older stars slower due to magnetic braking."
+          },
+          {
+            "name": "axial_tilt_deg",
+            "type": [
+              "null",
+              "double"
+            ],
+            "default": null,
+            "doc": "Axial tilt of the star's rotation axis relative to the system's invariable plane in degrees (0-180°). Typically small for single stars."
           }
         ]
       },

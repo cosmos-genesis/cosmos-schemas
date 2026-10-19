@@ -83,6 +83,24 @@
       "doc": "Age of the ring system in millions of years (Myr)"
     },
     {
+      "name": "optical_depth",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Optical depth of the ring system (0.001-1.5). Saturn's B ring ~1.0, Jupiter's rings ~0.00001"
+    },
+    {
+      "name": "coordinates",
+      "type": [
+        "null",
+        "CosmosGenesis.properties.Coordinates"
+      ],
+      "default": null,
+      "doc": "3D coordinates of the ring system (inherited from parent planet)"
+    },
+    {
       "name": "universe_time",
       "type": [
         "null",

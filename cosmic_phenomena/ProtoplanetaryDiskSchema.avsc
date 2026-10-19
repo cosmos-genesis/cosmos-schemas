@@ -3,7 +3,7 @@
   "namespace": "CosmosGenesis.celestial_objects",
   "name": "ProtoplanetaryDisk",
   "doc": "Represents a disk of gas and dust surrounding a young star, from which planets form.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "fields": [
     {
       "name": "galaxy_id",
@@ -65,6 +65,15 @@
       "type": "CosmosGenesis.properties.Coordinates"
     },
     {
+      "name": "parent_star_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the parent star this disk orbits (critical for binary systems)"
+    },
+    {
       "name": "disk_age_myr",
       "type": [
         "null",
@@ -72,6 +81,18 @@
       ],
       "default": null,
       "doc": "Age of the disk in millions of years (Myr)"
+    },
+    {
+      "name": "accretion_rate_msun_yr",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Current accretion rate onto central star in M_☉/yr (viscous evolution)"
+    },
+    {
+      "name": "photoevap_rate_msun_yr",
+      "type": "double",
+      "default": 0.0,
+      "doc": "Current photoevaporative mass loss rate in M_☉/yr (UV/X-ray driven)"
     },
     {
       "name": "universe_time",

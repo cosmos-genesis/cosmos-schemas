@@ -1,0 +1,166 @@
+{
+  "type": "record",
+  "namespace": "CosmosGenesis.physics",
+  "name": "EMSignature",
+  "doc": "Electromagnetic emission parameters for a celestial source, used by the client's procedural audio synthesis engine ('Sounds of the Cosmos'). One record per source-band combination. Physical parameters drive audio generation directly: no pre-recorded assets — tone frequency, amplitude, pulse timing, and noise character are all computed from these values at runtime. Sources include pulsars (periodic beeps at actual spin period), magnetar bursts (stochastic impulses), stellar wind (continuous noise scaled by mass loss rate), gas giant decametric emission, Type II/III solar radio bursts, Fast Radio Bursts, CMB background, and synchrotron emission. Signal attenuation via dispersion measure and ionospheric cutoff is handled at the zone level but the source DM is mirrored here for convenience. v1.0.0: initial schema.",
+  "version": "1.0.0",
+  "fields": [
+    {
+      "name": "signature_id",
+      "type": "string",
+      "doc": "Stable primary key for this EM signature record (UUID).",
+      "default": ""
+    },
+    {
+      "name": "source_id",
+      "type": "string",
+      "doc": "FK to the emitting object. Combined with source_type to resolve the parent table (pulsar_id, magnetar_id, star_id, planet_id, etc.).",
+      "default": ""
+    },
+    {
+      "name": "source_type",
+      "type": {
+        "type": "enum",
+        "name": "EMSourceType",
+        "symbols": [
+          "PULSAR",
+          "FAST_RADIO_BURST",
+          "MAGNETAR",
+          "STAR",
+          "GAS_GIANT",
+          "STELLAR_FLARE",
+          "SYNCHROTRON",
+          "CMB",
+          "AGN_JET"
+        ],
+        "doc": "Category of EM emitter. Determines which audio synthesis model the client applies: PULSAR→periodic click/beep; FAST_RADIO_BURST→single bright impulse; MAGNETAR→stochastic burst; STAR→continuous noise (stellar wind); GAS_GIANT→decametric FM tone; STELLAR_FLARE→swept-frequency Type II/III burst; SYNCHROTRON→broadband low-frequency rumble; CMB→constant background noise floor; AGN_JET→high-energy directional hiss."
+      }
+    },
+    {
+      "name": "peak_frequency_mhz",
+      "type": "double",
+      "doc": "Peak emission frequency in MHz. Pulsars: ~0.1–10 GHz → 100–10000 MHz. Gas giant decametric: 3–40 MHz. CMB thermal peak: ~160,000 MHz (160 GHz). Type III solar bursts drift from ~1000 MHz down to ~0.01 MHz. This is the center frequency mapped to audio pitch.",
+      "default": 0.0
+    },
+    {
+      "name": "bandwidth_mhz",
+      "type": "double",
+      "doc": "Emission bandwidth in MHz. Used to determine the spectral width of the audio tone or noise band. Narrowband sources (pulsars) produce tonal audio; broadband sources (CMB, synchrotron) produce noise.",
+      "default": 0.0
+    },
+    {
+      "name": "radio_luminosity_w_hz",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Specific radio luminosity at peak frequency in W/Hz. Drives audio amplitude level after inverse-square distance scaling. Reference values: Crab Pulsar ~1e21 W/Hz; Sun (radio quiet) ~1e14 W/Hz at peak; Jupiter decametric ~1e9 W/Hz; SGR 1806-20 giant flare ~1e30 W/Hz."
+    },
+    {
+      "name": "pulse_period_ms",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For periodic emitters (PULSAR, MAGNETAR): rotation/burst period in milliseconds. Directly sets the audio click/beep tempo. Null for continuous or aperiodic sources. Range: 1.4 ms (fastest MSP) to ~12,000 ms (slowest magnetar)."
+    },
+    {
+      "name": "pulse_duty_cycle",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Fraction of the period during which the pulse is active (0.0–1.0). Typical pulsars: 0.01–0.10 (1–10% of period). Millisecond pulsars often have broader duty cycles ~0.3–0.5. Used to set the on/off ratio in the audio click synthesis."
+    },
+    {
+      "name": "pulse_profile",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "PulseProfile",
+          "symbols": [
+            "SINGLE_GAUSSIAN",
+            "DOUBLE_GAUSSIAN",
+            "COMPLEX",
+            "IRREGULAR"
+          ],
+          "doc": "Shape of the pulse emission envelope. SINGLE_GAUSSIAN: clean single peak (most pulsars). DOUBLE_GAUSSIAN: classic double-peaked profile (e.g., Crab Pulsar — interpulse visible). COMPLEX: multiple-peaked, millisecond pulsars and recycled systems. IRREGULAR: stochastic profile typical of magnetar bursts."
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "burst_rise_time_ms",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For MAGNETAR and FAST_RADIO_BURST sources: rise time of the burst envelope in milliseconds. SGR giant flares rise in ~0.25 ms; FRBs rise in ~0.1–5 ms. Used to shape the attack portion of the audio burst synthesis."
+    },
+    {
+      "name": "burst_decay_time_ms",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For MAGNETAR and FAST_RADIO_BURST sources: exponential decay time constant in milliseconds after burst peak. Used to shape the release tail of the audio burst envelope."
+    },
+    {
+      "name": "drift_rate_mhz_s",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "For STELLAR_FLARE (Type II/III solar radio burst) sources: frequency drift rate in MHz/s. Type III bursts at solar distances drift at approximately −20 MHz/s (high-to-low frequency). Used to generate a swept-frequency audio tone during flare events. Null for non-drifting sources."
+    },
+    {
+      "name": "dispersion_measure_pc_cm3",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Dispersion measure (DM) in pc/cm³ — the integrated electron column density along the line of sight. Mirrored from PulsarSchema for audio convenience: DM causes frequency-dependent arrival time delays, heard as a characteristic swept descending tone on first detection. Also determines how much signal is attenuated in dense nebular regions."
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Partition key: galaxy this source belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "System this source belongs to (null for galactic-scale sources)"
+    },
+    {
+      "name": "generation_version",
+      "type": "string",
+      "doc": "Pipeline version that generated this record (e.g. '1.0'). Partition column.",
+      "default": "1.0"
+    },
+    {
+      "name": "universe_time",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
+      "doc": "Universe time in Myr when this record was generated"
+    }
+  ]
+}

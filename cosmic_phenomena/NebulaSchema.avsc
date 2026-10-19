@@ -70,6 +70,15 @@
       "default": 0.0
     },
     {
+      "name": "ionization_radius_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Radius of ionization influence (Strömgren sphere) in light-years"
+    },
+    {
       "name": "visible_light_emission",
       "type": "boolean",
       "default": false
@@ -83,6 +92,24 @@
       "type": "string",
       "default": "",
       "doc": "Stable identifier for this nebula within the data lake"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this nebula belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the star system this nebula originated from (for planetary nebulae)"
     },
     {
       "name": "nebula_age_myr",
@@ -103,5 +130,5 @@
       "doc": "Universe time in Myr when this state was recorded (for temporal tracking)"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.3.0"
 }

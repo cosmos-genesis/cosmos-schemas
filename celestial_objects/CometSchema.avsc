@@ -239,6 +239,24 @@
       "doc": "Whether this is a long-period comet (>200 year orbital period)"
     },
     {
+      "name": "is_visitor",
+      "type": "boolean",
+      "default": false,
+      "doc": "Whether this comet is an interstellar visitor on a hyperbolic trajectory (e.g. Borisov, 3I/ATLAS)"
+    },
+    {
+      "name": "a_hyperbolic_au",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Hyperbolic semi-major axis in AU (negative for hyperbolic orbits; only set for interstellar visitors)"
+    },
+    {
+      "name": "perihelion_day_j2000",
+      "type": ["null", "double"],
+      "default": null,
+      "doc": "Perihelion passage time in days since J2000 (only set for interstellar visitors with known trajectory)"
+    },
+    {
       "name": "comet_age_myr",
       "type": [
         "null",

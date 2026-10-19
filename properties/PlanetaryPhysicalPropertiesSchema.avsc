@@ -42,6 +42,24 @@
       ],
       "default": null,
       "doc": "Escape velocity of the planet in m/s"
+    },
+    {
+      "name": "rotation_period_hours",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Rotation period (length of day) in hours. Negative values indicate retrograde rotation."
+    },
+    {
+      "name": "axial_tilt_deg",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Axial tilt (obliquity) in degrees - angle between rotation axis and orbital plane normal (0-180°). Earth is ~23.5°, Uranus is ~98°."
     }
   ],
   "version": "1.0.0"

@@ -91,9 +91,18 @@
       "default": 0.0
     },
     {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this cosmic string belongs to"
+    },
+    {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

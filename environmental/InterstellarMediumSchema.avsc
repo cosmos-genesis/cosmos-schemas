@@ -71,7 +71,22 @@
     {
       "name": "coordinates",
       "type": "CosmosGenesis.properties.Coordinates"
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this ISM region belongs to"
+    },
+    {
+      "name": "universe_time",
+      "type": "long",
+      "default": 0,
+      "doc": "Universe time in Myr when this ISM state was recorded (for aging/time-travel)"
     }
   ],
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

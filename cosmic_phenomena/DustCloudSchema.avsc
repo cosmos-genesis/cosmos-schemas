@@ -2,43 +2,128 @@
   "type": "record",
   "namespace": "CosmosGenesis.cosmic_phenomena",
   "name": "DustCloud",
-  "doc": "Represents interstellar or circumstellar dust clouds.",
+  "doc": "Interstellar or circumstellar dust cloud with triaxial ellipsoid geometry. Version 2.0.0 replaces the spherical volume_cubic_ly model with an oriented triaxial ellipsoid defined by semi_major_ly + two aspect ratios + orientation angles — matching observed galactic dust morphologies from IRAS, Herschel, and Spitzer surveys. The turbulence_parameter drives fractal detail on the client renderer.",
+  "version": "2.0.0",
   "fields": [
+    {
+      "name": "cloud_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Stable UUID for this cloud record within the data lake (v2.0.0+)"
+    },
     {
       "name": "cloud_designation",
       "type": "string",
-      "default": ""
+      "default": "",
+      "doc": "Catalog-style name (e.g., 'CG-M101-DC-000017', 'Barnard 68')"
+    },
+    {
+      "name": "cloud_class",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "DustCloudClass",
+          "doc": "Morphological class governing default aspect ratios and turbulence. DIFFUSE: tenuous ISM dust sheet (high aspect ratio, low density). DARK_NEBULA: optically thick absorption cloud (e.g. Coal Sack). REFLECTION_NEBULA: dust lit by nearby star, moderate opacity. BOK_GLOBULE: dense compact pre-stellar clump (near-spherical, r~0.1–1 ly). PILLAR: elongated column sculpted by HII region photoevaporation (pillar of creation type). COMETARY: comet-head + tail morphology driven by stellar wind pressure.",
+          "symbols": [
+            "DIFFUSE",
+            "DARK_NEBULA",
+            "REFLECTION_NEBULA",
+            "BOK_GLOBULE",
+            "PILLAR",
+            "COMETARY"
+          ]
+        }
+      ],
+      "default": null
     },
     {
       "name": "mass_solar_masses",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Total dust mass in solar masses"
     },
     {
-      "name": "volume_cubic_ly",
-      "type": "double",
-      "default": 0.0
+      "name": "semi_major_ly",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Length of the longest principal axis (semi-major axis) in light-years. For BOK_GLOBULE typically 0.1–1 ly; for large diffuse clouds 10–1000 ly. The client renderer uses this as the a-axis of the triaxial ellipsoid."
+    },
+    {
+      "name": "aspect_ratio_ab",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Ratio b/a of intermediate to longest axis (0 < aspect_ratio_ab <= 1.0). 1.0 = spherical or oblate; ~0.3–0.6 typical for dark nebulae."
+    },
+    {
+      "name": "aspect_ratio_ac",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Ratio c/a of shortest to longest axis (0 < aspect_ratio_ac <= aspect_ratio_ab). Defines the full triaxial shape. PILLAR: ~0.1. BOK_GLOBULE: ~0.7–0.9. DIFFUSE: ~0.1–0.3."
+    },
+    {
+      "name": "orientation_theta_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Azimuthal orientation angle of the semi-major axis in the galactic XY plane, in radians [0, 2π). Controls the rotation of the long axis around the galactic Z axis."
+    },
+    {
+      "name": "orientation_phi_rad",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Polar elevation angle of the semi-major axis above the galactic plane, in radians [-π/2, π/2]. 0 = lying in galactic plane; π/2 = pointing straight up. Most disk clouds have |phi| < 0.3 rad."
+    },
+    {
+      "name": "turbulence_parameter",
+      "type": [
+        "null",
+        "double"
+      ],
+      "default": null,
+      "doc": "Dimensionless turbulence intensity [0.0, 1.0]. 0.0 = smooth, laminar boundary (reflection nebula lit edge). 1.0 = fully turbulent, fractal surface detail (molecular cloud pillar, Bok globule with striations). Used by the client renderer to modulate fbm octave count and edge displacement amplitude."
     },
     {
       "name": "temperature_k",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Mean dust temperature in Kelvin. Diffuse: 15–25 K. Dense core: 8–12 K. Reflection nebula (heated): 30–100 K."
     },
     {
       "name": "grain_properties",
       "type": {
         "type": "record",
         "name": "DustGrains",
+        "doc": "Physical grain population parameters following MRN (Mathis-Rumpl-Nordsieck) distribution conventions",
         "fields": [
           {
             "name": "mean_size_microns",
             "type": "double",
-            "default": 0.0
+            "default": 0.0,
+            "doc": "Mean grain radius in microns. ISM standard: ~0.1 μm. Pre-stellar cores may have larger aggregates (1–10 μm)."
           },
           {
             "name": "size_distribution",
             "type": "string",
-            "default": ""
+            "default": "",
+            "doc": "Distribution law: 'mrn' (power law n(a)∝a^-3.5), 'log_normal', 'power_law'"
           },
           {
             "name": "composition",
@@ -51,12 +136,14 @@
                   {
                     "name": "material",
                     "type": "string",
-                    "default": ""
+                    "default": "",
+                    "doc": "Grain material: 'silicate', 'graphite', 'pah', 'water_ice', 'co_ice', 'iron'"
                   },
                   {
                     "name": "mass_fraction",
                     "type": "double",
-                    "default": 0.0
+                    "default": 0.0,
+                    "doc": "Fraction of total grain mass in this component (all components should sum to 1.0)"
                   }
                 ]
               }
@@ -70,17 +157,43 @@
     {
       "name": "extinction_coefficient",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Visual extinction Av in magnitudes per parsec. Used by the renderer to modulate background star brightness attenuation through the cloud."
     },
     {
       "name": "polarization_percentage",
       "type": "double",
-      "default": 0.0
+      "default": 0.0,
+      "doc": "Peak polarization fraction (%) of transmitted starlight due to aligned grain emission. Traces local magnetic field direction."
+    },
+    {
+      "name": "galaxy_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the galaxy this dust cloud belongs to"
+    },
+    {
+      "name": "system_id",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Identifier of the star system this cloud is associated with, if circumstellar. Null for purely interstellar clouds."
     },
     {
       "name": "coordinates",
-      "type": "CosmosGenesis.properties.Coordinates"
+      "type": "CosmosGenesis.properties.Coordinates",
+      "doc": "3D position of the cloud centroid in galactic frame"
+    },
+    {
+      "name": "universe_time",
+      "type": "long",
+      "default": 0,
+      "doc": "Universe time in Myr when this dust cloud state was recorded (for aging/time-travel)"
     }
-  ],
-  "version": "1.0.0"
+  ]
 }
