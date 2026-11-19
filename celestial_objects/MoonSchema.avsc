@@ -197,7 +197,7 @@
         "CosmosGenesis.properties.AtmosphereType"
       ],
       "default": null,
-      "doc": "Atmospheric composition class. TITAN_SMOG moons: THICK. IO_VOLCANIC moons: TOXIC (SO₂). EUROPA_OCEAN, TRITON_CRYCVOLCANIC: THIN. All others: NONE."
+      "doc": "Atmospheric composition class. TITAN_SMOG moons: THICK. IO_VOLCANIC moons: TOXIC (SO₂). EUROPA_OCEAN, TRITON_CRYOVOLCANIC: THIN. All others: NONE."
     },
     {
       "name": "composition_class",
